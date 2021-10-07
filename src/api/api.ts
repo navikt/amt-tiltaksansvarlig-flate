@@ -2,7 +2,7 @@ import { AxiosPromise } from 'axios'
 
 import { axiosInstance } from './utils'
 
-interface IsAuthenticated {
+export interface IsAuthenticated {
 	isAuthenticated: boolean;
 }
 

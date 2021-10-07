@@ -39,7 +39,7 @@ const defaultState: NotStartedPromiseState = {
 	status: Status.NOT_STARTED
 }
 
-export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?: any[]) => {
+export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?: never[]): PromiseState<R, E> & { setPromise: (promise: Promise<R>) => void } => {
 	const [ promise, setPromise ] = useState<Promise<R>>()
 	const [ promiseState, setPromiseState ] = useState<PromiseState<R, E>>(defaultState)
 
