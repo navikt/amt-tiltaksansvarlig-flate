@@ -1,0 +1,50 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: amt-tiltaksansvarlig-flate
+  namespace: amt
+  labels:
+    team: amt
+spec:
+  image: ghcr.io/navikt/pto-frontend/pto-frontend:2021.06.22_08.34-3e18671c9b52
+  port: 8080
+  ingresses:
+    - https://amt-tiltaksansvarlig-flate.dev.intern.nav.no
+  liveness:
+    path: /internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /internal/isReady
+    initialDelay: 10
+  replicas:
+    min: 1
+    max: 2
+    cpuThresholdPercentage: 75
+  resources:
+    limits:
+      cpu: "1"
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  gcp:
+    buckets:
+      - name: amt-tiltaksansvarlig-flate-dev
+        cascadingDelete: false
+  accessPolicy:
+    outbound:
+      rules:
+        - application: amt-tiltaksansvarlig-flate-auth-proxy
+  env:
+    - name: GCS_BUCKET_NAME
+      value: amt-tiltaksansvarlig-flate-dev
+    - name: CORS_DOMAIN
+      value: "*"
+    - name: JSON_CONFIG
+      value: >
+        {
+          "proxies": [
+            { "from": "/auth-proxy", "to": "http://amt-tiltaksansvarlig-flate-auth-proxy" },
+            { "from": "/amt-tiltak", "to": "http://amt-tiltaksansvarlig-flate-auth-proxy/proxy/amt-tiltak" }
+          ]
+        }
