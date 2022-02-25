@@ -3,11 +3,11 @@ import cls from 'classnames'
 import React from 'react'
 
 import globalStyles from '../../../globals.module.scss'
+import { appUrl } from '../../../utils/url-utils'
 import styles from './LoginPage.module.scss'
 
 export const LoginPage = (): React.ReactElement => {
-	const currentLocation = window.location.href
-	const loginUrl = `/auth-proxy/oauth2/login?redirect_uri=${currentLocation}`
+	const loginUrl = appUrl(`/oauth2/login?redirect=${window.location.href}`)
 
 	return (
 		<main className={styles.loginPage}>
