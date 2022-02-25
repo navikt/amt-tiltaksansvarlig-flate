@@ -1,0 +1,10 @@
+@import '/src/globals.module.scss';
+
+.tilgangskontrollPage {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem;
+  max-width: $max-bredde;
+  margin: 0 auto;
+}

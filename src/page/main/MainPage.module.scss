@@ -1,0 +1,11 @@
+@import '/src/globals.module.scss';
+
+.mainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  max-width: $max-bredde;
+  margin: 0 auto;
+}

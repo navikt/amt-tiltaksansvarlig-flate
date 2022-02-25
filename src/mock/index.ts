@@ -1,16 +1,10 @@
-import { rest, setupWorker } from 'msw'
-import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
+import { setupWorker } from 'msw'
 
-const allHandlers: RequestHandler[] = [
-	rest.get('/auth-proxy/is-authenticated', (req, res, ctx) => {
-		return res(ctx.delay(500), ctx.json({
-			isAuthenticated: true
-		}))
-	})
-]
+import { appUrl } from '../utils/url-utils'
+import { mockHandlers } from './handlers/mock-handlers'
 
-setupWorker(...allHandlers)
-	.start({ serviceWorker: { url: process.env.PUBLIC_URL + '/mockServiceWorker.js' } })
+setupWorker(...mockHandlers)
+	.start({ serviceWorker: { url: appUrl('mockServiceWorker.js') } })
 	.catch((e) => {
 		// eslint-disable-next-line no-console
 		console.error('Unable to setup mocked API endpoints', e)
