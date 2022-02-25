@@ -1,20 +1,14 @@
 {
   "files": {
-    "main.css": "/amt-tiltaksansvarlig-flate/static/css/main.2b7db512.chunk.css",
-    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.9834ae89.chunk.js",
-    "main.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.9834ae89.chunk.js.map",
-    "runtime-main.js": "/amt-tiltaksansvarlig-flate/static/js/runtime-main.4c79500e.js",
-    "runtime-main.js.map": "/amt-tiltaksansvarlig-flate/static/js/runtime-main.4c79500e.js.map",
-    "static/js/2.8f5cd412.chunk.js": "/amt-tiltaksansvarlig-flate/static/js/2.8f5cd412.chunk.js",
-    "static/js/2.8f5cd412.chunk.js.map": "/amt-tiltaksansvarlig-flate/static/js/2.8f5cd412.chunk.js.map",
+    "main.css": "/amt-tiltaksansvarlig-flate/static/css/main.cac59ea3.css",
+    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.3bcc08a7.js",
+    "static/media/nav-logo.svg": "/amt-tiltaksansvarlig-flate/static/media/nav-logo.1e630d5f66984cbf05e1733ac78b91b2.svg",
     "index.html": "/amt-tiltaksansvarlig-flate/index.html",
-    "static/css/main.2b7db512.chunk.css.map": "/amt-tiltaksansvarlig-flate/static/css/main.2b7db512.chunk.css.map",
-    "static/js/2.8f5cd412.chunk.js.LICENSE.txt": "/amt-tiltaksansvarlig-flate/static/js/2.8f5cd412.chunk.js.LICENSE.txt"
+    "main.cac59ea3.css.map": "/amt-tiltaksansvarlig-flate/static/css/main.cac59ea3.css.map",
+    "main.3bcc08a7.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.3bcc08a7.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.4c79500e.js",
-    "static/js/2.8f5cd412.chunk.js",
-    "static/css/main.2b7db512.chunk.css",
-    "static/js/main.9834ae89.chunk.js"
+    "static/css/main.cac59ea3.css",
+    "static/js/main.3bcc08a7.js"
   ]
 }
