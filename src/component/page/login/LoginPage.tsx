@@ -1,10 +1,9 @@
+import { Alert, Heading } from '@navikt/ds-react'
 import cls from 'classnames'
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper'
-import { Systemtittel } from 'nav-frontend-typografi'
 import React from 'react'
 
-import globalStyles from '../../../globals.module.less'
-import styles from './LoginPage.module.less'
+import globalStyles from '../../../globals.module.scss'
+import styles from './LoginPage.module.scss'
 
 export const LoginPage = (): React.ReactElement => {
 	const currentLocation = window.location.href
@@ -12,11 +11,11 @@ export const LoginPage = (): React.ReactElement => {
 
 	return (
 		<main className={styles.loginPage}>
-			<Systemtittel className={cls(globalStyles.blokkXl, styles.title)}>Hei!</Systemtittel>
+			<Heading size="large" className={cls(globalStyles.blokkXl, styles.title)}>Hei!</Heading>
 
-			<AlertStripeAdvarsel className={globalStyles.blokkXl}>
+			<Alert variant="warning" className={globalStyles.blokkXl}>
 				Dette er en demoløsning
-			</AlertStripeAdvarsel>
+			</Alert>
 
 			<a className="knapp knapp--hoved" href={loginUrl}>Logg inn</a>
 		</main>

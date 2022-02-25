@@ -21,8 +21,8 @@ jobs:
           node-version: '14.x'
       - name: Install dependencies
         run: npm ci
-      - name: Build mock application
-        run: npm run build:mock
+      - name: Build demo application
+        run: npm run build:demo
       - name: Update GitHub pages
         uses: peaceiris/actions-gh-pages@v3
         with:
