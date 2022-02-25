@@ -2,8 +2,8 @@ import { Alert, Heading } from '@navikt/ds-react'
 import cls from 'classnames'
 import React from 'react'
 
-import globalStyles from '../../../globals.module.scss'
-import { appUrl } from '../../../utils/url-utils'
+import globalStyles from '../../globals.module.scss'
+import { appUrl } from '../../utils/url-utils'
 import styles from './LoginPage.module.scss'
 
 export const LoginPage = (): React.ReactElement => {
