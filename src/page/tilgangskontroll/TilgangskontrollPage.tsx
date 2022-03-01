@@ -3,11 +3,11 @@ import React from 'react'
 
 import { hentAlleAnsatte } from '../../api/api'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
+import globalStyles from '../../globals.module.scss'
 import { MAIN_PAGE_ROUTE } from '../../navigation'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
 import { AnsattTabell } from './ansatt-tabell/AnasttListe'
 import { LeggTilAnsatt } from './legg-til-ansat/LeggTilAnsatt'
-import globalStyles from '../../globals.module.scss'
 import styles from './TilgangskontrollPage.module.scss'
 
 export const TilgangskontrollPage = (): React.ReactElement => {

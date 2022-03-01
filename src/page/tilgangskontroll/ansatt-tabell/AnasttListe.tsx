@@ -1,7 +1,9 @@
 import { Alert, Table } from '@navikt/ds-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import { Ansatt } from '../../../api/data/ansatt'
+import { tilgangskontrollArrangorAnsattPageUrl } from '../../../navigation'
 import { formatDateStr } from '../../../utils/date-utils'
 
 interface AnsattTabellProps {
@@ -28,7 +30,9 @@ export const AnsattTabell = (props: AnsattTabellProps): React.ReactElement => {
 				{props.ansatte.map(a => {
 					return (
 						<Table.Row key={a.id}>
-							<Table.DataCell>{a.etternavn}, {a.fornavn}</Table.DataCell>
+							<Table.DataCell>
+								<Link to={tilgangskontrollArrangorAnsattPageUrl(a.id)}>{a.etternavn}, {a.fornavn}</Link>
+							</Table.DataCell>
 							<Table.DataCell>{formatDateStr(a.opprettetDato)}</Table.DataCell>
 							<Table.DataCell>{a.opprettetAvNavIdent}</Table.DataCell>
 						</Table.Row>

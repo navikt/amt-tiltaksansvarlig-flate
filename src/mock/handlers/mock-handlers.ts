@@ -28,6 +28,6 @@ export const mockHandlers: RequestHandler[] = [
 			opprettetAvNavIdent: 'Z12345'
 		}
 
-		return res(ctx.delay(500), ctx.json([ansatt]))
+		return res(ctx.delay(500), ctx.json([ ansatt ]))
 	}),
 ]
