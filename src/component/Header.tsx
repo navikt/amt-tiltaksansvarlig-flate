@@ -1,7 +1,7 @@
 import { Heading } from '@navikt/ds-react'
 import React from 'react'
 
-import globalStyles from '../../globals.module.scss'
+import globalStyles from '../globals.module.scss'
 import styles from './Header.module.scss'
 import navLogo from './nav-logo.svg'
 

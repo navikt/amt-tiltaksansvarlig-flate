@@ -1,7 +1,7 @@
 import { setupWorker } from 'msw'
 
 import { appUrl } from '../utils/url-utils'
-import { mockHandlers } from './handlers/mock-handlers'
+import { mockHandlers } from './mock-handlers'
 
 setupWorker(...mockHandlers)
 	.start({ serviceWorker: { url: appUrl('mockServiceWorker.js') } })
