@@ -13,7 +13,7 @@ export interface Gjennomforing {
 }
 
 export const Gjennomforinger = () : React.ReactElement => {
-	const getGjennomforingPromise = usePromise<AxiosResponse<Gjennomforing[]>>(() => axiosInstance.get(appUrl('/gjennomforinger')))
+	const getGjennomforingPromise = usePromise<AxiosResponse<Gjennomforing[]>>(() => axiosInstance.get(appUrl('/amt-tiltak/api/gjennomforinger')))
 	const gjennomforinger = getGjennomforingPromise.result?.data
 
 	if (isNotStartedOrPending(getGjennomforingPromise)) return <Loader />

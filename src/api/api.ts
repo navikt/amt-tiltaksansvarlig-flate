@@ -8,5 +8,5 @@ export interface IsAuthenticated {
 }
 
 export const isAuthenticated = (): AxiosPromise<IsAuthenticated> => {
-	return axiosInstance.get(appUrl('/app/is-authenticated'))
+	return axiosInstance.get(appUrl('/amt-tiltak/api/is-authenticated'))
 }
