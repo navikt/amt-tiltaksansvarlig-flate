@@ -1,0 +1,13 @@
+@import 'src/colors';
+
+.wrapper {
+  background: $navLysGra;
+  display: flex;
+  margin-bottom: 7rem;
+}
+
+.ikon {
+  margin-top: auto;
+  width: 4rem;
+  height: 4rem;
+}
