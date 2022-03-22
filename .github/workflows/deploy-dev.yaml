@@ -26,7 +26,7 @@ jobs:
       - name: Build application
         run: npm run build
       - name: Setup gcloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           service_account_key: ${{ secrets.GCS_SA_KEY_DEV }}
           export_default_credentials: true
