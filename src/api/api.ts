@@ -3,7 +3,7 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 
 import { appUrl } from '../utils/url-utils'
 import { axiosInstance } from './utils'
-import { ArrangorSchema, DeltakereSchema, DeltakerSchema, GjennomforingerSchema, GjennomforingSchema } from './schema';
+import { ArrangorSchema, DeltakereSchema, DeltakerSchema, GjennomforingerSchema, GjennomforingSchema } from './schema'
 
 export interface IsAuthenticated {
 	isAuthenticated: boolean;
