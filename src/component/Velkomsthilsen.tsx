@@ -1,6 +1,6 @@
 import React from 'react'
 
-import navAnsatt from './nav-ansatt.svg'
+import navAnsatt from '../ikoner/nav-ansatt.svg'
 import { Snakkeboble } from './Snakkeboble'
 import styles from './Velkomsthilsen.module.scss'
 
