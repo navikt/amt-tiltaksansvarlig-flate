@@ -7,6 +7,7 @@ import { isNotStartedOrPending, isRejected, usePromise } from '../utils/use-prom
 import { fetchGjennomforing, Gjennomforing } from '../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
+import { DeltakerPanel } from '../component/DeltakerPanel'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
@@ -21,6 +22,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 			<Link href="/" className={styles.tilbakeKnapp}>Tilbake</Link>
 			<Heading size="large">{gjennomforing?.navn}</Heading>
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing!}/>
+			<DeltakerPanel />
 		</main>
 	)
 }
