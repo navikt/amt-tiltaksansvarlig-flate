@@ -2,6 +2,13 @@ import { z } from 'zod'
 
 const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
 
+export enum InvitasjonStatus {
+	UBRUKT = 'UBRUKT',
+	BRUKT = 'BRUKT',
+}
+
+const invitasjonStatusSchema = z.nativeEnum(InvitasjonStatus)
+
 export const ArrangorSchema = z.object({
 	virksomhetNavn: z.string(),
 	organisasjonNavn: z.string().nullable()
@@ -37,6 +44,21 @@ export const AnsattTilgangSchema = z.object({
 	opprettetAvNavIdent: z.string()
 })
 
+export const AnsattTilgangInvitasjonSchema = z.object({
+	id: z.string().uuid(),
+	invitertAnsatt: z.object({
+		fornavn: z.string(),
+		mellomnavn: z.string().nullable(),
+		etternavn: z.string(),
+		fodselsnummer: z.string()
+	}).nullable(),
+	tidspunktBrukt: processStringToDate.nullable(),
+	status: invitasjonStatusSchema,
+	opprettetDato: processStringToDate,
+	gyldigTilDato: processStringToDate,
+})
+
 export const DeltakereSchema = z.array(DeltakerSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
 export const AnsattTilgangerSchema = z.array(AnsattTilgangSchema)
+export const AnsattTilgangInvitasjonerSchema = z.array(AnsattTilgangInvitasjonSchema)

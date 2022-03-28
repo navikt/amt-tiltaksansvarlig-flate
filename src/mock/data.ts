@@ -1,5 +1,7 @@
 import faker from 'faker'
-import { AnsattTilganger } from '../api/api'
+import { AnsattTilganger, AnsattTilgangInvitasjoner } from '../api/api'
+import { InvitasjonStatus } from '../api/schema'
+import { randomFnr } from './utils/faker'
 
 export const gjennomforinger = [
 	{
@@ -51,5 +53,29 @@ export const ansattTilganger: AnsattTilganger = [
 		etternavn: faker.name.lastName(),
 		gyldigFraDato: faker.date.recent(),
 		opprettetAvNavIdent: 'Z1234'
+	}
+]
+
+export const ansattInvitasjoner: AnsattTilgangInvitasjoner = [
+	{
+		id: faker.datatype.uuid(),
+		invitertAnsatt: {
+			fornavn: faker.name.firstName(),
+			mellomnavn: null,
+			etternavn: faker.name.lastName(),
+			fodselsnummer: randomFnr()
+		},
+		tidspunktBrukt: faker.date.recent(),
+		status: InvitasjonStatus.BRUKT,
+		opprettetDato: faker.date.past(),
+		gyldigTilDato: faker.date.soon(),
+	},
+	{
+		id: faker.datatype.uuid(),
+		invitertAnsatt: null,
+		tidspunktBrukt: null,
+		status: InvitasjonStatus.UBRUKT,
+		opprettetDato: faker.date.past(),
+		gyldigTilDato: faker.date.soon(),
 	}
 ]

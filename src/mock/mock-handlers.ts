@@ -2,7 +2,7 @@ import { rest } from 'msw'
 import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
 
 import { appUrl } from '../utils/url-utils'
-import { ansattTilganger, gjennomforinger } from './data'
+import { ansattInvitasjoner, ansattTilganger, gjennomforinger } from './data'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/is-authenticated'), (req, res, ctx) => {
@@ -19,7 +19,24 @@ export const mockHandlers: RequestHandler[] = [
 			gjennomforinger.find(g => g.id === id)
 		))
 	}),
-	rest.get(appUrl('/amt-tiltak/api/tilgang/gjennomforing/:gjennomforingId/ansatte'), (req, res, ctx) => {
+	rest.get(appUrl('/amt-tiltak/api/tilgang'), (req, res, ctx) => {
 		return res(ctx.delay(500), ctx.json(ansattTilganger))
+	}),
+	rest.patch(appUrl('/amt-tiltak/api/tilgang/:tilgangId/stop'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(200))
+	}),
+	rest.get(appUrl('/amt-tiltak/api/tilgang/invitasjon'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.json(ansattInvitasjoner))
+	}),
+	rest.post(appUrl('/amt-tiltak/api/tilgang/invitasjon'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(201))
+	}),
+	rest.patch(appUrl('/amt-tiltak/api/tilgang/invitasjon/:invitasjonId/aksepter'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(200))
+	}),
+	rest.patch(appUrl('/amt-tiltak/api/tilgang/invitasjon/:invitasjonId/avbryt'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(200))
 	})
 ]
+
+

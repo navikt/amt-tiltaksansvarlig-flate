@@ -1,0 +1,15 @@
+
+.listItem {
+  margin-bottom: 0.75rem;
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bold {
+  font-weight: bold;
+}
