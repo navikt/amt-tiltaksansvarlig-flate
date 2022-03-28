@@ -3,7 +3,15 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 
 import { appUrl } from '../utils/url-utils'
 import { axiosInstance } from './utils'
-import { ArrangorSchema, DeltakereSchema, DeltakerSchema, GjennomforingerSchema, GjennomforingSchema } from './schema'
+import {
+	AnsattTilgangerSchema,
+	AnsattTilgangSchema,
+	ArrangorSchema,
+	DeltakereSchema,
+	DeltakerSchema,
+	GjennomforingerSchema,
+	GjennomforingSchema
+} from './schema'
 
 export interface IsAuthenticated {
 	isAuthenticated: boolean;
@@ -14,6 +22,8 @@ export type Gjennomforinger = z.infer<typeof GjennomforingerSchema>
 export type Arrangor = z.infer<typeof ArrangorSchema>
 export type Deltaker = z.infer<typeof DeltakerSchema>
 export type Deltakere = z.infer<typeof DeltakereSchema>
+export type AnsattTilgang = z.infer<typeof AnsattTilgangSchema>
+export type AnsattTilganger = z.infer<typeof AnsattTilgangerSchema>
 
 const parseSchema = <T>(res: AxiosResponse, schema: z.ZodSchema<T>) => ({ ...res, data: schema.parse(res.data) })
 
@@ -47,5 +57,12 @@ export const fetchDeltakere = (id: string) : AxiosPromise<Deltakere> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/gjennomforing/${id}/deltakere`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, DeltakereSchema))
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const fetchAnsattTilganger = (gjennomforingId: string) : AxiosPromise<AnsattTilganger> => {
+	const endepunkt = appUrl(`/amt-tiltak/api/tilgang/gjennomforing/${gjennomforingId}/ansatte`)
+	return axiosInstance.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, AnsattTilgangerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }

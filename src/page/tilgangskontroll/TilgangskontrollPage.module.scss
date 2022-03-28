@@ -1,0 +1,16 @@
+@import 'src/globals.module.scss';
+
+.page {
+  max-width: $max-bredde;
+  margin: 0 auto;
+}
+
+.tilbakeKnapp {
+  text-decoration: none;
+  margin: 1rem 0
+}
+
+.tilgangskontroll {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

@@ -1,4 +1,5 @@
 import faker from 'faker'
+import { AnsattTilganger } from '../api/api'
 
 export const gjennomforinger = [
 	{
@@ -31,5 +32,24 @@ export const gjennomforinger = [
 		},
 		startDato: faker.date.past().toISOString(),
 		sluttDato: faker.date.future().toISOString()
+	}
+]
+
+export const ansattTilganger: AnsattTilganger = [
+	{
+		id: faker.datatype.uuid(),
+		fornavn: faker.name.firstName(),
+		mellomnavn: null,
+		etternavn: faker.name.lastName(),
+		gyldigFraDato: faker.date.recent(),
+		opprettetAvNavIdent: 'Z1234'
+	},
+	{
+		id: faker.datatype.uuid(),
+		fornavn: faker.name.firstName(),
+		mellomnavn: null,
+		etternavn: faker.name.lastName(),
+		gyldigFraDato: faker.date.recent(),
+		opprettetAvNavIdent: 'Z1234'
 	}
 ]

@@ -1,12 +1,13 @@
 import { Alert, Heading, Link, Loader } from '@navikt/ds-react'
 import React from 'react'
 
-import { GjennomforingGenerellInfo } from '../component/GjennomforingGenerellInfo'
+import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
 import { useParams } from 'react-router-dom'
-import { isNotStartedOrPending, isRejected, usePromise } from '../utils/use-promise'
-import { fetchGjennomforing, Gjennomforing } from '../api/api'
+import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
+import { fetchGjennomforing, Gjennomforing } from '../../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
+import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
@@ -21,6 +22,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 			<Link href="/" className={styles.tilbakeKnapp}>Tilbake</Link>
 			<Heading size="large">{gjennomforing?.navn}</Heading>
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing!}/>
+			<Tilgangskontroll className={styles.tilgangskontroll} />
 		</main>
 	)
 }

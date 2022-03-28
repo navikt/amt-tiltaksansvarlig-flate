@@ -28,5 +28,15 @@ export const DeltakerSchema = z.object({
 	registrertDato: processStringToDate
 })
 
+export const AnsattTilgangSchema = z.object({
+	id: z.string().uuid(),
+	fornavn: z.string(),
+	mellomnavn: z.string().nullable(),
+	etternavn: z.string(),
+	gyldigFraDato: processStringToDate,
+	opprettetAvNavIdent: z.string()
+})
+
 export const DeltakereSchema = z.array(DeltakerSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
+export const AnsattTilgangerSchema = z.array(AnsattTilgangSchema)
