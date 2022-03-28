@@ -1,6 +1,5 @@
 import faker from 'faker'
 import { AnsattTilganger, AnsattTilgangInvitasjoner } from '../api/api'
-import { InvitasjonStatus } from '../api/schema'
 import { randomFnr } from './utils/faker'
 
 export const gjennomforinger = [
@@ -43,7 +42,7 @@ export const ansattTilganger: AnsattTilganger = [
 		fornavn: faker.name.firstName(),
 		mellomnavn: null,
 		etternavn: faker.name.lastName(),
-		gyldigFraDato: faker.date.recent(),
+		opprettetDato: faker.date.recent(),
 		opprettetAvNavIdent: 'Z1234'
 	},
 	{
@@ -51,7 +50,7 @@ export const ansattTilganger: AnsattTilganger = [
 		fornavn: faker.name.firstName(),
 		mellomnavn: null,
 		etternavn: faker.name.lastName(),
-		gyldigFraDato: faker.date.recent(),
+		opprettetDato: faker.date.recent(),
 		opprettetAvNavIdent: 'Z1234'
 	}
 ]
@@ -66,7 +65,7 @@ export const ansattInvitasjoner: AnsattTilgangInvitasjoner = [
 			fodselsnummer: randomFnr()
 		},
 		tidspunktBrukt: faker.date.recent(),
-		status: InvitasjonStatus.BRUKT,
+		erBrukt: true,
 		opprettetDato: faker.date.past(),
 		gyldigTilDato: faker.date.soon(),
 	},
@@ -74,7 +73,7 @@ export const ansattInvitasjoner: AnsattTilgangInvitasjoner = [
 		id: faker.datatype.uuid(),
 		invitertAnsatt: null,
 		tidspunktBrukt: null,
-		status: InvitasjonStatus.UBRUKT,
+		erBrukt: false,
 		opprettetDato: faker.date.past(),
 		gyldigTilDato: faker.date.soon(),
 	}

@@ -11,14 +11,14 @@ interface AnsattTilgangListeElementProps {
 }
 
 export const AnsattTilgangListeElement = (props: AnsattTilgangListeElementProps) : React.ReactElement<AnsattTilgangListeElementProps> => {
-	const { id, fornavn, mellomnavn, etternavn, gyldigFraDato, opprettetAvNavIdent } = props.ansattTilgang
+	const { id, fornavn, mellomnavn, etternavn, opprettetDato, opprettetAvNavIdent } = props.ansattTilgang
 
 	return (
 		<li className={styles.listItem}>
 			<Panel className={styles.panel}>
 				<div>
 					<BodyShort className={styles.bold} spacing>{lagKommaSeparertBrukerNavn(fornavn, mellomnavn, etternavn)}</BodyShort>
-					<BodyShort>Fikk tilgang: {formatDate(gyldigFraDato)}</BodyShort>
+					<BodyShort>Fikk tilgang: {formatDate(opprettetDato)}</BodyShort>
 					<BodyShort>Hvem ga tilgangen: {opprettetAvNavIdent}</BodyShort>
 				</div>
 

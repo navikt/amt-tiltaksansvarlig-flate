@@ -2,13 +2,6 @@ import { z } from 'zod'
 
 const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
 
-export enum InvitasjonStatus {
-	UBRUKT = 'UBRUKT',
-	BRUKT = 'BRUKT',
-}
-
-const invitasjonStatusSchema = z.nativeEnum(InvitasjonStatus)
-
 export const ArrangorSchema = z.object({
 	virksomhetNavn: z.string(),
 	organisasjonNavn: z.string().nullable()
@@ -40,7 +33,7 @@ export const AnsattTilgangSchema = z.object({
 	fornavn: z.string(),
 	mellomnavn: z.string().nullable(),
 	etternavn: z.string(),
-	gyldigFraDato: processStringToDate,
+	opprettetDato: processStringToDate,
 	opprettetAvNavIdent: z.string()
 })
 
@@ -53,7 +46,7 @@ export const AnsattTilgangInvitasjonSchema = z.object({
 		fodselsnummer: z.string()
 	}).nullable(),
 	tidspunktBrukt: processStringToDate.nullable(),
-	status: invitasjonStatusSchema,
+	erBrukt: z.boolean(),
 	opprettetDato: processStringToDate,
 	gyldigTilDato: processStringToDate,
 })
