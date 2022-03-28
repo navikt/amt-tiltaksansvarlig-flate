@@ -90,8 +90,8 @@ export const opprettInvitasjon = () : AxiosPromise => {
 		.catch((error) => exposeError(error, endepunkt))
 }
 
-export const akspeterInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}/aksepter`)
+export const godkjennInvitasjon = (invitasjonId: string) : AxiosPromise => {
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}/godkjenn`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }

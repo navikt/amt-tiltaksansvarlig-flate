@@ -9,14 +9,15 @@ import { Add } from '@navikt/ds-icons'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import {
-	akspeterInvitasjon,
 	AnsattTilganger,
 	AnsattTilgangInvitasjoner,
 	avbrytInvitasjon,
 	fetchAnsattTilganger,
 	fetchGjennomforing,
 	fetchTilgangInvitasjoner,
-	Gjennomforing, opprettInvitasjon,
+	Gjennomforing,
+	godkjennInvitasjon,
+	opprettInvitasjon,
 	stopAnsattTilgang
 } from '../../api/api'
 import globalStyles from '../../globals.module.scss'
@@ -54,8 +55,8 @@ export const TilgangskontrollPage = () : React.ReactElement => {
 			.catch(() => setFailedToFetch(true))
 	}
 
-	const onAksepterInvitasjon = (invitasjonId: string) => {
-		akspeterInvitasjon(invitasjonId)
+	const onGodkjennInvitasjon = (invitasjonId: string) => {
+		godkjennInvitasjon(invitasjonId)
 			.then(() => ansattInvitasjonerPromise.setPromise(fetchTilgangInvitasjoner(gjennomforingId!)))
 			.catch(() => setFailedToFetch(true))
 	}
@@ -81,7 +82,7 @@ export const TilgangskontrollPage = () : React.ReactElement => {
 		...invitasjoner.map(i => (
 			<AnsattInvitasjonListeElement
 				ansattInvitasjon={i}
-				onAksepterInvitasjon={onAksepterInvitasjon}
+				onGodkjennInvitasjon={onGodkjennInvitasjon}
 				onAvbrytInvitasjon={onAvbrytInvitasjon}
 				key={i.id}
 			/>

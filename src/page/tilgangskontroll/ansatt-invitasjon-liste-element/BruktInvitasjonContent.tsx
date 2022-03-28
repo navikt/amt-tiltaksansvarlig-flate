@@ -13,7 +13,7 @@ interface BruktInvitasjonContentProps {
 	fodselsnummer: string,
 	tidspunktBrukt: Date,
 	onAvbrytInvitasjon: (tilgangId: string) => void,
-	onAksepterInvitasjon: (tilgangId: string) => void,
+	onGodkjennInvitasjon: (tilgangId: string) => void,
 }
 
 export const BruktInvitsjonContent = (props: BruktInvitasjonContentProps) : React.ReactElement<BruktInvitasjonContentProps> => {
@@ -30,7 +30,7 @@ export const BruktInvitsjonContent = (props: BruktInvitasjonContentProps) : Reac
 				<Button
 					type="submit"
 					variant="primary"
-					onClick={() => props.onAksepterInvitasjon(invitasjonId)}
+					onClick={() => props.onGodkjennInvitasjon(invitasjonId)}
 				>
 					Ja, gi tilgang
 				</Button>
@@ -38,7 +38,7 @@ export const BruktInvitsjonContent = (props: BruktInvitasjonContentProps) : Reac
 				<Button
 					type="submit"
 					variant="secondary"
-					onClick={() => props.onAksepterInvitasjon(invitasjonId)}
+					onClick={() => props.onGodkjennInvitasjon(invitasjonId)}
 				>
 					Nei, det er feil
 				</Button>

@@ -7,7 +7,7 @@ import { UbruktInvitsjonContent } from './UbruktInvitasjonContent'
 
 interface AnsattInvitasjonListeElementProps {
 	ansattInvitasjon: AnsattTilgangInvitasjon
-	onAksepterInvitasjon: (tilgangId: string) => void
+	onGodkjennInvitasjon: (tilgangId: string) => void
 	onAvbrytInvitasjon: (tilgangId: string) => void
 }
 
@@ -23,7 +23,7 @@ export const AnsattInvitasjonListeElement = (props: AnsattInvitasjonListeElement
 				etternavn={invitertAnsatt?.etternavn ?? ''}
 				fodselsnummer={invitertAnsatt?.fodselsnummer ?? ''}
 				tidspunktBrukt={tidspunktBrukt ?? new Date()}
-				onAksepterInvitasjon={props.onAksepterInvitasjon}
+				onGodkjennInvitasjon={props.onGodkjennInvitasjon}
 				onAvbrytInvitasjon={props.onAvbrytInvitasjon}
 			/>
 		)
