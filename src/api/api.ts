@@ -65,39 +65,39 @@ export const fetchDeltakere = (id: string) : AxiosPromise<Deltakere> => {
 }
 
 export const fetchAnsattTilganger = (gjennomforingId: string) : AxiosPromise<AnsattTilganger> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tilgang?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, AnsattTilgangerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const stopAnsattTilgang = (tilgangId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tilgang/${tilgangId}/stop`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/${tilgangId}/stop`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchTilgangInvitasjoner = (gjennomforingId: string) : AxiosPromise<AnsattTilgangInvitasjoner> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tilgang/invitasjon?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, AnsattTilgangInvitasjonerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const opprettInvitasjon = () : AxiosPromise => {
-	const endepunkt = appUrl('/amt-tiltak/api/tilgang/invitasjon')
+	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon')
 	return axiosInstance.post(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const akspeterInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tilgang/invitasjon/${invitasjonId}/aksepter`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}/aksepter`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const avbrytInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tilgang/invitasjon/${invitasjonId}/avbryt`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}/avbryt`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
