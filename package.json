@@ -28,6 +28,7 @@
     "start": "cross-env REACT_APP_DEV=true react-scripts start",
     "build": "cross-env REACT_APP_DEV=true react-scripts build",
     "build:demo": "cross-env PUBLIC_URL=/amt-tiltaksansvarlig-flate REACT_APP_DEV=true react-scripts build",
+    "build:gh-pages": "cross-env PUBLIC_URL=/amt-tiltaksansvarlig-flate REACT_APP_DEV=true react-scripts build && cpy --cwd=build --rename=404.html index.html .",
     "test": "echo 'TODO'",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'"
@@ -58,6 +59,7 @@
     "@types/faker": "^5.5.9",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
+    "cpy-cli": "^4.1.0",
     "eslint": "^8.9.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "faker": "^5.5.3",
