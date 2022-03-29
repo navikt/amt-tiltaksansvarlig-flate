@@ -10,7 +10,6 @@ import styles from './GjennomforingDetaljerPage.module.scss'
 import globalStyles from '../../globals.module.scss'
 import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
-import { appUrl } from '../../utils/url-utils'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { DeltakerPanel } from '../../component/DeltakerPanel'
 
@@ -25,7 +24,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 	return (
 		<main className={styles.page}>
-			<Tilbakelenke to={appUrl(FORSIDE_PAGE_ROUTE)} className={globalStyles.blokkM}/>
+			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
 			<Heading size="large">{gjennomforing.navn}</Heading>
 
