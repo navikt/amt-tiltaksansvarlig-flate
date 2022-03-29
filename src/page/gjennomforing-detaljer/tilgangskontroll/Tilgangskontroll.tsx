@@ -1,9 +1,9 @@
 import React from 'react'
 import { isNotStartedOrPending, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import { Tilganger, fetchAnsattTilganger } from '../../../api/api'
+import { fetchAnsattTilganger, Tilganger } from '../../../api/api'
 import { Link, useParams } from 'react-router-dom'
-import { Heading, Loader } from '@navikt/ds-react'
+import { BodyShort, Heading, Loader } from '@navikt/ds-react'
 import styles from './Tilgangskontroll.module.scss'
 import globalStyles from '../../../globals.module.scss'
 
@@ -27,9 +27,21 @@ export const Tilgangskontroll = (props: TilgangskontrollProps) : React.ReactElem
 			<div>
 				<Heading level="2" size="small" className={globalStyles.blokkXs}>Koordinator</Heading>
 				{isNotStartedOrPending(ansattTilgangerPromise) && <Loader size="large"/>}
-				<ul className={styles.liste}>
-					{tilganger.map(t => <PersonListeElement fornavn={t.fornavn} mellomnavn={t.mellomnavn} etternavn={t.etternavn} key={t.id}/>)}
-				</ul>
+				{tilganger.length === 0
+					? (<BodyShort>Ingen koordinatorer har tilgang</BodyShort>)
+					: (
+						<ul className={styles.liste}>
+							{tilganger.map(t => (
+								<PersonListeElement
+									fornavn={t.fornavn}
+									mellomnavn={t.mellomnavn}
+									etternavn={t.etternavn}
+									key={t.id}
+								/>
+							))}
+						</ul>
+					)
+				}
 			</div>
 
 			<div>

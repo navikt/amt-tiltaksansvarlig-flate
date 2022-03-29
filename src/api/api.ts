@@ -4,15 +4,17 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 import { appUrl } from '../utils/url-utils'
 import { axiosInstance } from './utils'
 import {
-	TilgangerSchema, UbesluttetTilgangForesporselSchema, UbesluttedeTilgangForesporslerSchema,
-	UbrukteTilgangInvitasjonerSchema,
-	UbruktTilgangInvitasjonSchema,
-	TilgangSchema,
 	ArrangorSchema,
 	DeltakereSchema,
 	DeltakerSchema,
 	GjennomforingerSchema,
-	GjennomforingSchema
+	GjennomforingSchema,
+	TilgangerSchema,
+	TilgangSchema,
+	UbesluttedeTilgangForesporslerSchema,
+	UbesluttetTilgangForesporselSchema,
+	UbrukteTilgangInvitasjonerSchema,
+	UbruktTilgangInvitasjonSchema
 } from './schema'
 
 export interface IsAuthenticated {
@@ -91,9 +93,9 @@ export const fetchUbrukteTilgangInvitasjoner = (gjennomforingId: string) : Axios
 		.catch((error) => exposeError(error, endepunkt))
 }
 
-export const opprettInvitasjon = () : AxiosPromise => {
+export const opprettInvitasjon = (gjennomforingId: string) : AxiosPromise => {
 	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon')
-	return axiosInstance.post(endepunkt)
+	return axiosInstance.post(endepunkt, { gjennomforingId: gjennomforingId })
 		.catch((error) => exposeError(error, endepunkt))
 }
 

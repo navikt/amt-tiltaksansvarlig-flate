@@ -25,7 +25,7 @@ export const TilgangskontrollPage = () : React.ReactElement => {
 	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
 	const onOpprettInvitasjon = () => {
-		opprettInvitasjon()
+		opprettInvitasjon(gjennomforingId)
 			.then(() => setListeKey(k => k + 1))
 			.catch()
 	}
