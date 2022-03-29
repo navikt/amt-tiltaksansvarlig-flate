@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { AxiosResponse } from 'axios'
 import { Alert, BodyShort, Panel } from '@navikt/ds-react'
-import { TilgangInvitasjonListeContent } from './tilgang-invitasjon-liste-content/TilgangInvitasjonListeContent'
-import { TilgangListeContent } from './tilgang-liste-content/TilgangListeContent'
+import { TilgangInvitasjon } from './tilgang-invitasjon/TilgangInvitasjon'
+import { Tilgang } from './tilgang/Tilgang'
 import styles from './TilgangskontrollListe.module.scss'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../../utils/use-promise'
 import {
@@ -12,7 +12,7 @@ import {
 	fetchUbrukteTilgangInvitasjoner, godkjennForesporsel, stopAnsattTilgang, avbrytInvitasjon
 } from '../../../api/api'
 import { Spinner } from '../../../component/spinner/Spinner'
-import { TilgangForesporselListeContent } from './tilgang-foresporsel-liste-content/TilgangForesporselListeContent'
+import { TilgangForesporsel } from './tilgang-foresporsel/TilgangForesporsel'
 
 interface TilgangskontrollListeProps {
 	gjennomforingId: string
@@ -74,14 +74,14 @@ export const TilgangskontrollListe = (props: TilgangskontrollListeProps): React.
 	const foresporsler = tilgangForesporslerPromise.result?.data ?? []
 
 	const tilgangerContent = tilganger.map(t => (
-		<TilgangListeContent
+		<Tilgang
 			ansattTilgang={t}
 			onSlettTilgang={slettTilgang}
 			key={t.id}/>
 	))
 
 	const invitasjonerContent = invitasjoner.map(i => (
-		<TilgangInvitasjonListeContent
+		<TilgangInvitasjon
 			invitasjon={i}
 			onAvbrytInvitasjon={onAvbrytInvitasjon}
 			key={i.id}
@@ -89,7 +89,7 @@ export const TilgangskontrollListe = (props: TilgangskontrollListeProps): React.
 	))
 
 	const foresporslerContent = foresporsler.map(f => (
-		<TilgangForesporselListeContent
+		<TilgangForesporsel
 			foresporsel={f}
 			onGodkjennForesporsel={onGodkjennForesporsel}
 			onAvvisForesporsel={onAvvisForesporsel}

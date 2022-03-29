@@ -1,16 +1,16 @@
 import React from 'react'
 import { BodyShort, Button } from '@navikt/ds-react'
-import styles from './TilgangListeContent.module.scss'
-import { Tilgang } from '../../../../api/api'
+import styles from './Tilgang.module.scss'
+import { Tilgang as TilgangData } from '../../../../api/api'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
-interface AnsattTilgangListeElementProps {
-	ansattTilgang: Tilgang
+interface TilgangProps {
+	ansattTilgang: TilgangData
 	onSlettTilgang: (tilgangId: string) => void
 }
 
-export const TilgangListeContent = (props: AnsattTilgangListeElementProps): React.ReactElement<AnsattTilgangListeElementProps> => {
+export const Tilgang = (props: TilgangProps): React.ReactElement<TilgangProps> => {
 	const { id, fornavn, mellomnavn, etternavn, opprettetDato, opprettetAvNavIdent } = props.ansattTilgang
 
 	return (

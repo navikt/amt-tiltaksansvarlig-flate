@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { BodyShort, Button } from '@navikt/ds-react'
-import styles from './TilgangInvitasjonListeContent.module.scss'
+import styles from './TilgangInvitasjon.module.scss'
 import cls from 'classnames'
 import globalStyles from '../../../../globals.module.scss'
 import { UbruktTilgangInvitasjon } from '../../../../api/api'
 import { opprettTilgangInvitasjonLenke } from '../../../../utils/invitasjon-lenke-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
-interface AnsattInvitasjonListeElementProps {
+interface TilgangInvitasjonProps {
 	invitasjon: UbruktTilgangInvitasjon
 	onAvbrytInvitasjon: (invitasjonId: string) => void
 }
 
 const COPY_TOOLTIP_DURATION_MS = 1000
 
-
-export const TilgangInvitasjonListeContent = (props: AnsattInvitasjonListeElementProps): React.ReactElement<AnsattInvitasjonListeElementProps> => {
+export const TilgangInvitasjon = (props: TilgangInvitasjonProps): React.ReactElement<TilgangInvitasjonProps> => {
 	const { id, opprettetDato, gyldigTilDato } = props.invitasjon
 
 	const [ copySuccess, setCopySuccess ] = useState<boolean>(false)

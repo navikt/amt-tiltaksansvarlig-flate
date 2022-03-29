@@ -1,18 +1,18 @@
 import React from 'react'
 import { BodyShort, Button } from '@navikt/ds-react'
-import styles from './TilgangForesporselListeContent.module.scss'
+import styles from './TilgangForesporsel.module.scss'
 import { UbesluttetTilgangForesporsel } from '../../../../api/api'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
 
-interface TilgangForesporselListeContentProps {
+interface TilgangForesporselProps {
 	foresporsel: UbesluttetTilgangForesporsel
 	onGodkjennForesporsel: (foresporselId: string) => void,
 	onAvvisForesporsel: (foresporselId: string) => void,
 }
 
-export const TilgangForesporselListeContent = (props: TilgangForesporselListeContentProps): React.ReactElement<TilgangForesporselListeContentProps> => {
+export const TilgangForesporsel = (props: TilgangForesporselProps): React.ReactElement<TilgangForesporselProps> => {
 	const { foresporsel, onGodkjennForesporsel, onAvvisForesporsel } = props
 	const { id, fodselsnummer, fornavn, mellomnavn, etternavn, opprettetDato } = foresporsel
 
