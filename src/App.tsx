@@ -3,7 +3,6 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { fetchIsAuthenticated, IsAuthenticated } from './api/api'
-import { Header } from './component/Header'
 import { FORSIDE_PAGE_ROUTE, GJENNOMFORING_DETALJER_PAGE_ROUTE, TILGANGSKONTROLL_PAGE_ROUTE } from './navigation'
 import { Forside } from './page/Forside'
 import { GjennomforingDetaljerPage } from './page/gjennomforing-detaljer/GjennomforingDetaljerPage'
@@ -11,6 +10,7 @@ import { LoginPage } from './page/LoginPage'
 import { isNotStartedOrPending, isRejected, usePromise } from './utils/use-promise'
 import { TilgangskontrollPage } from './page/tilgangskontroll/TilgangskontrollPage'
 import { Spinner } from './component/spinner/Spinner'
+import { Header } from './component/Header'
 
 export const App = (): React.ReactElement => {
 	const isAuthenticatedPromise = usePromise<AxiosResponse<IsAuthenticated>>(fetchIsAuthenticated)

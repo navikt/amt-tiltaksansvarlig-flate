@@ -9,6 +9,8 @@ import {
 	DeltakerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
+	InnloggetNavAnsattSchema,
+	IsAuthenticatedSchema,
 	TilgangerSchema,
 	TilgangSchema,
 	UbesluttedeTilgangForesporslerSchema,
@@ -17,9 +19,9 @@ import {
 	UbruktTilgangInvitasjonSchema
 } from './schema'
 
-export interface IsAuthenticated {
-	isAuthenticated: boolean;
-}
+export type IsAuthenticated = z.infer<typeof IsAuthenticatedSchema>
+
+export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 
 export type Gjennomforing = z.infer<typeof GjennomforingSchema>
 export type Gjennomforinger = z.infer<typeof GjennomforingerSchema>
@@ -44,11 +46,20 @@ const exposeError = (error: Error, endepunkt: string) => {
 	// eslint-disable-next-line no-console
 	console.error(`Kall mot ${endepunkt} feilet. message: ${error.message}`)
 	throw error
-
 }
 
 export const fetchIsAuthenticated = (): AxiosPromise<IsAuthenticated> => {
-	return axiosInstance.get(appUrl('/amt-tiltak/api/is-authenticated'))
+	const endepunkt = appUrl('/amt-tiltak/api/is-authenticated')
+	return axiosInstance.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, IsAuthenticatedSchema))
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsatt> => {
+	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/auth/meg')
+	return axiosInstance.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, InnloggetNavAnsattSchema))
+		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchGjennomforinger = () : AxiosPromise<Gjennomforinger> => {

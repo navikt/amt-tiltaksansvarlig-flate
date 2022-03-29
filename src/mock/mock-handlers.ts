@@ -11,10 +11,14 @@ import {
 	hentTilganger,
 	hentUbesluttedeForesporsler,
 	hentUbrukteInvitasjoner,
+	innloggetAnsatt,
 	opprettInvitasjon
 } from './data'
 
 export const mockHandlers: RequestHandler[] = [
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/auth/meg'), (req, res, ctx) => {
+		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
+	}),
 	rest.get(appUrl('/amt-tiltak/api/is-authenticated'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json({
 			isAuthenticated: true
