@@ -1,6 +1,7 @@
 import faker from 'faker'
 import {
 	Gjennomforinger,
+	InnloggetNavAnsatt,
 	Tilganger,
 	UbesluttedeTilgangForesporsler,
 	UbesluttetTilgangForesporsel,
@@ -12,6 +13,12 @@ import {
 	opprettMockGjennomforingTilganger,
 	opprettMockUbruktInvitasjon
 } from './data-helper'
+
+export const innloggetAnsatt: InnloggetNavAnsatt = {
+	fornavn: faker.name.firstName(),
+	mellomnavn: null,
+	etternavn: faker.name.lastName()
+}
 
 export const gjennomforinger: Gjennomforinger = [
 	{

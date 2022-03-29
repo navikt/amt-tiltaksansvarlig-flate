@@ -22,6 +22,15 @@ const formaterNavnCasing = (navn: string): string => {
 	return nyttNavn
 }
 
+// Lager navn på format: <fornavn> <mellomnavn> <etternavn>
+export const lagBrukerNavn = (fornavn: string, mellomnavn: Nullable<string>, etternavn: string): string => {
+	return [
+		formaterNavnCasing(fornavn),
+		mellomnavn ? formaterNavnCasing(mellomnavn) : undefined,
+		formaterNavnCasing(etternavn)
+	].filter(navn => !!navn).join(' ')
+}
+
 // Lager navn på format: <etternavn>, <fornavn> <mellomnavn>
 export const lagKommaSeparertBrukerNavn = (fornavn: string, mellomnavn: Nullable<string>, etternavn: string): string => {
 	return [

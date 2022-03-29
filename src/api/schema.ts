@@ -2,6 +2,16 @@ import { z } from 'zod'
 
 const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
 
+export const IsAuthenticatedSchema = z.object({
+	isAuthenticated: z.boolean()
+})
+
+export const InnloggetNavAnsattSchema = z.object({
+	fornavn: z.string(),
+	mellomnavn: z.string().nullable(),
+	etternavn: z.string(),
+})
+
 export const ArrangorSchema = z.object({
 	virksomhetNavn: z.string(),
 	organisasjonNavn: z.string().nullable()
@@ -14,7 +24,6 @@ export const GjennomforingSchema = z.object({
 	sluttDato: processStringToDate,
 	arrangor: ArrangorSchema
 })
-
 
 export const DeltakerSchema = z.object({
 	id: z.string(),
