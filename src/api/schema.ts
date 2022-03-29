@@ -28,5 +28,33 @@ export const DeltakerSchema = z.object({
 	registrertDato: processStringToDate
 })
 
+export const TilgangSchema = z.object({
+	id: z.string().uuid(),
+	fornavn: z.string(),
+	mellomnavn: z.string().nullable(),
+	etternavn: z.string(),
+	opprettetDato: processStringToDate,
+	opprettetAvNavIdent: z.string()
+})
+
+export const UbruktTilgangInvitasjonSchema = z.object({
+	id: z.string().uuid(),
+	opprettetAvNavIdent: z.string(),
+	opprettetDato: processStringToDate,
+	gyldigTilDato: processStringToDate,
+})
+
+export const UbesluttetTilgangForesporselSchema = z.object({
+	id: z.string().uuid(),
+	fornavn: z.string(),
+	mellomnavn: z.string().nullable(),
+	etternavn: z.string(),
+	fodselsnummer: z.string(),
+	opprettetDato: processStringToDate,
+})
+
 export const DeltakereSchema = z.array(DeltakerSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
+export const TilgangerSchema = z.array(TilgangSchema)
+export const UbrukteTilgangInvitasjonerSchema = z.array(UbruktTilgangInvitasjonSchema)
+export const UbesluttedeTilgangForesporslerSchema = z.array(UbesluttetTilgangForesporselSchema)

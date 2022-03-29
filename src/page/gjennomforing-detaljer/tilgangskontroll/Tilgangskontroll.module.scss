@@ -1,0 +1,10 @@
+.tilgangskontroll {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+}
+
+.liste {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
