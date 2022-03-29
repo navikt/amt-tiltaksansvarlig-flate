@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { AnsattTilganger, AnsattTilgangInvitasjoner } from '../api/api'
+import { Tilganger, UbesluttedeTilgangForesporsler, UbrukteTilgangInvitasjoner } from '../api/api'
 import { randomFnr } from './utils/faker'
 
 export const gjennomforinger = [
@@ -36,7 +36,7 @@ export const gjennomforinger = [
 	}
 ]
 
-export const ansattTilganger: AnsattTilganger = [
+export const ansattTilganger: Tilganger = [
 	{
 		id: faker.datatype.uuid(),
 		fornavn: faker.name.firstName(),
@@ -55,26 +55,22 @@ export const ansattTilganger: AnsattTilganger = [
 	}
 ]
 
-export const ansattInvitasjoner: AnsattTilgangInvitasjoner = [
+export const ubrukteInvitasjoner: UbrukteTilgangInvitasjoner = [
 	{
 		id: faker.datatype.uuid(),
-		invitertAnsatt: {
-			fornavn: faker.name.firstName(),
-			mellomnavn: null,
-			etternavn: faker.name.lastName(),
-			fodselsnummer: randomFnr()
-		},
-		tidspunktBrukt: faker.date.recent(),
-		erBrukt: true,
 		opprettetDato: faker.date.past(),
 		gyldigTilDato: faker.date.soon(),
-	},
+		opprettetAvNavIdent: 'Z1234'
+	}
+]
+
+export const ubesluttedeForesporsler: UbesluttedeTilgangForesporsler = [
 	{
 		id: faker.datatype.uuid(),
-		invitertAnsatt: null,
-		tidspunktBrukt: null,
-		erBrukt: false,
-		opprettetDato: faker.date.past(),
-		gyldigTilDato: faker.date.soon(),
+		fornavn: faker.name.firstName(),
+		mellomnavn: null,
+		etternavn: faker.name.lastName(),
+		fodselsnummer: randomFnr(),
+		opprettetDato: faker.date.recent(),
 	}
 ]

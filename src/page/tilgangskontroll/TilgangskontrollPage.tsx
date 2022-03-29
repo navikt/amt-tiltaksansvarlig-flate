@@ -8,91 +8,33 @@ import { Alert, BodyShort, Button, Heading } from '@navikt/ds-react'
 import { Add } from '@navikt/ds-icons'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import {
-	AnsattTilganger,
-	AnsattTilgangInvitasjoner,
-	avbrytInvitasjon,
-	fetchAnsattTilganger,
-	fetchGjennomforing,
-	fetchTilgangInvitasjoner,
-	Gjennomforing,
-	godkjennInvitasjon,
-	opprettInvitasjon,
-	stopAnsattTilgang
-} from '../../api/api'
+import { fetchGjennomforing, Gjennomforing, opprettInvitasjon } from '../../api/api'
 import globalStyles from '../../globals.module.scss'
-import { AnsattTilgangListeElement } from './ansatt-tilgang-liste-element/AnsattTilgangListeElement'
-import { AnsattInvitasjonListeElement } from './ansatt-invitasjon-liste-element/AnsattInvitasjonListeElement'
 import { Spinner } from '../../component/spinner/Spinner'
+import { TilgangskontrollListe } from './tilgangskontroll-liste/TilgangskontrollListe'
 
 export const TilgangskontrollPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
-
-	const [ failedToFetch, setFailedToFetch ] = useState<boolean>(false)
-
+	const [ listeKey, setListeKey ] = useState(0)
 	const gjennomforingPromise = usePromise<AxiosResponse<Gjennomforing>>(() => fetchGjennomforing(gjennomforingId!))
-	const ansattTilgangerPromise = usePromise<AxiosResponse<AnsattTilganger>>(() => fetchAnsattTilganger(gjennomforingId!))
-	const ansattInvitasjonerPromise = usePromise<AxiosResponse<AnsattTilgangInvitasjoner>>(() => fetchTilgangInvitasjoner(gjennomforingId!))
 
-	if(
-		isNotStartedOrPending(gjennomforingPromise)
-		|| isNotStartedOrPending(ansattTilgangerPromise)
-		|| isNotStartedOrPending(ansattInvitasjonerPromise)
-	)
-		return <Spinner/>
+	if (!gjennomforingId) return <Alert variant="info">Gjennomføring ikke valgt</Alert>
 
-	if(
-		isRejected(gjennomforingPromise)
-		|| isRejected(ansattTilgangerPromise)
-		|| isRejected(ansattInvitasjonerPromise)
-		|| failedToFetch
-	)
-		return <Alert variant="error">En feil har oppstått</Alert>
+	if (isNotStartedOrPending(gjennomforingPromise)) return <Spinner/>
 
-	const slettTilgang = (tilgangId: string) => {
-		stopAnsattTilgang(tilgangId)
-			.then(() => ansattTilgangerPromise.setPromise(fetchAnsattTilganger(gjennomforingId!)))
-			.catch(() => setFailedToFetch(true))
-	}
-
-	const onGodkjennInvitasjon = (invitasjonId: string) => {
-		godkjennInvitasjon(invitasjonId)
-			.then(() => ansattInvitasjonerPromise.setPromise(fetchTilgangInvitasjoner(gjennomforingId!)))
-			.catch(() => setFailedToFetch(true))
-	}
-
-	const onAvbrytInvitasjon = (invitasjonId: string) => {
-		avbrytInvitasjon(invitasjonId)
-			.then(() => ansattInvitasjonerPromise.setPromise(fetchTilgangInvitasjoner(gjennomforingId!)))
-			.catch(() => setFailedToFetch(true))
-	}
+	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
 	const onOpprettInvitasjon = () => {
 		opprettInvitasjon()
-			.then(() => ansattInvitasjonerPromise.setPromise(fetchTilgangInvitasjoner(gjennomforingId!)))
-			.catch(() => setFailedToFetch(true))
+			.then(() => setListeKey(k => k + 1))
+			.catch()
 	}
 
-
 	const gjennomforing = gjennomforingPromise.result.data
-	const tilganger = ansattTilgangerPromise.result?.data ?? []
-	const invitasjoner = ansattInvitasjonerPromise.result?.data ?? []
-
-	const tilgangerOgInvitasjonerListeElementer = [
-		...invitasjoner.map(i => (
-			<AnsattInvitasjonListeElement
-				ansattInvitasjon={i}
-				onGodkjennInvitasjon={onGodkjennInvitasjon}
-				onAvbrytInvitasjon={onAvbrytInvitasjon}
-				key={i.id}
-			/>
-		)),
-		...tilganger.map(t => <AnsattTilgangListeElement ansattTilgang={t} onSlettTilgang={slettTilgang} key={t.id}/>)
-	]
 
 	return (
 		<main className={styles.page}>
-			<Tilbakelenke to={gjennomforingDetaljerPageUrl(gjennomforingId!)} className={globalStyles.blokkS}/>
+			<Tilbakelenke to={gjennomforingDetaljerPageUrl(gjennomforingId)} className={globalStyles.blokkS}/>
 
 			<Heading level="1" size="medium" className={globalStyles.blokkXs}>Tilgangskontroll for koordinator</Heading>
 
@@ -101,14 +43,9 @@ export const TilgangskontrollPage = () : React.ReactElement => {
 				<BodyShort>Organisasjonsnavn: {gjennomforing.arrangor.organisasjonNavn}</BodyShort>
 			</div>
 
-
 			<div className={globalStyles.blokkM}>
 				<Heading level="2" size="xsmall" spacing>Hvem skal ha tilgang til gjennomføringen av dette tiltaket?</Heading>
-				{
-					tilgangerOgInvitasjonerListeElementer.length > 0
-						? (<ul className={styles.liste}>{tilgangerOgInvitasjonerListeElementer}</ul>)
-						: (<BodyShort>Ingen koordinatorer registrert</BodyShort>)
-				}
+				<TilgangskontrollListe gjennomforingId={gjennomforingId} key={listeKey} />
 			</div>
 
 			<Button type="button" variant="secondary" onClick={onOpprettInvitasjon}>

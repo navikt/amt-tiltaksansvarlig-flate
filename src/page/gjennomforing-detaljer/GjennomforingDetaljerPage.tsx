@@ -1,4 +1,4 @@
-import { Alert, Heading, Link, Loader } from '@navikt/ds-react'
+import { Alert, Heading, Loader } from '@navikt/ds-react'
 import React from 'react'
 
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
@@ -7,7 +7,11 @@ import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-p
 import { fetchGjennomforing, Gjennomforing } from '../../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
+import globalStyles from '../../globals.module.scss'
 import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
+import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
+import { appUrl } from '../../utils/url-utils'
+import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
@@ -19,9 +23,9 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 	return (
 		<main className={styles.page}>
-			<Link href="/" className={styles.tilbakeKnapp}>Tilbake</Link>
+			<Tilbakelenke to={appUrl(FORSIDE_PAGE_ROUTE)} className={globalStyles.blokkM}/>
 			<Heading size="large">{gjennomforing?.navn}</Heading>
-			<GjennomforingGenerellInfo gjennomforing={gjennomforing!}/>
+			<GjennomforingGenerellInfo gjennomforing={gjennomforing!} className={globalStyles.blokkM}/>
 			<Tilgangskontroll className={styles.tilgangskontroll} />
 		</main>
 	)

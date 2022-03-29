@@ -5,13 +5,13 @@ import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import styles from './PersonListeElement.module.scss'
 import { Nullable } from '../../../../utils/types'
 
-interface AnsattTilgangListeElementProps {
+interface PersonListeElementProps {
 	fornavn: string,
 	mellomnavn: Nullable<string>,
 	etternavn: string
 }
 
-export const PersonListeElement = (props: AnsattTilgangListeElementProps) : React.ReactElement<AnsattTilgangListeElementProps> => {
+export const PersonListeElement = (props: PersonListeElementProps) : React.ReactElement<PersonListeElementProps> => {
 	const { fornavn, mellomnavn, etternavn } = props
 
 	return (

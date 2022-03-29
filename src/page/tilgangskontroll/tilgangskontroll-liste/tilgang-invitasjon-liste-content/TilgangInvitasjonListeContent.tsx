@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import styles from './AnsattInvitasjonListeElement.module.scss'
-import globalStyles from '../../../globals.module.scss'
 import { BodyShort, Button } from '@navikt/ds-react'
-import { formatDate } from '../../../utils/date-utils'
-import { opprettTilgangInvitasjonLenke } from '../../../utils/invitasjon-lenke-utils'
+import styles from './TilgangInvitasjonListeContent.module.scss'
 import cls from 'classnames'
+import globalStyles from '../../../../globals.module.scss'
+import { UbruktTilgangInvitasjon } from '../../../../api/api'
+import { opprettTilgangInvitasjonLenke } from '../../../../utils/invitasjon-lenke-utils'
+import { formatDate } from '../../../../utils/date-utils'
 
-interface UbruktInvitsjonContentProps {
-	invitasjonId: string,
-	opprettetDato: Date,
-	gyldigTilDato: Date,
-	onAvbrytInvitasjon: (tilgangId: string) => void,
+interface AnsattInvitasjonListeElementProps {
+	invitasjon: UbruktTilgangInvitasjon
+	onAvbrytInvitasjon: (invitasjonId: string) => void
 }
 
 const COPY_TOOLTIP_DURATION_MS = 1000
 
-export const UbruktInvitsjonContent = (props: UbruktInvitsjonContentProps): React.ReactElement<UbruktInvitsjonContentProps> => {
-	const { invitasjonId, opprettetDato, gyldigTilDato } = props
+
+export const TilgangInvitasjonListeContent = (props: AnsattInvitasjonListeElementProps): React.ReactElement<AnsattInvitasjonListeElementProps> => {
+	const { id, opprettetDato, gyldigTilDato } = props.invitasjon
 
 	const [ copySuccess, setCopySuccess ] = useState<boolean>(false)
 
-	const invitasjonLenke = opprettTilgangInvitasjonLenke(invitasjonId)
+	const invitasjonLenke = opprettTilgangInvitasjonLenke(id)
 
 	const writeToClipboard = (tekst: string): void => {
 		navigator.clipboard.writeText(tekst)
@@ -38,18 +38,18 @@ export const UbruktInvitsjonContent = (props: UbruktInvitsjonContentProps): Reac
 
 	return (
 		<div>
-			<div className={cls(styles.ubruktInvitasjonTopContent, globalStyles.blokkXs)}>
+			<div className={cls(styles.top, globalStyles.blokkXs)}>
 				<BodyShort className={styles.bold} spacing>Ny koordinator</BodyShort>
 				<Button
 					type="button"
 					variant="tertiary"
-					onClick={() => props.onAvbrytInvitasjon(invitasjonId)}
+					onClick={() => props.onAvbrytInvitasjon(id)}
 				>
 					Avbryt
 				</Button>
 			</div>
 
-			<div className={styles.ubruktInvitasjonTopContent}>
+			<div className={cls(styles.top, globalStyles.blokkM)}>
 				<BodyShort className={styles.bold} spacing>{invitasjonLenke}</BodyShort>
 
 				<div style={{ position: 'relative' }}>
@@ -67,7 +67,7 @@ export const UbruktInvitsjonContent = (props: UbruktInvitsjonContentProps): Reac
 			</div>
 
 
-			<ol className={styles.ubruktInvitasjonListe}>
+			<ol className={styles.liste}>
 				<li>Kopier denne lenken og send til koordinatoren hos tiltaksarrangør.</li>
 				<li>
 					Den ansatte hos tiltaksarrangøren logger seg inn med BankID. På denne måten får NAV sikker tilgang
@@ -80,6 +80,5 @@ export const UbruktInvitsjonContent = (props: UbruktInvitsjonContentProps): Reac
 				Opprettet {formatDate(opprettetDato)} - Utløper {formatDate(gyldigTilDato)}
 			</BodyShort>
 		</div>
-
 	)
 }

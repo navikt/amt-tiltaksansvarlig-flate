@@ -1,16 +1,5 @@
 @import 'src/colors.scss';
 
-.listItem {
-  margin-bottom: 0.75rem;
-}
-
-.panel {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
 .bold {
   font-weight: bold;
 }
@@ -19,22 +8,13 @@
   color: var(--navds-semantic-color-text-muted);
 }
 
-.bruktInvitasjonValg {
-  display: flex;
-  flex-direction: row;
-
-  > *:not(:last-child) {
-    margin-right: 2rem;
-  }
-}
-
-.ubruktInvitasjonTopContent {
+.top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.ubruktInvitasjonListe {
+.liste {
   padding-left: 1rem;
   margin-bottom: 2rem;
 

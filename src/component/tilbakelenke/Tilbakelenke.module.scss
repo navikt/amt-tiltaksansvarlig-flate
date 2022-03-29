@@ -1,13 +1,4 @@
 .tilbakelenke {
+  display: block;
   text-decoration: none;
-  display: flex;
-  gap: 0.5rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.pil {
-  height: auto;
 }

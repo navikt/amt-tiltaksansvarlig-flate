@@ -1,7 +1,7 @@
 import React from 'react'
 import { isNotStartedOrPending, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import { AnsattTilganger, fetchAnsattTilganger } from '../../../api/api'
+import { Tilganger, fetchAnsattTilganger } from '../../../api/api'
 import { Link, useParams } from 'react-router-dom'
 import { Heading, Loader } from '@navikt/ds-react'
 import styles from './Tilgangskontroll.module.scss'
@@ -18,7 +18,7 @@ interface TilgangskontrollProps {
 export const Tilgangskontroll = (props: TilgangskontrollProps) : React.ReactElement<TilgangskontrollProps> => {
 	const { gjennomforingId } = useParams()
 
-	const ansattTilgangerPromise = usePromise<AxiosResponse<AnsattTilganger>>(() => fetchAnsattTilganger(gjennomforingId!))
+	const ansattTilgangerPromise = usePromise<AxiosResponse<Tilganger>>(() => fetchAnsattTilganger(gjennomforingId!))
 
 	const tilganger = ansattTilgangerPromise.result?.data ?? []
 

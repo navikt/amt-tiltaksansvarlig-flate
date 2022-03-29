@@ -1,4 +1,3 @@
-import { Back } from '@navikt/ds-icons'
 import cls from 'classnames'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -14,7 +13,6 @@ export const Tilbakelenke = (props: TilbakelenkeProps): React.ReactElement<Tilba
 
 	return (
 		<Link to={props.to} className={cls(styles.tilbakelenke, props.className)}>
-			<Back className={styles.pil}/>
 			Tilbake
 		</Link>
 	)
