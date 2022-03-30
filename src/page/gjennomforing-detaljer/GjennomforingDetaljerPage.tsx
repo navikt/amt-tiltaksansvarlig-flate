@@ -32,7 +32,10 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 			<Tilgangskontroll className={globalStyles.blokkM} />
 
-			<DeltakerPanel />
+			<DeltakerPanel navn="Mugg, Luresen" fnr="010355" sendt="23.01.2022" />
+			<div style={{ marginBottom:'1rem' }}/>
+			<DeltakerPanel navn="Kopp, Lur" fnr="121295" sendt="20.01.2022" />
+
 		</main>
 	)
 }
