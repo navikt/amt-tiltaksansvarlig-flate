@@ -1,0 +1,18 @@
+
+.userBtn {
+  margin-left: auto;
+}
+
+.userDropdown {
+  position: absolute;
+  width: 200px;
+  padding: 0.5rem;
+  right: 0;
+  top: 45px;
+  box-shadow: var(--navds-shadow-medium);
+}
+
+.logOutLink {
+  width: 100%;
+  padding: 0.5rem;
+}

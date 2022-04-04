@@ -10,7 +10,7 @@ import { LoginPage } from './page/LoginPage'
 import { isNotStartedOrPending, isRejected, usePromise } from './utils/use-promise'
 import { TilgangskontrollPage } from './page/tilgangskontroll/TilgangskontrollPage'
 import { Spinner } from './component/spinner/Spinner'
-import { Header } from './component/Header'
+import { Header } from './component/header/Header'
 
 export const App = (): React.ReactElement => {
 	const isAuthenticatedPromise = usePromise<AxiosResponse<IsAuthenticated>>(fetchIsAuthenticated)
