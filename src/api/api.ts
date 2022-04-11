@@ -110,9 +110,9 @@ export const opprettInvitasjon = (gjennomforingId: string) : AxiosPromise => {
 		.catch((error) => exposeError(error, endepunkt))
 }
 
-export const avbrytInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}/avbryt`)
-	return axiosInstance.patch(endepunkt)
+export const slettInvitasjon = (invitasjonId: string) : AxiosPromise => {
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}`)
+	return axiosInstance.delete(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 

@@ -59,7 +59,7 @@ export const mockHandlers: RequestHandler[] = [
 
 		return res(ctx.delay(250), ctx.status(201))
 	}),
-	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/:invitasjonId/avbryt'), (req, res, ctx) => {
+	rest.delete(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/:invitasjonId'), (req, res, ctx) => {
 		const invitasjonId = req.params['invitasjonId'] as string
 
 		fjernUbruktInvitasjon(invitasjonId)

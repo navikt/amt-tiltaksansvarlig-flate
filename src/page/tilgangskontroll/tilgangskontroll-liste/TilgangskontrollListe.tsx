@@ -9,7 +9,7 @@ import {
 	Tilganger, UbesluttedeTilgangForesporsler,
 	UbrukteTilgangInvitasjoner, avvisForesporsel,
 	fetchAnsattTilganger, fetchUbesluttedeTilgangForesporsler,
-	fetchUbrukteTilgangInvitasjoner, godkjennForesporsel, stopAnsattTilgang, avbrytInvitasjon
+	fetchUbrukteTilgangInvitasjoner, godkjennForesporsel, stopAnsattTilgang, slettInvitasjon
 } from '../../../api/api'
 import { Spinner } from '../../../component/spinner/Spinner'
 import { TilgangForesporsel } from './tilgang-foresporsel/TilgangForesporsel'
@@ -64,7 +64,7 @@ export const TilgangskontrollListe = (props: TilgangskontrollListeProps): React.
 	}
 
 	const onAvbrytInvitasjon = (invitasjonId: string) => {
-		avbrytInvitasjon(invitasjonId)
+		slettInvitasjon(invitasjonId)
 			.then(() => tilgangInvitasjonerPromise.setPromise(fetchUbrukteTilgangInvitasjoner(gjennomforingId)))
 			.catch(() => setFailedToFetch(true))
 	}
