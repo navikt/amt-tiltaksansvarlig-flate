@@ -1,13 +1,19 @@
 .linjeWrapper {
   display: flex;
   box-sizing: inherit;
+}
 
+.endringInfoTekst {
+  padding-top: 0.5rem;
 }
 
 .moveRight {
   margin-left: auto;
 }
 
+.gray {
+  color: var(--navds-semantic-color-text-muted);
+}
 .fnr {
   margin-top: auto;
   margin-left: 1rem
@@ -15,4 +21,7 @@
 
 .panel {
   border-color: var(--navds-semantic-color-border-muted);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-bottom: 1.5rem;
 }
