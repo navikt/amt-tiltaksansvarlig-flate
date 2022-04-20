@@ -32,9 +32,10 @@ spec:
       enabled: true
     application:
       enabled: true
-      claims:
-        groups:
-          - id: ace70121-3382-47b0-a91d-f20a6b481a70
+#      Kommentert ut til vi har funnet ut hvordan og hvilken grupper vi skal bruke
+#      claims:
+#        groups:
+#          - id: ace70121-3382-47b0-a91d-f20a6b481a70
   gcp:
     buckets:
       - name: amt-tiltaksansvarlig-flate-dev
