@@ -8,6 +8,10 @@
   color: var(--navds-semantic-color-text-muted);
 }
 
+.break {
+  word-break: break-all;
+}
+
 .top {
   display: flex;
   flex-direction: row;

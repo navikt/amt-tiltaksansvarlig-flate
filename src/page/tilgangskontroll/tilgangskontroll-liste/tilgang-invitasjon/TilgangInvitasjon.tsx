@@ -49,7 +49,7 @@ export const TilgangInvitasjon = (props: TilgangInvitasjonProps): React.ReactEle
 			</div>
 
 			<div className={cls(styles.top, globalStyles.blokkM)}>
-				<BodyShort className={styles.bold} spacing>{invitasjonLenke}</BodyShort>
+				<BodyShort className={cls(styles.bold, styles.break)} spacing>{invitasjonLenke}</BodyShort>
 
 				<div style={{ position: 'relative' }}>
 					<Button
