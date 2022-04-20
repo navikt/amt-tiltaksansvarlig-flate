@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 export enum Status {
 	NOT_STARTED = 'NOT_STARTED',
 	PENDING = 'PENDING',
-    RESOLVED = 'RESOLVED',
-    REJECTED = 'REJECTED'
+	RESOLVED = 'RESOLVED',
+	REJECTED = 'REJECTED'
 }
 
-type PromiseState<R, E> = NotStartedPromiseState | PendingPromiseState | ResolvedPromiseState<R> | RejectedPromiseState<E>;
+type PromiseState<R, E> = NotStartedPromiseState | PendingPromiseState | ResolvedPromiseState<R> | RejectedPromiseState<E>
 
 interface NotStartedPromiseState {
 	result: undefined;
@@ -16,21 +16,21 @@ interface NotStartedPromiseState {
 }
 
 interface PendingPromiseState {
-    result: undefined;
-    error: undefined;
-    status: Status.PENDING;
+	result: undefined;
+	error: undefined;
+	status: Status.PENDING;
 }
 
 interface ResolvedPromiseState<R> {
-    result: R;
-    error: undefined;
-    status: Status.RESOLVED;
+	result: R;
+	error: undefined;
+	status: Status.RESOLVED;
 }
 
 interface RejectedPromiseState<E> {
-    result: undefined;
-    error: E;
-    status: Status.REJECTED;
+	result: undefined;
+	error: E;
+	status: Status.REJECTED;
 }
 
 const defaultState: NotStartedPromiseState = {
@@ -39,12 +39,16 @@ const defaultState: NotStartedPromiseState = {
 	status: Status.NOT_STARTED
 }
 
-export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?: never[]): PromiseState<R, E> & { setPromise: (promise: Promise<R>) => void } => {
+type UsePromise<R, E = Error> = PromiseState<R, E> & { setPromise: Dispatch<SetStateAction<Promise<R> | undefined>> }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?: any[]): UsePromise<R, E> => {
 	const [ promise, setPromise ] = useState<Promise<R>>()
 	const [ promiseState, setPromiseState ] = useState<PromiseState<R, E>>(defaultState)
 
 	useEffect(() => {
 		if (func) {
+			setPromiseState({ status: Status.PENDING, error: undefined, result: undefined })
 			setPromise(func())
 		}
 		// eslint-disable-next-line
@@ -54,7 +58,7 @@ export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?:
 		if (promise) {
 			let canceled = false
 
-			setPromiseState(defaultState)
+			setPromiseState({ status: Status.PENDING, error: undefined, result: undefined })
 
 			promise
 				.then((res) => {
@@ -83,6 +87,10 @@ export const usePromise = <R, E = Error>(func?: () => Promise<R>, dependencies?:
 
 export const isNotStartedOrPending = <R, E>(state: PromiseState<R, E>): state is NotStartedPromiseState | PendingPromiseState => {
 	return state.status === Status.NOT_STARTED || state.status === Status.PENDING
+}
+
+export const isPending = <R, E>(state: PromiseState<R, E>): state is PendingPromiseState => {
+	return state.status === Status.PENDING
 }
 
 export const isResolved = <R, E>(state: PromiseState<R, E>): state is ResolvedPromiseState<R> => {
