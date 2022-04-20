@@ -19,9 +19,9 @@ export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/auth/meg'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
 	}),
-	rest.get(appUrl('/amt-tiltak/api/is-authenticated'), (req, res, ctx) => {
+	rest.get(appUrl('/auth/info'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json({
-			isAuthenticated: true
+			loggedIn: true
 		}))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/gjennomforing'), (req, res, ctx) => {

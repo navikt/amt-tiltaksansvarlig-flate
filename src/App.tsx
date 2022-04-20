@@ -19,7 +19,7 @@ export const App = (): React.ReactElement => {
 		return <Spinner />
 	}
 
-	if (isRejected(isAuthenticatedPromise) || !isAuthenticatedPromise?.result.data.isAuthenticated) {
+	if (isRejected(isAuthenticatedPromise) || !isAuthenticatedPromise?.result.data.loggedIn) {
 		return <LoginPage />
 	}
 

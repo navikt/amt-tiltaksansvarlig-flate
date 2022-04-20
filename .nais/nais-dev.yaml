@@ -49,5 +49,11 @@ spec:
           },
           "auth": {
             "loginProvider": "AZURE_AD"
-          }
+          },
+          "proxies": [
+            {
+              "fromPath": "/amt-tiltak", "toUrl": "http://amt-tiltak",
+              "toApp": { "name": "amt-tiltak", "namespace": "amt", "cluster": "dev-gcp" }
+            }
+          ]
         }

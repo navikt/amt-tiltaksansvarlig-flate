@@ -3,7 +3,7 @@ import { z } from 'zod'
 const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
 
 export const IsAuthenticatedSchema = z.object({
-	isAuthenticated: z.boolean()
+	loggedIn: z.boolean()
 })
 
 export const InnloggetNavAnsattSchema = z.object({

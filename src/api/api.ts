@@ -49,7 +49,7 @@ const exposeError = (error: Error, endepunkt: string) => {
 }
 
 export const fetchIsAuthenticated = (): AxiosPromise<IsAuthenticated> => {
-	const endepunkt = appUrl('/amt-tiltak/api/is-authenticated')
+	const endepunkt = appUrl('/auth/info')
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, IsAuthenticatedSchema))
 		.catch((error) => exposeError(error, endepunkt))
