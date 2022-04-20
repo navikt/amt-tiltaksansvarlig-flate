@@ -39,6 +39,10 @@ spec:
     buckets:
       - name: amt-tiltaksansvarlig-flate-dev
         cascadingDelete: false
+  accessPolicy:
+    outbound:
+      rules:
+        - application: amt-tiltak
   env:
     - name: JSON_CONFIG
       value: >
