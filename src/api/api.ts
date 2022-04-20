@@ -63,22 +63,22 @@ export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsatt> => {
 }
 
 export const fetchGjennomforinger = () : AxiosPromise<Gjennomforinger> => {
-	const endepunkt = appUrl('/amt-tiltak/api/gjennomforing')
-	return axiosInstance.get(appUrl('/amt-tiltak/api/gjennomforing'))
+	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
+	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, GjennomforingerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 
 }
 
 export const fetchGjennomforing = (id: string) : AxiosPromise<Gjennomforing> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/gjennomforing/${id}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, GjennomforingSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchDeltakere = (id: string) : AxiosPromise<Deltakere> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/gjennomforing/${id}/deltakere`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}/deltakere`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, DeltakereSchema))
 		.catch((error) => exposeError(error, endepunkt))
