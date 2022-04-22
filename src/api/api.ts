@@ -4,7 +4,10 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 import { appUrl } from '../utils/url-utils'
 import { axiosInstance } from './utils'
 import {
-	ArrangorSchema, GjennomforingDetaljerSchema,
+	EndringsmeldingerSchema,
+	EndringsmeldingSchema,
+	ArrangorSchema,
+	GjennomforingDetaljerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
 	InnloggetNavAnsattSchema,
@@ -36,6 +39,9 @@ export type UbrukteTilgangInvitasjoner = z.infer<typeof UbrukteTilgangInvitasjon
 
 export type UbesluttetTilgangForesporsel = z.infer<typeof UbesluttetTilgangForesporselSchema>
 export type UbesluttedeTilgangForesporsler = z.infer<typeof UbesluttedeTilgangForesporslerSchema>
+
+export type EndringsmeldingType = z.infer<typeof EndringsmeldingSchema>
+export type EndringsmeldingerType = z.infer<typeof EndringsmeldingerSchema>
 
 const parseSchema = <T>(res: AxiosResponse, schema: z.ZodSchema<T>) => ({ ...res, data: schema.parse(res.data) })
 
@@ -121,5 +127,12 @@ export const godkjennForesporsel = (foresporselId: string) : AxiosPromise => {
 export const avvisForesporsel = (foresporselId: string) : AxiosPromise => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/${foresporselId}/avvis`)
 	return axiosInstance.patch(endepunkt)
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const fetchEndringsmeldinger = (gjennomforingId: string) : AxiosPromise<EndringsmeldingerType> => {
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding?gjennomforingId=${gjennomforingId}`)
+	return axiosInstance.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, EndringsmeldingerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }

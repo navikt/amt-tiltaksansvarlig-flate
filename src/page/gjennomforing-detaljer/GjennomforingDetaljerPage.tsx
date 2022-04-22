@@ -11,7 +11,7 @@ import globalStyles from '../../globals.module.scss'
 import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
-import { DeltakerPanel } from '../../component/DeltakerPanel'
+import { Endringsmeldinger } from './Endringsmeldinger'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
@@ -30,13 +30,12 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkM}/>
 
-			<Heading level="2" size="small" spacing>Koordinator</Heading>
 			<Tilgangskontroll className={globalStyles.blokkM} />
 
 			<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
 			<BodyLong size="small" spacing>Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her. Oppstartsdatoen skal legges inn i Arena. </BodyLong>
-			<DeltakerPanel navn="Mugg, Luresen" fnr="010355" sendt="23.01.2022" />
-			<DeltakerPanel navn="Kopp, Lur" fnr="121295" sendt="20.01.2022" />
+			<Endringsmeldinger gjennomforingId={gjennomforingId!}/>
+
 		</main>
 	)
 }
