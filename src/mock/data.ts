@@ -1,6 +1,6 @@
 import faker from 'faker'
 import {
-	Gjennomforinger,
+	GjennomforingDetaljer,
 	InnloggetNavAnsatt,
 	Tilganger,
 	UbesluttedeTilgangForesporsler,
@@ -20,7 +20,7 @@ export const innloggetAnsatt: InnloggetNavAnsatt = {
 	etternavn: faker.name.lastName()
 }
 
-export const gjennomforinger: Gjennomforinger = [
+export const gjennomforinger: GjennomforingDetaljer[] = [
 	{
 		navn: 'Oppfølging Tjenesteområde 1',
 		id: faker.datatype.uuid(),

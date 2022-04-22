@@ -18,23 +18,16 @@ export const ArrangorSchema = z.object({
 })
 
 export const GjennomforingSchema = z.object({
+	id: z.string(),
+	navn: z.string(),
+})
+
+export const GjennomforingDetaljerSchema = z.object({
 	navn: z.string(),
 	id: z.string(),
 	startDato: processStringToDate,
 	sluttDato: processStringToDate,
 	arrangor: ArrangorSchema
-})
-
-export const DeltakerSchema = z.object({
-	id: z.string(),
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-	fodselsnummer: z.string(),
-	startDato: processStringToDate.nullable(),
-	sluttDato: processStringToDate.nullable(),
-	status: z.string(),
-	registrertDato: processStringToDate
 })
 
 export const TilgangSchema = z.object({
@@ -62,7 +55,6 @@ export const UbesluttetTilgangForesporselSchema = z.object({
 	opprettetDato: processStringToDate,
 })
 
-export const DeltakereSchema = z.array(DeltakerSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
 export const TilgangerSchema = z.array(TilgangSchema)
 export const UbrukteTilgangInvitasjonerSchema = z.array(UbruktTilgangInvitasjonSchema)

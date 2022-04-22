@@ -4,9 +4,7 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 import { appUrl } from '../utils/url-utils'
 import { axiosInstance } from './utils'
 import {
-	ArrangorSchema,
-	DeltakereSchema,
-	DeltakerSchema,
+	ArrangorSchema, GjennomforingDetaljerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
 	InnloggetNavAnsattSchema,
@@ -26,10 +24,9 @@ export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 export type Gjennomforing = z.infer<typeof GjennomforingSchema>
 export type Gjennomforinger = z.infer<typeof GjennomforingerSchema>
 
-export type Arrangor = z.infer<typeof ArrangorSchema>
+export type GjennomforingDetaljer = z.infer<typeof GjennomforingDetaljerSchema>
 
-export type Deltaker = z.infer<typeof DeltakerSchema>
-export type Deltakere = z.infer<typeof DeltakereSchema>
+export type Arrangor = z.infer<typeof ArrangorSchema>
 
 export type Tilgang = z.infer<typeof TilgangSchema>
 export type Tilganger = z.infer<typeof TilgangerSchema>
@@ -67,20 +64,12 @@ export const fetchGjennomforinger = () : AxiosPromise<Gjennomforinger> => {
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, GjennomforingerSchema))
 		.catch((error) => exposeError(error, endepunkt))
-
 }
 
-export const fetchGjennomforing = (id: string) : AxiosPromise<Gjennomforing> => {
+export const fetchGjennomforing = (id: string) : AxiosPromise<GjennomforingDetaljer> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
 	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, GjennomforingSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const fetchDeltakere = (id: string) : AxiosPromise<Deltakere> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}/deltakere`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, DeltakereSchema))
+		.then((res: AxiosResponse) => parseSchema(res, GjennomforingDetaljerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 

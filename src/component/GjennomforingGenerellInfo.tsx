@@ -2,12 +2,12 @@ import { BodyShort } from '@navikt/ds-react'
 import React from 'react'
 
 import styles from './GjennomforingGenerellInfo.module.scss'
-import { Gjennomforing } from '../api/api'
+import { GjennomforingDetaljer } from '../api/api'
 import dayjs from 'dayjs'
 import cls from 'classnames'
 
 interface GjennomforingGenerellInfoProps {
-	gjennomforing: Gjennomforing
+	gjennomforing: GjennomforingDetaljer
 	className?: string
 }
 
