@@ -8,7 +8,7 @@ import { Alert, BodyShort, Button, Heading } from '@navikt/ds-react'
 import { Add } from '@navikt/ds-icons'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import { fetchGjennomforing, Gjennomforing, opprettInvitasjon } from '../../api/api'
+import { fetchGjennomforing, GjennomforingDetaljer, opprettInvitasjon } from '../../api/api'
 import globalStyles from '../../globals.module.scss'
 import { Spinner } from '../../component/spinner/Spinner'
 import { TilgangskontrollListe } from './tilgangskontroll-liste/TilgangskontrollListe'
@@ -16,7 +16,7 @@ import { TilgangskontrollListe } from './tilgangskontroll-liste/Tilgangskontroll
 export const TilgangskontrollPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
 	const [ listeKey, setListeKey ] = useState(0)
-	const gjennomforingPromise = usePromise<AxiosResponse<Gjennomforing>>(() => fetchGjennomforing(gjennomforingId!))
+	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljer>>(() => fetchGjennomforing(gjennomforingId!))
 
 	if (!gjennomforingId) return <Alert variant="info">Gjennomføring ikke valgt</Alert>
 

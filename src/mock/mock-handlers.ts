@@ -25,7 +25,7 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing'), (req, res, ctx) => {
-		return res(ctx.delay(250), ctx.json(gjennomforinger))
+		return res(ctx.delay(250), ctx.json(gjennomforinger.map(g => ({ id: g.id, navn: g.navn }))))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
