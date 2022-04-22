@@ -19,9 +19,9 @@ export const GjennomforingGenerellInfo = ({ gjennomforing, className }: Gjennomf
 
 	return (
 		<div className={cls(styles.section, className)}>
-			<BodyShort spacing size="small">Organisasjon: {gjennomforing.arrangor.organisasjonNavn?? gjennomforing.arrangor.virksomhetNavn}</BodyShort>
-			<BodyShort spacing size="small">Oppstart: {oppstart}</BodyShort>
-			<BodyShort spacing size="small">Sluttdato: {sluttdato}</BodyShort>
+			<BodyShort size="small">Organisasjon: {gjennomforing.arrangor.organisasjonNavn?? gjennomforing.arrangor.virksomhetNavn}</BodyShort>
+			<BodyShort size="small">Oppstart: {oppstart}</BodyShort>
+			<BodyShort size="small">Sluttdato: {sluttdato}</BodyShort>
 		</div>
 	)
 }

@@ -3,9 +3,8 @@ import { isNotStartedOrPending, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { fetchAnsattTilganger, Tilganger } from '../../../api/api'
 import { Link, useParams } from 'react-router-dom'
-import { BodyShort, Heading, Loader } from '@navikt/ds-react'
+import { BodyShort, Loader } from '@navikt/ds-react'
 import styles from './Tilgangskontroll.module.scss'
-import globalStyles from '../../../globals.module.scss'
 
 import cls from 'classnames'
 import { PersonListeElement } from './person-liste-element/PersonListeElement'
@@ -25,7 +24,6 @@ export const Tilgangskontroll = (props: TilgangskontrollProps) : React.ReactElem
 	return (
 		<section className={cls(styles.tilgangskontroll, props.className)}>
 			<div>
-				<Heading level="2" size="small" className={globalStyles.blokkXs}>Koordinator</Heading>
 				{isNotStartedOrPending(ansattTilgangerPromise) && <Loader size="large"/>}
 				{tilganger.length === 0
 					? (<BodyShort>Ingen koordinatorer har tilgang</BodyShort>)

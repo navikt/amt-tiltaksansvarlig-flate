@@ -1,4 +1,4 @@
-import { Alert, Heading, Loader } from '@navikt/ds-react'
+import { Alert, BodyLong, Heading, Loader } from '@navikt/ds-react'
 import React from 'react'
 
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
@@ -30,11 +30,13 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkM}/>
 
+			<Heading level="2" size="small" spacing>Koordinator</Heading>
 			<Tilgangskontroll className={globalStyles.blokkM} />
 
+			<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
+			<BodyLong size="small" spacing>Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her. Oppstartsdatoen skal legges inn i Arena. </BodyLong>
 			<DeltakerPanel navn="Mugg, Luresen" fnr="010355" sendt="23.01.2022" />
 			<DeltakerPanel navn="Kopp, Lur" fnr="121295" sendt="20.01.2022" />
-
 		</main>
 	)
 }
