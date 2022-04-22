@@ -16,6 +16,9 @@ export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerPanelPro
 	if (isNotStartedOrPending(endringsmeldingerPromise)) return <Loader/>
 	if (isRejected(endringsmeldingerPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
+	if(endringsmeldinger?.length === 0)
+		return <Alert variant="info" size="small">Det er ingen nye meldinger om deltakere.</Alert>
+
 	return <>
 		{endringsmeldinger?.map(e =>
 			<Endringsmelding endringsmelding={e} key={e.id}/>
