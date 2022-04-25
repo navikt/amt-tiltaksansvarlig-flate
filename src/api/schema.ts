@@ -7,9 +7,8 @@ export const IsAuthenticatedSchema = z.object({
 })
 
 export const InnloggetNavAnsattSchema = z.object({
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
+	navIdent: z.string(),
+	navn: z.string(),
 })
 
 export const ArrangorSchema = z.object({

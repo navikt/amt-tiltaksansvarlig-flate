@@ -15,9 +15,8 @@ import {
 } from './data-helper'
 
 export const innloggetAnsatt: InnloggetNavAnsatt = {
-	fornavn: faker.name.firstName(),
-	mellomnavn: null,
-	etternavn: faker.name.lastName()
+	navIdent: 'Z1234',
+	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
 }
 
 export const gjennomforinger: GjennomforingDetaljer[] = [

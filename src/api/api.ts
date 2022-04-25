@@ -53,7 +53,7 @@ export const fetchIsAuthenticated = (): AxiosPromise<IsAuthenticated> => {
 }
 
 export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsatt> => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/auth/meg')
+	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, InnloggetNavAnsattSchema))
 		.catch((error) => exposeError(error, endepunkt))

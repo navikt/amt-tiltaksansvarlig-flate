@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Header as InternHeader } from '@navikt/ds-react-internal'
 import { usePromise } from '../../utils/use-promise'
 import { fetchInnloggetAnsatt } from '../../api/api'
-import { lagBrukerNavn } from '../../utils/bruker-utils'
 import { Link, Panel } from '@navikt/ds-react'
 import { appUrl } from '../../utils/url-utils'
 import styles from './Header.module.scss'
@@ -15,7 +14,7 @@ export const Header = (): React.ReactElement => {
 	const maybeData = innloggetAnsattPromise.result?.data
 
 	const innloggetAnsattNavn = maybeData
-		? lagBrukerNavn(maybeData.fornavn, maybeData.mellomnavn, maybeData.etternavn)
+		? maybeData.navn
 		: ''
 
 	return (
