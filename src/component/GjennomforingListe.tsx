@@ -12,7 +12,7 @@ export const GjennomforingListe = () : React.ReactElement => {
 
 	if (isNotStartedOrPending(getGjennomforinger)) return <Loader />
 
-	if (isRejected(getGjennomforinger)) return <Alert variant="error">Noe gikk galt: ${getGjennomforinger.error}</Alert>
+	if (isRejected(getGjennomforinger)) return <Alert variant="error">Noe gikk galt</Alert>
 
 	return <>
 		<Heading size="xsmall">Oppfølging</Heading>
