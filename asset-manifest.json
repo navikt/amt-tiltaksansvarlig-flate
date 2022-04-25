@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/amt-tiltaksansvarlig-flate/static/css/main.755e84c3.css",
-    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.f2ae80cc.js",
+    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.cf01d300.js",
     "static/media/nav-ansatt.svg": "/amt-tiltaksansvarlig-flate/static/media/nav-ansatt.335ccff40cb7bc0a13bfb8e7b5ce5f58.svg",
     "index.html": "/amt-tiltaksansvarlig-flate/index.html",
     "main.755e84c3.css.map": "/amt-tiltaksansvarlig-flate/static/css/main.755e84c3.css.map",
-    "main.f2ae80cc.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.f2ae80cc.js.map"
+    "main.cf01d300.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.cf01d300.js.map"
   },
   "entrypoints": [
     "static/css/main.755e84c3.css",
-    "static/js/main.f2ae80cc.js"
+    "static/js/main.cf01d300.js"
   ]
 }
