@@ -1,8 +1,20 @@
-import env from './environment'
+import env, { EnvironmentType } from './environment'
+
+const amtTiltaksarrangorFlateBaseUrl = (): string => {
+	switch (env.appEnv) {
+		case EnvironmentType.LOCAL:
+			return 'http://localhost:3000'
+		case EnvironmentType.DEMO:
+			return 'https://navikt.github.io/amt-tiltaksarrangor-flate'
+		case EnvironmentType.DEV:
+			return 'https://amt.dev.nav.no'
+		case EnvironmentType.PROD:
+			return 'https://nav.no'
+	}
+
+	throw Error('Unknown environment ' + env.appEnv)
+}
 
 export const opprettTilgangInvitasjonLenke = (invitasjonId: string): string => {
-	const domain = env.isProd ? 'https://nav.no' : 'https://amt.dev.nav.no'
-	const path = `/tiltaksarrangor/deltakeroversikt/tilgang/invitasjon/${invitasjonId}`
-
-	return domain + path
+	return `${amtTiltaksarrangorFlateBaseUrl()}/tiltaksarrangor/deltakeroversikt/tilgang/invitasjon/${invitasjonId}`
 }

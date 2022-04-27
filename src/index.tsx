@@ -10,7 +10,7 @@ import env from './utils/environment'
 require('dayjs/locale/nb')
 dayjs.locale('nb')
 
-if (env.isDevelopment) {
+if (env.isMockingEnabled) {
 	require('./mock')
 }
 
