@@ -34,12 +34,12 @@ export const mockHandlers: RequestHandler[] = [
 		))
 	}),
 
-	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/tilgang'), (req, res, ctx) => {
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang'), (req, res, ctx) => {
 		const gjennomforingId = req.url.searchParams.get('gjennomforingId') as string
 
 		return res(ctx.delay(250), ctx.json(hentTilganger(gjennomforingId)))
 	}),
-	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/:tilgangId/stop'), (req, res, ctx) => {
+	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/:tilgangId/stop'), (req, res, ctx) => {
 		const tilgangId = req.params['tilgangId'] as string
 
 		fjernTilgang(tilgangId)
@@ -47,19 +47,19 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.status(200))
 	}),
 
-	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/ubrukt'), (req, res, ctx) => {
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/ubrukt'), (req, res, ctx) => {
 		const gjennomforingId = req.url.searchParams.get('gjennomforingId') as string
 
 		return res(ctx.delay(250), ctx.json(hentUbrukteInvitasjoner(gjennomforingId)))
 	}),
-	rest.post(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon'), (req, res, ctx) => {
+	rest.post(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon'), (req, res, ctx) => {
 		const body = req.body as { gjennomforingId: string }
 
 		opprettInvitasjon(body.gjennomforingId)
 
 		return res(ctx.delay(250), ctx.status(201))
 	}),
-	rest.delete(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/:invitasjonId'), (req, res, ctx) => {
+	rest.delete(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/:invitasjonId'), (req, res, ctx) => {
 		const invitasjonId = req.params['invitasjonId'] as string
 
 		fjernUbruktInvitasjon(invitasjonId)
@@ -67,19 +67,19 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.status(200))
 	}),
 
-	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/ubesluttet'), (req, res, ctx) => {
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/ubesluttet'), (req, res, ctx) => {
 		const gjennomforingId = req.url.searchParams.get('gjennomforingId') as string
 
 		return res(ctx.delay(250), ctx.json(hentUbesluttedeForesporsler(gjennomforingId)))
 	}),
-	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/:foresporselId/godkjenn'), (req, res, ctx) => {
+	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/:foresporselId/godkjenn'), (req, res, ctx) => {
 		const foresporselId = req.params['foresporselId'] as string
 
 		godkjennForesporsel(foresporselId)
 
 		return res(ctx.delay(250), ctx.status(200))
 	}),
-	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/:foresporselId/avvis'), (req, res, ctx) => {
+	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/:foresporselId/avvis'), (req, res, ctx) => {
 		const foresporselId = req.params['foresporselId'] as string
 
 		fjernUbesluttedForesporsel(foresporselId)

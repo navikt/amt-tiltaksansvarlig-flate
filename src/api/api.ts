@@ -74,52 +74,52 @@ export const fetchGjennomforing = (id: string) : AxiosPromise<GjennomforingDetal
 }
 
 export const fetchAnsattTilganger = (gjennomforingId: string) : AxiosPromise<Tilganger> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, TilgangerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const stopAnsattTilgang = (tilgangId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/${tilgangId}/stop`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/${tilgangId}/stop`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchUbrukteTilgangInvitasjoner = (gjennomforingId: string) : AxiosPromise<UbrukteTilgangInvitasjoner> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/ubrukt?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/ubrukt?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, UbrukteTilgangInvitasjonerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const opprettInvitasjon = (gjennomforingId: string) : AxiosPromise => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/tilgang/invitasjon')
+	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon')
 	return axiosInstance.post(endepunkt, { gjennomforingId: gjennomforingId })
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const slettInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/invitasjon/${invitasjonId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/${invitasjonId}`)
 	return axiosInstance.delete(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchUbesluttedeTilgangForesporsler = (gjennomforingId: string) : AxiosPromise<UbesluttedeTilgangForesporsler> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/ubesluttet?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/ubesluttet?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, UbesluttedeTilgangForesporslerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const godkjennForesporsel = (foresporselId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/${foresporselId}/godkjenn`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/${foresporselId}/godkjenn`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const avvisForesporsel = (foresporselId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/tilgang/foresporsel/${foresporselId}/avvis`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/${foresporselId}/avvis`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
