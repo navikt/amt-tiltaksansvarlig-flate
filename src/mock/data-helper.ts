@@ -1,16 +1,16 @@
 import {
-	Gjennomforinger,
-	Tilgang,
-	Tilganger,
-	UbesluttedeTilgangForesporsler,
-	UbesluttetTilgangForesporsel,
-	UbrukteTilgangInvitasjoner,
-	UbruktTilgangInvitasjon
+	GjennomforingerType,
+	TilgangType,
+	TilgangerType,
+	TilgangForesporslerType,
+	TilgangForesporselType,
+	UbrukteTilgangInvitasjonerType,
+	UbruktTilgangInvitasjonType
 } from '../api/api'
 import { randBetween, randomFnr } from './utils/faker'
 import faker from 'faker'
 
-const opprettMockTilgang = (): Tilgang => {
+const opprettMockTilgang = (): TilgangType => {
 	return {
 		id: faker.datatype.uuid(),
 		fornavn: faker.name.firstName(),
@@ -21,7 +21,7 @@ const opprettMockTilgang = (): Tilgang => {
 	}
 }
 
-export const opprettMockUbruktInvitasjon = (): UbruktTilgangInvitasjon => {
+export const opprettMockUbruktInvitasjon = (): UbruktTilgangInvitasjonType => {
 	return {
 		id: faker.datatype.uuid(),
 		opprettetDato: faker.date.past(),
@@ -30,7 +30,7 @@ export const opprettMockUbruktInvitasjon = (): UbruktTilgangInvitasjon => {
 	}
 }
 
-export const opprettMockUbesluttetForesporsel = (): UbesluttetTilgangForesporsel => {
+export const opprettMockUbesluttetForesporsel = (): TilgangForesporselType => {
 	return {
 		id: faker.datatype.uuid(),
 		fornavn: faker.name.firstName(),
@@ -41,11 +41,11 @@ export const opprettMockUbesluttetForesporsel = (): UbesluttetTilgangForesporsel
 	}
 }
 
-export const opprettMockGjennomforingTilganger = (gjennomforinger: Gjennomforinger): { [gjennomforingId: string]: Tilganger } => {
-	const gjennomforingTilganger: { [gjennomforingId: string]: Tilganger } = {}
+export const opprettMockGjennomforingTilganger = (gjennomforinger: GjennomforingerType): { [gjennomforingId: string]: TilgangerType } => {
+	const gjennomforingTilganger: { [gjennomforingId: string]: TilgangerType } = {}
 
 	gjennomforinger.forEach(g => {
-		const tilganger: Tilganger = []
+		const tilganger: TilgangerType = []
 		const antall = randBetween(0, 1)
 
 		for (let i = 0; i < antall; i++) {
@@ -59,11 +59,11 @@ export const opprettMockGjennomforingTilganger = (gjennomforinger: Gjennomforing
 }
 
 
-export const opprettMockGjennomforingInvitasjoner = (gjennomforinger: Gjennomforinger): { [gjennomforingId: string]: UbrukteTilgangInvitasjoner } => {
-	const gjennomforingInvitasjoner: { [gjennomforingId: string]: UbrukteTilgangInvitasjoner } = {}
+export const opprettMockGjennomforingInvitasjoner = (gjennomforinger: GjennomforingerType): { [gjennomforingId: string]: UbrukteTilgangInvitasjonerType } => {
+	const gjennomforingInvitasjoner: { [gjennomforingId: string]: UbrukteTilgangInvitasjonerType } = {}
 
 	gjennomforinger.forEach(g => {
-		const invitasjoner: UbrukteTilgangInvitasjoner = []
+		const invitasjoner: UbrukteTilgangInvitasjonerType = []
 		const antall = randBetween(0, 1)
 
 		for (let i = 0; i < antall; i++) {
@@ -76,11 +76,11 @@ export const opprettMockGjennomforingInvitasjoner = (gjennomforinger: Gjennomfor
 	return gjennomforingInvitasjoner
 }
 
-export const opprettMockGjennomforingForesporsler = (gjennomforinger: Gjennomforinger): { [gjennomforingId: string]: UbesluttedeTilgangForesporsler } => {
-	const gjennomforingForesporsler: { [gjennomforingId: string]: UbesluttedeTilgangForesporsler } = {}
+export const opprettMockGjennomforingForesporsler = (gjennomforinger: GjennomforingerType): { [gjennomforingId: string]: TilgangForesporslerType } => {
+	const gjennomforingForesporsler: { [gjennomforingId: string]: TilgangForesporslerType } = {}
 
 	gjennomforinger.forEach(g => {
-		const invitasjoner: UbesluttedeTilgangForesporsler = []
+		const invitasjoner: TilgangForesporslerType = []
 		const antall = randBetween(0, 1)
 
 		for (let i = 0; i < antall; i++) {

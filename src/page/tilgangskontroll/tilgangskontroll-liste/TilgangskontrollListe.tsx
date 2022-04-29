@@ -6,8 +6,8 @@ import { Tilgang } from './tilgang/Tilgang'
 import styles from './TilgangskontrollListe.module.scss'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../../utils/use-promise'
 import {
-	Tilganger, UbesluttedeTilgangForesporsler,
-	UbrukteTilgangInvitasjoner, avvisForesporsel,
+	TilgangerType, TilgangForesporslerType,
+	UbrukteTilgangInvitasjonerType, avvisForesporsel,
 	fetchAnsattTilganger, fetchUbesluttedeTilgangForesporsler,
 	fetchUbrukteTilgangInvitasjoner, godkjennForesporsel, stopAnsattTilgang, slettInvitasjon
 } from '../../../api/api'
@@ -23,9 +23,9 @@ export const TilgangskontrollListe = (props: TilgangskontrollListeProps): React.
 
 	const [ failedToFetch, setFailedToFetch ] = useState<boolean>(false)
 
-	const tilgangerPromise = usePromise<AxiosResponse<Tilganger>>(() => fetchAnsattTilganger(gjennomforingId))
-	const tilgangInvitasjonerPromise = usePromise<AxiosResponse<UbrukteTilgangInvitasjoner>>(() => fetchUbrukteTilgangInvitasjoner(gjennomforingId))
-	const tilgangForesporslerPromise = usePromise<AxiosResponse<UbesluttedeTilgangForesporsler>>(() => fetchUbesluttedeTilgangForesporsler(gjennomforingId))
+	const tilgangerPromise = usePromise<AxiosResponse<TilgangerType>>(() => fetchAnsattTilganger(gjennomforingId))
+	const tilgangInvitasjonerPromise = usePromise<AxiosResponse<UbrukteTilgangInvitasjonerType>>(() => fetchUbrukteTilgangInvitasjoner(gjennomforingId))
+	const tilgangForesporslerPromise = usePromise<AxiosResponse<TilgangForesporslerType>>(() => fetchUbesluttedeTilgangForesporsler(gjennomforingId))
 
 	if (
 		isNotStartedOrPending(tilgangerPromise)

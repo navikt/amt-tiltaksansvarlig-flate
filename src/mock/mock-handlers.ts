@@ -14,6 +14,7 @@ import {
 	innloggetAnsatt,
 	opprettInvitasjon
 } from './data'
+import { endringsmeldingData } from './endringsmelding-data'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/auth/info'), (req, res, ctx) => {
@@ -85,5 +86,11 @@ export const mockHandlers: RequestHandler[] = [
 		fjernUbesluttedForesporsel(foresporselId)
 
 		return res(ctx.delay(250), ctx.status(200))
-	})
+	}),
+
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
+		const gjennomforingId = req.url.searchParams.get('gjennomforingId') as string
+
+		return res(ctx.delay(250), ctx.json(endringsmeldingData))
+	}),
 ]

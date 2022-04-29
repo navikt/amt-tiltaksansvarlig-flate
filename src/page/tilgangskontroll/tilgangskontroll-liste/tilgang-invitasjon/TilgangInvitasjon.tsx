@@ -3,12 +3,12 @@ import { BodyShort, Button } from '@navikt/ds-react'
 import styles from './TilgangInvitasjon.module.scss'
 import cls from 'classnames'
 import globalStyles from '../../../../globals.module.scss'
-import { UbruktTilgangInvitasjon } from '../../../../api/api'
+import { UbruktTilgangInvitasjonType } from '../../../../api/api'
 import { opprettTilgangInvitasjonLenke } from '../../../../utils/invitasjon-lenke-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
 interface TilgangInvitasjonProps {
-	invitasjon: UbruktTilgangInvitasjon
+	invitasjon: UbruktTilgangInvitasjonType
 	onAvbrytInvitasjon: (invitasjonId: string) => void
 }
 

@@ -2,12 +2,12 @@ import { Heading } from '@navikt/ds-react'
 import React from 'react'
 
 import styles from './GjennomforingPanel.module.scss'
-import { Gjennomforing } from '../api/api'
+import { GjennomforingType } from '../api/api'
 import { SpaLenkepanel } from './spa-lenkepanel/SpaLenkepanel'
 import { gjennomforingDetaljerPageUrl } from '../navigation'
 
 interface GjennomforingPanelProps {
-	gjennomforing : Gjennomforing
+	gjennomforing : GjennomforingType
 }
 
 export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) : React.ReactElement => {

@@ -1,12 +1,12 @@
 import React from 'react'
 import { BodyShort, Button } from '@navikt/ds-react'
 import styles from './Tilgang.module.scss'
-import { Tilgang as TilgangData } from '../../../../api/api'
+import { TilgangType } from '../../../../api/api'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
 interface TilgangProps {
-	ansattTilgang: TilgangData
+	ansattTilgang: TilgangType
 	onSlettTilgang: (tilgangId: string) => void
 }
 
