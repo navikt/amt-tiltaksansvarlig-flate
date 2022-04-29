@@ -11,16 +11,17 @@ interface EndringsmeldingerPanelProps {
 
 export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerPanelProps) => {
 	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(gjennomforingId!))
-	const endringsmeldinger = endringsmeldingerPromise.result?.data
 
 	if (isNotStartedOrPending(endringsmeldingerPromise)) return <Loader/>
 	if (isRejected(endringsmeldingerPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
-	if(endringsmeldinger?.length === 0)
+	const endringsmeldinger = endringsmeldingerPromise.result?.data
+
+	if(endringsmeldinger.length === 0)
 		return <Alert variant="info" size="small">Det er ingen nye meldinger om deltakere.</Alert>
 
 	return <>
-		{endringsmeldinger?.map(e =>
+		{endringsmeldinger.map(e =>
 			<Endringsmelding endringsmelding={e} key={e.id}/>
 		)}
 	</>

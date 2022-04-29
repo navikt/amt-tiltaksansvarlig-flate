@@ -1,13 +1,13 @@
 import React from 'react'
 import { BodyShort, Button } from '@navikt/ds-react'
 import styles from './TilgangForesporsel.module.scss'
-import { UbesluttetTilgangForesporsel } from '../../../../api/api'
+import { TilgangForesporselType } from '../../../../api/api'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
 
 
 interface TilgangForesporselProps {
-	foresporsel: UbesluttetTilgangForesporsel
+	foresporsel: TilgangForesporselType
 	onGodkjennForesporsel: (foresporselId: string) => void,
 	onAvvisForesporsel: (foresporselId: string) => void,
 }

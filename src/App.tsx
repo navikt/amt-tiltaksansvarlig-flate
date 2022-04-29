@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { fetchIsAuthenticated, IsAuthenticated } from './api/api'
+import { fetchIsAuthenticated, IsAuthenticatedType } from './api/api'
 import { FORSIDE_PAGE_ROUTE, GJENNOMFORING_DETALJER_PAGE_ROUTE, TILGANGSKONTROLL_PAGE_ROUTE } from './navigation'
 import { Forside } from './page/Forside'
 import { GjennomforingDetaljerPage } from './page/gjennomforing-detaljer/GjennomforingDetaljerPage'
@@ -13,7 +13,7 @@ import { Spinner } from './component/spinner/Spinner'
 import { Header } from './component/header/Header'
 
 export const App = (): React.ReactElement => {
-	const isAuthenticatedPromise = usePromise<AxiosResponse<IsAuthenticated>>(fetchIsAuthenticated)
+	const isAuthenticatedPromise = usePromise<AxiosResponse<IsAuthenticatedType>>(fetchIsAuthenticated)
 
 	if (isNotStartedOrPending(isAuthenticatedPromise)) {
 		return <Spinner />

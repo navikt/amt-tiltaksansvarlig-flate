@@ -4,7 +4,7 @@ import React from 'react'
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
 import { useParams } from 'react-router-dom'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
-import { fetchGjennomforing, GjennomforingDetaljer } from '../../api/api'
+import { fetchGjennomforing, GjennomforingDetaljerType } from '../../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import globalStyles from '../../globals.module.scss'
@@ -15,7 +15,7 @@ import { Endringsmeldinger } from './Endringsmeldinger'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
-	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljer>>(() => fetchGjennomforing(gjennomforingId!))
+	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljerType>>(() => fetchGjennomforing(gjennomforingId!))
 
 	if (isNotStartedOrPending(gjennomforingPromise)) return <Loader/>
 	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>

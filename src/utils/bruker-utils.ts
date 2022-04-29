@@ -40,4 +40,4 @@ export const lagKommaSeparertBrukerNavn = (fornavn: string, mellomnavn: Nullable
 	].filter(navn => !!navn).join(' ')
 }
 
-export const fnrTilFdato = (fnr: string) => fnr.substring(0, 5)
+export const fnrTilFdato = (fnr: string) => fnr.substring(0, 6)

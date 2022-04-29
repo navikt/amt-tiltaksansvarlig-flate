@@ -51,7 +51,7 @@ export const UbruktTilgangInvitasjonSchema = z.object({
 	gyldigTilDato: processStringToDate,
 })
 
-export const UbesluttetTilgangForesporselSchema = z.object({
+export const TilgangForesporselSchema = z.object({
 	id: z.string().uuid(),
 	fornavn: z.string(),
 	mellomnavn: z.string().nullable(),
@@ -82,4 +82,4 @@ export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
 export const TilgangerSchema = z.array(TilgangSchema)
 export const UbrukteTilgangInvitasjonerSchema = z.array(UbruktTilgangInvitasjonSchema)
-export const UbesluttedeTilgangForesporslerSchema = z.array(UbesluttetTilgangForesporselSchema)
+export const TilgangForesporslerSchema = z.array(TilgangForesporselSchema)

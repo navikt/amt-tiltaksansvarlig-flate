@@ -1,11 +1,11 @@
 import faker from 'faker'
 import {
-	GjennomforingDetaljer,
-	InnloggetNavAnsatt,
-	Tilganger,
-	UbesluttedeTilgangForesporsler,
-	UbesluttetTilgangForesporsel,
-	UbrukteTilgangInvitasjoner
+	GjennomforingDetaljerType,
+	InnloggetNavAnsattType,
+	TilgangerType,
+	TilgangForesporslerType,
+	TilgangForesporselType,
+	UbrukteTilgangInvitasjonerType
 } from '../api/api'
 import {
 	opprettMockGjennomforingForesporsler,
@@ -14,12 +14,12 @@ import {
 	opprettMockUbruktInvitasjon
 } from './data-helper'
 
-export const innloggetAnsatt: InnloggetNavAnsatt = {
+export const innloggetAnsatt: InnloggetNavAnsattType = {
 	navIdent: 'Z1234',
 	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
 }
 
-export const gjennomforinger: GjennomforingDetaljer[] = [
+export const gjennomforinger: GjennomforingDetaljerType[] = [
 	{
 		navn: 'Oppfølging Tjenesteområde 1',
 		id: faker.datatype.uuid(),
@@ -60,7 +60,7 @@ const gjennomforingInvitasjoner = opprettMockGjennomforingInvitasjoner(gjennomfo
 const gjennomforingForesporsler = opprettMockGjennomforingForesporsler(gjennomforinger)
 
 
-export const hentTilganger = (gjennomforingId: string): Tilganger => {
+export const hentTilganger = (gjennomforingId: string): TilgangerType => {
 	return gjennomforingTilganger[gjennomforingId]
 }
 
@@ -72,7 +72,7 @@ export const fjernTilgang = (tilgangId: string) => {
 }
 
 
-export const hentUbrukteInvitasjoner = (gjennomforingId: string): UbrukteTilgangInvitasjoner => {
+export const hentUbrukteInvitasjoner = (gjennomforingId: string): UbrukteTilgangInvitasjonerType => {
 	return gjennomforingInvitasjoner[gjennomforingId]
 }
 
@@ -88,13 +88,13 @@ export const fjernUbruktInvitasjon = (invitasjonId: string) => {
 	gjennomforingInvitasjoner[gjennomforingId] = oppdatertInvitasjoner
 }
 
-export const hentUbesluttedeForesporsler = (gjennomforingId: string): UbesluttedeTilgangForesporsler => {
+export const hentUbesluttedeForesporsler = (gjennomforingId: string): TilgangForesporslerType => {
 	return gjennomforingForesporsler[gjennomforingId]
 }
 
 export const godkjennForesporsel = (foresporselId: string) => {
 	const gjennomforingId = finnKeyForValue(foresporselId, gjennomforingForesporsler)
-	const foresporsel = gjennomforingForesporsler[gjennomforingId].find(f => f.id === foresporselId) as UbesluttetTilgangForesporsel
+	const foresporsel = gjennomforingForesporsler[gjennomforingId].find(f => f.id === foresporselId) as TilgangForesporselType
 
 	gjennomforingTilganger[gjennomforingId].push({
 		id: faker.datatype.uuid(),
