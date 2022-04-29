@@ -89,8 +89,6 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
-		const gjennomforingId = req.url.searchParams.get('gjennomforingId') as string
-
 		return res(ctx.delay(250), ctx.json(endringsmeldingData))
 	}),
 ]
