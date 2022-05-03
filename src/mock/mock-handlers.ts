@@ -15,6 +15,7 @@ import {
 	opprettInvitasjon
 } from './data'
 import { endringsmeldingData } from './endringsmelding-data'
+import { GjennomforingType } from '../api/api'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/auth/info'), (req, res, ctx) => {
@@ -26,7 +27,10 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing'), (req, res, ctx) => {
-		return res(ctx.delay(250), ctx.json(gjennomforinger.map(g => ({ id: g.id, navn: g.navn }))))
+		const data: GjennomforingType[] = gjennomforinger
+			.map(g => ({ id: g.id, navn: g.navn, arrangorNavn: g.arrangor.virksomhetNavn }))
+
+		return res(ctx.delay(250), ctx.json(data))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
