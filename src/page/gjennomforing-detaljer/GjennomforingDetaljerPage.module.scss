@@ -1,6 +1,21 @@
 @import 'src/globals.module.scss';
+@import 'src/colors';
 
 .page {
   max-width: $max-bredde;
   margin: 2rem auto;
+}
+
+.seperator {
+  height: 1px;
+  width: 100%;
+  background-color: $navGra50;
+}
+
+.fjernFraMinOversiktSection {
+  margin-top: 1rem;
+}
+
+.alert {
+  max-width: 400px;
 }

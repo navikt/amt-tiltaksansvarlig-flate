@@ -136,3 +136,8 @@ export const fetchEndringsmeldinger = (gjennomforingId: string) : AxiosPromise<E
 		.then((res: AxiosResponse) => parseSchema(res, EndringsmeldingerSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
+
+export const fjernGjennomforingFraMinOversikt = (gjennomforingId: string) : AxiosPromise => {
+	const endepunkt = appUrl(`/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+	return axiosInstance.patch(endepunkt).catch((error) => exposeError(error, endepunkt))
+}

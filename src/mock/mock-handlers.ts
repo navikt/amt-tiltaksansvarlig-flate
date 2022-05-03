@@ -87,8 +87,10 @@ export const mockHandlers: RequestHandler[] = [
 
 		return res(ctx.delay(250), ctx.status(200))
 	}),
-
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(endringsmeldingData))
+	}),
+	rest.patch(appUrl('/api/tiltaksansvarlig/gjennomforing-tilgang/stop'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(200))
 	}),
 ]
