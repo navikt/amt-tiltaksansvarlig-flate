@@ -14,6 +14,10 @@ import {
 import { Spinner } from '../../component/spinner/Spinner'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
 
+const kunSiffer = (value: string): boolean => {
+	return !!value.match('^[0-9]+$')
+}
+
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingerMedLopenrType>>()
@@ -36,27 +40,31 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 			<div className={styles.sok}>
 				<TextField
 					label="Tiltaksnummer"
-					type="number"
 					placeholder="Tiltaksnummer (løpenummer)"
 					value={lopenrSokefelt}
-					onChange={e => setLopenrSokefelt(e.target.value)}
+					onChange={e => {
+						const value = e.target.value
+
+						if (kunSiffer(value) || value === '')
+							setLopenrSokefelt(value)
+					}}
 				/>
 				<Button variant="primary" onClick={handleOnSokClicked}>Søk</Button>
 			</div>
 
 			{
 				isPending(hentGjennomforingMedLopenrPromise)
-					&& (<Spinner/>)
+				&& (<Spinner/>)
 			}
 
 			{
 				isRejected(hentGjennomforingMedLopenrPromise)
-					&& (<Alert variant="error">En feil har oppstått</Alert>)
+				&& (<Alert variant="error">En feil har oppstått</Alert>)
 			}
 
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
-					&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}/>)
+				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}/>)
 			}
 		</main>
 	)
