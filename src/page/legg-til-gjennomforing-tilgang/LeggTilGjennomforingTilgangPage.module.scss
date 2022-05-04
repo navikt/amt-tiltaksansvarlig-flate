@@ -5,3 +5,14 @@
   margin: 0 auto;
   padding: 4rem 1rem;
 }
+
+.sok {
+  display: flex;
+  align-items: flex-end;
+
+  > *:not(:first-child) {
+    margin-left: 1rem;
+  }
+
+  margin-bottom: 2rem;
+}

@@ -81,6 +81,15 @@ export const EndringsmeldingSchema = z.object({
 	opprettetDato: processStringToDate
 })
 
+export const HentGjennomforingMedLopenrSchema = z.object({
+	id: z.string().uuid(),
+	navn: z.string(),
+	lopenr: z.number().int(),
+	opprettetAr: z.number().int(),
+	arrangorNavn: z.string()
+})
+
+export const HentGjennomforingerMedLopenrSchema = z.array(HentGjennomforingMedLopenrSchema)
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
 export const TilgangerSchema = z.array(TilgangSchema)
