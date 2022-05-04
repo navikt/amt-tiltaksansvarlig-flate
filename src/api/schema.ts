@@ -25,6 +25,8 @@ export const ArrangorSchema = z.object({
 export const GjennomforingSchema = z.object({
 	id: z.string(),
 	navn: z.string(),
+	lopenr: z.number(),
+	opprettetAar: z.number(),
 	arrangorNavn: z.string()
 })
 

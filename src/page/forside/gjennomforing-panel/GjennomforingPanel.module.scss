@@ -4,6 +4,17 @@
   margin-top: 1rem;
 }
 
-.grey {
-  color: $textMuted
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  > *:not(:first-child) {
+    margin-left: 4rem;
+  }
+}
+
+.muted {
+  color: $textMuted;
+  font-size: 1rem;
 }

@@ -28,7 +28,14 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing'), (req, res, ctx) => {
 		const data: GjennomforingType[] = gjennomforinger
-			.map(g => ({ id: g.id, navn: g.navn, arrangorNavn: g.arrangor.virksomhetNavn }))
+			.map(g => ({
+				id: g.id,
+				navn: g.navn,
+				arrangorNavn:
+				g.arrangor.virksomhetNavn,
+				lopenr: 123,
+				opprettetAar: 2020
+			}))
 
 		return res(ctx.delay(250), ctx.json(data))
 	}),

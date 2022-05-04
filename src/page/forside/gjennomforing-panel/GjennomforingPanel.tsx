@@ -17,9 +17,15 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) :
 				{gjennomforing.navn}
 			</Heading>
 
-			<BodyShort className={styles.grey}>
-				{gjennomforing.arrangorNavn}
-			</BodyShort>
+			<div className={styles.info}>
+				<BodyShort className={styles.muted}>
+					{gjennomforing.arrangorNavn}
+				</BodyShort>
+
+				<BodyShort className={styles.muted}>
+					{gjennomforing.opprettetAar}/{gjennomforing.lopenr}
+				</BodyShort>
+			</div>
 		</SpaLenkepanel>
 	)
 }
