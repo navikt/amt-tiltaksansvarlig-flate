@@ -146,6 +146,12 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string) : AxiosP
 		.catch((error) => exposeError(error, endepunkt))
 }
 
+export const stopTilgangTilGjennomforing = (gjennomforingId: string) : AxiosPromise => {
+	const endepunkt = appUrl(`/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+	return axiosInstance.patch(endepunkt)
+		.catch((error) => exposeError(error, endepunkt))
+}
+
 export const hentGjennomforingMedLopenr = (lopenr: number) : AxiosPromise<HentGjennomforingerMedLopenrType> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
 	return axiosInstance.get(endepunkt)

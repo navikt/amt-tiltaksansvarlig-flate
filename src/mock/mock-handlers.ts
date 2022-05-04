@@ -116,6 +116,9 @@ export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(endringsmeldingData))
 	}),
+	rest.patch(appUrl('/api/tiltaksansvarlig/gjennomforing-tilgang/stop'), (req, res, ctx) => {
+		return res(ctx.delay(500), ctx.status(200))
+	}),
 	rest.post(appUrl('/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang'), (req, res, ctx) => {
 		return res(ctx.delay(500), ctx.status(200))
 	}),
