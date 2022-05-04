@@ -17,14 +17,14 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
 
 	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljerType>>(() => fetchGjennomforing(gjennomforingId!))
-	const fjernFraMinOversiktPromise = usePromise<AxiosResponse>()
+	const stopTilgangTilGjennomforingPromise = usePromise<AxiosResponse>()
 
 	if (isNotStartedOrPending(gjennomforingPromise)) return <Loader/>
 
 	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
 	const handleFjernFraMinOversikt = () => {
-		fjernFraMinOversiktPromise.setPromise(() => stopTilgangTilGjennomforing(gjennomforingId!))
+		stopTilgangTilGjennomforingPromise.setPromise(() => stopTilgangTilGjennomforing(gjennomforingId!))
 	}
 
 	const gjennomforing = gjennomforingPromise.result.data
@@ -57,15 +57,20 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 					size="small"
 					onClick={handleFjernFraMinOversikt}
 					className={globalStyles.blokkXs}
-					loading={isPending(fjernFraMinOversiktPromise)}
-					disabled={isPending(fjernFraMinOversiktPromise) || isResolved(fjernFraMinOversiktPromise)}
+					loading={isPending(stopTilgangTilGjennomforingPromise)}
+					disabled={isPending(stopTilgangTilGjennomforingPromise) || isResolved(stopTilgangTilGjennomforingPromise)}
 				>
 					Fjern fra min oversikt
 				</Button>
 
 				{
-					isResolved(fjernFraMinOversiktPromise) &&
+					isResolved(stopTilgangTilGjennomforingPromise) &&
 					(<Alert variant="success" className={styles.alert}>Tiltaket er fjernet fra oversikten</Alert>)
+				}
+
+				{
+					isRejected(stopTilgangTilGjennomforingPromise) &&
+					(<Alert variant="error" className={styles.alert}>Noe gikk galt</Alert>)
 				}
 			</section>
 		</main>

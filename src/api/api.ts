@@ -17,7 +17,9 @@ import {
 	TilgangForesporslerSchema,
 	TilgangForesporselSchema,
 	UbrukteTilgangInvitasjonerSchema,
-	UbruktTilgangInvitasjonSchema, HentGjennomforingMedLopenrSchema, HentGjennomforingerMedLopenrSchema
+	UbruktTilgangInvitasjonSchema,
+	HentGjennomforingMedLopenrSchema,
+	HentGjennomforingerMedLopenrSchema
 } from './schema'
 
 export type IsAuthenticatedType = z.infer<typeof IsAuthenticatedSchema>
@@ -147,7 +149,7 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string) : AxiosP
 }
 
 export const stopTilgangTilGjennomforing = (gjennomforingId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
