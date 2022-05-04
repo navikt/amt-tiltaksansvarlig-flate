@@ -1,0 +1,20 @@
+@import '/src/colors';
+
+.panel {
+  margin-top: 1rem;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  > *:not(:first-child) {
+    margin-left: 4rem;
+  }
+}
+
+.muted {
+  color: $textMuted;
+  font-size: 1rem;
+}
