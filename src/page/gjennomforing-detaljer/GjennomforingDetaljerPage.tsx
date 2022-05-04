@@ -4,7 +4,7 @@ import React from 'react'
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
 import { useParams } from 'react-router-dom'
 import { isNotStartedOrPending, isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
-import { fetchGjennomforing, fjernGjennomforingFraMinOversikt, GjennomforingDetaljerType } from '../../api/api'
+import { fetchGjennomforing, stopTilgangTilGjennomforing, GjennomforingDetaljerType } from '../../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import globalStyles from '../../globals.module.scss'
@@ -24,7 +24,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
 	const handleFjernFraMinOversikt = () => {
-		fjernFraMinOversiktPromise.setPromise(() => fjernGjennomforingFraMinOversikt(gjennomforingId!))
+		fjernFraMinOversiktPromise.setPromise(() => stopTilgangTilGjennomforing(gjennomforingId!))
 	}
 
 	const gjennomforing = gjennomforingPromise.result.data
