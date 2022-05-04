@@ -17,7 +17,7 @@ import {
 	TilgangForesporslerSchema,
 	TilgangForesporselSchema,
 	UbrukteTilgangInvitasjonerSchema,
-	UbruktTilgangInvitasjonSchema
+	UbruktTilgangInvitasjonSchema, HentGjennomforingMedLopenrSchema, HentGjennomforingerMedLopenrSchema
 } from './schema'
 
 export type IsAuthenticatedType = z.infer<typeof IsAuthenticatedSchema>
@@ -42,6 +42,9 @@ export type TilgangForesporslerType = z.infer<typeof TilgangForesporslerSchema>
 
 export type EndringsmeldingType = z.infer<typeof EndringsmeldingSchema>
 export type EndringsmeldingerType = z.infer<typeof EndringsmeldingerSchema>
+
+export type HentGjennomforingMedLopenrType = z.infer<typeof HentGjennomforingMedLopenrSchema>
+export type HentGjennomforingerMedLopenrType = z.infer<typeof HentGjennomforingerMedLopenrSchema>
 
 const parseSchema = <T>(res: AxiosResponse, schema: z.ZodSchema<T>) => ({ ...res, data: schema.parse(res.data) })
 
@@ -134,5 +137,18 @@ export const fetchEndringsmeldinger = (gjennomforingId: string) : AxiosPromise<E
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, EndringsmeldingerSchema))
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const leggTilTilgangTilGjennomforing = (gjennomforingId: string) : AxiosPromise => {
+	const endepunkt = appUrl(`/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
+	return axiosInstance.post(endepunkt)
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const hentGjennomforingMedLopenr = (lopenr: number) : AxiosPromise<HentGjennomforingerMedLopenrType> => {
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
+	return axiosInstance.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, HentGjennomforingerMedLopenrSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }

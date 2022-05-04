@@ -1,0 +1,16 @@
+@import '/src/colors';
+
+.innhold {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.muted {
+  color: $textMuted;
+  font-size: 1rem;
+}
+
+.alert {
+  margin-top: 2rem;
+}
