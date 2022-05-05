@@ -11,9 +11,22 @@
   margin-left: auto;
 }
 
+.smallText {
+  font-size: 1rem;
+}
+
+.spaceTop {
+  margin-top: 0.5rem;
+}
+
 .gray {
   color: var(--navds-semantic-color-text-muted);
 }
+
+.bold {
+  font-weight: bolder;
+}
+
 .fnr {
   margin-top: auto;
   margin-left: 1rem
