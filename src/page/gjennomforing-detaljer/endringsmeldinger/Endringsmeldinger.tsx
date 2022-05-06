@@ -15,9 +15,13 @@ interface EndringsmeldingerProps {
 export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerProps) => {
 	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(gjennomforingId!))
 
-	const aktiveMeldinger = endringsmeldingerPromise.result?.data.filter(e => e.aktiv) ?? []
+	const aktiveMeldinger = endringsmeldingerPromise.result?.data
+		.filter(e => e.aktiv)
+		.sort((e1, e2) => e1.opprettetDato < e2.opprettetDato ? -1 : 1) ?? []
 
-	const inaktiveMeldinger = endringsmeldingerPromise.result?.data.filter(e => !e.aktiv) ?? []
+	const inaktiveMeldinger = endringsmeldingerPromise.result?.data
+		.filter(e => !e.aktiv)
+		.sort((e1, e2) => e1.opprettetDato > e2.opprettetDato ? -1 : 1) ?? []
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(gjennomforingId!))
