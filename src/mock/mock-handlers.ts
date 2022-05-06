@@ -116,6 +116,19 @@ export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(endringsmeldingData))
 	}),
+	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig'), (req, res, ctx) => {
+		const endringsmeldingId = req.params['endringsmeldingId'] as string
+
+		const melding = endringsmeldingData.find(e => e.id === endringsmeldingId)
+
+		if (melding) {
+			melding.aktiv = false
+			melding.godkjent = true
+			melding.arkivert = true
+		}
+
+		return res(ctx.delay(500), ctx.status(200))
+	}),
 	rest.post(appUrl('/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang'), (req, res, ctx) => {
 		return res(ctx.delay(500), ctx.status(200))
 	}),

@@ -9,7 +9,7 @@ export const endringsmeldingData = [
 			etternavn: 'Traust',
 			fodselsnummer: '03035512347'
 		},
-		startDato: faker.date.future(),
+		startDato: faker.date.soon(),
 		aktiv: true,
 		godkjent: false,
 		arkivert: false,
@@ -18,7 +18,7 @@ export const endringsmeldingData = [
 			mellomnavn: null,
 			etternavn: 'Triviell'
 		},
-		opprettetDato: faker.date.past()
+		opprettetDato: faker.date.recent()
 	},
 	{
 		id: faker.datatype.uuid(),
@@ -28,7 +28,7 @@ export const endringsmeldingData = [
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347'
 		},
-		startDato: faker.date.future(),
+		startDato: faker.date.soon(),
 		aktiv: true,
 		godkjent: false,
 		arkivert: false,
@@ -37,6 +37,6 @@ export const endringsmeldingData = [
 			mellomnavn: null,
 			etternavn: 'Triviell'
 		},
-		opprettetDato: faker.date.past()
+		opprettetDato: faker.date.recent()
 	}
 ]

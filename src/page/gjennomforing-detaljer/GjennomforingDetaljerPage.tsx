@@ -1,4 +1,4 @@
-import { Alert, BodyLong, Button, Heading, Loader } from '@navikt/ds-react'
+import { Alert, Button, Heading, Loader } from '@navikt/ds-react'
 import React from 'react'
 
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
@@ -11,7 +11,7 @@ import globalStyles from '../../globals.module.scss'
 import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
-import { Endringsmeldinger } from './Endringsmeldinger'
+import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
 
 export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const { gjennomforingId } = useParams()
@@ -39,11 +39,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 			<Tilgangskontroll className={globalStyles.blokkM} />
 
-			<section className={globalStyles.blokkL}>
-				<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
-				<BodyLong size="small" spacing>Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her. Oppstartsdatoen skal legges inn i Arena. </BodyLong>
-				<Endringsmeldinger gjennomforingId={gjennomforingId!}/>
-			</section>
+			<Endringsmeldinger gjennomforingId={gjennomforingId!}/>
 
 			<div className={styles.seperator}/>
 
