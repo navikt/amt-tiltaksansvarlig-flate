@@ -69,7 +69,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig }: EndringsmeldingPr
 				}
 			</PanelLinje>
 
-			{ endringsmelding.godkjent &&
+			{ (!endringsmelding.godkjent && !endringsmelding.aktiv) &&
 				<PanelLinje className={styles.spaceTop}>
 					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
 				</PanelLinje>
