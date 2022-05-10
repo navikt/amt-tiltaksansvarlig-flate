@@ -40,7 +40,6 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 			<div className={styles.sok}>
 				<TextField
 					label="Tiltaksnummer"
-					placeholder="Tiltaksnummer (løpenummer)"
 					value={lopenrSokefelt}
 					onChange={e => {
 						const value = e.target.value

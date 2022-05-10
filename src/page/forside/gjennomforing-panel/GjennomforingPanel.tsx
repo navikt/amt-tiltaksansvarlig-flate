@@ -13,16 +13,16 @@ interface GjennomforingPanelProps {
 export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) : React.ReactElement => {
 	return (
 		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} className={styles.panel}>
-			<Heading size="xsmall" spacing>
+			<Heading size="xsmall" className={styles.header}>
 				{gjennomforing.navn}
 			</Heading>
 
 			<div className={styles.info}>
-				<BodyShort className={styles.muted}>
+				<BodyShort size="small">
 					{gjennomforing.arrangorNavn}
 				</BodyShort>
 
-				<BodyShort className={styles.muted}>
+				<BodyShort size="small">
 					{gjennomforing.opprettetAar}/{gjennomforing.lopenr}
 				</BodyShort>
 			</div>

@@ -46,7 +46,7 @@ export const opprettMockGjennomforingTilganger = (gjennomforinger: Gjennomforing
 
 	gjennomforinger.forEach(g => {
 		const tilganger: TilgangerType = []
-		const antall = randBetween(0, 1)
+		const antall = randBetween(0, 3)
 
 		for (let i = 0; i < antall; i++) {
 			tilganger.push(opprettMockTilgang())

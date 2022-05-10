@@ -9,7 +9,7 @@
 .sok {
   display: flex;
   align-items: flex-end;
-
+  width: min-content;
   > *:not(:first-child) {
     margin-left: 1rem;
   }
