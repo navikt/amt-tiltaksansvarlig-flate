@@ -11,6 +11,7 @@ import { Add } from '@navikt/ds-icons'
 import cls from 'classnames'
 import { LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE } from '../../navigation'
 import { Link } from 'react-router-dom'
+import { TomVisningPanel } from './tom-visning-panel/TomVisningPanel'
 
 export const Forside = (): React.ReactElement => {
 	const getGjennomforinger = usePromise<AxiosResponse<GjennomforingerType>>(fetchGjennomforinger)
@@ -29,7 +30,7 @@ export const Forside = (): React.ReactElement => {
 			</div>
 
 			{ gjennomforinger.length === 0
-				? (<Alert variant="info">Du har ikke lagt til noen tiltak enda</Alert>)
+				? (<TomVisningPanel/>)
 				: (gjennomforinger.map(gjennomforing => <GjennomforingPanel gjennomforing={gjennomforing} key={gjennomforing.id}/>))
 			}
 		</main>
