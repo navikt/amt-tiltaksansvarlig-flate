@@ -2,7 +2,7 @@ import React from 'react'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
-import { EndringsmeldingerType, fetchEndringsmeldinger } from '../../../api/api'
+import { EndringsmeldingerType, EndringsmeldingType, fetchEndringsmeldinger } from '../../../api/api'
 import { Endringsmelding } from './endringsmelding/Endringsmelding'
 import globalStyles from '../../../globals.module.scss'
 import styles from './Endringsmeldinger.module.scss'
@@ -12,16 +12,20 @@ interface EndringsmeldingerProps {
 	gjennomforingId: string
 }
 
+const sorterEndringsmeldingNyestFørst = (e1: EndringsmeldingType, e2: EndringsmeldingType): number => {
+	return e1.opprettetDato > e2.opprettetDato ? -1 : 1
+}
+
 export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerProps) => {
 	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(gjennomforingId!))
 
 	const aktiveMeldinger = endringsmeldingerPromise.result?.data
 		.filter(e => e.aktiv)
-		.sort((e1, e2) => e1.opprettetDato < e2.opprettetDato ? -1 : 1) ?? []
+		.sort(sorterEndringsmeldingNyestFørst) ?? []
 
 	const inaktiveMeldinger = endringsmeldingerPromise.result?.data
 		.filter(e => !e.aktiv)
-		.sort((e1, e2) => e1.opprettetDato > e2.opprettetDato ? -1 : 1) ?? []
+		.sort(sorterEndringsmeldingNyestFørst) ?? []
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(gjennomforingId!))
