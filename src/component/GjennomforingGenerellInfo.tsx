@@ -16,9 +16,15 @@ export const GjennomforingGenerellInfo = ({ gjennomforing, className }: Gjennomf
 	const oppstart = getDatoMedMndNavn(gjennomforing.startDato)
 	const sluttdato = getDatoMedMndNavn(gjennomforing.sluttDato)
 
+	const arrangorNavn = gjennomforing.arrangor.organisasjonNavn ?? gjennomforing.arrangor.virksomhetNavn
+
 	return (
 		<div className={styles.section}>
-			<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.arrangor.organisasjonNavn?? gjennomforing.arrangor.virksomhetNavn}</BodyShort>
+			<div className={styles.rad}>
+				<BodyShort size="small" className={styles.sammendrag}>{arrangorNavn}</BodyShort>
+				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.tiltakNavn}</BodyShort>
+				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.opprettetAr}/{gjennomforing.lopenr}</BodyShort>
+			</div>
 			<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
 		</div>
 	)

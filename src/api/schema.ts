@@ -35,7 +35,10 @@ export const GjennomforingDetaljerSchema = z.object({
 	id: z.string(),
 	startDato: processStringToDate,
 	sluttDato: processStringToDate,
-	arrangor: ArrangorSchema
+	arrangor: ArrangorSchema,
+	tiltakNavn: z.string(),
+	lopenr: z.number().int(),
+	opprettetAr: z.number().int()
 })
 
 export const TilgangSchema = z.object({
