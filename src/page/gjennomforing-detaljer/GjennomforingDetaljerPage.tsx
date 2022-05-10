@@ -33,9 +33,9 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 		<main className={styles.page}>
 			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
-			<Heading size="large">{gjennomforing.navn}</Heading>
+			<Heading size="medium" spacing>{gjennomforing.navn}</Heading>
 
-			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkM}/>
+			<GjennomforingGenerellInfo gjennomforing={gjennomforing}/>
 
 			<Tilgangskontroll className={globalStyles.blokkM} />
 
@@ -45,7 +45,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 			<section className={styles.fjernFraMinOversiktSection}>
 				<Heading size="small" level="2" className={globalStyles.blokkXs}>
-					Tiltaket er lagret i Min Tiltaksoversikt
+					Tiltaket er lagt til i oversikten
 				</Heading>
 
 				<Button

@@ -7,6 +7,7 @@ import { Endringsmelding } from './endringsmelding/Endringsmelding'
 import globalStyles from '../../../globals.module.scss'
 import styles from './Endringsmeldinger.module.scss'
 import { Spinner } from '../../../component/spinner/Spinner'
+import classNames from 'classnames'
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
@@ -33,7 +34,7 @@ export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerProps) =
 
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
 		? <Alert variant="info" size="small">Det er ingen nye meldinger om deltakere.</Alert>
-		: aktiveMeldinger.map(e => <Endringsmelding endringsmelding={e} onFerdig={refresh} key={e.id}/>)
+		: aktiveMeldinger.map(e => <Endringsmelding className={styles.ikkeArkivertPadding} endringsmelding={e} onFerdig={refresh} key={e.id}/>)
 
 	const inaktiveMeldingerVisning = inaktiveMeldinger.length === 0
 		? <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
@@ -57,7 +58,7 @@ export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerProps) =
 
 			<Accordion className={styles.spaceTop}>
 				<Accordion.Item>
-					<Accordion.Header className={styles.noBottomBorder}>
+					<Accordion.Header className={classNames(styles.noBottomBorder, styles.header)}>
 						Meldinger som er markert ferdig
 					</Accordion.Header>
 					<Accordion.Content className={styles.noBottomBorder}>

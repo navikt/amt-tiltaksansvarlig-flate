@@ -4,7 +4,6 @@ import React from 'react'
 import styles from './GjennomforingGenerellInfo.module.scss'
 import { GjennomforingDetaljerType } from '../api/api'
 import dayjs from 'dayjs'
-import cls from 'classnames'
 
 interface GjennomforingGenerellInfoProps {
 	gjennomforing: GjennomforingDetaljerType
@@ -18,10 +17,9 @@ export const GjennomforingGenerellInfo = ({ gjennomforing, className }: Gjennomf
 	const sluttdato = getDatoMedMndNavn(gjennomforing.sluttDato)
 
 	return (
-		<div className={cls(styles.section, className)}>
-			<BodyShort size="small">Organisasjon: {gjennomforing.arrangor.organisasjonNavn?? gjennomforing.arrangor.virksomhetNavn}</BodyShort>
-			<BodyShort size="small">Oppstart: {oppstart}</BodyShort>
-			<BodyShort size="small">Sluttdato: {sluttdato}</BodyShort>
+		<div className={styles.section}>
+			<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.arrangor.organisasjonNavn?? gjennomforing.arrangor.virksomhetNavn}</BodyShort>
+			<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
 		</div>
 	)
 }

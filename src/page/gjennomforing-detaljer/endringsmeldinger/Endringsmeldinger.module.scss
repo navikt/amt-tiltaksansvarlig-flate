@@ -1,5 +1,17 @@
 .noBottomBorder {
   border-bottom: none;
+  padding-bottom: 0
+}
+
+.header {
+  font-size: 1rem;
+  padding: 0;
+  background-color: transparent !important;
+}
+
+.ikkeArkivertPadding {
+  margin-left: var(--navds-spacing-3);
+  margin-right: var(--navds-spacing-3);
 }
 
 .spaceTop {

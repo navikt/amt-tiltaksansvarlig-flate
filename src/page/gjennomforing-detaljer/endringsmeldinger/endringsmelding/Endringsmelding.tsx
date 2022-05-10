@@ -25,9 +25,10 @@ const PanelLinje = ({ children, className } : PanelLinjeProps): React.ReactEleme
 interface EndringsmeldingProps {
 	endringsmelding: EndringsmeldingType
 	onFerdig: () => void
+	className?: string
 }
 
-export const Endringsmelding = ({ endringsmelding, onFerdig }: EndringsmeldingProps): React.ReactElement => {
+export const Endringsmelding = ({ endringsmelding, onFerdig, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const bruker = endringsmelding.bruker
@@ -45,7 +46,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig }: EndringsmeldingPr
 	}, [ markerSomFerdigPromise ])
 
 	return(
-		<Panel className={styles.panel}>
+		<Panel className={classNames(styles.panel, className)}>
 			<PanelLinje>
 				<Heading size="xsmall" level="3">{navn}</Heading>
 				<BodyShort size="medium" className={styles.fnr} >{fnrTilFdato(bruker.fodselsnummer)}</BodyShort>
