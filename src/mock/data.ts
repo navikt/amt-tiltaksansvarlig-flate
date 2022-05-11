@@ -27,6 +27,9 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 			organisasjonNavn: 'Venus AS',
 			virksomhetNavn: 'Virksomhet AS'
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 31243,
+		opprettetAr: 2022,
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future()
 	},
@@ -38,6 +41,9 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 			virksomhetNavn: 'Virksomhet AS'
 
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 9243,
+		opprettetAr: 2022,
 		startDato: faker.date.future(),
 		sluttDato: faker.date.future()
 	},
@@ -48,6 +54,9 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 			organisasjonNavn: null,
 			virksomhetNavn: 'Virksomhet AS'
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 75634,
+		opprettetAr: 2022,
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future()
 	}
