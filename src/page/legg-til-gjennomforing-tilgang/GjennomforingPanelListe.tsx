@@ -4,7 +4,8 @@ import { Alert } from '@navikt/ds-react'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
 
 interface GjennomforingPanelListeProps {
-	gjennomforinger: HentGjennomforingMedLopenrType[]
+	gjennomforinger: HentGjennomforingMedLopenrType[],
+	mineGjennomforingerIds: string[]
 }
 
 export const GjennomforingPanelListe = (props: GjennomforingPanelListeProps): React.ReactElement => {
@@ -18,9 +19,11 @@ export const GjennomforingPanelListe = (props: GjennomforingPanelListeProps): Re
 		)
 	}
 
+	const alleredeIMineGjennomforinger = (id: string): boolean => props.mineGjennomforingerIds.includes(id)
+
 	return (
 		<>
-			{gjennomforinger.map(g => <GjennomforingPanel gjennomforing={g}/>)}
+			{gjennomforinger.map(g => <GjennomforingPanel gjennomforing={g} alleredeIMineGjennomforinger={alleredeIMineGjennomforinger(g.id)}/>)}
 		</>
 	)
 }

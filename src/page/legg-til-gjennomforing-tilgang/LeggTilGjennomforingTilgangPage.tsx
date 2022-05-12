@@ -8,6 +8,8 @@ import { Alert, Button, Heading, TextField } from '@navikt/ds-react'
 import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import {
+	fetchGjennomforinger,
+	GjennomforingerType,
 	HentGjennomforingerMedLopenrType,
 	hentGjennomforingMedLopenr
 } from '../../api/api'
@@ -21,6 +23,12 @@ const kunSiffer = (value: string): boolean => {
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingerMedLopenrType>>()
+
+	const getMineGjennomforinger = usePromise<AxiosResponse<GjennomforingerType>>(fetchGjennomforinger)
+
+	const mineGjennomforinger = getMineGjennomforinger.result?.data
+		.map(i => i.id)
+		?? []
 
 	const handleOnSokClicked = () => {
 		const lopenr = parseInt(lopenrSokefelt)
@@ -63,7 +71,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
-				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}/>)
+				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger} mineGjennomforingerIds={mineGjennomforinger}/>)
 			}
 		</main>
 	)

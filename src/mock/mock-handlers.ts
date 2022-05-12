@@ -37,6 +37,13 @@ export const mockHandlers: RequestHandler[] = [
 					lopenr: 123,
 					opprettetAr: 2020,
 					arrangorNavn: 'Muligheter As'
+				},
+				{
+					id: '87d67559-7571-42e4-812a-1905217fdae3',
+					navn: 'Oppfølging Tjenesteområde 1',
+					lopenr: 123,
+					opprettetAr: 2020,
+					arrangorNavn: 'Muligheter As'
 				}
 			]
 			return res(ctx.delay(250), ctx.json(data))

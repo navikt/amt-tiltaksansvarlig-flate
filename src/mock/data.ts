@@ -22,7 +22,7 @@ export const innloggetAnsatt: InnloggetNavAnsattType = {
 export const gjennomforinger: GjennomforingDetaljerType[] = [
 	{
 		navn: 'Oppfølging Tjenesteområde 1',
-		id: faker.datatype.uuid(),
+		id: '87d67559-7571-42e4-812a-1905217fdae3',
 		arrangor: {
 			organisasjonNavn: 'Venus AS',
 			virksomhetNavn: 'Virksomhet AS'
