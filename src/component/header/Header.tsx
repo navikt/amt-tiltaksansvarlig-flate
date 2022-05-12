@@ -19,7 +19,7 @@ export const Header = (): React.ReactElement => {
 
 	return (
 		<InternHeader className="w-full">
-			<InternHeader.Title as="h1">NAV Tiltaksansvarlig</InternHeader.Title>
+			<InternHeader.Title as="h1">NAV Arbeidsmarkedstiltak</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsattNavn}
 				className={styles.userBtn}
