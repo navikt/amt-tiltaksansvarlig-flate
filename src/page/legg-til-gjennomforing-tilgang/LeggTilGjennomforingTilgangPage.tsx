@@ -53,7 +53,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 					onChange={e => {
 						const value = e.target.value
 
-						if (kunSiffer(value) || value === '')
+						if ((kunSiffer(value) && value.length <= 7) || value === '')
 							setLopenrSokefelt(value)
 					}}
 				/>
