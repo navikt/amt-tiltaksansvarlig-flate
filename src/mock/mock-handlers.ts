@@ -27,26 +27,34 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing'), (req, res, ctx) => {
-		const erSokPaLopenr = !!req.url.searchParams.get('lopenr')
+		const lopenr = req.url.searchParams.get('lopenr')
 
-		if (erSokPaLopenr) {
-			const data: HentGjennomforingerMedLopenrType = [
-				{
-					id: '87d67559-7571-42e4-812a-1905217fdae2',
-					navn: 'TEST',
-					lopenr: 123,
-					opprettetAr: 2020,
-					arrangorNavn: 'Muligheter As'
-				},
-				{
-					id: '87d67559-7571-42e4-812a-1905217fdae3',
-					navn: 'Oppfølging Tjenesteområde 1',
-					lopenr: 123,
-					opprettetAr: 2020,
-					arrangorNavn: 'Muligheter As'
-				}
-			]
-			return res(ctx.delay(250), ctx.json(data))
+		if (lopenr) {
+			let gjennomforinger: HentGjennomforingerMedLopenrType = []
+
+			if(lopenr === '0') {
+				gjennomforinger = []
+			} else {
+				gjennomforinger = [
+					{
+						id: '87d67559-7571-42e4-812a-1905217fdae2',
+						navn: 'TEST',
+						lopenr: 123,
+						opprettetAr: 2020,
+						arrangorNavn: 'Muligheter As'
+					},
+					{
+						id: '87d67559-7571-42e4-812a-1905217fdae3',
+						navn: 'Oppfølging Tjenesteområde 1',
+						lopenr: 123,
+						opprettetAr: 2020,
+						arrangorNavn: 'Muligheter As'
+					}
+				]
+
+			}
+
+			return res(ctx.delay(250), ctx.json(gjennomforinger))
 		}
 
 		const data: GjennomforingType[] = gjennomforinger
