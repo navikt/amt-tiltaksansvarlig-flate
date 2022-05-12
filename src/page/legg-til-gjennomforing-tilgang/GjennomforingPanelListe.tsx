@@ -23,7 +23,7 @@ export const GjennomforingPanelListe = (props: GjennomforingPanelListeProps): Re
 
 	return (
 		<>
-			{gjennomforinger.map(g => <GjennomforingPanel gjennomforing={g} alleredeIMineGjennomforinger={alleredeIMineGjennomforinger(g.id)}/>)}
+			{gjennomforinger.map(g => <GjennomforingPanel key={g.id} gjennomforing={g} alleredeIMineGjennomforinger={alleredeIMineGjennomforinger(g.id)}/>)}
 		</>
 	)
 }

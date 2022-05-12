@@ -49,6 +49,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 				<TextField
 					label="Tiltaksnummer"
 					value={lopenrSokefelt}
+					onKeyPress={e => e.key === 'Enter' && handleOnSokClicked()}
 					onChange={e => {
 						const value = e.target.value
 
