@@ -30,6 +30,7 @@ spec:
   azure:
     sidecar:
       enabled: true
+      autoLogin: true
     application:
       enabled: true
       claims:
