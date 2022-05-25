@@ -12,12 +12,6 @@ import {
 	GjennomforingSchema,
 	InnloggetNavAnsattSchema,
 	IsAuthenticatedSchema,
-	TilgangerSchema,
-	TilgangSchema,
-	TilgangForesporslerSchema,
-	TilgangForesporselSchema,
-	UbrukteTilgangInvitasjonerSchema,
-	UbruktTilgangInvitasjonSchema,
 	HentGjennomforingMedLopenrSchema,
 	HentGjennomforingerMedLopenrSchema
 } from './schema'
@@ -32,15 +26,6 @@ export type GjennomforingerType = z.infer<typeof GjennomforingerSchema>
 export type GjennomforingDetaljerType = z.infer<typeof GjennomforingDetaljerSchema>
 
 export type ArrangorType = z.infer<typeof ArrangorSchema>
-
-export type TilgangType = z.infer<typeof TilgangSchema>
-export type TilgangerType = z.infer<typeof TilgangerSchema>
-
-export type UbruktTilgangInvitasjonType = z.infer<typeof UbruktTilgangInvitasjonSchema>
-export type UbrukteTilgangInvitasjonerType = z.infer<typeof UbrukteTilgangInvitasjonerSchema>
-
-export type TilgangForesporselType = z.infer<typeof TilgangForesporselSchema>
-export type TilgangForesporslerType = z.infer<typeof TilgangForesporslerSchema>
 
 export type EndringsmeldingType = z.infer<typeof EndringsmeldingSchema>
 export type EndringsmeldingerType = z.infer<typeof EndringsmeldingerSchema>
@@ -81,57 +66,6 @@ export const fetchGjennomforing = (id: string) : AxiosPromise<GjennomforingDetal
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, GjennomforingDetaljerSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const fetchAnsattTilganger = (gjennomforingId: string) : AxiosPromise<TilgangerType> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, TilgangerSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const stopAnsattTilgang = (tilgangId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/${tilgangId}/stop`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const fetchUbrukteTilgangInvitasjoner = (gjennomforingId: string) : AxiosPromise<UbrukteTilgangInvitasjonerType> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/ubrukt?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, UbrukteTilgangInvitasjonerSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const opprettInvitasjon = (gjennomforingId: string) : AxiosPromise => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon')
-	return axiosInstance.post(endepunkt, { gjennomforingId: gjennomforingId })
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const slettInvitasjon = (invitasjonId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/invitasjon/${invitasjonId}`)
-	return axiosInstance.delete(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const fetchUbesluttedeTilgangForesporsler = (gjennomforingId: string) : AxiosPromise<TilgangForesporslerType> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/ubesluttet?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, TilgangForesporslerSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const godkjennForesporsel = (foresporselId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/${foresporselId}/godkjenn`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
-}
-
-export const avvisForesporsel = (foresporselId: string) : AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/arrangor-ansatt-tilgang/foresporsel/${foresporselId}/avvis`)
-	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 

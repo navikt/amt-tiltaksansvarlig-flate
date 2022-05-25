@@ -41,31 +41,6 @@ export const GjennomforingDetaljerSchema = z.object({
 	opprettetAr: z.number().int()
 })
 
-export const TilgangSchema = z.object({
-	id: z.string().uuid(),
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-	opprettetDato: processStringToDate,
-	opprettetAvNavIdent: z.string()
-})
-
-export const UbruktTilgangInvitasjonSchema = z.object({
-	id: z.string().uuid(),
-	opprettetAvNavIdent: z.string(),
-	opprettetDato: processStringToDate,
-	gyldigTilDato: processStringToDate,
-})
-
-export const TilgangForesporselSchema = z.object({
-	id: z.string().uuid(),
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-	fodselsnummer: z.string(),
-	opprettetDato: processStringToDate,
-})
-
 export const BrukerSchema = z.object({
 	fornavn: z.string(),
 	mellomnavn: z.string().nullable(),
@@ -95,6 +70,3 @@ export const HentGjennomforingMedLopenrSchema = z.object({
 export const HentGjennomforingerMedLopenrSchema = z.array(HentGjennomforingMedLopenrSchema)
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)
-export const TilgangerSchema = z.array(TilgangSchema)
-export const UbrukteTilgangInvitasjonerSchema = z.array(UbruktTilgangInvitasjonSchema)
-export const TilgangForesporslerSchema = z.array(TilgangForesporselSchema)
