@@ -35,7 +35,7 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: f12fa5d6-ef0c-41db-80c9-5c9696bb5c14 # 0000-GA-Tiltaksansvarlig, NAV Preprod
+          - id: 52bb9196-b071-4cc7-9472-be4942d33c4b # 0000-GA-TILTAK-ANSVARLIG, NAV Preprod
   gcp:
     buckets:
       - name: amt-tiltaksansvarlig-flate-dev
