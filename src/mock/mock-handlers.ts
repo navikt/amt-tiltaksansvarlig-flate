@@ -36,7 +36,7 @@ export const mockHandlers: RequestHandler[] = [
 						arrangorNavn: 'Muligheter As'
 					},
 					{
-						id: '87d67559-7571-42e4-812a-1905217fdae3',
+						id: '6ec95b2a-be19-41f0-9c97-1f81ab2159c3',
 						navn: 'Oppfølging Tjenesteområde 1',
 						lopenr: 123,
 						opprettetAr: 2020,

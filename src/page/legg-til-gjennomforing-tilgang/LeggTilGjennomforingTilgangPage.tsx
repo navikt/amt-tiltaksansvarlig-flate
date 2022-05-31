@@ -16,10 +16,6 @@ import {
 import { Spinner } from '../../component/spinner/Spinner'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
 
-const kunSiffer = (value: string): boolean => {
-	return !!value.match('^[0-9]+$')
-}
-
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingerMedLopenrType>>()
@@ -37,6 +33,14 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	const sokteGjennomforinger = hentGjennomforingMedLopenrPromise.result?.data ?? []
 
+	const kunSiffer = (value: string): boolean => {
+		return !!value.match('^[0-9]+$')
+	}
+
+	const isValidLopenr = (value: string): boolean => {
+		return (kunSiffer(value) && value.length <= 7) || value === ''
+	}
+
 	return (
 		<main className={styles.mainPage}>
 			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkS}/>
@@ -53,7 +57,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 					onChange={e => {
 						const value = e.target.value
 
-						if ((kunSiffer(value) && value.length <= 7) || value === '')
+						if (isValidLopenr(value))
 							setLopenrSokefelt(value)
 					}}
 				/>
