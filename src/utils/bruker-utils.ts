@@ -39,5 +39,3 @@ export const lagKommaSeparertBrukerNavn = (fornavn: string, mellomnavn: Nullable
 		mellomnavn ? formaterNavnCasing(mellomnavn) : undefined
 	].filter(navn => !!navn).join(' ')
 }
-
-export const fnrTilFdato = (fnr: string) => fnr.substring(0, 6)

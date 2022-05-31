@@ -4,7 +4,7 @@ import styles from './Endringsmelding.module.scss'
 import classNames from 'classnames'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { formatDate } from '../../../../utils/date-utils'
-import { fnrTilFdato, lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
+import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import cls from 'classnames'
@@ -49,7 +49,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, className }: Endrin
 		<Panel className={classNames(styles.panel, className)}>
 			<PanelLinje>
 				<Heading size="xsmall" level="3">{navn}</Heading>
-				<BodyShort size="medium" className={styles.fnr} >{fnrTilFdato(bruker.fodselsnummer)}</BodyShort>
+				<BodyShort size="medium" className={styles.fnr} >{bruker.fodselsnummer}</BodyShort>
 				<Detail size="small" className={classNames(styles.moveRight, styles.gray)}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 			</PanelLinje>
 			<PanelLinje>

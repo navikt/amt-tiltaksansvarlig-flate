@@ -74,8 +74,8 @@ const Meldinger = (props: EndringsmeldingerProps) => {
 	return (
 		<>
 			<BodyLong size="small" spacing>
-				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her.
-				Oppstartsdatoen skal legges inn i Arena.
+				Når tiltaksarrangøren sender en oppstartsdato, så kommer det en ny melding her.
+				Oppstartsdatoen skal registreres i Arena.
 			</BodyLong>
 
 			{
