@@ -7,6 +7,7 @@ import {
 export const innloggetAnsatt: InnloggetNavAnsattType = {
 	navIdent: 'Z1234',
 	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
+	tilganger: [ 'FLATE', 'ENDRINGSMELDING' ]
 }
 
 export const gjennomforinger: GjennomforingDetaljerType[] = [

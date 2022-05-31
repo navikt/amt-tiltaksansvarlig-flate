@@ -11,12 +11,9 @@ import {
 	GjennomforingerSchema,
 	GjennomforingSchema,
 	InnloggetNavAnsattSchema,
-	IsAuthenticatedSchema,
 	HentGjennomforingMedLopenrSchema,
 	HentGjennomforingerMedLopenrSchema
 } from './schema'
-
-export type IsAuthenticatedType = z.infer<typeof IsAuthenticatedSchema>
 
 export type InnloggetNavAnsattType = z.infer<typeof InnloggetNavAnsattSchema>
 
@@ -39,13 +36,6 @@ const exposeError = (error: Error, endepunkt: string) => {
 	// eslint-disable-next-line no-console
 	console.error(`Kall mot ${endepunkt} feilet. message: ${error.message}`)
 	throw error
-}
-
-export const fetchIsAuthenticated = (): AxiosPromise<IsAuthenticatedType> => {
-	const endepunkt = appUrl('/auth/info')
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, IsAuthenticatedSchema))
-		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsattType> => {
