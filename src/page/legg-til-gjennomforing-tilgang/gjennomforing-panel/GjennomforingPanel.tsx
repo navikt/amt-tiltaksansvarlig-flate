@@ -7,7 +7,8 @@ import { isNotStarted, isPending, isRejected, usePromise } from '../../../utils/
 import { AxiosResponse } from 'axios'
 
 interface GjennomforingPanelProps {
-	gjennomforing: HentGjennomforingMedLopenrType
+	gjennomforing: HentGjennomforingMedLopenrType,
+	alleredeIMineGjennomforinger: boolean
 }
 
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
@@ -21,19 +22,30 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 
 	const disableLeggTil = !isNotStarted(leggTilGjennomforingPromise)
 
-	const AddButton = () =>
-		<Button
-			variant="secondary"
-			onClick={handleOnLeggTilClicked}
-			loading={isPending(leggTilGjennomforingPromise)}
-			disabled={disableLeggTil}
-		>
-			<Add/> Legg til
-		</Button>
+	const LeggTil = () => {
+		if(props.alleredeIMineGjennomforinger) {
+			return <Alert variant="info" size="small">Allerede i min <br/> tiltaksoversikt</Alert>
+		}
+
+		if(disableLeggTil) {
+			return <Alert variant="success" size="small">Lagt til i min <br/> tiltaksoversikt</Alert>
+		}
+
+		return (
+			<Button
+				variant="secondary"
+				onClick={handleOnLeggTilClicked}
+				loading={isPending(leggTilGjennomforingPromise)}
+				disabled={disableLeggTil}
+			>
+				<Add/> Legg til
+			</Button>
+		)
+	}
 
 
 	return (
-		<Panel border>
+		<Panel border className={styles.panel}>
 			<Heading size="xsmall" level="3">{navn}</Heading>
 			<div className={styles.innhold}>
 				<div>
@@ -41,8 +53,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 					<BodyShort className={styles.muted}>Oppfølging</BodyShort>
 					<BodyShort className={styles.muted}>Tiltaksarrangør: {arrangorNavn}</BodyShort>
 				</div>
-				{disableLeggTil && <Alert variant="success" size="small">Lagt til i min <br/> tiltaksoversikt</Alert>}
-				{!disableLeggTil && <AddButton/>}
+				<LeggTil/>
 			</div>
 			{
 				isRejected(leggTilGjennomforingPromise)

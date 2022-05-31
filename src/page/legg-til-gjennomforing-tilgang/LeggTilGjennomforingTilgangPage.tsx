@@ -8,19 +8,23 @@ import { Alert, Button, Heading, TextField } from '@navikt/ds-react'
 import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import {
+	fetchGjennomforinger,
+	GjennomforingerType,
 	HentGjennomforingerMedLopenrType,
 	hentGjennomforingMedLopenr
 } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
 
-const kunSiffer = (value: string): boolean => {
-	return !!value.match('^[0-9]+$')
-}
-
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingerMedLopenrType>>()
+
+	const getMineGjennomforinger = usePromise<AxiosResponse<GjennomforingerType>>(fetchGjennomforinger)
+
+	const mineGjennomforinger = getMineGjennomforinger.result?.data
+		.map(i => i.id)
+		?? []
 
 	const handleOnSokClicked = () => {
 		const lopenr = parseInt(lopenrSokefelt)
@@ -28,6 +32,14 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	}
 
 	const sokteGjennomforinger = hentGjennomforingMedLopenrPromise.result?.data ?? []
+
+	const kunSiffer = (value: string): boolean => {
+		return !!value.match('^[0-9]+$')
+	}
+
+	const isValidLopenr = (value: string): boolean => {
+		return (kunSiffer(value) && value.length <= 7) || value === ''
+	}
 
 	return (
 		<main className={styles.mainPage}>
@@ -41,10 +53,11 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 				<TextField
 					label="Tiltaksnummer"
 					value={lopenrSokefelt}
+					onKeyPress={e => e.key === 'Enter' && handleOnSokClicked()}
 					onChange={e => {
 						const value = e.target.value
 
-						if (kunSiffer(value) || value === '')
+						if (isValidLopenr(value))
 							setLopenrSokefelt(value)
 					}}
 				/>
@@ -63,7 +76,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
-				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}/>)
+				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger} mineGjennomforingerIds={mineGjennomforinger}/>)
 			}
 		</main>
 	)
