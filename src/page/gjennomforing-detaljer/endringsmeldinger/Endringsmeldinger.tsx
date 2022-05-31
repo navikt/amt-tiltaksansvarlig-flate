@@ -44,8 +44,8 @@ export const Endringsmeldinger = ({ gjennomforingId }: EndringsmeldingerProps) =
 		<section className={globalStyles.blokkL}>
 			<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
 			<BodyLong size="small" spacing>
-				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her.
-				Oppstartsdatoen skal legges inn i Arena.
+				Når tiltaksarrangøren sender en oppstartsdato, så kommer det en ny melding her.
+				Oppstartsdatoen skal registreres i Arena.
 			</BodyLong>
 
 			{
