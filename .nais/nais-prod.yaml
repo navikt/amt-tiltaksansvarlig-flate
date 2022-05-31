@@ -35,7 +35,7 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: XXXX  # 0000-GA-TILTAK-ANSVARLIG, NAV Prod
+          - id: 2cf8d881-c2da-47b5-b409-fa088440a629 # 0000-GA-TILTAK-ANSVARLIG, NAV Prod
   gcp:
     buckets:
       - name: amt-tiltaksansvarlig-flate-prod
