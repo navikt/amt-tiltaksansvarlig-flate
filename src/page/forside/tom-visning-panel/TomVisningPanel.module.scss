@@ -1,0 +1,10 @@
+.panel {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  grid-column-gap: 2rem;
+  width: 100%;
+}
+
+.tekst {
+  margin: auto;
+}

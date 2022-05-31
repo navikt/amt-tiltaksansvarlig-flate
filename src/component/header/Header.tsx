@@ -5,6 +5,7 @@ import { fetchInnloggetAnsatt } from '../../api/api'
 import { Link, Panel } from '@navikt/ds-react'
 import { appUrl } from '../../utils/url-utils'
 import styles from './Header.module.scss'
+import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 
 export const Header = (): React.ReactElement => {
 	const innloggetAnsattPromise = usePromise(() => fetchInnloggetAnsatt())
@@ -19,7 +20,7 @@ export const Header = (): React.ReactElement => {
 
 	return (
 		<InternHeader className="w-full">
-			<InternHeader.Title as="h1">NAV Tiltaksansvarlig</InternHeader.Title>
+			<InternHeader.Title href={FORSIDE_PAGE_ROUTE}>NAV Arbeidsmarkedstiltak</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsattNavn}
 				className={styles.userBtn}

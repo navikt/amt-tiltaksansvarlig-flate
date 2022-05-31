@@ -7,16 +7,14 @@ import {
 	FORSIDE_PAGE_ROUTE,
 	GJENNOMFORING_DETALJER_PAGE_ROUTE,
 	LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE,
-	TILGANGSKONTROLL_PAGE_ROUTE
 } from './navigation'
 import { Forside } from './page/forside/Forside'
 import { GjennomforingDetaljerPage } from './page/gjennomforing-detaljer/GjennomforingDetaljerPage'
-import { LoginPage } from './page/LoginPage'
 import { isNotStartedOrPending, isRejected, usePromise } from './utils/use-promise'
-import { TilgangskontrollPage } from './page/tilgangskontroll/TilgangskontrollPage'
 import { Spinner } from './component/spinner/Spinner'
 import { Header } from './component/header/Header'
 import { LeggTilGjennomforingTilgangPage } from './page/legg-til-gjennomforing-tilgang/LeggTilGjennomforingTilgangPage'
+import { Alert } from '@navikt/ds-react'
 
 export const App = (): React.ReactElement => {
 	const isAuthenticatedPromise = usePromise<AxiosResponse<IsAuthenticatedType>>(fetchIsAuthenticated)
@@ -26,7 +24,8 @@ export const App = (): React.ReactElement => {
 	}
 
 	if (isRejected(isAuthenticatedPromise) || !isAuthenticatedPromise?.result.data.loggedIn) {
-		return <LoginPage />
+		// This should not happen since autoLogin = true in nais.yaml
+		return <Alert variant="warning">Du er ikke logget inn</Alert>
 	}
 
 	return (
@@ -35,7 +34,6 @@ export const App = (): React.ReactElement => {
 			<Routes>
 				<Route path={FORSIDE_PAGE_ROUTE} element={<Forside/>}/>
 				<Route path={GJENNOMFORING_DETALJER_PAGE_ROUTE} element={<GjennomforingDetaljerPage />}/>
-				<Route path={TILGANGSKONTROLL_PAGE_ROUTE} element={<TilgangskontrollPage />}/>
 				<Route path={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} element={<LeggTilGjennomforingTilgangPage/>}/>
 			</Routes>
 		</BrowserRouter>

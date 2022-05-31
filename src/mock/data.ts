@@ -2,17 +2,7 @@ import faker from 'faker'
 import {
 	GjennomforingDetaljerType,
 	InnloggetNavAnsattType,
-	TilgangerType,
-	TilgangForesporslerType,
-	TilgangForesporselType,
-	UbrukteTilgangInvitasjonerType
 } from '../api/api'
-import {
-	opprettMockGjennomforingForesporsler,
-	opprettMockGjennomforingInvitasjoner,
-	opprettMockGjennomforingTilganger,
-	opprettMockUbruktInvitasjon
-} from './data-helper'
 
 export const innloggetAnsatt: InnloggetNavAnsattType = {
 	navIdent: 'Z1234',
@@ -22,32 +12,41 @@ export const innloggetAnsatt: InnloggetNavAnsattType = {
 export const gjennomforinger: GjennomforingDetaljerType[] = [
 	{
 		navn: 'Oppfølging Tjenesteområde 1',
-		id: '87d67559-7571-42e4-812a-1905217fdae3',
+		id: '6ec95b2a-be19-41f0-9c97-1f81ab2159c3',
 		arrangor: {
 			organisasjonNavn: 'Venus AS',
 			virksomhetNavn: 'Virksomhet AS'
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 31243,
+		opprettetAr: 2022,
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future()
 	},
 	{
 		navn: 'Oppfølging Tjenesteområde 2',
-		id: faker.datatype.uuid(),
+		id: 'a7f1ac51-4a7a-4d9b-b239-db452a9ee2c7',
 		arrangor: {
 			organisasjonNavn: 'Merkur AS',
 			virksomhetNavn: 'Virksomhet AS'
 
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 9243,
+		opprettetAr: 2022,
 		startDato: faker.date.future(),
 		sluttDato: faker.date.future()
 	},
 	{
 		navn: 'Oppfølging Tjenesteområde 3',
-		id: faker.datatype.uuid(),
+		id: 'c1a4ae05-983e-4f49-9e35-592a04248379',
 		arrangor: {
 			organisasjonNavn: null,
 			virksomhetNavn: 'Virksomhet AS'
 		},
+		tiltakNavn: 'Oppfølging',
+		lopenr: 75634,
+		opprettetAr: 2022,
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future()
 	}

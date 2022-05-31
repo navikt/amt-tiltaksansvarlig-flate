@@ -8,7 +8,6 @@ import { fetchGjennomforing, stopTilgangTilGjennomforing, GjennomforingDetaljerT
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import globalStyles from '../../globals.module.scss'
-import { Tilgangskontroll } from './tilgangskontroll/Tilgangskontroll'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
@@ -36,8 +35,6 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 			<Heading size="medium" spacing>{gjennomforing.navn}</Heading>
 
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing}/>
-
-			<Tilgangskontroll className={globalStyles.blokkM} />
 
 			<Endringsmeldinger gjennomforingId={gjennomforingId!}/>
 

@@ -4,5 +4,12 @@
 
 .sammendrag {
   margin-bottom: 0.25rem
+}
 
+.rad {
+  display: flex;
+
+  > *:not(:first-child) {
+    margin-left: 1rem;
+  }
 }

@@ -9,7 +9,7 @@ spec:
   image: ghcr.io/navikt/poao-frontend/poao-frontend:2022.02.25_08.04-6f896bb4dffe
   port: 8080
   ingresses:
-    - https://arbeidsmarkedstiltak.dev.intern.nav.no
+    - https://arbeidsmarkedstiltak.intern.nav.no
   liveness:
     path: /internal/alive
     initialDelay: 10
@@ -17,8 +17,8 @@ spec:
     path: /internal/ready
     initialDelay: 10
   replicas:
-    min: 1
-    max: 2
+    min: 2
+    max: 3
     cpuThresholdPercentage: 75
   resources:
     limits:
@@ -35,10 +35,10 @@ spec:
       enabled: true
       claims:
         groups:
-          - id: 52bb9196-b071-4cc7-9472-be4942d33c4b # 0000-GA-TILTAK-ANSVARLIG, NAV Preprod
+          - id: XXXX  # 0000-GA-TILTAK-ANSVARLIG, NAV Prod
   gcp:
     buckets:
-      - name: amt-tiltaksansvarlig-flate-dev
+      - name: amt-tiltaksansvarlig-flate-prod
         cascadingDelete: false
   accessPolicy:
     outbound:
@@ -50,7 +50,7 @@ spec:
         {
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "gcs": {
-            "bucketName": "amt-tiltaksansvarlig-flate-dev"
+            "bucketName": "amt-tiltaksansvarlig-flate-prod"
           },
           "auth": {
             "loginProvider": "AZURE_AD"
@@ -58,7 +58,7 @@ spec:
           "proxies": [
             {
               "fromPath": "/amt-tiltak", "toUrl": "http://amt-tiltak",
-              "toApp": { "name": "amt-tiltak", "namespace": "amt", "cluster": "dev-gcp" }
+              "toApp": { "name": "amt-tiltak", "namespace": "amt", "cluster": "prod-gcp" }
             }
           ]
         }

@@ -1,9 +1,5 @@
 import React from 'react'
-import { isNotStartedOrPending, usePromise } from '../../../utils/use-promise'
-import { AxiosResponse } from 'axios'
-import { fetchAnsattTilganger, TilgangerType } from '../../../api/api'
-import { useParams } from 'react-router-dom'
-import { BodyShort, Loader } from '@navikt/ds-react'
+import { BodyShort } from '@navikt/ds-react'
 import styles from './Tilgangskontroll.module.scss'
 
 import { PersonListeElement } from './person-liste-element/PersonListeElement'
@@ -13,18 +9,29 @@ interface TilgangskontrollProps {
 	className?: string
 }
 
+export interface Tilgang {
+	id: string,
+	fornavn: string,
+	mellomnavn: string | undefined,
+	etternavn: string,
+	opprettetDato: Date,
+	opprettetAvNavIdent: string
+}
+
+/*
+	Denne komponenten er pr nå ubrukt, men skal reimplementeres senere når det blir godkjent å vise navn på tiltaksarrangør ansatte
+*/
+
 export const Tilgangskontroll = (props: TilgangskontrollProps) : React.ReactElement<TilgangskontrollProps> => {
-	const { gjennomforingId } = useParams()
 
-	const ansattTilgangerPromise = usePromise<AxiosResponse<TilgangerType>>(() => fetchAnsattTilganger(gjennomforingId!))
-
-	const tilganger = ansattTilgangerPromise.result?.data ?? []
+	const tilganger: Tilgang[] = []
 
 	return (
 		<section className={props.className}>
-			<TilgangskontrollHeader gjennomforingId={gjennomforingId} />
+			<TilgangskontrollHeader />
 			<div>
-				{isNotStartedOrPending(ansattTilgangerPromise) && <Loader size="large"/>}
+				{/*{isNotStartedOrPending(ansattTilgangerPromise) && <Loader size="large"/>}*/}
+
 				{tilganger.length === 0
 					? (<BodyShort className={styles.ingenElementer}>Ingen koordinatorer har tilgang</BodyShort>)
 					: (
