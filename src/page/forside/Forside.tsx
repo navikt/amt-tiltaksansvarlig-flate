@@ -26,7 +26,10 @@ export const Forside = (): React.ReactElement => {
 		<main className={styles.mainPage}>
 			<div className={cls(styles.header, globalStyles.blokkXl)}>
 				<Heading size="medium">Min tiltaksoversikt</Heading>
-				<Link to={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} className="navds-link"><Add/> Legg til</Link>
+				<Link to={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} className="navds-link">
+					<Add aria-labelledby="legg-til"/>
+					<span id="legg-til">Legg til</span>
+				</Link>
 			</div>
 
 			{ gjennomforinger.length === 0

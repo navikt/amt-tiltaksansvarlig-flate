@@ -13,7 +13,6 @@ interface GjennomforingPanelProps {
 
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
 	const { id, navn, opprettetAr, lopenr, arrangorNavn } = props.gjennomforing
-
 	const leggTilGjennomforingPromise = usePromise<AxiosResponse>()
 
 	const handleOnLeggTilClicked = () => {
@@ -24,11 +23,13 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 
 	const LeggTil = () => {
 		if(props.alleredeIMineGjennomforinger) {
-			return <Alert variant="info" size="small">Allerede i min <br/> tiltaksoversikt</Alert>
+			return <Alert variant="info" size="small">
+				Allerede i min tiltaksoversikt
+			</Alert>
 		}
 
 		if(disableLeggTil) {
-			return <Alert variant="success" size="small">Lagt til i min <br/> tiltaksoversikt</Alert>
+			return <Alert variant="success" size="small">Lagt til i min tiltaksoversikt</Alert>
 		}
 
 		return (
@@ -46,7 +47,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 
 	return (
 		<Panel border className={styles.panel}>
-			<Heading size="xsmall" level="3">{navn}</Heading>
+			<Heading size="xsmall" level="2">{navn}</Heading>
 			<div className={styles.innhold}>
 				<div>
 					<BodyShort className={styles.muted}>Tiltak: {opprettetAr}/{lopenr}</BodyShort>

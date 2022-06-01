@@ -13,7 +13,7 @@ interface GjennomforingPanelProps {
 export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) : React.ReactElement => {
 	return (
 		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} className={styles.panel}>
-			<Heading size="xsmall" className={styles.header}>
+			<Heading size="xsmall" level="2" className={styles.header}>
 				{gjennomforing.navn}
 			</Heading>
 
