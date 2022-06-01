@@ -1,28 +1,20 @@
 import React, { useState } from 'react'
 import { Header as InternHeader } from '@navikt/ds-react-internal'
-import { usePromise } from '../../utils/use-promise'
-import { fetchInnloggetAnsatt } from '../../api/api'
 import { Link, Panel } from '@navikt/ds-react'
 import { appUrl } from '../../utils/url-utils'
 import styles from './Header.module.scss'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
+import { useDataStore } from '../../store/data-store'
 
 export const Header = (): React.ReactElement => {
-	const innloggetAnsattPromise = usePromise(() => fetchInnloggetAnsatt())
-
+	const { innloggetAnsatt } = useDataStore()
 	const [ showDropdown, setShowDropdown ] = useState(false)
-
-	const maybeData = innloggetAnsattPromise.result?.data
-
-	const innloggetAnsattNavn = maybeData
-		? maybeData.navn
-		: ''
 
 	return (
 		<InternHeader className="w-full">
 			<InternHeader.Title href={FORSIDE_PAGE_ROUTE}>NAV Arbeidsmarkedstiltak</InternHeader.Title>
 			<InternHeader.UserButton
-				name={innloggetAnsattNavn}
+				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
 				onClick={() => setShowDropdown(show => !show)}
 			/>

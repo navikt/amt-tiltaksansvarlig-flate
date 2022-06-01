@@ -10,11 +10,6 @@ import { endringsmeldingData } from './endringsmelding-data'
 import { GjennomforingType, HentGjennomforingerMedLopenrType } from '../api/api'
 
 export const mockHandlers: RequestHandler[] = [
-	rest.get(appUrl('/auth/info'), (req, res, ctx) => {
-		return res(ctx.delay(250), ctx.json({
-			loggedIn: true
-		}))
-	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(innloggetAnsatt))
 	}),

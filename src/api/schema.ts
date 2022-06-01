@@ -2,13 +2,10 @@ import { z } from 'zod'
 
 const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
 
-export const IsAuthenticatedSchema = z.object({
-	loggedIn: z.boolean()
-})
-
 export const InnloggetNavAnsattSchema = z.object({
 	navIdent: z.string(),
 	navn: z.string(),
+	tilganger: z.array(z.string())
 })
 
 export const ArrangorAnsattSchema = z.object({
