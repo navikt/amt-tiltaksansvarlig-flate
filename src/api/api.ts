@@ -78,7 +78,7 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string) : AxiosP
 		.catch((error) => exposeError(error, endepunkt))
 }
 
-export const stopTilgangTilGjennomforing = (gjennomforingId: string) : AxiosPromise => {
+export const fjernGjennomforingFraOversikten = (gjennomforingId: string) : AxiosPromise => {
 	const endepunkt = appUrl(`/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))

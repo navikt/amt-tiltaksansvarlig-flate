@@ -104,3 +104,7 @@ export const isResolved = <R, E>(state: PromiseState<R, E>): state is ResolvedPr
 export const isRejected = <R, E>(state: PromiseState<R, E>): state is RejectedPromiseState<E> => {
 	return state.status === Status.REJECTED
 }
+
+export const isFinished = <R, E>(state: PromiseState<R, E>): state is ResolvedPromiseState<R> | RejectedPromiseState<E> => {
+	return state.status === Status.RESOLVED || state.status === Status.REJECTED
+}

@@ -1,0 +1,12 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert {
+  max-width: 300px;
+
+  svg {
+    margin: auto 0;
+  }
+}
