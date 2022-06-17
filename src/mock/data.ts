@@ -1,8 +1,20 @@
 import faker from 'faker'
-import {
-	GjennomforingDetaljerType,
-	InnloggetNavAnsattType,
-} from '../api/api'
+import { InnloggetNavAnsattType } from '../api/api'
+
+interface Gjennomforing {
+	navn: string,
+	id: string,
+	arrangor: {
+		organisasjonNavn: string | null,
+		virksomhetNavn: string
+	},
+	tiltakNavn: string,
+	lopenr: number,
+	opprettetAr: number,
+	startDato: Date,
+	sluttDato: Date,
+	antallAktiveEndringsmeldinger: number
+}
 
 export const innloggetAnsatt: InnloggetNavAnsattType = {
 	navIdent: 'Z1234',
@@ -10,7 +22,7 @@ export const innloggetAnsatt: InnloggetNavAnsattType = {
 	tilganger: [ 'FLATE', 'ENDRINGSMELDING' ]
 }
 
-export const gjennomforinger: GjennomforingDetaljerType[] = [
+export const gjennomforinger: Gjennomforing[] = [
 	{
 		navn: 'Oppfølging Tjenesteområde 1',
 		id: '6ec95b2a-be19-41f0-9c97-1f81ab2159c3',
@@ -22,7 +34,8 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 		lopenr: 31243,
 		opprettetAr: 2022,
 		startDato: faker.date.past(),
-		sluttDato: faker.date.future()
+		sluttDato: faker.date.future(),
+		antallAktiveEndringsmeldinger: 2
 	},
 	{
 		navn: 'Oppfølging Tjenesteområde 2',
@@ -36,7 +49,8 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 		lopenr: 9243,
 		opprettetAr: 2022,
 		startDato: faker.date.future(),
-		sluttDato: faker.date.future()
+		sluttDato: faker.date.future(),
+		antallAktiveEndringsmeldinger: 0
 	},
 	{
 		navn: 'Oppfølging Tjenesteområde 3',
@@ -49,6 +63,7 @@ export const gjennomforinger: GjennomforingDetaljerType[] = [
 		lopenr: 75634,
 		opprettetAr: 2022,
 		startDato: faker.date.past(),
-		sluttDato: faker.date.future()
+		sluttDato: faker.date.future(),
+		antallAktiveEndringsmeldinger: 1
 	}
 ]

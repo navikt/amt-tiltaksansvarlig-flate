@@ -2,6 +2,17 @@
 
 .panel {
   margin-top: 1rem;
+
+  > div {
+    width: 100% !important;
+  }
+}
+
+.panelInnhold {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .info {
@@ -12,6 +23,10 @@
   > *:not(:first-child) {
     margin-left: 1.5rem;
   }
+}
+
+.antallEndringsmeldingerEtikett {
+  height: 24px;
 }
 
 .header {

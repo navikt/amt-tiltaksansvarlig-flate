@@ -24,7 +24,8 @@ export const GjennomforingSchema = z.object({
 	navn: z.string(),
 	lopenr: z.number(),
 	opprettetAar: z.number(),
-	arrangorNavn: z.string()
+	arrangorNavn: z.string(),
+	antallAktiveEndringsmeldinger: z.number().int()
 })
 
 export const GjennomforingDetaljerSchema = z.object({
