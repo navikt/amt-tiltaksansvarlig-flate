@@ -48,10 +48,10 @@ export const mockHandlers: RequestHandler[] = [
 			.map(g => ({
 				id: g.id,
 				navn: g.navn,
-				arrangorNavn:
-				g.arrangor.virksomhetNavn,
-				lopenr: 123,
-				opprettetAar: 2020
+				arrangorNavn: g.arrangor.virksomhetNavn,
+				lopenr: g.lopenr,
+				opprettetAar: g.opprettetAr,
+				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger
 			}))
 
 		return res(ctx.delay(250), ctx.json(data))
