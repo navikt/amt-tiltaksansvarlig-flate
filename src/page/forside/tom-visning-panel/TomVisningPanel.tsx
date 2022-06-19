@@ -9,9 +9,7 @@ export const TomVisningPanel = (): React.ReactElement => {
 		<Panel className={styles.panel}>
 			<img src={clipboardImg} alt="Illustrasjon av ordrebrett"/>
 			<BodyLong size="small" className={styles.tekst}>
-				Her kan du legge til tiltak som du jobber med.
-				Du vil ha tilgang til ulik funksjonalitet ut i fra
-				hvilken rolle du har og hvilke arbeidsoppgaver du gjør rundt administrering av tiltak.
+				Her kan du legge til oppfølgingstiltak som du jobber med. Løsningen er under utvikling og det jobbes kontinuerlig med å gjøre tjenesten bedre.
 			</BodyLong>
 		</Panel>
 	)
