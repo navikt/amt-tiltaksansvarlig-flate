@@ -12,7 +12,7 @@ export const Header = (): React.ReactElement => {
 
 	return (
 		<InternHeader className="w-full">
-			<InternHeader.Title href={FORSIDE_PAGE_ROUTE}>NAV Arbeidsmarkedstiltak</InternHeader.Title>
+			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">NAV Arbeidsmarkedstiltak</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
