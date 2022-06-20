@@ -24,7 +24,7 @@ export const Forside = (): React.ReactElement => {
 
 	return (
 		<main className={styles.mainPage}>
-			<div className={cls(styles.header, globalStyles.blokkXl)}>
+			<div className={cls(styles.header, globalStyles.blokkM)}>
 				<Heading size="medium">Min tiltaksoversikt</Heading>
 				<Link to={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} className="navds-link">
 					<Add aria-labelledby="legg-til"/>

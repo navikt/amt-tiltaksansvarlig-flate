@@ -43,9 +43,9 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	return (
 		<main className={styles.mainPage}>
-			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkS}/>
+			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
-			<Heading size="large" level="1" className={globalStyles.blokkM}>
+			<Heading size="medium" level="1" className={globalStyles.blokkM}>
 				Legg til et tiltak du jobber med
 			</Heading>
 
