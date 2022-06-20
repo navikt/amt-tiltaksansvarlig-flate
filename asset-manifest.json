@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/amt-tiltaksansvarlig-flate/static/css/main.34943811.css",
-    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.c29c8007.js",
+    "main.css": "/amt-tiltaksansvarlig-flate/static/css/main.cea2f8d4.css",
+    "main.js": "/amt-tiltaksansvarlig-flate/static/js/main.b885e6b3.js",
     "static/media/clipboard.svg": "/amt-tiltaksansvarlig-flate/static/media/clipboard.a3aa0fa6a38b52d674c86b50d4aff50c.svg",
     "index.html": "/amt-tiltaksansvarlig-flate/index.html",
-    "main.34943811.css.map": "/amt-tiltaksansvarlig-flate/static/css/main.34943811.css.map",
-    "main.c29c8007.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.c29c8007.js.map"
+    "main.cea2f8d4.css.map": "/amt-tiltaksansvarlig-flate/static/css/main.cea2f8d4.css.map",
+    "main.b885e6b3.js.map": "/amt-tiltaksansvarlig-flate/static/js/main.b885e6b3.js.map"
   },
   "entrypoints": [
-    "static/css/main.34943811.css",
-    "static/js/main.c29c8007.js"
+    "static/css/main.cea2f8d4.css",
+    "static/js/main.b885e6b3.js"
   ]
 }
