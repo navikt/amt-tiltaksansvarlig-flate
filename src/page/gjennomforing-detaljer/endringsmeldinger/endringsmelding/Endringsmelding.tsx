@@ -1,26 +1,13 @@
 import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
-import classNames from 'classnames'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import cls from 'classnames'
-
-interface PanelLinjeProps {
-	children: React.ReactNode
-	className?: string
-}
-
-const PanelLinje = ({ children, className } : PanelLinjeProps): React.ReactElement => {
-	return (
-		<div className={cls(styles.linjeWrapper, className)}>
-			{children}
-		</div>
-	)
-}
+import { PanelLinje } from './PanelLinje'
+import classNames from 'classnames'
 
 interface EndringsmeldingProps {
 	endringsmelding: EndringsmeldingType
@@ -66,7 +53,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, className }: Endrin
 							Ferdig
 						</Button>
 					)
-					: (<BodyShort className={cls(styles.moveRight, styles.gray)}>Ferdig</BodyShort>)
+					: (<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>)
 				}
 			</PanelLinje>
 
