@@ -1,12 +1,19 @@
 .heading {
   display: flex;
   justify-content: space-between;
+  margin-bottom: var(--navds-spacing-3);
 }
 
 .alert {
   max-width: 300px;
+  align-self: flex-start;
 
   svg {
     margin: auto 0;
   }
+}
+
+.fjernKnapp {
+  align-self: flex-start;
+  min-width: fit-content;
 }

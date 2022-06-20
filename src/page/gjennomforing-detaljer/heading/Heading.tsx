@@ -13,6 +13,7 @@ import globalStyles from '../../../globals.module.scss'
 import React from 'react'
 import { AxiosResponse } from 'axios'
 import { fjernGjennomforingFraOversikten } from '../../../api/api'
+import classNames from 'classnames'
 
 interface HeadingProps {
 	gjennomforingNavn: string,
@@ -35,7 +36,7 @@ export const Heading = (props: HeadingProps) => {
 					variant="secondary"
 					size="small"
 					onClick={handleFjernFraMinOversikt}
-					className={globalStyles.blokkXs}
+					className={classNames(styles.fjernKnapp, globalStyles.blokkXs)}
 					loading={isPending(fjernFraOversiktenPromise)}
 					disabled={isPending(fjernFraOversiktenPromise) || isResolved(fjernFraOversiktenPromise)}
 				>
@@ -46,7 +47,7 @@ export const Heading = (props: HeadingProps) => {
 			<Show if={isFinished(fjernFraOversiktenPromise)}>
 				{
 					isResolved(fjernFraOversiktenPromise) &&
-					(<Alert variant="success" size="small" className={styles.alert}>Tiltaket er fjernet fra oversikten</Alert>)
+					(<Alert variant="success" size="small" className={styles.alert}>Fjernet fra min oversikt</Alert>)
 				}
 
 				{

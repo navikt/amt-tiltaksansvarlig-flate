@@ -24,12 +24,12 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 	const LeggTil = () => {
 		if(props.alleredeIMineGjennomforinger) {
 			return <Alert variant="info" size="small">
-				Allerede i min tiltaksoversikt
+				Allerede i min oversikt
 			</Alert>
 		}
 
 		if(disableLeggTil) {
-			return <Alert variant="success" size="small">Lagt til i min tiltaksoversikt</Alert>
+			return <Alert variant="success" size="small">Lagt til i min oversikt</Alert>
 		}
 
 		return (

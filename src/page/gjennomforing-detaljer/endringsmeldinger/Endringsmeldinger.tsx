@@ -57,7 +57,7 @@ const Meldinger = (props: EndringsmeldingerProps) => {
 	}
 
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
-		? <Alert variant="info" size="small">Det er ingen nye meldinger om deltakere.</Alert>
+		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>
 		: aktiveMeldinger.map(e => (
 			<Endringsmelding
 				className={styles.ikkeArkivertPadding}
