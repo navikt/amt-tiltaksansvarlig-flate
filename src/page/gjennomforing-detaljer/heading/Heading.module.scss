@@ -1,11 +1,13 @@
 .heading {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-column-gap: 1rem;
+
   margin-bottom: var(--navds-spacing-3);
 }
 
 .alert {
-  max-width: 300px;
+  min-width: 175px;
   align-self: flex-start;
 
   svg {
@@ -14,6 +16,6 @@
 }
 
 .fjernKnapp {
+  min-width: 175px;
   align-self: flex-start;
-  min-width: fit-content;
 }

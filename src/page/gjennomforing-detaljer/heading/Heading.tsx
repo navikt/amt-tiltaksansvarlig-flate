@@ -29,7 +29,7 @@ export const Heading = (props: HeadingProps) => {
 
 	return (
 		<div className={styles.heading}>
-			<NavHeading size="medium" spacing>{props.gjennomforingNavn}</NavHeading>
+			<NavHeading size="medium">{props.gjennomforingNavn}</NavHeading>
 
 			<Show if={isNotStartedOrPending(fjernFraOversiktenPromise)}>
 				<Button
