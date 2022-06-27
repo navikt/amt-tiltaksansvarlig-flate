@@ -53,7 +53,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 				<TextField
 					label="Tiltaksnummer"
 					value={lopenrSokefelt}
-					onKeyPress={e => e.key === 'Enter' && handleOnSokClicked()}
+					onKeyDown={e => e.key === 'Enter' && handleOnSokClicked()}
 					onChange={e => {
 						const value = e.target.value
 
@@ -61,7 +61,16 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 							setLopenrSokefelt(value)
 					}}
 				/>
-				<Button variant="primary" onClick={handleOnSokClicked}>Søk</Button>
+
+				<Button
+					variant="primary"
+					className={styles.leggTilKnapp}
+					onClick={handleOnSokClicked}
+					disabled={isPending(hentGjennomforingMedLopenrPromise) || !lopenrSokefelt}
+					loading={isPending(hentGjennomforingMedLopenrPromise)}
+				>
+					Søk
+				</Button>
 			</div>
 
 			{

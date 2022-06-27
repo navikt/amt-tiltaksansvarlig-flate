@@ -9,9 +9,16 @@
   display: flex;
   align-items: flex-end;
   width: min-content;
+
   > *:not(:first-child) {
     margin-left: 1rem;
   }
 
   margin-bottom: 2rem;
+}
+
+.leggTilKnapp {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  min-width: unset;
 }
