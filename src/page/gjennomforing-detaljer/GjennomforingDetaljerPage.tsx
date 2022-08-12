@@ -30,7 +30,7 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 	const gjennomforing = gjennomforingPromise.result.data
 
 	return (
-		<main className={styles.page}>
+		<main className={styles.page} data-testid="gjennomforing-detaljer-page">
 			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
 			<Heading gjennomforingId={gjennomforing.id} gjennomforingNavn={gjennomforing.navn} />
