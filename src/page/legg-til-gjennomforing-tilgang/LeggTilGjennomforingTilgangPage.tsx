@@ -42,7 +42,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	}
 
 	return (
-		<main className={styles.mainPage}>
+		<main className={styles.mainPage} data-testid="legg-til-gjennomforing-page">
 			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
 			<Heading size="medium" level="1" className={globalStyles.blokkM}>
