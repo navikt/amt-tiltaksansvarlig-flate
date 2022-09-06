@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './VarighetSelect.module.scss'
 import { Select } from '@navikt/ds-react'
 
-interface InlineSelectVarighetProps {
+interface VarighetSelectProps {
     selectedValue: number
     setVarighet: (val: number) => void
 }
@@ -11,7 +11,7 @@ interface ItemInterface {
     value: number
 }
 
-export const VarighetSelect = ({ selectedValue, setVarighet }: InlineSelectVarighetProps): React.ReactElement => {
+export const VarighetSelect = ({ selectedValue, setVarighet }: VarighetSelectProps): React.ReactElement => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const val = parseInt(e.target.value)

@@ -11,9 +11,8 @@ import classNames from 'classnames'
 import { useDataStore } from '../../../store/data-store'
 import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
 import { VarighetSelect } from './endringsmelding/VarighetSelect'
-import { useVarighet } from './endringsmelding/useVarighet'
+import { useLagretVarighet } from './endringsmelding/useLagretVarighet'
 
-const LOCAL_STORAGE_VARIGHET = 'endringsmeldingVarighet'
 const DEFAULT_VARIGHET_MANEDER = 6
 
 interface EndringsmeldingerProps {
@@ -49,7 +48,7 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 const Meldinger = (props: EndringsmeldingerProps) => {
 	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(props.gjennomforingId))
 
-	const [ varighet, setVarighet ] = useVarighet(LOCAL_STORAGE_VARIGHET, DEFAULT_VARIGHET_MANEDER)
+	const [ varighet, setVarighet ] = useLagretVarighet(DEFAULT_VARIGHET_MANEDER)
 
 	const aktiveMeldinger = endringsmeldingerPromise.result?.data
 		.filter(e => e.aktiv)

@@ -7,6 +7,6 @@ export const formatDate = (date: Date | null): string => {
 	return dayjs(date).format('DD.MM.YYYY')
 }
 
-export const addMonthsMinusOneDayAndFormatDate = (date: Date, months: number): string => {
-	return formatDate(dayjs(date).add(months, 'month').subtract(1, 'day').toDate())
+export const beregnSluttDato = (date: Date, months: number): Date => {
+	return dayjs(date).add(months, 'month').subtract(1, 'day').toDate()
 }

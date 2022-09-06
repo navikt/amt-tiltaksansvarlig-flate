@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { addMonthsMinusOneDayAndFormatDate, formatDate } from '../../../../utils/date-utils'
+import { beregnSluttDato, formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
@@ -48,7 +48,7 @@ export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className
 				? (
 					<PanelLinje>
 						<Detail size="small" className={classNames(styles.spaceTop, styles.gray)}>
-							Foreslått sluttdato: {addMonthsMinusOneDayAndFormatDate(endringsmelding.startDato, varighet)}
+							Foreslått sluttdato: {formatDate(beregnSluttDato(endringsmelding.startDato, varighet))}
 						</Detail>
 						<Button
 							size="small"
