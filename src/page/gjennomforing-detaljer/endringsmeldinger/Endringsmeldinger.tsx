@@ -10,6 +10,11 @@ import { Spinner } from '../../../component/spinner/Spinner'
 import classNames from 'classnames'
 import { useDataStore } from '../../../store/data-store'
 import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
+import { VarighetSelect } from './endringsmelding/VarighetSelect'
+import { useVarighet } from './endringsmelding/useVarighet'
+
+const LOCAL_STORAGE_VARIGHET = 'endringsmeldingVarighet'
+const DEFAULT_VARIGHET_MANEDER = 6
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
@@ -30,7 +35,7 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 
 			{
 				harTilgang
-					? <Meldinger gjennomforingId={props.gjennomforingId}/>
+					? <Meldinger gjennomforingId={props.gjennomforingId} />
 					: (
 						<Alert className={styles.ikkeTilgangAlert} variant="info" size="small">
 							Du har ikke tilgang til å se endringmeldinger.
@@ -43,6 +48,8 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 
 const Meldinger = (props: EndringsmeldingerProps) => {
 	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(props.gjennomforingId))
+
+	const [ varighet, setVarighet ] = useVarighet(LOCAL_STORAGE_VARIGHET, DEFAULT_VARIGHET_MANEDER)
 
 	const aktiveMeldinger = endringsmeldingerPromise.result?.data
 		.filter(e => e.aktiv)
@@ -62,6 +69,7 @@ const Meldinger = (props: EndringsmeldingerProps) => {
 			<Endringsmelding
 				className={styles.ikkeArkivertPadding}
 				endringsmelding={e}
+				varighet={varighet}
 				onFerdig={refresh}
 				key={e.id}
 			/>
@@ -69,18 +77,19 @@ const Meldinger = (props: EndringsmeldingerProps) => {
 
 	const inaktiveMeldingerVisning = inaktiveMeldinger.length === 0
 		? <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
-		: inaktiveMeldinger.map(e => <Endringsmelding endringsmelding={e} onFerdig={refresh} key={e.id}/>)
+		: inaktiveMeldinger.map(e => <Endringsmelding endringsmelding={e} varighet={varighet} onFerdig={refresh} key={e.id} />)
 
 	return (
 		<>
-			<BodyLong size="small" spacing>
-				Når tiltaksarrangøren sender en oppstartsdato, så kommer det en ny melding her.
-				Oppstartsdatoen skal registreres i Arena.
+			<BodyLong size="small">
+				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her. 
+				Den valgte varigheten gir forslag om sluttdato. Datoene legges inn i Arena.
 			</BodyLong>
+			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
 
 			{
 				isNotStartedOrPending(endringsmeldingerPromise)
-					? <Spinner/>
+					? <Spinner />
 					: aktiveMeldingerVisning
 			}
 
@@ -94,7 +103,7 @@ const Meldinger = (props: EndringsmeldingerProps) => {
 					<Accordion.Content className={styles.noBottomBorder}>
 						{
 							isNotStartedOrPending(endringsmeldingerPromise)
-								? <Spinner/>
+								? <Spinner />
 								: inaktiveMeldingerVisning
 						}
 					</Accordion.Content>

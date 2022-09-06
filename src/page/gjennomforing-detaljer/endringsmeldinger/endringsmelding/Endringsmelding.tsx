@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { formatDate } from '../../../../utils/date-utils'
+import { addMonthsMinusOneDayAndFormatDate, formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
@@ -11,11 +11,13 @@ import classNames from 'classnames'
 
 interface EndringsmeldingProps {
 	endringsmelding: EndringsmeldingType
+	varighet: number
 	onFerdig: () => void
+
 	className?: string
 }
 
-export const Endringsmelding = ({ endringsmelding, onFerdig, className }: EndringsmeldingProps): React.ReactElement => {
+export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const bruker = endringsmelding.bruker
@@ -32,7 +34,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, className }: Endrin
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ markerSomFerdigPromise ])
 
-	return(
+	return (
 		<Panel className={classNames(styles.panel, className)}>
 			<PanelLinje>
 				<Heading size="xsmall" level="3">{navn}</Heading>
@@ -41,8 +43,13 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, className }: Endrin
 			</PanelLinje>
 			<PanelLinje>
 				<BodyShort className={styles.endringInfoTekst}>Ny oppstartsdato: {formatDate(endringsmelding.startDato)}</BodyShort>
-				{ endringsmelding.aktiv
-					? (
+			</PanelLinje>
+			{endringsmelding.aktiv
+				? (
+					<PanelLinje>
+						<Detail size="small" className={classNames(styles.spaceTop, styles.gray)}>
+							Foreslått sluttdato: {addMonthsMinusOneDayAndFormatDate(endringsmelding.startDato, varighet)}
+						</Detail>
 						<Button
 							size="small"
 							className={styles.moveRight}
@@ -52,18 +59,22 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, className }: Endrin
 						>
 							Ferdig
 						</Button>
-					)
-					: (<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>)
-				}
-			</PanelLinje>
+					</PanelLinje>
+				)
+				: (
+					<PanelLinje>
+						<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>
+					</PanelLinje>
+				)
+			}
 
-			{ (!endringsmelding.godkjent && !endringsmelding.aktiv) &&
+			{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
 				<PanelLinje className={styles.spaceTop}>
 					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
 				</PanelLinje>
 			}
 
-			{ isRejected(markerSomFerdigPromise) &&
+			{isRejected(markerSomFerdigPromise) &&
 				<PanelLinje className={styles.spaceTop}>
 					<Alert variant="error" size="small">Noe gikk galt</Alert>
 				</PanelLinje>
