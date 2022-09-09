@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable indent */
 const table = require('table').table;
 
@@ -47,7 +48,13 @@ function sjekkUU() {
 
 function gaTilForside() {
     cy.visit('/')
-    cy.get('[data-testid=forside-page]', {timeout: 120_000})
+    try {
+			cy.get('[data-testid=forside-page]', {timeout: 60_000})
+		} catch (e) {
+			cy.visit('/')
+			cy.get('[data-testid=forside-page]', {timeout: 60_000})
+		}
+
 }
 
 function navigerTilLeggTilGjennomforing() {
