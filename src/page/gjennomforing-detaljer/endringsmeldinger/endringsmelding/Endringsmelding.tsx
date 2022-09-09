@@ -47,7 +47,7 @@ export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className
 			{endringsmelding.aktiv
 				? (
 					<PanelLinje>
-						<Detail size="small" className={classNames(styles.spaceTop, styles.gray)}>
+						<Detail size="small" className={styles.sluttdato}>
 							Foreslått sluttdato: {formatDate(beregnSluttDato(endringsmelding.startDato, varighet))}
 						</Detail>
 						<Button
