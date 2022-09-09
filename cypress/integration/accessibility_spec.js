@@ -47,7 +47,7 @@ function sjekkUU() {
 
 function gaTilForside() {
     cy.visit('/')
-    cy.get('[data-testid=forside-page]', {timeout: 60000})
+    cy.get('[data-testid=forside-page]', {timeout: 120_000})
 }
 
 function navigerTilLeggTilGjennomforing() {
