@@ -48,13 +48,7 @@ function sjekkUU() {
 
 function gaTilForside() {
     cy.visit('/')
-    try {
-			cy.get('[data-testid=forside-page]', {timeout: 60_000})
-		} catch (e) {
-			cy.visit('/')
-			cy.get('[data-testid=forside-page]', {timeout: 60_000})
-		}
-
+		cy.get('[data-testid=forside-page]', {timeout: 20_000})
 }
 
 function navigerTilLeggTilGjennomforing() {
@@ -73,6 +67,7 @@ function navigerTilGjennomforingDetaljer() {
 
 describe('Cypress+Axe accessibility tests', () => {
     it('"Forside" skal oppfylle UU-krav', () => {
+				cy.wait(60_000)
         gaTilForside()
 
         sjekkUU()
