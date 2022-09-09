@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable indent */
 const table = require('table').table;
 
 const tableConfig = {
@@ -46,7 +48,7 @@ function sjekkUU() {
 
 function gaTilForside() {
     cy.visit('/')
-    cy.get('[data-testid=forside-page]')
+		cy.get('[data-testid=forside-page]', {timeout: 20_000})
 }
 
 function navigerTilLeggTilGjennomforing() {
@@ -65,6 +67,7 @@ function navigerTilGjennomforingDetaljer() {
 
 describe('Cypress+Axe accessibility tests', () => {
     it('"Forside" skal oppfylle UU-krav', () => {
+				cy.wait(60_000)
         gaTilForside()
 
         sjekkUU()
