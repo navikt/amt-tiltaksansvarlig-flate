@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { beregnSluttDato, formatDate } from '../../../../utils/date-utils'
+import { formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
@@ -11,13 +11,12 @@ import classNames from 'classnames'
 
 interface EndringsmeldingProps {
 	endringsmelding: EndringsmeldingType
-	varighet: number
 	onFerdig: () => void
-
+	children?: React.ReactNode
 	className?: string
 }
 
-export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className }: EndringsmeldingProps): React.ReactElement => {
+export const Endringsmelding = ({ endringsmelding, onFerdig, children, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const bruker = endringsmelding.bruker
@@ -41,15 +40,11 @@ export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className
 				<BodyShort size="medium" className={styles.fnr} >{bruker.fodselsnummer}</BodyShort>
 				<Detail size="small" className={classNames(styles.moveRight, styles.gray)}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 			</PanelLinje>
-			<PanelLinje>
-				<BodyShort className={styles.endringInfoTekst}>Ny oppstartsdato: {formatDate(endringsmelding.startDato)}</BodyShort>
-			</PanelLinje>
-			{endringsmelding.aktiv
-				? (
-					<PanelLinje>
-						<Detail size="small" className={styles.sluttdato}>
-							Foreslått sluttdato: {formatDate(beregnSluttDato(endringsmelding.startDato, varighet))}
-						</Detail>
+
+			<div className={styles.body}>
+				{children}
+				{endringsmelding.aktiv
+					? (
 						<Button
 							size="small"
 							className={styles.moveRight}
@@ -59,26 +54,25 @@ export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className
 						>
 							Ferdig
 						</Button>
-					</PanelLinje>
-				)
-				: (
-					<PanelLinje>
+					)
+					: (
 						<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>
+					)
+				}
+
+
+				{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
+					<PanelLinje className={styles.spaceTop}>
+						<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
 					</PanelLinje>
-				)
-			}
+				}
 
-			{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
-				<PanelLinje className={styles.spaceTop}>
-					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
-				</PanelLinje>
-			}
-
-			{isRejected(markerSomFerdigPromise) &&
-				<PanelLinje className={styles.spaceTop}>
-					<Alert variant="error" size="small">Noe gikk galt</Alert>
-				</PanelLinje>
-			}
+				{isRejected(markerSomFerdigPromise) &&
+					<PanelLinje className={styles.spaceTop}>
+						<Alert variant="error" size="small">Noe gikk galt</Alert>
+					</PanelLinje>
+				}
+			</div>
 		</Panel>
 	)
 }

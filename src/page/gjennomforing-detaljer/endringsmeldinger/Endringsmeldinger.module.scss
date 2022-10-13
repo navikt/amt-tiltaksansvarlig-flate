@@ -3,12 +3,6 @@
   padding-bottom: 0
 }
 
-.header {
-  font-size: 1rem;
-  padding: 0;
-  background-color: transparent !important;
-}
-
 .ikkeTilgangAlert {
   width: fit-content;
 }
@@ -21,3 +15,25 @@
 .spaceTop {
   margin-top: 1rem;
 }
+
+.spaceBottom {
+  margin-bottom: 1.5rem;
+}
+
+.accordionHeader {
+    font-weight: 100;
+    font-size: 1.2rem;
+    padding: 0;
+    border-bottom: none;
+
+    color: var(--navds-semantic-color-interaction-primary);
+    background-color: transparent !important;
+}
+.accordionHeader:enabled {
+    color: var(--navds-semantic-color-interaction-primary);
+}
+.accordionHeader:hover {
+    color: var(--navds-semantic-color-interaction-primary-hover);
+}
+
+

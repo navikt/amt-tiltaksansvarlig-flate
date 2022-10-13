@@ -39,3 +39,13 @@
     color: var(--navds-semantic-color-text-muted);
 }
 
+.body {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.spaceBottom {
+    margin-bottom: 1rem
+}
