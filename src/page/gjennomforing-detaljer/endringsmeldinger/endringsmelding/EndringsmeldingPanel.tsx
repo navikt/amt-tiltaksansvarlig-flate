@@ -67,7 +67,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, clas
 	return (
 		<Panel border className={classNames(styles.panel, className)}>
 			<PanelLinje>
-				<Heading size="xsmall" level="3">{navn}</Heading>
+				<Heading size="xsmall" level="4">{navn}</Heading>
 				<BodyShort size="medium" className={styles.fnr} >{bruker.fodselsnummer}</BodyShort>
 				<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 			</PanelLinje>
