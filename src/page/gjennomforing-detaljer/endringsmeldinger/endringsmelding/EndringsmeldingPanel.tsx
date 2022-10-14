@@ -89,20 +89,19 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, clas
 						<BodyShort className={styles.gray}>Ferdig</BodyShort>
 					)
 				}
-
-
-				{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
-					<PanelLinje className={styles.spaceTop}>
-						<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
-					</PanelLinje>
-				}
-
-				{isRejected(markerSomFerdigPromise) &&
-					<PanelLinje className={styles.spaceTop}>
-						<Alert variant="error" size="small">Noe gikk galt</Alert>
-					</PanelLinje>
-				}
 			</div>
+
+			{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
+				<PanelLinje className={styles.spaceTop}>
+					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+				</PanelLinje>
+			}
+
+			{isRejected(markerSomFerdigPromise) &&
+				<PanelLinje className={styles.spaceTop}>
+					<Alert variant="error" size="small">Noe gikk galt</Alert>
+				</PanelLinje>
+			}
 		</Panel>
 	)
 }

@@ -60,5 +60,25 @@ export const endringsmeldingData = [
 			etternavn: 'Triviell'
 		},
 		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.datatype.uuid(),
+		bruker: {
+			fornavn: 'Lur',
+			mellomnavn: 'Lutlei',
+			etternavn: 'Luresen',
+			fodselsnummer: '03035512347'
+		},
+		startDato: null,
+		sluttDato: faker.date.future(),
+		aktiv: false,
+		godkjent: false,
+		arkivert: true,
+		opprettetAvArrangorAnsatt: {
+			fornavn: 'Trine',
+			mellomnavn: null,
+			etternavn: 'Triviell'
+		},
+		opprettetDato: faker.date.recent()
 	}
 ]
