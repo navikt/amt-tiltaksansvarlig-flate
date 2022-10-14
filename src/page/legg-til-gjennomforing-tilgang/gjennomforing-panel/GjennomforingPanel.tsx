@@ -38,6 +38,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 				onClick={handleOnLeggTilClicked}
 				loading={isPending(leggTilGjennomforingPromise)}
 				disabled={disableLeggTil}
+				className={styles.leggTilKnapp}
 			>
 				<Add/> Legg til
 			</Button>

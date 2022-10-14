@@ -34,11 +34,11 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, children, className
 	}, [ markerSomFerdigPromise ])
 
 	return (
-		<Panel className={classNames(styles.panel, className)}>
+		<Panel border className={classNames(styles.panel, className)}>
 			<PanelLinje>
 				<Heading size="xsmall" level="3">{navn}</Heading>
 				<BodyShort size="medium" className={styles.fnr} >{bruker.fodselsnummer}</BodyShort>
-				<Detail size="small" className={classNames(styles.moveRight, styles.gray)}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
+				<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 			</PanelLinje>
 
 			<div className={styles.body}>
@@ -47,7 +47,6 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, children, className
 					? (
 						<Button
 							size="small"
-							className={styles.moveRight}
 							onClick={handleOnFerdigClicked}
 							disabled={!isNotStarted(markerSomFerdigPromise)}
 							loading={isPending(markerSomFerdigPromise)}
@@ -56,7 +55,7 @@ export const Endringsmelding = ({ endringsmelding, onFerdig, children, className
 						</Button>
 					)
 					: (
-						<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>
+						<BodyShort className={styles.gray}>Ferdig</BodyShort>
 					)
 				}
 

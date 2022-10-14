@@ -19,3 +19,16 @@
 .alert {
   margin-top: 2rem;
 }
+
+.leggTilKnapp {
+    span {
+        display: inline-flex;
+        gap: var(--navds-spacing-2);
+    }
+    svg {
+        width: 24px;
+        height: 24px;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}

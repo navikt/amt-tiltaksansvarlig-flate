@@ -15,7 +15,7 @@ interface IProps {
 export const SluttdatoEndringsmelding = ({ endringsmelding, onFerdig, className }: IProps): React.ReactElement => {
 	return (
 		<Endringsmelding endringsmelding={endringsmelding} onFerdig={onFerdig} className={className}>
-			<PanelLinje>
+			<PanelLinje className={styles.spaceTop}>
 				<BodyShort className={styles.endringInfoTekst}>Ny sluttdato: {formatDate(endringsmelding.sluttDato)}</BodyShort>
 			</PanelLinje>
 		</Endringsmelding>

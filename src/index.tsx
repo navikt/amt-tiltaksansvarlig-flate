@@ -6,6 +6,8 @@ import ReactDOM from 'react-dom'
 
 import { App } from './App'
 import env from './utils/environment'
+import '@navikt/ds-css'
+import '@navikt/ds-css-internal'
 
 require('dayjs/locale/nb')
 dayjs.locale('nb')

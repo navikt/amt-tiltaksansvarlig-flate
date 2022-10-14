@@ -28,7 +28,7 @@ export const Meldingsliste = (props: MeldingslisteProps) => {
 					<Accordion.Header className={styles.accordionHeader}>
 						Meldinger som er markert ferdig
 					</Accordion.Header>
-					<Accordion.Content className={styles.noBottomBorder}>
+					<Accordion.Content className={styles.accordionContent}>
 						{
 							isNotStartedOrPending(endringsmeldingerPromise)
 								? <Spinner />
