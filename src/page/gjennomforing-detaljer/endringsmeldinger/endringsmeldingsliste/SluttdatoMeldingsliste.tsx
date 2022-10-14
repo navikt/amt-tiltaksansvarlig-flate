@@ -1,30 +1,27 @@
 import React from 'react'
 import { Alert, BodyLong, Heading } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
-import { UsePromise } from '../../../../utils/use-promise'
 import styles from '../Endringsmeldinger.module.scss'
-import { EndringsmeldingType } from '../../../../api/api'
 import { Meldingsliste } from './Meldingsliste'
-import { SluttdatoEndringsmelding } from '../endringsmelding/SluttdatoEndringsmelding'
+import { SluttdatoEndringsmelding, SluttdatoEndringsmeldingPanel } from '../endringsmelding/SluttdatoEndringsmeldingPanel'
+import { sorterEndringsmeldingNyestFørst } from '../utils'
 
 interface MeldingerProps {
-	aktiveMeldinger: EndringsmeldingType[]
-	inaktiveMeldinger: EndringsmeldingType[]
+	meldinger: SluttdatoEndringsmelding[]
 	refresh: () => void
-	endringsmeldingerPromise: UsePromise<AxiosResponse>
 }
 
 
 export const SluttdatoMeldingsliste = ({
-	aktiveMeldinger,
-	inaktiveMeldinger,
+	meldinger,
 	refresh,
-	endringsmeldingerPromise
 }: MeldingerProps) => {
+	const aktiveMeldinger = meldinger.filter(e => e.aktiv).sort(sorterEndringsmeldingNyestFørst)
+	const inaktiveMeldinger = meldinger.filter(e => !e.aktiv).sort(sorterEndringsmeldingNyestFørst)
+
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
 		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>
 		: aktiveMeldinger.map(e => (
-			<SluttdatoEndringsmelding
+			<SluttdatoEndringsmeldingPanel
 				className={styles.ikkeArkivertPadding}
 				endringsmelding={e}
 				onFerdig={refresh}
@@ -34,7 +31,7 @@ export const SluttdatoMeldingsliste = ({
 
 	const inaktiveMeldingerVisning = inaktiveMeldinger.length === 0
 		? <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
-		: inaktiveMeldinger.map(e => <SluttdatoEndringsmelding endringsmelding={e} onFerdig={refresh} key={e.id} />)
+		: inaktiveMeldinger.map(e => <SluttdatoEndringsmeldingPanel endringsmelding={e} onFerdig={refresh} key={e.id} />)
 
 	return (
 		<div className={styles.spaceBottom}>
@@ -42,7 +39,7 @@ export const SluttdatoMeldingsliste = ({
 			<BodyLong size="small" className={styles.spaceBottom}>
 				Når tiltaksarrangøren oppdaterer sluttdato til en deltaker for å informere om forlengelse eller avslutning, så kommer det en ny melding her. Sluttdatoen skal legges inn i Arena.
 			</BodyLong>
-			<Meldingsliste endringsmeldingerPromise={endringsmeldingerPromise} aktiveMeldingerVisning={aktiveMeldingerVisning} inaktiveMeldingerVisning={inaktiveMeldingerVisning} />
+			<Meldingsliste aktiveMeldingerVisning={aktiveMeldingerVisning} inaktiveMeldingerVisning={inaktiveMeldingerVisning} />
 		</div>
 	)
 }

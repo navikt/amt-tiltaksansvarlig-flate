@@ -8,15 +8,46 @@ import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../
 import { AxiosResponse } from 'axios'
 import { PanelLinje } from './PanelLinje'
 import classNames from 'classnames'
+import { Nullable } from '../../../../utils/types'
+
+export interface Endringsmelding {
+	id: string
+	bruker: {
+		fornavn: string
+		mellomnavn: Nullable<string>
+		etternavn: string
+		fodselsnummer: string
+	}
+	aktiv: boolean
+	godkjent: boolean
+	arkivert: boolean
+	opprettetDato: Date
+}
+
+export const mapTilEndringsmelding = (e: EndringsmeldingType): Endringsmelding => {
+	return {
+		id: e.id,
+		bruker: {
+			fornavn: e.bruker.fornavn,
+			mellomnavn: e.bruker.mellomnavn,
+			etternavn: e.bruker.etternavn,
+			fodselsnummer: e.bruker.fodselsnummer,
+		},
+		aktiv: e.aktiv,
+		godkjent: e.godkjent,
+		arkivert: e.arkivert,
+		opprettetDato: e.opprettetDato,
+	}
+}
 
 interface EndringsmeldingProps {
-	endringsmelding: EndringsmeldingType
+	endringsmelding: Endringsmelding
 	onFerdig: () => void
 	children?: React.ReactNode
 	className?: string
 }
 
-export const Endringsmelding = ({ endringsmelding, onFerdig, children, className }: EndringsmeldingProps): React.ReactElement => {
+export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const bruker = endringsmelding.bruker

@@ -1,35 +1,31 @@
 import React from 'react'
 import { Alert, BodyLong, Heading } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
-import { UsePromise } from '../../../../utils/use-promise'
 import styles from '../Endringsmeldinger.module.scss'
-import { EndringsmeldingType } from '../../../../api/api'
 import { useLagretVarighet } from '../endringsmelding/useLagretVarighet'
-import { StartdatoEndringsmelding } from '../endringsmelding/StartdatoEndringsmelding'
+import { StartdatoEndringsmelding, StartdatoEndringsmeldingPanel } from '../endringsmelding/StartdatoEndringsmeldingPanel'
 import { VarighetSelect } from '../endringsmelding/VarighetSelect'
 import { Meldingsliste } from './Meldingsliste'
+import { sorterEndringsmeldingNyestFørst } from '../utils'
 
 const DEFAULT_VARIGHET_MANEDER = 6
 
 interface MeldingerProps {
-	aktiveMeldinger: EndringsmeldingType[]
-	inaktiveMeldinger: EndringsmeldingType[]
+	meldinger: StartdatoEndringsmelding[]
 	refresh: () => void
-	endringsmeldingerPromise: UsePromise<AxiosResponse>
 }
 
 export const StartdatoMeldingsliste = ({
-	aktiveMeldinger,
-	inaktiveMeldinger,
+	meldinger,
 	refresh,
-	endringsmeldingerPromise
 }: MeldingerProps) => {
 	const [ varighet, setVarighet ] = useLagretVarighet(DEFAULT_VARIGHET_MANEDER)
+	const aktiveMeldinger = meldinger.filter(e => e.aktiv).sort(sorterEndringsmeldingNyestFørst)
+	const inaktiveMeldinger = meldinger.filter(e => !e.aktiv).sort(sorterEndringsmeldingNyestFørst)
 
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
 		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>
 		: aktiveMeldinger.map(e => (
-			<StartdatoEndringsmelding
+			<StartdatoEndringsmeldingPanel
 				className={styles.ikkeArkivertPadding}
 				endringsmelding={e}
 				varighet={varighet}
@@ -40,7 +36,7 @@ export const StartdatoMeldingsliste = ({
 
 	const inaktiveMeldingerVisning = inaktiveMeldinger.length === 0
 		? <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
-		: inaktiveMeldinger.map(e => <StartdatoEndringsmelding endringsmelding={e} onFerdig={refresh} key={e.id} varighet={varighet} />)
+		: inaktiveMeldinger.map(e => <StartdatoEndringsmeldingPanel endringsmelding={e} onFerdig={refresh} key={e.id} varighet={varighet} />)
 
 	return (
 		<div className={styles.spaceBottom}>
@@ -50,7 +46,7 @@ export const StartdatoMeldingsliste = ({
 				Den valgte varigheten gir forslag om sluttdato. Datoene legges inn i Arena.
 			</BodyLong>
 			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
-			<Meldingsliste endringsmeldingerPromise={endringsmeldingerPromise} aktiveMeldingerVisning={aktiveMeldingerVisning} inaktiveMeldingerVisning={inaktiveMeldingerVisning} />
+			<Meldingsliste aktiveMeldingerVisning={aktiveMeldingerVisning} inaktiveMeldingerVisning={inaktiveMeldingerVisning} />
 		</div>
 	)
 }
