@@ -7,7 +7,7 @@
 }
 
 .smallText {
-  font-size: 1rem;
+  font-size: 0.875rem !important;
 }
 
 .spaceTop {
@@ -23,8 +23,7 @@
 }
 
 .fnr {
-  margin-top: auto;
-  margin-left: 1rem
+  margin-left: 1rem !important;
 }
 
 .panel {
@@ -35,7 +34,22 @@
 }
 
 .sluttdato {
-    margin-top: 0.5rem;
+    margin-top: 0.5rem !important;
     color: var(--navds-semantic-color-text-muted);
 }
 
+.body {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.spaceBottom {
+    margin-bottom: 1rem
+}
+
+.sendt {
+    margin: 0 0 0 auto !important;
+    @extend .gray;
+}

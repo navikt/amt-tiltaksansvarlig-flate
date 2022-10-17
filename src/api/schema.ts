@@ -49,7 +49,8 @@ export const BrukerSchema = z.object({
 export const EndringsmeldingSchema = z.object({
 	id: z.string().uuid(),
 	bruker: BrukerSchema,
-	startDato: processStringToDate,
+	startDato: processStringToDate.nullable(),
+	sluttDato: processStringToDate.nullable(),
 	aktiv: z.boolean(),
 	godkjent: z.boolean(),
 	arkivert: z.boolean(),

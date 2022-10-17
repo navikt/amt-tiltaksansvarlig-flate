@@ -2,22 +2,52 @@ import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingType, markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { beregnSluttDato, formatDate } from '../../../../utils/date-utils'
+import { formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { PanelLinje } from './PanelLinje'
 import classNames from 'classnames'
+import { Nullable } from '../../../../utils/types'
+
+export interface Endringsmelding {
+	id: string
+	bruker: {
+		fornavn: string
+		mellomnavn: Nullable<string>
+		etternavn: string
+		fodselsnummer: string
+	}
+	aktiv: boolean
+	godkjent: boolean
+	arkivert: boolean
+	opprettetDato: Date
+}
+
+export const mapTilEndringsmelding = (e: EndringsmeldingType): Endringsmelding => {
+	return {
+		id: e.id,
+		bruker: {
+			fornavn: e.bruker.fornavn,
+			mellomnavn: e.bruker.mellomnavn,
+			etternavn: e.bruker.etternavn,
+			fodselsnummer: e.bruker.fodselsnummer,
+		},
+		aktiv: e.aktiv,
+		godkjent: e.godkjent,
+		arkivert: e.arkivert,
+		opprettetDato: e.opprettetDato,
+	}
+}
 
 interface EndringsmeldingProps {
-	endringsmelding: EndringsmeldingType
-	varighet: number
+	endringsmelding: Endringsmelding
 	onFerdig: () => void
-
+	children?: React.ReactNode
 	className?: string
 }
 
-export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className }: EndringsmeldingProps): React.ReactElement => {
+export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const bruker = endringsmelding.bruker
@@ -35,38 +65,31 @@ export const Endringsmelding = ({ endringsmelding, varighet, onFerdig, className
 	}, [ markerSomFerdigPromise ])
 
 	return (
-		<Panel className={classNames(styles.panel, className)}>
+		<Panel border className={classNames(styles.panel, className)}>
 			<PanelLinje>
-				<Heading size="xsmall" level="3">{navn}</Heading>
+				<Heading size="xsmall" level="4">{navn}</Heading>
 				<BodyShort size="medium" className={styles.fnr} >{bruker.fodselsnummer}</BodyShort>
-				<Detail size="small" className={classNames(styles.moveRight, styles.gray)}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
+				<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 			</PanelLinje>
-			<PanelLinje>
-				<BodyShort className={styles.endringInfoTekst}>Ny oppstartsdato: {formatDate(endringsmelding.startDato)}</BodyShort>
-			</PanelLinje>
-			{endringsmelding.aktiv
-				? (
-					<PanelLinje>
-						<Detail size="small" className={styles.sluttdato}>
-							Foreslått sluttdato: {formatDate(beregnSluttDato(endringsmelding.startDato, varighet))}
-						</Detail>
+
+			<div className={styles.body}>
+				{children}
+				{endringsmelding.aktiv
+					? (
 						<Button
 							size="small"
-							className={styles.moveRight}
 							onClick={handleOnFerdigClicked}
 							disabled={!isNotStarted(markerSomFerdigPromise)}
 							loading={isPending(markerSomFerdigPromise)}
 						>
 							Ferdig
 						</Button>
-					</PanelLinje>
-				)
-				: (
-					<PanelLinje>
-						<BodyShort className={classNames(styles.moveRight, styles.gray)}>Ferdig</BodyShort>
-					</PanelLinje>
-				)
-			}
+					)
+					: (
+						<BodyShort className={styles.gray}>Ferdig</BodyShort>
+					)
+				}
+			</div>
 
 			{(!endringsmelding.godkjent && !endringsmelding.aktiv) &&
 				<PanelLinje className={styles.spaceTop}>

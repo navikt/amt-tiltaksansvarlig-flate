@@ -64,7 +64,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 				<Button
 					variant="primary"
-					className={styles.leggTilKnapp}
+					className={styles.sokKnapp}
 					onClick={handleOnSokClicked}
 					disabled={isPending(hentGjennomforingMedLopenrPromise) || !lopenrSokefelt}
 					loading={isPending(hentGjennomforingMedLopenrPromise)}

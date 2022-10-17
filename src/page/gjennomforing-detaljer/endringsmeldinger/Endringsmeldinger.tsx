@@ -1,113 +1,101 @@
-import React from 'react'
-import { isNotStartedOrPending, isRejected, usePromise } from '../../../utils/use-promise'
+import React, { useEffect, useState } from 'react'
+import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
-import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
+import { Alert, Heading } from '@navikt/ds-react'
 import { EndringsmeldingerType, EndringsmeldingType, fetchEndringsmeldinger } from '../../../api/api'
-import { Endringsmelding } from './endringsmelding/Endringsmelding'
 import globalStyles from '../../../globals.module.scss'
 import styles from './Endringsmeldinger.module.scss'
-import { Spinner } from '../../../component/spinner/Spinner'
-import classNames from 'classnames'
 import { useDataStore } from '../../../store/data-store'
 import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
-import { VarighetSelect } from './endringsmelding/VarighetSelect'
-import { useLagretVarighet } from './endringsmelding/useLagretVarighet'
-
-const DEFAULT_VARIGHET_MANEDER = 6
+import { StartdatoMeldingsliste } from './endringsmeldingsliste/StartdatoMeldingsliste'
+import { SluttdatoMeldingsliste } from './endringsmeldingsliste/SluttdatoMeldingsliste'
+import { Spinner } from '../../../component/spinner/Spinner'
+import { StartdatoEndringsmelding } from './endringsmelding/StartdatoEndringsmeldingPanel'
+import { SluttdatoEndringsmelding } from './endringsmelding/SluttdatoEndringsmeldingPanel'
+import { mapTilEndringsmelding } from './endringsmelding/EndringsmeldingPanel'
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
 }
 
-const sorterEndringsmeldingNyestFørst = (e1: EndringsmeldingType, e2: EndringsmeldingType): number => {
-	return e1.opprettetDato > e2.opprettetDato ? -1 : 1
-}
-
 export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 	const { innloggetAnsatt } = useDataStore()
-
+	const [ endringsmeldinger, setEndringsmeldinger ] = useState<EndringsmeldingType[]>([])
+	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>()
 	const harTilgang = harTilgangTilEndringsmelding(innloggetAnsatt.tilganger)
 
-	return (
-		<section className={globalStyles.blokkL}>
-			<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
+	useEffect(() => {
+		if (isResolved(endringsmeldingerPromise)) {
+			setEndringsmeldinger(endringsmeldingerPromise.result.data)
+		}
+	}, [ endringsmeldingerPromise ])
 
-			{
-				harTilgang
-					? <Meldinger gjennomforingId={props.gjennomforingId} />
-					: (
-						<Alert className={styles.ikkeTilgangAlert} variant="info" size="small">
-							Du har ikke tilgang til å se endringmeldinger.
-						</Alert>
-					)
+
+	useEffect(() => {
+		if (harTilgang) {
+			endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ harTilgang ])
+
+	const startdatoMeldinger: StartdatoEndringsmelding[] = endringsmeldinger
+		.filter(e => e.startDato)
+		.map(e => {
+			return {
+				...mapTilEndringsmelding(e),
+				startdato: e.startDato as Date
 			}
-		</section>
-	)
-}
-
-const Meldinger = (props: EndringsmeldingerProps) => {
-	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>(() => fetchEndringsmeldinger(props.gjennomforingId))
-
-	const [ varighet, setVarighet ] = useLagretVarighet(DEFAULT_VARIGHET_MANEDER)
-
-	const aktiveMeldinger = endringsmeldingerPromise.result?.data
-		.filter(e => e.aktiv)
-		.sort(sorterEndringsmeldingNyestFørst) ?? []
-
-	const inaktiveMeldinger = endringsmeldingerPromise.result?.data
-		.filter(e => !e.aktiv)
-		.sort(sorterEndringsmeldingNyestFørst) ?? []
+		})
+	const sluttdatoMeldinger: SluttdatoEndringsmelding[] = endringsmeldinger.filter(e => e.sluttDato)
+		.map(e => {
+			return {
+				...mapTilEndringsmelding(e),
+				sluttdato: e.sluttDato as Date
+			}
+		})
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
 	}
 
-	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
-		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>
-		: aktiveMeldinger.map(e => (
-			<Endringsmelding
-				className={styles.ikkeArkivertPadding}
-				endringsmelding={e}
-				varighet={varighet}
-				onFerdig={refresh}
-				key={e.id}
-			/>
-		))
+	const isLoading = isNotStartedOrPending(endringsmeldingerPromise)
 
-	const inaktiveMeldingerVisning = inaktiveMeldinger.length === 0
-		? <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
-		: inaktiveMeldinger.map(e => <Endringsmelding endringsmelding={e} varighet={varighet} onFerdig={refresh} key={e.id} />)
+	if (!harTilgang) {
+		return (
+			<Alert className={styles.errorAlert} variant="info" size="small">
+				Du har ikke tilgang til å se endringsmeldinger.
+			</Alert>
+		)
+	}
+
+	if (isRejected(endringsmeldingerPromise)) {
+		return (
+			<Alert className={styles.errorAlert} variant="error" size="small">
+				Klarte ikke å laste endringsmeldinger.
+			</Alert>
+		)
+	}
 
 	return (
-		<>
-			<BodyLong size="small">
-				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her. 
-				Den valgte varigheten gir forslag om sluttdato. Datoene legges inn i Arena.
-			</BodyLong>
-			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
-
+		<section className={globalStyles.blokkL}>
+			<Heading size="small" level="2" spacing>Endringsmeldinger fra tiltaksarrangør</Heading>
 			{
-				isNotStartedOrPending(endringsmeldingerPromise)
-					? <Spinner />
-					: aktiveMeldingerVisning
+				isLoading ? (
+					<Spinner />
+				) : (
+					<>
+						<StartdatoMeldingsliste
+							meldinger={startdatoMeldinger}
+							refresh={refresh}
+						/>
+						<SluttdatoMeldingsliste
+							meldinger={sluttdatoMeldinger}
+							refresh={refresh}
+						/>
+					</>
+				)
 			}
 
-			{isRejected(endringsmeldingerPromise) && <Alert variant="error">En feil har oppstått</Alert>}
-
-			<Accordion className={styles.spaceTop}>
-				<Accordion.Item>
-					<Accordion.Header className={classNames(styles.noBottomBorder, styles.header)}>
-						Meldinger som er markert ferdig
-					</Accordion.Header>
-					<Accordion.Content className={styles.noBottomBorder}>
-						{
-							isNotStartedOrPending(endringsmeldingerPromise)
-								? <Spinner />
-								: inaktiveMeldingerVisning
-						}
-					</Accordion.Content>
-				</Accordion.Item>
-			</Accordion>
-		</>
+		</section>
 	)
 }

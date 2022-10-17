@@ -2,34 +2,36 @@
 $max-bredde: 650px;
 
 
+// Designsystemet overskriver stylingen vår fordi css klasser settes i feil rekkefølge
+// fjern important når de fikser problemet.
 .blokkNull {
-	margin-bottom: 0;
+	margin-bottom: 0 !important;
 }
 
 .blokkXxxs {
-	margin-bottom: 4px;
+	margin-bottom: 4px !important;
 }
 
 .blokkXxs {
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem !important;
 }
 
 .blokkXs {
-	margin-bottom: 1rem;
+	margin-bottom: 1rem !important;
 }
 
 .blokkS {
-	margin-bottom: 20px;
+	margin-bottom: 20px !important;
 }
 
 .blokkM {
-	margin-bottom: 2rem;
+	margin-bottom: 2rem !important;
 }
 
 .blokkL {
-	margin-bottom: 2.5rem;
+	margin-bottom: 2.5rem !important;
 }
 
 .blokkXl {
-	margin-bottom: 4rem;
+	margin-bottom: 4rem !important;
 }

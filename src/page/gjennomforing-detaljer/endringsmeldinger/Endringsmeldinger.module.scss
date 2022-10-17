@@ -1,15 +1,4 @@
-.noBottomBorder {
-  border-bottom: none;
-  padding-bottom: 0
-}
-
-.header {
-  font-size: 1rem;
-  padding: 0;
-  background-color: transparent !important;
-}
-
-.ikkeTilgangAlert {
+.errorAlert {
   width: fit-content;
 }
 
@@ -21,3 +10,30 @@
 .spaceTop {
   margin-top: 1rem;
 }
+
+.spaceBottom {
+  margin-bottom: 1.5rem !important;
+}
+
+.accordionHeader {
+    span {
+        font-weight: 400;
+        font-size: 1.125rem;
+    }
+    padding: 0;
+    border-bottom: none !important;
+
+    color: var(--navds-semantic-color-interaction-primary);
+    background-color: transparent !important;
+    &:hover {
+        color: var(--navds-semantic-color-interaction-primary-hover) !important;
+        text-decoration: underline;
+    }
+}
+
+.accordionContent {
+  border-bottom: none !important;
+  padding-bottom: 0
+}
+
+
