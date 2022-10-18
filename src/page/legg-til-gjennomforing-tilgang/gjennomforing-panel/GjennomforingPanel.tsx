@@ -12,7 +12,7 @@ interface GjennomforingPanelProps {
 }
 
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
-	const { id, navn, opprettetAr, lopenr, arrangorNavn } = props.gjennomforing
+	const { id, navn, opprettetAr, lopenr, arrangorNavn, tiltak } = props.gjennomforing
 	const leggTilGjennomforingPromise = usePromise<AxiosResponse>()
 
 	const handleOnLeggTilClicked = () => {
@@ -52,7 +52,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 			<div className={styles.innhold}>
 				<div>
 					<BodyShort className={styles.muted}>Tiltak: {opprettetAr}/{lopenr}</BodyShort>
-					<BodyShort className={styles.muted}>Oppfølging</BodyShort>
+					<BodyShort className={styles.muted}>{tiltak.navn}</BodyShort>
 					<BodyShort className={styles.muted}>Tiltaksarrangør: {arrangorNavn}</BodyShort>
 				</div>
 				<LeggTil/>

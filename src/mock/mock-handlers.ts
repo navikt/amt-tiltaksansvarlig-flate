@@ -7,7 +7,7 @@ import {
 	innloggetAnsatt
 } from './data'
 import { endringsmeldingData } from './endringsmelding-data'
-import { GjennomforingType, HentGjennomforingerMedLopenrType } from '../api/api'
+import { GjennomforingDetaljerType, GjennomforingType, HentGjennomforingerMedLopenrType } from '../api/api'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {
@@ -19,7 +19,7 @@ export const mockHandlers: RequestHandler[] = [
 		if (lopenr) {
 			let gjennomforinger: HentGjennomforingerMedLopenrType = []
 
-			if(lopenr === '0') {
+			if (lopenr === '0') {
 				gjennomforinger = []
 			} else {
 				gjennomforinger = [
@@ -28,14 +28,22 @@ export const mockHandlers: RequestHandler[] = [
 						navn: 'TEST',
 						lopenr: 123,
 						opprettetAr: 2020,
-						arrangorNavn: 'Muligheter As'
+						arrangorNavn: 'Muligheter As',
+						tiltak: {
+							kode: 'ARBFORB',
+							navn: 'Arbeidsforberedende trening (AFT)',
+						}
 					},
 					{
 						id: '6ec95b2a-be19-41f0-9c97-1f81ab2159c3',
 						navn: 'Oppfølging Tjenesteområde 1',
 						lopenr: 123,
 						opprettetAr: 2020,
-						arrangorNavn: 'Muligheter As'
+						arrangorNavn: 'Muligheter As',
+						tiltak: {
+							kode: 'INDOPPFAG',
+							navn: 'Oppfølging',
+						}
 					}
 				]
 
@@ -51,16 +59,19 @@ export const mockHandlers: RequestHandler[] = [
 				arrangorNavn: g.arrangor.virksomhetNavn,
 				lopenr: g.lopenr,
 				opprettetAar: g.opprettetAr,
-				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger
+				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
+				tiltak: g.tiltak,
 			}))
 
 		return res(ctx.delay(250), ctx.json(data))
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
-		return res(ctx.delay(250), ctx.json(
-			gjennomforinger.find(g => g.id === id)
-		))
+		const gjennomforing: GjennomforingDetaljerType | undefined = gjennomforinger.find(g => g.id === id)
+		if (!gjennomforing) {
+			return res(ctx.delay(250), ctx.status(404))
+		}
+		return res(ctx.delay(250), ctx.json(gjennomforing))
 	}),
 
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {

@@ -1,6 +1,11 @@
 import { z } from 'zod'
 
-const processStringToDate = z.preprocess((val) => (val? new Date(val as string): null), z.date())
+const processStringToDate = z.preprocess((val) => (val ? new Date(val as string) : null), z.date())
+
+export const TiltakSchema = z.object({
+	kode: z.string(),
+	navn: z.string(),
+})
 
 export const InnloggetNavAnsattSchema = z.object({
 	navIdent: z.string(),
@@ -25,7 +30,8 @@ export const GjennomforingSchema = z.object({
 	lopenr: z.number(),
 	opprettetAar: z.number(),
 	arrangorNavn: z.string(),
-	antallAktiveEndringsmeldinger: z.number().int()
+	antallAktiveEndringsmeldinger: z.number().int(),
+	tiltak: TiltakSchema,
 })
 
 export const GjennomforingDetaljerSchema = z.object({
@@ -34,9 +40,9 @@ export const GjennomforingDetaljerSchema = z.object({
 	startDato: processStringToDate,
 	sluttDato: processStringToDate,
 	arrangor: ArrangorSchema,
-	tiltakNavn: z.string(),
 	lopenr: z.number().int(),
-	opprettetAr: z.number().int()
+	opprettetAr: z.number().int(),
+	tiltak: TiltakSchema,
 })
 
 export const BrukerSchema = z.object({
@@ -63,7 +69,8 @@ export const HentGjennomforingMedLopenrSchema = z.object({
 	navn: z.string(),
 	lopenr: z.number().int(),
 	opprettetAr: z.number().int(),
-	arrangorNavn: z.string()
+	arrangorNavn: z.string(),
+	tiltak: TiltakSchema,
 })
 
 export const HentGjennomforingerMedLopenrSchema = z.array(HentGjennomforingMedLopenrSchema)

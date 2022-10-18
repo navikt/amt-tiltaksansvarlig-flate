@@ -22,7 +22,7 @@ export const GjennomforingGenerellInfo = ({ gjennomforing, className }: Gjennomf
 		<div className={className}>
 			<div className={styles.rad}>
 				<BodyShort size="small" className={styles.sammendrag}>{arrangorNavn}</BodyShort>
-				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.tiltakNavn}</BodyShort>
+				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.tiltak.navn}</BodyShort>
 				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.opprettetAr}/{gjennomforing.lopenr}</BodyShort>
 			</div>
 			<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
