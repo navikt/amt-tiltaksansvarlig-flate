@@ -54,7 +54,7 @@ const GjennomforingGruppering = (props: TiltakMedGjennomforinger): React.ReactEl
 			<Heading size="xsmall" level="2">{props.tiltak.navn}</Heading>
 			{
 				props.gjennomforinger
-					.sort((g1, g2) => sortAlphabetic(g1.tiltak.navn, g2.tiltak.navn))
+					.sort((g1, g2) => sortAlphabetic(g1.navn, g2.navn))
 					.map(gjennomforing => <GjennomforingPanel gjennomforing={gjennomforing} key={gjennomforing.id} />)
 			}
 		</div>
