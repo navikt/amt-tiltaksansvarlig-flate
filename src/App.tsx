@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 
 import { fetchInnloggetAnsatt } from './api/api'
 import {
@@ -36,6 +36,7 @@ export const App = (): React.ReactElement => {
 					<Route path={FORSIDE_PAGE_ROUTE} element={<Forside/>}/>
 					<Route path={GJENNOMFORING_DETALJER_PAGE_ROUTE} element={<GjennomforingDetaljerPage />}/>
 					<Route path={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} element={<LeggTilGjennomforingTilgangPage/>}/>
+					<Route path="*" element={<Navigate replace to={FORSIDE_PAGE_ROUTE}/>}/>
 				</Routes>
 			</BrowserRouter>
 		</StoreProvider>
