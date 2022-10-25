@@ -7,18 +7,20 @@ import { VarighetSelect } from '../endringsmelding/VarighetSelect'
 import { Meldingsliste } from './Meldingsliste'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
 
-const DEFAULT_VARIGHET_MANEDER = 6
+const DEFAULT_VARIGHET_MANEDER = null
 
 interface MeldingerProps {
+	gjennomforingId: string,
 	meldinger: StartdatoEndringsmelding[]
 	refresh: () => void
 }
 
 export const StartdatoMeldingsliste = ({
+	gjennomforingId,
 	meldinger,
 	refresh,
 }: MeldingerProps) => {
-	const [ varighet, setVarighet ] = useLagretVarighet(DEFAULT_VARIGHET_MANEDER)
+	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_MANEDER)
 	const aktiveMeldinger = meldinger.filter(e => e.aktiv).sort(sorterEndringsmeldingNyestFørst)
 	const inaktiveMeldinger = meldinger.filter(e => !e.aktiv).sort(sorterEndringsmeldingNyestFørst)
 
@@ -42,8 +44,8 @@ export const StartdatoMeldingsliste = ({
 		<div className={styles.spaceBottom}>
 			<Heading size="small" level="3" spacing>Oppstartsdato</Heading>
 			<BodyLong size="small">
-				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker, så kommer det en ny melding her.
-				Den valgte varigheten gir forslag om sluttdato. Datoene legges inn i Arena.
+				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker kommer det en ny melding her.
+				For å få forslag til en sluttdato kan du velge en varighet nedenfor. Datoene skal legges inn i Arena.
 			</BodyLong>
 			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
 			<Meldingsliste aktiveMeldingerVisning={aktiveMeldingerVisning} inaktiveMeldingerVisning={inaktiveMeldingerVisning} />
