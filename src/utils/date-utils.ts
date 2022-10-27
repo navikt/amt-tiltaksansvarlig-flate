@@ -7,6 +7,12 @@ export const formatDate = (date: Date | null): string => {
 	return dayjs(date).format('DD.MM.YYYY')
 }
 
+
+export const formatDateMedMndNavn = (date: Date | null) => {
+	if (!date) return EMDASH
+	return dayjs(date).format('D. MMMM YYYY')
+}
+
 export const beregnSluttDato = (date: Date, months: number): Date => {
 	return dayjs(date).add(months, 'month').subtract(1, 'day').toDate()
 }
