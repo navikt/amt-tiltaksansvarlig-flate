@@ -11,8 +11,9 @@ export const Header = (): React.ReactElement => {
 	const [ showDropdown, setShowDropdown ] = useState(false)
 
 	return (
-		<InternHeader className="w-full">
-			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">NAV Arbeidsmarkedstiltak</InternHeader.Title>
+		<InternHeader className={styles.header}>
+			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">NAV
+				Arbeidsmarkedstiltak</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
