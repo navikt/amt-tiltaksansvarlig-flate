@@ -85,6 +85,7 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 				) : (
 					<>
 						<StartdatoMeldingsliste
+							gjennomforingId={props.gjennomforingId}
 							meldinger={startdatoMeldinger}
 							refresh={refresh}
 						/>
