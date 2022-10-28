@@ -12,7 +12,7 @@ export interface StartdatoEndringsmelding extends Endringsmelding {
 interface IProps {
 	endringsmelding: StartdatoEndringsmelding,
 	onFerdig: () => void
-	varighet: number,
+	varighet: number | null,
 	className?: string 
 }
 
@@ -23,7 +23,7 @@ export const StartdatoEndringsmeldingPanel = ({ endringsmelding, varighet, onFer
 				<PanelLinje>
 					<BodyShort className={styles.endringInfoTekst}>Ny oppstartsdato: {formatDate(endringsmelding.startdato)}</BodyShort>
 				</PanelLinje>
-				{endringsmelding.aktiv && (
+				{endringsmelding.aktiv && varighet != null && (
 					<PanelLinje>
 						<Detail size="small" className={styles.sluttdato}>
 							Foreslått sluttdato: {formatDate(endringsmelding.startdato ? beregnSluttDato(endringsmelding.startdato, varighet) : null)}

@@ -3,27 +3,29 @@ import styles from './VarighetSelect.module.scss'
 import { Select } from '@navikt/ds-react'
 
 interface VarighetSelectProps {
-    selectedValue: number
-    setVarighet: (val: number) => void
+	selectedValue: number | null
+	setVarighet: (val: number | null) => void
 }
 
-interface ItemInterface {
-    value: number
-}
+const ikkeValgt = -1
 
 export const VarighetSelect = ({ selectedValue, setVarighet }: VarighetSelectProps): React.ReactElement => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const val = parseInt(e.target.value)
-		setVarighet(val)
+		setVarighet(val === ikkeValgt ? null : val)
 	}
 
-	const Item = ({ value }: ItemInterface) => <option value={value} key={value}> {value} måneder</option>
+	const varighetSelectorValue = selectedValue === null ? ikkeValgt : selectedValue
 
 	return (
-		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={selectedValue}>
-			<Item value={6} />
-			<Item value={3} />
+		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectorValue}>
+			<option value={-1}>Ikke valgt</option>
+			<option value={1}>1 måned</option>
+			<option value={2}>2 måneder</option>
+			<option value={3}>3 måneder</option>
+			<option value={6}>6 måneder</option>
+			<option value={12}>12 måneder</option>
 		</Select>
 	)
 }
