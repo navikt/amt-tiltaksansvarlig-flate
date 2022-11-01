@@ -1,5 +1,6 @@
 {
     "baseUrl": "http://localhost:3000",
+    "projectId": "e2vmma",
     "fixturesFolder": false,
     "viewportHeight": 1300,
     "viewportWidth": 1800,
