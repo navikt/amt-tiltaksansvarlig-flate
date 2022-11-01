@@ -50,6 +50,7 @@ function sjekkUU() {
 function initialize() {
     // Authentication always fails on first api call, therefore we need to initialize
     cy.visit('/')
+    cy.get('#root', { timeout: 60_000 })
     cy.screenshot('initialize-done')
 
 }
