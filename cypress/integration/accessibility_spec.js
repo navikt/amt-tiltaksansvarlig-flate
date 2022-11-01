@@ -77,6 +77,7 @@ function navigerTilGjennomforingDetaljer() {
 }
 describe('Cypress+Axe accessibility tests', () => {
     it('"Forside" skal oppfylle UU-krav', () => {
+        cy.wait(30_000)
         initialize()
         gaTilForside()
 
