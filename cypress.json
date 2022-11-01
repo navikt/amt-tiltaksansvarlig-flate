@@ -8,6 +8,6 @@
     "pageLoadTimeout": 20000,
     "defaultCommandTimeout": 20000,
     "screenshotOnRunFailure": true,
-    "video": false,
+    "video": true,
     "videoUploadOnPasses": false
 }
