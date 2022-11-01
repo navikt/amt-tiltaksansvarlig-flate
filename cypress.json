@@ -6,7 +6,7 @@
     "requestTimeout": 20000,
     "pageLoadTimeout": 20000,
     "defaultCommandTimeout": 20000,
-    "screenshotOnRunFailure": false,
+    "screenshotOnRunFailure": true,
     "video": false,
     "videoUploadOnPasses": false
 }
