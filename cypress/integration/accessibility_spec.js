@@ -50,15 +50,16 @@ function sjekkUU() {
 function initialize() {
     // Authentication always fails on first api call, therefore we need to initialize
     cy.visit('/')
-    cy.screenshot()
+    cy.get('#root', { timeout: 60_000 })
+    cy.screenshot('initialize-done')
 
 }
 
 function gaTilForside() {
     cy.visit('/')
-    cy.screenshot()
+    cy.screenshot('visit-forside-done')
     cy.get('[data-testid=innlogget-header]', { timeout: 20_000 })
-    cy.screenshot()
+    cy.screenshot('found-innlogget-header')
     cy.get('[data-testid=forside-page]', { timeout: 20_000 })
     cy.screenshot()
 }
@@ -77,6 +78,7 @@ function navigerTilGjennomforingDetaljer() {
 }
 describe('Cypress+Axe accessibility tests', () => {
     it('"Forside" skal oppfylle UU-krav', () => {
+        cy.wait(60_000)
         initialize()
         gaTilForside()
 

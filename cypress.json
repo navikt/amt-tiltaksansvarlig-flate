@@ -1,5 +1,6 @@
 {
     "baseUrl": "http://localhost:3000",
+    "projectId": "e2vmma",
     "fixturesFolder": false,
     "viewportHeight": 1300,
     "viewportWidth": 1800,
@@ -7,6 +8,6 @@
     "pageLoadTimeout": 20000,
     "defaultCommandTimeout": 20000,
     "screenshotOnRunFailure": true,
-    "video": false,
+    "video": true,
     "videoUploadOnPasses": false
 }
