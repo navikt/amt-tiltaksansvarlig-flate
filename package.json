@@ -26,7 +26,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.0",
     "typescript": "^4.8.4",
-    "zod": "^3.14.2"
+    "zod": "^3.19.1"
   },
   "scripts": {
     "start": "cross-env REACT_APP_MOCKING_ENABLED=true react-scripts start",

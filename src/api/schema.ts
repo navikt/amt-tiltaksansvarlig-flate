@@ -1,6 +1,6 @@
-import { z } from 'zod'
+import { z, ZodEffects } from 'zod'
 
-const processStringToDate = z.preprocess((val) => (val ? new Date(val as string) : null), z.date())
+const processStringToDate = z.preprocess((val) => (val ? new Date(val as string) : null), z.date()) as ZodEffects<z.ZodDate>
 
 export const TiltakSchema = z.object({
 	kode: z.string(),
