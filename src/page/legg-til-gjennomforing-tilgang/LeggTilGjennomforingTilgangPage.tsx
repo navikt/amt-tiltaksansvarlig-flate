@@ -9,8 +9,8 @@ import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-p
 import { AxiosResponse } from 'axios'
 import {
 	fetchGjennomforinger,
-	GjennomforingerType,
-	HentGjennomforingerMedLopenrType,
+	Gjennomforing,
+	HentGjennomforingMedLopenr,
 	hentGjennomforingMedLopenr
 } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
@@ -18,9 +18,9 @@ import { GjennomforingPanelListe } from './GjennomforingPanelListe'
 
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
-	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingerMedLopenrType>>()
+	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingMedLopenr[]>>()
 
-	const getMineGjennomforinger = usePromise<AxiosResponse<GjennomforingerType>>(fetchGjennomforinger)
+	const getMineGjennomforinger = usePromise<AxiosResponse<Gjennomforing[]>>(fetchGjennomforinger)
 
 	const mineGjennomforinger = getMineGjennomforinger.result?.data
 		.map(i => i.id)
@@ -43,7 +43,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	return (
 		<main className={styles.mainPage} data-testid="legg-til-gjennomforing-page">
-			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
+			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM} />
 
 			<Heading size="medium" level="1" className={globalStyles.blokkM}>
 				Legg til et tiltak du jobber med
@@ -75,7 +75,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isPending(hentGjennomforingMedLopenrPromise)
-				&& (<Spinner/>)
+				&& (<Spinner />)
 			}
 
 			{
@@ -85,7 +85,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
-				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger} mineGjennomforingerIds={mineGjennomforinger}/>)
+				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger} mineGjennomforingerIds={mineGjennomforinger} />)
 			}
 		</main>
 	)

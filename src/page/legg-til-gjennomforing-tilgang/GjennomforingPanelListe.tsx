@@ -1,10 +1,10 @@
 import React from 'react'
-import { HentGjennomforingMedLopenrType } from '../../api/api'
+import { HentGjennomforingMedLopenr } from '../../api/api'
 import { Alert } from '@navikt/ds-react'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
 
 interface GjennomforingPanelListeProps {
-	gjennomforinger: HentGjennomforingMedLopenrType[],
+	gjennomforinger: HentGjennomforingMedLopenr[],
 	mineGjennomforingerIds: string[]
 }
 

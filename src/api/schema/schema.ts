@@ -1,6 +1,5 @@
-import { z, ZodEffects } from 'zod'
-
-const processStringToDate = z.preprocess((val) => (val ? new Date(val as string) : null), z.date()) as ZodEffects<z.ZodDate>
+import { z } from 'zod'
+import { processStringToDate } from '../utils'
 
 export const TiltakSchema = z.object({
 	kode: z.string(),
@@ -45,25 +44,6 @@ export const GjennomforingDetaljerSchema = z.object({
 	tiltak: TiltakSchema,
 })
 
-export const BrukerSchema = z.object({
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-	fodselsnummer: z.string(),
-})
-
-export const EndringsmeldingSchema = z.object({
-	id: z.string().uuid(),
-	bruker: BrukerSchema,
-	startDato: processStringToDate.nullable(),
-	sluttDato: processStringToDate.nullable(),
-	aktiv: z.boolean(),
-	godkjent: z.boolean(),
-	arkivert: z.boolean(),
-	opprettetAvArrangorAnsatt: ArrangorAnsattSchema,
-	opprettetDato: processStringToDate
-})
-
 export const HentGjennomforingMedLopenrSchema = z.object({
 	id: z.string().uuid(),
 	navn: z.string(),
@@ -74,5 +54,4 @@ export const HentGjennomforingMedLopenrSchema = z.object({
 })
 
 export const HentGjennomforingerMedLopenrSchema = z.array(HentGjennomforingMedLopenrSchema)
-export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 export const GjennomforingerSchema = z.array(GjennomforingSchema)

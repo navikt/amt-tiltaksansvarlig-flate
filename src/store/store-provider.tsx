@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { DataStoreProvider } from './data-store'
-import { InnloggetNavAnsattType } from '../api/api'
+import { InnloggetNavAnsatt } from '../api/api'
 
 interface StoreProviderProps {
-	innloggetAnsatt: InnloggetNavAnsattType
+	innloggetAnsatt: InnloggetNavAnsatt
 	children: React.ReactNode
 }
 

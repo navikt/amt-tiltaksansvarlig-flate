@@ -8,6 +8,7 @@ import {
 } from '../data'
 import { endringsmeldingData } from '../endringsmelding-data'
 import { GjennomforingDetaljer, Gjennomforing, HentGjennomforingMedLopenr } from '../../api/api'
+import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {
@@ -83,9 +84,7 @@ export const mockHandlers: RequestHandler[] = [
 		const melding = endringsmeldingData.find(e => e.id === endringsmeldingId)
 
 		if (melding) {
-			melding.aktiv = false
-			melding.godkjent = true
-			melding.arkivert = true
+			melding.status = EndringsmeldingStatus.UTFORT
 		}
 
 		return res(ctx.delay(500), ctx.status(200))

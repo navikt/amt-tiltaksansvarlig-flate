@@ -1,9 +1,9 @@
 import constate from 'constate'
 import { useState } from 'react'
-import { InnloggetNavAnsattType } from '../api/api'
+import { InnloggetNavAnsatt } from '../api/api'
 
-export const [ DataStoreProvider, useDataStore ] = constate((props: {initialInnloggetAnsatt: InnloggetNavAnsattType}) => {
-	const [ innloggetAnsatt, setInnloggetAnsatt ] = useState<InnloggetNavAnsattType>(props.initialInnloggetAnsatt)
+export const [ DataStoreProvider, useDataStore ] = constate((props: { initialInnloggetAnsatt: InnloggetNavAnsatt }) => {
+	const [ innloggetAnsatt, setInnloggetAnsatt ] = useState<InnloggetNavAnsatt>(props.initialInnloggetAnsatt)
 
 	return {
 		innloggetAnsatt,

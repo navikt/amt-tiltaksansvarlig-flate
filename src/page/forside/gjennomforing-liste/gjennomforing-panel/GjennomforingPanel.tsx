@@ -2,15 +2,15 @@ import { Tag, BodyShort, Heading } from '@navikt/ds-react'
 import React from 'react'
 
 import styles from './GjennomforingPanel.module.scss'
-import { GjennomforingType } from '../../../../api/api'
+import { Gjennomforing } from '../../../../api/api'
 import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
 
 interface GjennomforingPanelProps {
-	gjennomforing : GjennomforingType
+	gjennomforing: Gjennomforing
 }
 
-export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) : React.ReactElement => {
+export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): React.ReactElement => {
 	const harAktiveEndringsmeldinger = gjennomforing.antallAktiveEndringsmeldinger > 0
 
 	return (
@@ -34,9 +34,9 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps) :
 
 				{
 					harAktiveEndringsmeldinger &&
-						<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
-							Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
-						</Tag>
+					<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
+						Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
+					</Tag>
 				}
 			</div>
 		</SpaLenkepanel>

@@ -4,7 +4,7 @@ import env from '../utils/environment'
 import { appUrl } from '../utils/url-utils'
 import { devProxyHandlers } from './handlers/dev-proxy-handler'
 import { localAppHandlers } from './handlers/local-app-handlers'
-import { mockHandlers } from './mock-handlers'
+import { mockHandlers } from './handlers/mock-handlers'
 import { getRequestHandlerType, RequestHandlerType } from './utils/mock-env'
 
 

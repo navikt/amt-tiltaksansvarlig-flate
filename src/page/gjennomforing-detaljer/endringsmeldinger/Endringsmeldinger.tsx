@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { Alert, Heading } from '@navikt/ds-react'
-import { EndringsmeldingerType, EndringsmeldingType, fetchEndringsmeldinger } from '../../../api/api'
+import { Endringsmelding, fetchEndringsmeldinger } from '../../../api/api'
 import globalStyles from '../../../globals.module.scss'
 import styles from './Endringsmeldinger.module.scss'
 import { useDataStore } from '../../../store/data-store'
@@ -10,9 +10,7 @@ import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
 import { StartdatoMeldingsliste } from './endringsmeldingsliste/StartdatoMeldingsliste'
 import { SluttdatoMeldingsliste } from './endringsmeldingsliste/SluttdatoMeldingsliste'
 import { Spinner } from '../../../component/spinner/Spinner'
-import { StartdatoEndringsmelding } from './endringsmelding/StartdatoEndringsmeldingPanel'
-import { SluttdatoEndringsmelding } from './endringsmelding/SluttdatoEndringsmeldingPanel'
-import { mapTilEndringsmelding } from './endringsmelding/EndringsmeldingPanel'
+import { AvsluttDeltakelseEndringsmelding, EndringsmeldingType, LeggTilOppstartsdatoEndringsmelding } from '../../../api/schema/endringsmelding'
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
@@ -20,8 +18,8 @@ interface EndringsmeldingerProps {
 
 export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 	const { innloggetAnsatt } = useDataStore()
-	const [ endringsmeldinger, setEndringsmeldinger ] = useState<EndringsmeldingType[]>([])
-	const endringsmeldingerPromise = usePromise<AxiosResponse<EndringsmeldingerType>>()
+	const [ endringsmeldinger, setEndringsmeldinger ] = useState<Endringsmelding[]>([])
+	const endringsmeldingerPromise = usePromise<AxiosResponse<Endringsmelding[]>>()
 	const harTilgang = harTilgangTilEndringsmelding(innloggetAnsatt.tilganger)
 
 	useEffect(() => {
@@ -38,21 +36,10 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ harTilgang ])
 
-	const startdatoMeldinger: StartdatoEndringsmelding[] = endringsmeldinger
-		.filter(e => e.startDato)
-		.map(e => {
-			return {
-				...mapTilEndringsmelding(e),
-				startdato: e.startDato as Date
-			}
-		})
-	const sluttdatoMeldinger: SluttdatoEndringsmelding[] = endringsmeldinger.filter(e => e.sluttDato)
-		.map(e => {
-			return {
-				...mapTilEndringsmelding(e),
-				sluttdato: e.sluttDato as Date
-			}
-		})
+	const startdatoMeldinger = endringsmeldinger
+		.filter(e => e.type === EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO) as LeggTilOppstartsdatoEndringsmelding[]
+	const sluttdatoMeldinger = endringsmeldinger
+		.filter(e => e.type === EndringsmeldingType.AVSLUTT_DELTAKELSE) as AvsluttDeltakelseEndringsmelding[]
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
