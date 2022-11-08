@@ -2,11 +2,11 @@ import { BodyShort } from '@navikt/ds-react'
 import React from 'react'
 
 import styles from './GjennomforingGenerellInfo.module.scss'
-import { GjennomforingDetaljerType } from '../api/api'
+import { GjennomforingDetaljer } from '../api/api'
 import { formatDateMedMndNavn } from '../utils/date-utils'
 
 interface GjennomforingGenerellInfoProps {
-	gjennomforing: GjennomforingDetaljerType
+	gjennomforing: GjennomforingDetaljer
 	className?: string
 }
 

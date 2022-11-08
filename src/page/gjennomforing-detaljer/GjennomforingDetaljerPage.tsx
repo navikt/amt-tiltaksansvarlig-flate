@@ -8,7 +8,7 @@ import {
 	isRejected,
 	usePromise
 } from '../../utils/use-promise'
-import { fetchGjennomforing, GjennomforingDetaljerType } from '../../api/api'
+import { fetchGjennomforing, GjennomforingDetaljer } from '../../api/api'
 import { AxiosResponse } from 'axios'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import globalStyles from '../../globals.module.scss'
@@ -18,12 +18,12 @@ import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
 import cls from 'classnames'
 import { Heading } from './heading/Heading'
 
-export const GjennomforingDetaljerPage = () : React.ReactElement => {
+export const GjennomforingDetaljerPage = (): React.ReactElement => {
 	const { gjennomforingId } = useParams()
 
-	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljerType>>(() => fetchGjennomforing(gjennomforingId!))
+	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljer>>(() => fetchGjennomforing(gjennomforingId!))
 
-	if (isNotStartedOrPending(gjennomforingPromise)) return <Loader/>
+	if (isNotStartedOrPending(gjennomforingPromise)) return <Loader />
 
 	if (isRejected(gjennomforingPromise)) return <Alert variant="error">En feil har oppstått</Alert>
 
@@ -31,15 +31,15 @@ export const GjennomforingDetaljerPage = () : React.ReactElement => {
 
 	return (
 		<main className={styles.page} data-testid="gjennomforing-detaljer-page">
-			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
+			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM} />
 
 			<Heading gjennomforingId={gjennomforing.id} gjennomforingNavn={gjennomforing.navn} />
 
-			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkL}/>
+			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkL} />
 
-			<div className={cls(styles.seperator, globalStyles.blokkL)}/>
+			<div className={cls(styles.seperator, globalStyles.blokkL)} />
 
-			<Endringsmeldinger gjennomforingId={gjennomforingId!}/>
+			<Endringsmeldinger gjennomforingId={gjennomforingId!} />
 		</main>
 	)
 }

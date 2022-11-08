@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  dev-proxy:
+    image: ghcr.io/navikt/poao-dev-proxy/poao-dev-proxy:2022.02.15_16.48-3a2864beb7dd
+    ports:
+      - '58081:8080'
+    environment:
+      JSON_CONFIG: >
+        {
+          "proxies": [
+            {
+              "fromPath": "/amt-tiltak",
+              "toUrl": "https://arbeidsmarkedstiltak.dev.intern.nav.no/amt-tiltak",
+              "preserveFromPath": false
+            }
+          ]
+        }

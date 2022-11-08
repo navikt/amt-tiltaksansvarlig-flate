@@ -1,13 +1,14 @@
 import { rest } from 'msw'
 import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
 
-import { appUrl } from '../utils/url-utils'
+import { appUrl } from '../../utils/url-utils'
 import {
 	gjennomforinger,
 	innloggetAnsatt
-} from './data'
-import { endringsmeldingData } from './endringsmelding-data'
-import { GjennomforingDetaljerType, GjennomforingType, HentGjennomforingerMedLopenrType } from '../api/api'
+} from '../data'
+import { endringsmeldingData } from '../endringsmelding-data'
+import { GjennomforingDetaljer, Gjennomforing, HentGjennomforingMedLopenr } from '../../api/api'
+import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {
@@ -17,7 +18,7 @@ export const mockHandlers: RequestHandler[] = [
 		const lopenr = req.url.searchParams.get('lopenr')
 
 		if (lopenr) {
-			let gjennomforinger: HentGjennomforingerMedLopenrType = []
+			let gjennomforinger: HentGjennomforingMedLopenr[] = []
 
 			if (lopenr === '0') {
 				gjennomforinger = []
@@ -52,7 +53,7 @@ export const mockHandlers: RequestHandler[] = [
 			return res(ctx.delay(250), ctx.json(gjennomforinger))
 		}
 
-		const data: GjennomforingType[] = gjennomforinger
+		const data: Gjennomforing[] = gjennomforinger
 			.map(g => ({
 				id: g.id,
 				navn: g.navn,
@@ -67,7 +68,7 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
-		const gjennomforing: GjennomforingDetaljerType | undefined = gjennomforinger.find(g => g.id === id)
+		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find(g => g.id === id)
 		if (!gjennomforing) {
 			return res(ctx.delay(250), ctx.status(404))
 		}
@@ -83,9 +84,7 @@ export const mockHandlers: RequestHandler[] = [
 		const melding = endringsmeldingData.find(e => e.id === endringsmeldingId)
 
 		if (melding) {
-			melding.aktiv = false
-			melding.godkjent = true
-			melding.arkivert = true
+			melding.status = EndringsmeldingStatus.UTFORT
 		}
 
 		return res(ctx.delay(500), ctx.status(200))

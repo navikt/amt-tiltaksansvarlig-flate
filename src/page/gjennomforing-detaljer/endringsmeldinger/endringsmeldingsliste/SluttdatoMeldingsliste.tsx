@@ -2,11 +2,12 @@ import React from 'react'
 import { Alert, BodyLong, Heading } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
 import { Meldingsliste } from './Meldingsliste'
-import { SluttdatoEndringsmelding, SluttdatoEndringsmeldingPanel } from '../endringsmelding/SluttdatoEndringsmeldingPanel'
+import { SluttdatoEndringsmeldingPanel } from '../endringsmelding/SluttdatoEndringsmeldingPanel'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
+import { ForlengDeltakelseEndringsmelding, EndringsmeldingStatus } from '../../../../api/schema/endringsmelding'
 
 interface MeldingerProps {
-	meldinger: SluttdatoEndringsmelding[]
+	meldinger: ForlengDeltakelseEndringsmelding[]
 	refresh: () => void
 }
 
@@ -15,8 +16,8 @@ export const SluttdatoMeldingsliste = ({
 	meldinger,
 	refresh,
 }: MeldingerProps) => {
-	const aktiveMeldinger = meldinger.filter(e => e.aktiv).sort(sorterEndringsmeldingNyestFørst)
-	const inaktiveMeldinger = meldinger.filter(e => !e.aktiv).sort(sorterEndringsmeldingNyestFørst)
+	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
+	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
 
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
 		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>

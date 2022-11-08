@@ -2,16 +2,17 @@ import React from 'react'
 import { Alert, BodyLong, Heading } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
 import { useLagretVarighet } from '../endringsmelding/useLagretVarighet'
-import { StartdatoEndringsmelding, StartdatoEndringsmeldingPanel } from '../endringsmelding/StartdatoEndringsmeldingPanel'
+import { StartdatoEndringsmeldingPanel } from '../endringsmelding/StartdatoEndringsmeldingPanel'
 import { VarighetSelect } from '../endringsmelding/VarighetSelect'
 import { Meldingsliste } from './Meldingsliste'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
+import { EndringsmeldingStatus, EndreOppstartsdatoEndringsmelding } from '../../../../api/schema/endringsmelding'
 
 const DEFAULT_VARIGHET_MANEDER = null
 
 interface MeldingerProps {
 	gjennomforingId: string,
-	meldinger: StartdatoEndringsmelding[]
+	meldinger: EndreOppstartsdatoEndringsmelding[]
 	refresh: () => void
 }
 
@@ -21,8 +22,8 @@ export const StartdatoMeldingsliste = ({
 	refresh,
 }: MeldingerProps) => {
 	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_MANEDER)
-	const aktiveMeldinger = meldinger.filter(e => e.aktiv).sort(sorterEndringsmeldingNyestFørst)
-	const inaktiveMeldinger = meldinger.filter(e => !e.aktiv).sort(sorterEndringsmeldingNyestFørst)
+	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
+	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
 
 	const aktiveMeldingerVisning = aktiveMeldinger.length === 0
 		? <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>

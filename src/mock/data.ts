@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { InnloggetNavAnsattType } from '../api/api'
+import { InnloggetNavAnsatt } from '../api/api'
 
 interface Gjennomforing {
     navn: string,
@@ -19,7 +19,7 @@ interface Gjennomforing {
     },
 }
 
-export const innloggetAnsatt: InnloggetNavAnsattType = {
+export const innloggetAnsatt: InnloggetNavAnsatt = {
 	navIdent: 'Z1234',
 	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
 	tilganger: [ 'FLATE', 'ENDRINGSMELDING' ]

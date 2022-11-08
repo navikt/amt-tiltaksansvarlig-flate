@@ -5,7 +5,7 @@ import styles from './Forside.module.scss'
 import { AxiosResponse } from 'axios'
 import { Alert, Heading, Loader } from '@navikt/ds-react'
 import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
-import { fetchGjennomforinger, GjennomforingerType } from '../../api/api'
+import { fetchGjennomforinger, Gjennomforing } from '../../api/api'
 import { Add } from '@navikt/ds-icons'
 import cls from 'classnames'
 import { LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE } from '../../navigation'
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 import { GjennomforingListe } from './gjennomforing-liste/GjennomforingListe'
 
 export const Forside = (): React.ReactElement => {
-	const getGjennomforinger = usePromise<AxiosResponse<GjennomforingerType>>(fetchGjennomforinger)
+	const getGjennomforinger = usePromise<AxiosResponse<Gjennomforing[]>>(fetchGjennomforinger)
 
 	if (isNotStartedOrPending(getGjennomforinger)) return <Loader />
 

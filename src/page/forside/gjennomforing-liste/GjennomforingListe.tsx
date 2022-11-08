@@ -2,13 +2,13 @@ import { Heading } from '@navikt/ds-react'
 
 import globalStyles from '../../../globals.module.scss'
 import React from 'react'
-import { GjennomforingType, TiltakType } from '../../../api/api'
+import { Gjennomforing, Tiltak } from '../../../api/api'
 import { sortAlphabetic } from '../../../utils/sort-utils'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
 import { TomVisningPanel } from './tom-visning-panel/TomVisningPanel'
 
 interface Props {
-	gjennomforinger: GjennomforingType[]
+	gjennomforinger: Gjennomforing[]
 }
 
 export const GjennomforingListe = (props: Props): React.ReactElement => {
@@ -31,11 +31,11 @@ export const GjennomforingListe = (props: Props): React.ReactElement => {
 }
 
 interface TiltakMedGjennomforinger {
-	tiltak: TiltakType
-	gjennomforinger: GjennomforingType[]
+	tiltak: Tiltak
+	gjennomforinger: Gjennomforing[]
 }
 
-const finnTiltakMedGjennomforinger = (gjennomforinger: GjennomforingType[]): TiltakMedGjennomforinger[] => {
+const finnTiltakMedGjennomforinger = (gjennomforinger: Gjennomforing[]): TiltakMedGjennomforinger[] => {
 	const tiltakMap: { [k: string]: TiltakMedGjennomforinger } = {}
 	gjennomforinger.forEach(g => {
 		if (tiltakMap[g.tiltak.kode]) {
