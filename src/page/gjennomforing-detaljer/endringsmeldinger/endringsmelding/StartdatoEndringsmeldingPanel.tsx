@@ -4,11 +4,11 @@ import { PanelLinje } from './PanelLinje'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingPanel } from './EndringsmeldingPanel'
 import { beregnSluttDato, formatDate } from '../../../../utils/date-utils'
-import { EndringsmeldingStatus, LeggTilOppstartsdatoEndringsmelding } from '../../../../api/schema/endringsmelding'
+import { EndringsmeldingStatus, EndreOppstartsdatoEndringsmelding } from '../../../../api/schema/endringsmelding'
 
 
 interface IProps {
-	endringsmelding: LeggTilOppstartsdatoEndringsmelding,
+	endringsmelding: EndreOppstartsdatoEndringsmelding,
 	onFerdig: () => void
 	varighet: number | null,
 	className?: string

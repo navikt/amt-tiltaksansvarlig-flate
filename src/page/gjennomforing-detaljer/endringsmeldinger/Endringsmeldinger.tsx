@@ -10,7 +10,7 @@ import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
 import { StartdatoMeldingsliste } from './endringsmeldingsliste/StartdatoMeldingsliste'
 import { SluttdatoMeldingsliste } from './endringsmeldingsliste/SluttdatoMeldingsliste'
 import { Spinner } from '../../../component/spinner/Spinner'
-import { AvsluttDeltakelseEndringsmelding, EndringsmeldingType, LeggTilOppstartsdatoEndringsmelding } from '../../../api/schema/endringsmelding'
+import { ForlengDeltakelseEndringsmelding, EndringsmeldingType, EndreOppstartsdatoEndringsmelding } from '../../../api/schema/endringsmelding'
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
@@ -37,9 +37,9 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 	}, [ harTilgang ])
 
 	const startdatoMeldinger = endringsmeldinger
-		.filter(e => e.type === EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO) as LeggTilOppstartsdatoEndringsmelding[]
+		.filter(e => e.type === EndringsmeldingType.ENDRE_OPPSTARTSDATO) as EndreOppstartsdatoEndringsmelding[]
 	const sluttdatoMeldinger = endringsmeldinger
-		.filter(e => e.type === EndringsmeldingType.AVSLUTT_DELTAKELSE) as AvsluttDeltakelseEndringsmelding[]
+		.filter(e => e.type === EndringsmeldingType.FORLENG_DELTAKELSE) as ForlengDeltakelseEndringsmelding[]
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))

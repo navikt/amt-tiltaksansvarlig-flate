@@ -4,11 +4,11 @@ import { PanelLinje } from './PanelLinje'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingPanel } from './EndringsmeldingPanel'
 import { formatDate } from '../../../../utils/date-utils'
-import { AvsluttDeltakelseEndringsmelding } from '../../../../api/schema/endringsmelding'
+import { ForlengDeltakelseEndringsmelding } from '../../../../api/schema/endringsmelding'
 
 
 interface IProps {
-	endringsmelding: AvsluttDeltakelseEndringsmelding,
+	endringsmelding: ForlengDeltakelseEndringsmelding,
 	onFerdig: () => void
 	className?: string
 }

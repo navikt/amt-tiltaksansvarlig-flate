@@ -6,13 +6,13 @@ import { StartdatoEndringsmeldingPanel } from '../endringsmelding/StartdatoEndri
 import { VarighetSelect } from '../endringsmelding/VarighetSelect'
 import { Meldingsliste } from './Meldingsliste'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
-import { EndringsmeldingStatus, LeggTilOppstartsdatoEndringsmelding } from '../../../../api/schema/endringsmelding'
+import { EndringsmeldingStatus, EndreOppstartsdatoEndringsmelding } from '../../../../api/schema/endringsmelding'
 
 const DEFAULT_VARIGHET_MANEDER = null
 
 interface MeldingerProps {
 	gjennomforingId: string,
-	meldinger: LeggTilOppstartsdatoEndringsmelding[]
+	meldinger: EndreOppstartsdatoEndringsmelding[]
 	refresh: () => void
 }
 

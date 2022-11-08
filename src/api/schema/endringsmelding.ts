@@ -33,24 +33,23 @@ export const EndringsmeldingBaseSchema = z.object({
 })
 
 
-export const LeggTilOppstartsdatoEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
-	type: z.literal(EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO),
+export const EndreOppstartsdatoEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.ENDRE_OPPSTARTSDATO),
 	innhold: z.object({ oppstartsdato: processStringToDate }),
 }))
 
-export const AvsluttDeltakelseEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
-	id: z.string().uuid(),
-	type: z.literal(EndringsmeldingType.AVSLUTT_DELTAKELSE),
-	innhold: z.object({ sluttdato: processStringToDate, aarsak: z.string() }),
+export const ForlengDeltakelseEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.FORLENG_DELTAKELSE),
+	innhold: z.object({ sluttdato: processStringToDate }),
 }))
 
 
-export const EndringsmeldingSchema = z.union([ LeggTilOppstartsdatoEndringsmeldingSchema, AvsluttDeltakelseEndringsmeldingSchema ])
+export const EndringsmeldingSchema = z.union([ EndreOppstartsdatoEndringsmeldingSchema, ForlengDeltakelseEndringsmeldingSchema ])
 
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 
 export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
 
-export type LeggTilOppstartsdatoEndringsmelding = z.infer<typeof LeggTilOppstartsdatoEndringsmeldingSchema>
+export type EndreOppstartsdatoEndringsmelding = z.infer<typeof EndreOppstartsdatoEndringsmeldingSchema>
 
-export type AvsluttDeltakelseEndringsmelding = z.infer<typeof AvsluttDeltakelseEndringsmeldingSchema>
+export type ForlengDeltakelseEndringsmelding = z.infer<typeof ForlengDeltakelseEndringsmeldingSchema>

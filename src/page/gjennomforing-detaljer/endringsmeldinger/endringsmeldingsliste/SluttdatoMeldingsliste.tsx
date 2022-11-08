@@ -4,10 +4,10 @@ import styles from '../Endringsmeldinger.module.scss'
 import { Meldingsliste } from './Meldingsliste'
 import { SluttdatoEndringsmeldingPanel } from '../endringsmelding/SluttdatoEndringsmeldingPanel'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
-import { AvsluttDeltakelseEndringsmelding, EndringsmeldingStatus } from '../../../../api/schema/endringsmelding'
+import { ForlengDeltakelseEndringsmelding, EndringsmeldingStatus } from '../../../../api/schema/endringsmelding'
 
 interface MeldingerProps {
-	meldinger: AvsluttDeltakelseEndringsmelding[]
+	meldinger: ForlengDeltakelseEndringsmelding[]
 	refresh: () => void
 }
 

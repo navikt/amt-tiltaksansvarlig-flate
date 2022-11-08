@@ -11,7 +11,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 			etternavn: 'Traust',
 			fodselsnummer: '03035512347'
 		},
-		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { oppstartsdato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
@@ -24,7 +24,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347'
 		},
-		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { oppstartsdato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
@@ -37,9 +37,9 @@ export const endringsmeldingData: Endringsmelding[] = [
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347'
 		},
-		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
+		type: EndringsmeldingType.FORLENG_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
-		innhold: { sluttdato: faker.date.soon(), aarsak: 'ANNET' },
+		innhold: { sluttdato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -50,7 +50,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347'
 		},
-		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,
 		innhold: { oppstartsdato: faker.date.past() },
 		opprettetDato: faker.date.recent()
@@ -63,7 +63,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347'
 		},
-		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTDATERT,
 		innhold: { oppstartsdato: faker.date.past() },
 		opprettetDato: faker.date.recent()
