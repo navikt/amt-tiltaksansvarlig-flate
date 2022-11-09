@@ -13,7 +13,7 @@ export const Header = (): React.ReactElement => {
 	return (
 		<InternHeader className={styles.header} data-testid="innlogget-header">
 			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">NAV
-				Arbeidsmarkedstiltak</InternHeader.Title>
+				Tiltak</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
