@@ -18,6 +18,21 @@ export enum EndringsmeldingStatus {
 
 const EndringsmeldingStatusSchema = z.nativeEnum(EndringsmeldingStatus)
 
+export enum DeltakerStatusAarsak {
+    SYK = 'SYK',
+    FATT_JOBB = 'FATT_JOBB',
+    TRENGER_ANNEN_STOTTE = 'TRENGER_ANNEN_STOTTE',
+    FIKK_IKKE_PLASS = 'FIKK_IKKE_PLASS',
+    UTDANNING = 'UTDANNING',
+    FERDIG = 'FERDIG',
+    AVLYST_KONTRAKT = 'AVLYST_KONTRAKT',
+    IKKE_MOTT = 'IKKE_MOTT',
+    FEILREGISTRERT = 'FEILREGISTRERT',
+    ANNET = 'ANNET'
+}
+
+export const deltakerStatusAarsakSchema = z.nativeEnum(DeltakerStatusAarsak)
+
 const DeltakerSchema = z.object({
 	fornavn: z.string(),
 	mellomnavn: z.string().nullable(),
@@ -32,6 +47,10 @@ export const EndringsmeldingBaseSchema = z.object({
 	opprettetDato: processStringToDate,
 })
 
+export const LeggTilOppstartsdatoEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO),
+	innhold: z.object({ oppstartsdato: processStringToDate }),
+}))
 
 export const EndreOppstartsdatoEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.ENDRE_OPPSTARTSDATO),
@@ -43,8 +62,24 @@ export const ForlengDeltakelseEndringsmeldingSchema = z.intersection(Endringsmel
 	innhold: z.object({ sluttdato: processStringToDate }),
 }))
 
+export const AvsluttDeltakelseEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.AVSLUTT_DELTAKELSE),
+	innhold: z.object({ sluttdato: processStringToDate, aarsak: deltakerStatusAarsakSchema }),
+}))
 
-export const EndringsmeldingSchema = z.union([ EndreOppstartsdatoEndringsmeldingSchema, ForlengDeltakelseEndringsmeldingSchema ])
+export const DeltakerIkkeAktuellEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.DELTAKER_IKKE_AKTUELL),
+	innhold: z.object({ aarsak: deltakerStatusAarsakSchema }),
+}))
+
+
+export const EndringsmeldingSchema = z.union([
+	LeggTilOppstartsdatoEndringsmeldingSchema,
+	EndreOppstartsdatoEndringsmeldingSchema,
+	ForlengDeltakelseEndringsmeldingSchema,
+	AvsluttDeltakelseEndringsmeldingSchema,
+	DeltakerIkkeAktuellEndringsmeldingSchema,
+])
 
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 
