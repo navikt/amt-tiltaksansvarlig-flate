@@ -4,19 +4,20 @@ import { AvsluttingsInnhold } from './AvsluttingsInnhold'
 import { OppstartsInnhold } from './OppstartsInnhold'
 
 
-interface IProps {
+interface Props {
 	endringsmelding: Endringsmelding
-	varighet?: number
+	varighet: number | null
 }
 
-export const EndringsmeldingInnhold = ({ endringsmelding, varighet }: IProps): React.ReactElement => {
+export const EndringsmeldingInnhold = ({ endringsmelding, varighet }: Props): React.ReactElement => {
 	switch (endringsmelding.type) {
 		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO:
 			return (
 				<OppstartsInnhold
 					oppstartsdato={endringsmelding.innhold.oppstartsdato}
-					status={endringsmelding.status} varighet={varighet !== undefined ? varighet : 0}
+					status={endringsmelding.status}
+					varighet={varighet}
 				/>)
 		case EndringsmeldingType.FORLENG_DELTAKELSE:
 			return <AvsluttingsInnhold sluttdato={endringsmelding.innhold.sluttdato} />

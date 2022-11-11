@@ -6,12 +6,12 @@ import styles from '../Endringsmelding.module.scss'
 import { formatDate } from '../../../../../utils/date-utils'
 
 
-interface IProps {
+interface Props {
 	sluttdato?: Date
 	aarsak?: DeltakerStatusAarsak
 }
 
-export const AvsluttingsInnhold = ({ sluttdato, aarsak }: IProps): React.ReactElement => {
+export const AvsluttingsInnhold = ({ sluttdato, aarsak }: Props): React.ReactElement => {
 	return (
 		<div className={styles.moveTop}>
 			{aarsak &&

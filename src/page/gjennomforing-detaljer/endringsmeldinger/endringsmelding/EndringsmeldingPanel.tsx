@@ -53,7 +53,12 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighet, clas
 						<PanelLinje className={styles.spaceTop}>
 							<BodyShort size="small" className={styles.bold}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
 						</PanelLinje>
-						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighet={varighet ? varighet : undefined} />
+						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighet={varighet} />
+						{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
+							<PanelLinje className={styles.spaceTop}>
+								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+							</PanelLinje>
+						}
 					</div>
 					{endringsmelding.status === EndringsmeldingStatus.AKTIV
 						? (
@@ -71,12 +76,6 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighet, clas
 						)
 					}
 				</div>
-
-				{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
-					<PanelLinje className={styles.spaceTop}>
-						<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
-					</PanelLinje>
-				}
 
 				{isRejected(markerSomFerdigPromise) &&
 					<PanelLinje className={styles.spaceTop}>

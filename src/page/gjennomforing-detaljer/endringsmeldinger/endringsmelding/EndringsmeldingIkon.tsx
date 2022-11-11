@@ -4,11 +4,11 @@ import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusC
 import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import styles from './Endringsmelding.module.scss'
 
-interface IProps {
+interface Props {
 	type: EndringsmeldingType
 }
 
-export const EndringsmeldingIkon = ({ type }: IProps): React.ReactElement => {
+export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 	switch (type) {
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO: {
 			return <ChevronRightCircleFilled className={styles.oppstartsdatoIkon} />
