@@ -85,6 +85,12 @@ export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 
 export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
 
+export type LeggTilOppstartsdatoEndringsmelding = z.infer<typeof LeggTilOppstartsdatoEndringsmeldingSchema>
+
 export type EndreOppstartsdatoEndringsmelding = z.infer<typeof EndreOppstartsdatoEndringsmeldingSchema>
 
 export type ForlengDeltakelseEndringsmelding = z.infer<typeof ForlengDeltakelseEndringsmeldingSchema>
+
+export type AvsluttDeltakelseEndringsmelding = z.infer<typeof AvsluttDeltakelseEndringsmeldingSchema>
+
+export type DeltakerIkkeAktuellEndringsmelding = z.infer<typeof DeltakerIkkeAktuellEndringsmeldingSchema>
