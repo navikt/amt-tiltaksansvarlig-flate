@@ -1,5 +1,5 @@
 import faker from 'faker'
-import { Endringsmelding, DeltakerStatusAarsak, EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/endringsmelding'
+import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType, DeltakerStatusAarsakType } from '../api/schema/endringsmelding'
 
 export const endringsmeldingData: Endringsmelding[] = [
 	{
@@ -51,7 +51,13 @@ export const endringsmeldingData: Endringsmelding[] = [
 		},
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
-		innhold: { sluttdato: faker.date.soon(), aarsak: DeltakerStatusAarsak.ANNET },
+		innhold: {
+			sluttdato: faker.date.soon(),
+			aarsak: {
+				type: DeltakerStatusAarsakType.ANNET,
+				beskrivelse: 'Har flyttet til annen kommune'
+			}
+		},
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -64,7 +70,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 		},
 		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
 		status: EndringsmeldingStatus.AKTIV,
-		innhold: { aarsak: DeltakerStatusAarsak.FEILREGISTRERT },
+		innhold: { aarsak: { type: DeltakerStatusAarsakType.FEILREGISTRERT, beskrivelse: null } },
 		opprettetDato: faker.date.recent()
 	},
 	{

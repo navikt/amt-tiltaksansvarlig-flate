@@ -18,7 +18,7 @@ export enum EndringsmeldingStatus {
 
 const EndringsmeldingStatusSchema = z.nativeEnum(EndringsmeldingStatus)
 
-export enum DeltakerStatusAarsak {
+export enum DeltakerStatusAarsakType {
     SYK = 'SYK',
     FATT_JOBB = 'FATT_JOBB',
     TRENGER_ANNEN_STOTTE = 'TRENGER_ANNEN_STOTTE',
@@ -31,7 +31,10 @@ export enum DeltakerStatusAarsak {
     ANNET = 'ANNET'
 }
 
-export const deltakerStatusAarsakSchema = z.nativeEnum(DeltakerStatusAarsak)
+const DeltakerStatusAarsakSchema = z.object({
+	type: z.nativeEnum(DeltakerStatusAarsakType),
+	beskrivelse: z.string().nullable()
+})
 
 const DeltakerSchema = z.object({
 	fornavn: z.string(),
@@ -64,12 +67,12 @@ export const ForlengDeltakelseEndringsmeldingSchema = z.intersection(Endringsmel
 
 export const AvsluttDeltakelseEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.AVSLUTT_DELTAKELSE),
-	innhold: z.object({ sluttdato: processStringToDate, aarsak: deltakerStatusAarsakSchema }),
+	innhold: z.object({ sluttdato: processStringToDate, aarsak: DeltakerStatusAarsakSchema }),
 }))
 
 export const DeltakerIkkeAktuellEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.DELTAKER_IKKE_AKTUELL),
-	innhold: z.object({ aarsak: deltakerStatusAarsakSchema }),
+	innhold: z.object({ aarsak: DeltakerStatusAarsakSchema }),
 }))
 
 
@@ -94,3 +97,5 @@ export type ForlengDeltakelseEndringsmelding = z.infer<typeof ForlengDeltakelseE
 export type AvsluttDeltakelseEndringsmelding = z.infer<typeof AvsluttDeltakelseEndringsmeldingSchema>
 
 export type DeltakerIkkeAktuellEndringsmelding = z.infer<typeof DeltakerIkkeAktuellEndringsmeldingSchema>
+
+export type DeltakerStatusAarsak = z.infer<typeof DeltakerStatusAarsakSchema>

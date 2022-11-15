@@ -33,7 +33,14 @@ export const EndringsmeldingListe = ({
 			</BodyLong>
 			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
 			{aktiveMeldinger.length > 0
-				? aktiveMeldinger.map(m => <EndringsmeldingPanel endringsmelding={m} onFerdig={refresh} varighet={varighet} />)
+				? aktiveMeldinger.map(m => {
+					return <EndringsmeldingPanel
+						endringsmelding={m}
+						onFerdig={refresh}
+						varighet={varighet}
+						key={m.id}
+					/>
+				})
 				: <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>
 			}
 			<Accordion className={styles.spaceTop}>
@@ -43,7 +50,14 @@ export const EndringsmeldingListe = ({
 					</Accordion.Header>
 					<Accordion.Content className={styles.accordionContent}>
 						{inaktiveMeldinger.length > 0
-							? inaktiveMeldinger.map(m => <EndringsmeldingPanel endringsmelding={m} onFerdig={refresh} varighet={varighet} />)
+							? inaktiveMeldinger.map(m => {
+								return <EndringsmeldingPanel
+									endringsmelding={m}
+									onFerdig={refresh}
+									varighet={varighet}
+									key={m.id}
+								/>
+							})
 							: <Alert variant="info" size="small">Ingen meldinger har blitt markert som ferdig</Alert>
 						}
 					</Accordion.Content>
