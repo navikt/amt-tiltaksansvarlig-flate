@@ -12,7 +12,7 @@ function sjekkUU() {
 function initialize() {
 	// Mockes som work around på problem hvor kallet alltid returnerer 404 i første test
 	// Alternativt kan man kalle visit en ekstra gang på starten og i tillegg finne en måte å vente på at netverkskall skal fullføre
-	cy.intercept('/amt-tiltak/api/nav-ansatt/autentisering/meg', innloggetAnsatt).as('getInnloggetAnsatt')
+	cy.intercept('/amt-tiltak/api/nav-ansatt/autentisering/meg', innloggetAnsatt)
 }
 
 function gaTilForside() {
