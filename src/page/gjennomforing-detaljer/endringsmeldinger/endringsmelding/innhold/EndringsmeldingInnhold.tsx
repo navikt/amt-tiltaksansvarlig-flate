@@ -1,7 +1,7 @@
 import React from 'react'
 import { Endringsmelding, EndringsmeldingType } from '../../../../../api/schema/endringsmelding'
-import { AvsluttingsInnhold } from './AvsluttingsInnhold'
-import { OppstartsInnhold } from './OppstartsInnhold'
+import { AvsluttingInnhold } from './AvsluttingInnhold'
+import { OppstartInnhold } from './OppstartInnhold'
 
 
 interface Props {
@@ -14,16 +14,16 @@ export const EndringsmeldingInnhold = ({ endringsmelding, varighet }: Props): Re
 		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO:
 			return (
-				<OppstartsInnhold
+				<OppstartInnhold
 					oppstartsdato={endringsmelding.innhold.oppstartsdato}
 					status={endringsmelding.status}
 					varighet={varighet}
 				/>)
 		case EndringsmeldingType.FORLENG_DELTAKELSE:
-			return <AvsluttingsInnhold sluttdato={endringsmelding.innhold.sluttdato} />
+			return <AvsluttingInnhold sluttdato={endringsmelding.innhold.sluttdato} />
 		case EndringsmeldingType.AVSLUTT_DELTAKELSE:
-			return <AvsluttingsInnhold sluttdato={endringsmelding.innhold.sluttdato} aarsak={endringsmelding.innhold.aarsak} />
+			return <AvsluttingInnhold sluttdato={endringsmelding.innhold.sluttdato} aarsak={endringsmelding.innhold.aarsak} />
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
-			return <AvsluttingsInnhold aarsak={endringsmelding.innhold.aarsak} />
+			return <AvsluttingInnhold aarsak={endringsmelding.innhold.aarsak} />
 	}
 }

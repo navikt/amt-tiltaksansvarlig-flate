@@ -11,7 +11,7 @@ interface Props {
 	aarsak?: DeltakerStatusAarsak
 }
 
-export const AvsluttingsInnhold = ({ sluttdato, aarsak }: Props): React.ReactElement => {
+export const AvsluttingInnhold = ({ sluttdato, aarsak }: Props): React.ReactElement => {
 	return (
 		<div className={styles.moveTop}>
 			{aarsak &&
@@ -33,14 +33,11 @@ export const AvsluttingsInnhold = ({ sluttdato, aarsak }: Props): React.ReactEle
 const formatStatusAarsakType = (type: DeltakerStatusAarsakType): string => {
 	switch (type) {
 		case DeltakerStatusAarsakType.SYK: return 'Syk'
-		case DeltakerStatusAarsakType.FATT_JOBB: return 'Fatt jobb'
-		case DeltakerStatusAarsakType.TRENGER_ANNEN_STOTTE: return 'Trenger annen stotte'
-		case DeltakerStatusAarsakType.FIKK_IKKE_PLASS: return 'Fikk ikke plass'
+		case DeltakerStatusAarsakType.FATT_JOBB: return 'Fått jobb'
+		case DeltakerStatusAarsakType.TRENGER_ANNEN_STOTTE: return 'Trenger annen hjelp og støtte'
 		case DeltakerStatusAarsakType.UTDANNING: return 'Utdanning'
-		case DeltakerStatusAarsakType.FERDIG: return 'Ferdig'
-		case DeltakerStatusAarsakType.AVLYST_KONTRAKT: return 'Avlyst kontrakt'
-		case DeltakerStatusAarsakType.IKKE_MOTT: return 'Ikke mott'
-		case DeltakerStatusAarsakType.FEILREGISTRERT: return 'Feilregistrert'
+		case DeltakerStatusAarsakType.IKKE_MOTT: return 'Møter ikke opp'
 		case DeltakerStatusAarsakType.ANNET: return 'Annet'
+		default: return 'Ukjent'
 	}
 }
