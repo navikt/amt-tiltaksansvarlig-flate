@@ -70,13 +70,13 @@ export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Axios
 }
 
 export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.post(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
 
 export const fjernGjennomforingFraOversikten = (gjennomforingId: string): AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/tiltaksansvarlig/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.patch(endepunkt)
 		.catch((error) => exposeError(error, endepunkt))
 }
