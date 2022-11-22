@@ -1,9 +1,13 @@
 .endringInfoTekst {
-  padding-top: 0.5rem;
+  margin-top: 0.25rem !important;
 }
 
 .moveRight {
   margin-left: auto;
+}
+
+.moveTop {
+  margin-bottom: auto;
 }
 
 .smallText {
@@ -19,7 +23,7 @@
 }
 
 .bold {
-  font-weight: bolder;
+  font-weight: 600 !important;
 }
 
 .fnr {
@@ -31,10 +35,25 @@
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.ikonRow {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.meldingRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
 }
 
 .sluttdato {
-    margin-top: 0.5rem !important;
+    margin-top: 0.25rem !important;
     color: var(--navds-semantic-color-text-muted);
 }
 
@@ -52,4 +71,29 @@
 .sendt {
     margin: 0 0 0 auto !important;
     @extend .gray;
+}
+
+.ikon {
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.oppstartsdatoIkon {
+    color: var(--navds-global-color-deepblue-400);
+    @extend .ikon;
+}
+
+.forlengeDeltakelseIkon {
+    color: var(--navds-semantic-color-feedback-success-icon);
+    @extend .ikon;
+}
+
+.avsluttDeltakelseIkon {
+    color: var(--navds-semantic-color-divider);
+    @extend .ikon;
+}
+
+.ikkeAktuellIkon {
+    color: var(--navds-semantic-color-feedback-warning-icon);
+    @extend .ikon;
 }

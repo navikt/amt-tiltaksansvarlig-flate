@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react'
 import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
 import styles from './Endringsmelding.module.scss'
-import { Endringsmelding, markerEndringsmeldingSomFerdig } from '../../../../api/api'
+import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { formatDate } from '../../../../utils/date-utils'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { PanelLinje } from './PanelLinje'
 import classNames from 'classnames'
-import { EndringsmeldingStatus } from '../../../../api/schema/endringsmelding'
+import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/endringsmelding'
+import { EndringsmeldingIkon } from './EndringsmeldingIkon'
+import { EndringsmeldingInnhold } from './innhold/EndringsmeldingInnhold'
 
 
 interface EndringsmeldingProps {
 	endringsmelding: Endringsmelding
 	onFerdig: () => void
-	children?: React.ReactNode
+	varighet: number | null
 	className?: string
 }
 
-export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, className }: EndringsmeldingProps): React.ReactElement => {
+export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighet, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const deltaker = endringsmelding.deltaker
@@ -37,42 +39,60 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, children, clas
 
 	return (
 		<Panel border className={classNames(styles.panel, className)}>
-			<PanelLinje>
-				<Heading size="xsmall" level="4">{navn}</Heading>
-				<BodyShort size="medium" className={styles.fnr} >{deltaker.fodselsnummer}</BodyShort>
-				<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
-			</PanelLinje>
+			<div className={styles.ikonRow}>
+				<EndringsmeldingIkon type={endringsmelding.type} />
+			</div>
+			<div className={styles.meldingRow}>
+				<PanelLinje>
+					<Heading size="xsmall" level="4">{navn}</Heading>
+					<BodyShort size="medium" className={styles.fnr} >{deltaker.fodselsnummer}</BodyShort>
+					<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
+				</PanelLinje>
+				<div className={styles.body}>
+					<div>
+						<PanelLinje className={styles.spaceTop}>
+							<BodyShort size="small" className={styles.bold}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
+						</PanelLinje>
+						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighet={varighet} />
+						{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
+							<PanelLinje className={styles.spaceTop}>
+								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+							</PanelLinje>
+						}
+					</div>
+					{endringsmelding.status === EndringsmeldingStatus.AKTIV
+						? (
+							<Button
+								size="small"
+								onClick={handleOnFerdigClicked}
+								disabled={!isNotStarted(markerSomFerdigPromise)}
+								loading={isPending(markerSomFerdigPromise)}
+							>
+								Ferdig
+							</Button>
+						)
+						: (
+							<BodyShort className={styles.gray}>Ferdig</BodyShort>
+						)
+					}
+				</div>
 
-			<div className={styles.body}>
-				{children}
-				{endringsmelding.status === EndringsmeldingStatus.AKTIV
-					? (
-						<Button
-							size="small"
-							onClick={handleOnFerdigClicked}
-							disabled={!isNotStarted(markerSomFerdigPromise)}
-							loading={isPending(markerSomFerdigPromise)}
-						>
-							Ferdig
-						</Button>
-					)
-					: (
-						<BodyShort className={styles.gray}>Ferdig</BodyShort>
-					)
+				{isRejected(markerSomFerdigPromise) &&
+					<PanelLinje className={styles.spaceTop}>
+						<Alert variant="error" size="small">Noe gikk galt</Alert>
+					</PanelLinje>
 				}
 			</div>
-
-			{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
-				<PanelLinje className={styles.spaceTop}>
-					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
-				</PanelLinje>
-			}
-
-			{isRejected(markerSomFerdigPromise) &&
-				<PanelLinje className={styles.spaceTop}>
-					<Alert variant="error" size="small">Noe gikk galt</Alert>
-				</PanelLinje>
-			}
 		</Panel>
 	)
+}
+
+const formatEndringsmeldingType = (meldingType: EndringsmeldingType): string => {
+	switch (meldingType) {
+		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO: return 'Legg til oppstartsdato'
+		case EndringsmeldingType.ENDRE_OPPSTARTSDATO: return 'Endre oppstartsdato'
+		case EndringsmeldingType.FORLENG_DELTAKELSE: return 'Forleng deltakelse'
+		case EndringsmeldingType.AVSLUTT_DELTAKELSE: return 'Avslutt deltakelse'
+		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: return 'Deltaker er ikke aktuell'
+	}
 }

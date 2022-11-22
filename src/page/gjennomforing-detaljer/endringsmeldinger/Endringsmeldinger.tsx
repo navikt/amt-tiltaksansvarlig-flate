@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
 import { AxiosResponse } from 'axios'
 import { Alert, Heading } from '@navikt/ds-react'
-import { Endringsmelding, fetchEndringsmeldinger } from '../../../api/api'
+import { fetchEndringsmeldinger } from '../../../api/api'
 import globalStyles from '../../../globals.module.scss'
 import styles from './Endringsmeldinger.module.scss'
 import { useDataStore } from '../../../store/data-store'
 import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
-import { StartdatoMeldingsliste } from './endringsmeldingsliste/StartdatoMeldingsliste'
-import { SluttdatoMeldingsliste } from './endringsmeldingsliste/SluttdatoMeldingsliste'
 import { Spinner } from '../../../component/spinner/Spinner'
-import { ForlengDeltakelseEndringsmelding, EndringsmeldingType, EndreOppstartsdatoEndringsmelding } from '../../../api/schema/endringsmelding'
+import { Endringsmelding } from '../../../api/schema/endringsmelding'
+import { EndringsmeldingListe } from './endringsmeldingsliste/EndringsmeldingListe'
 
 interface EndringsmeldingerProps {
 	gjennomforingId: string
@@ -35,11 +34,6 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ harTilgang ])
-
-	const startdatoMeldinger = endringsmeldinger
-		.filter(e => e.type === EndringsmeldingType.ENDRE_OPPSTARTSDATO) as EndreOppstartsdatoEndringsmelding[]
-	const sluttdatoMeldinger = endringsmeldinger
-		.filter(e => e.type === EndringsmeldingType.FORLENG_DELTAKELSE) as ForlengDeltakelseEndringsmelding[]
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
@@ -70,17 +64,11 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 				isLoading ? (
 					<Spinner />
 				) : (
-					<>
-						<StartdatoMeldingsliste
-							gjennomforingId={props.gjennomforingId}
-							meldinger={startdatoMeldinger}
-							refresh={refresh}
-						/>
-						<SluttdatoMeldingsliste
-							meldinger={sluttdatoMeldinger}
-							refresh={refresh}
-						/>
-					</>
+					<EndringsmeldingListe
+						gjennomforingId={props.gjennomforingId}
+						meldinger={endringsmeldinger}
+						refresh={refresh}
+					/>
 				)
 			}
 

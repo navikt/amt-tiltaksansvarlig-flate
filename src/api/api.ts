@@ -13,7 +13,7 @@ import {
 	HentGjennomforingerMedLopenrSchema,
 	TiltakSchema
 } from './schema/schema'
-import { EndringsmeldingerSchema, EndringsmeldingSchema } from './schema/endringsmelding'
+import { Endringsmelding, EndringsmeldingerSchema } from './schema/endringsmelding'
 
 export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 
@@ -22,8 +22,6 @@ export type Gjennomforing = z.infer<typeof GjennomforingSchema>
 export type GjennomforingDetaljer = z.infer<typeof GjennomforingDetaljerSchema>
 
 export type Arrangor = z.infer<typeof ArrangorSchema>
-
-export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
 
 export type HentGjennomforingMedLopenr = z.infer<typeof HentGjennomforingMedLopenrSchema>
 
