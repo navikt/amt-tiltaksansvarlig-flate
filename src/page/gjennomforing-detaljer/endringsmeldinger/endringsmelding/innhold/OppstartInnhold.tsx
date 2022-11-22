@@ -12,7 +12,7 @@ interface Props {
 	varighet: number | null
 }
 
-export const OppstartsInnhold = ({ oppstartsdato, status, varighet }: Props): React.ReactElement => {
+export const OppstartInnhold = ({ oppstartsdato, status, varighet }: Props): React.ReactElement => {
 	return (
 		<div>
 			<PanelLinje>
