@@ -11,16 +11,17 @@ import classNames from 'classnames'
 import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import { EndringsmeldingIkon } from './EndringsmeldingIkon'
 import { EndringsmeldingInnhold } from './innhold/EndringsmeldingInnhold'
+import { VarighetValg } from './VarighetSelect'
 
 
 interface EndringsmeldingProps {
 	endringsmelding: Endringsmelding
 	onFerdig: () => void
-	varighet: number | null
+	valgtVarighet: VarighetValg
 	className?: string
 }
 
-export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighet, className }: EndringsmeldingProps): React.ReactElement => {
+export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, valgtVarighet: varighet, className }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
 
 	const deltaker = endringsmelding.deltaker
@@ -53,7 +54,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighet, clas
 						<PanelLinje className={styles.spaceTop}>
 							<BodyShort size="small" className={styles.bold}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
 						</PanelLinje>
-						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighet={varighet} />
+						<EndringsmeldingInnhold endringsmelding={endringsmelding} valgtVarighet={varighet} />
 						{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
 							<PanelLinje className={styles.spaceTop}>
 								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>

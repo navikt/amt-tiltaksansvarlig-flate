@@ -2,12 +2,12 @@ import React from 'react'
 import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
 import { useLagretVarighet } from '../endringsmelding/useLagretVarighet'
-import { VarighetSelect } from '../endringsmelding/VarighetSelect'
+import { VarighetSelect, VarighetValg } from '../endringsmelding/VarighetSelect'
 import { sorterEndringsmeldingNyestFørst } from '../utils'
 import { EndringsmeldingStatus, Endringsmelding } from '../../../../api/schema/endringsmelding'
 import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
 
-const DEFAULT_VARIGHET_MANEDER = null
+const DEFAULT_VARIGHET_VALG = VarighetValg.IKKE_VALGT
 
 interface MeldingerProps {
 	gjennomforingId: string,
@@ -20,7 +20,7 @@ export const EndringsmeldingListe = ({
 	meldinger,
 	refresh,
 }: MeldingerProps) => {
-	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_MANEDER)
+	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_VALG)
 	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
 	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
 
@@ -37,7 +37,7 @@ export const EndringsmeldingListe = ({
 					return <EndringsmeldingPanel
 						endringsmelding={m}
 						onFerdig={refresh}
-						varighet={varighet}
+						valgtVarighet={varighet}
 						key={m.id}
 					/>
 				})
@@ -54,7 +54,7 @@ export const EndringsmeldingListe = ({
 								return <EndringsmeldingPanel
 									endringsmelding={m}
 									onFerdig={refresh}
-									varighet={varighet}
+									valgtVarighet={varighet}
 									key={m.id}
 								/>
 							})

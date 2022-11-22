@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
+import { VarighetValg } from './VarighetSelect'
 
 const LOCAL_STORAGE_VARIGHET = 'endringsmeldingVarighet'
 
-type LagretVarighet = { [gjennomforingId: string]: number | null }
+type LagretVarighet = { [gjennomforingId: string]: VarighetValg }
 
 const hentLagretVarighet = (): LagretVarighet => {
 	const data = localStorage.getItem(LOCAL_STORAGE_VARIGHET)
@@ -13,7 +14,7 @@ const hentLagretVarighet = (): LagretVarighet => {
 		const lagretVarighet: LagretVarighet = {}
 
 		Object.keys(json).forEach(k => {
-			if (typeof json[k] === 'number' || json[k] === null) {
+			if (typeof json[k] === 'number') {
 				lagretVarighet[k] = json[k]
 			}
 		})
@@ -24,8 +25,8 @@ const hentLagretVarighet = (): LagretVarighet => {
 	return {}
 }
 
-export const useLagretVarighet = (gjennomforingId: string, defaultVarighet: number | null): [number | null, (v: number | null) => void] => {
-	const [ varighet, setVarighet ] = useState<number | null>(defaultVarighet)
+export const useLagretVarighet = (gjennomforingId: string, defaultVarighet: VarighetValg): [VarighetValg, (v: VarighetValg) => void] => {
+	const [ varighet, setVarighet ] = useState<VarighetValg>(defaultVarighet)
 
 	useEffect(() => {
 		const lagretVarighet = hentLagretVarighet()
@@ -37,7 +38,7 @@ export const useLagretVarighet = (gjennomforingId: string, defaultVarighet: numb
 
 	}, [ gjennomforingId ])
 
-	const endreVarighet = (v: number | null) => {
+	const endreVarighet = (v: VarighetValg) => {
 		const lagretVarighet = hentLagretVarighet()
 
 		lagretVarighet[gjennomforingId] = v
@@ -48,4 +49,3 @@ export const useLagretVarighet = (gjennomforingId: string, defaultVarighet: numb
 
 	return [ varighet, endreVarighet ]
 }
-
