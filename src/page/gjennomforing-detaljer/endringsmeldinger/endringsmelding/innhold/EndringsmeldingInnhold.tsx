@@ -2,7 +2,7 @@ import React from 'react'
 import { Endringsmelding, EndringsmeldingType } from '../../../../../api/schema/endringsmelding'
 import { AvsluttingInnhold } from './AvsluttingInnhold'
 import { OppstartInnhold } from './OppstartInnhold'
-import { VarighetValg } from '../VarighetSelect'
+import { varigheter, VarighetValg } from '../VarighetSelect'
 
 
 interface Props {
@@ -10,7 +10,9 @@ interface Props {
 	valgtVarighet: VarighetValg
 }
 
-export const EndringsmeldingInnhold = ({ endringsmelding, valgtVarighet: varighet }: Props): React.ReactElement => {
+export const EndringsmeldingInnhold = ({ endringsmelding, valgtVarighet }: Props): React.ReactElement => {
+	const varighet = varigheter[valgtVarighet]
+
 	switch (endringsmelding.type) {
 		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO:
@@ -18,7 +20,7 @@ export const EndringsmeldingInnhold = ({ endringsmelding, valgtVarighet: varighe
 				<OppstartInnhold
 					oppstartsdato={endringsmelding.innhold.oppstartsdato}
 					status={endringsmelding.status}
-					valgtVarighet={varighet}
+					varighet={varighet}
 				/>)
 		case EndringsmeldingType.FORLENG_DELTAKELSE:
 			return <AvsluttingInnhold sluttdato={endringsmelding.innhold.sluttdato} />

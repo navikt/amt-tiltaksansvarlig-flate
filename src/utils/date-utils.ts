@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { varigheter, VarighetValg } from '../page/gjennomforing-detaljer/endringsmeldinger/endringsmelding/VarighetSelect'
+import { Varighet } from '../page/gjennomforing-detaljer/endringsmeldinger/endringsmelding/VarighetSelect'
 
 import { EMDASH } from './constants'
 
@@ -14,10 +14,6 @@ export const formatDateMedMndNavn = (date: Date | null) => {
 	return dayjs(date).format('D. MMMM YYYY')
 }
 
-export const beregnSluttDato = (date: Date, valgtVarighet: VarighetValg): Date => {
-	const varighet = varigheter[valgtVarighet]
-	if (varighet === null) {
-		return date
-	}
+export const beregnSluttDato = (date: Date, varighet: Varighet): Date => {
 	return dayjs(date).add(varighet.antall, varighet.tidsenhet).subtract(1, 'day').toDate()
 }

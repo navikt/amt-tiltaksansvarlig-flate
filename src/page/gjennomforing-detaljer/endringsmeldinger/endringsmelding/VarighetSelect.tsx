@@ -16,7 +16,7 @@ export enum VarighetValg {
 	TOLV_MANEDER,
 }
 
-interface Varighet {
+export interface Varighet {
 	antall: number
 	tidsenhet: 'day' | 'week' | 'month' | 'year'
 }
