@@ -3,8 +3,8 @@ import styles from './VarighetSelect.module.scss'
 import { Select } from '@navikt/ds-react'
 
 interface VarighetSelectProps {
-	selectedValue: VarighetValg
-	setVarighet: (val: VarighetValg) => void
+	varighetValg: VarighetValg
+	setVarighetValg: (val: VarighetValg) => void
 }
 
 export enum VarighetValg {
@@ -35,17 +35,17 @@ export const varigheter: Varigheter = {
 }
 
 
-export const VarighetSelect = ({ selectedValue, setVarighet }: VarighetSelectProps): React.ReactElement => {
+export const VarighetSelect = ({ varighetValg, setVarighetValg }: VarighetSelectProps): React.ReactElement => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const val = parseInt(e.target.value) as VarighetValg
-		setVarighet(val)
+		setVarighetValg(val)
 	}
 
-	const varighetSelectorValue = selectedValue === null ? VarighetValg.IKKE_VALGT : selectedValue
+	const varighetSelectValue = varighetValg === null ? VarighetValg.IKKE_VALGT : varighetValg
 
 	return (
-		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectorValue}>
+		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectValue}>
 			<option value={VarighetValg.IKKE_VALGT}>Ikke valgt</option>
 			<option value={VarighetValg.FIRE_UKER}>4 uker</option>
 			<option value={VarighetValg.ATTE_UKER}>8 uker</option>
