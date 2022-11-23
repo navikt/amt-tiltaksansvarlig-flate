@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircle } from '@navikt/ds-icons'
+import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircleFilled } from '@navikt/ds-icons'
 import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import styles from './Endringsmelding.module.scss'
 
@@ -20,7 +20,7 @@ export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 			return <ChevronRightDoubleFilled className={styles.forlengeDeltakelseIkon} />
 		}
 		case EndringsmeldingType.AVSLUTT_DELTAKELSE: {
-			return <MinusCircle className={styles.avsluttDeltakelseIkon} />
+			return <MinusCircleFilled className={styles.avsluttDeltakelseIkon} />
 		}
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: {
 			return <ErrorFilled className={styles.ikkeAktuellIkon} />
