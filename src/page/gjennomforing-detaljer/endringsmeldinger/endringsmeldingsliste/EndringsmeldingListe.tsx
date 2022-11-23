@@ -3,7 +3,7 @@ import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
 import { useLagretVarighet } from '../endringsmelding/useLagretVarighet'
 import { VarighetSelect } from '../endringsmelding/VarighetSelect'
-import { sorterEndringsmeldingNyestFørst } from '../utils'
+import { sorterEndringsmeldinger } from '../utils'
 import { EndringsmeldingStatus, Endringsmelding } from '../../../../api/schema/endringsmelding'
 import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
 
@@ -21,9 +21,8 @@ export const EndringsmeldingListe = ({
 	refresh,
 }: MeldingerProps) => {
 	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_MANEDER)
-	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
-	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldingNyestFørst)
-
+	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldinger)
+	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldinger)
 	return (
 		<div className={styles.spaceBottom}>
 			<Heading size="small" level="3" spacing>Oppstartsdato</Heading>
