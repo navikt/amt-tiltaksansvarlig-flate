@@ -10,6 +10,7 @@ interface VarighetSelectProps {
 export enum VarighetValg {
 	IKKE_VALGT,
 	FIRE_UKER,
+	SEKS_UKER,
 	ATTE_UKER,
 	TRE_MANEDER,
 	SEKS_MANEDER,
@@ -28,6 +29,7 @@ type Varigheter = {
 export const varigheter: Varigheter = {
 	[VarighetValg.IKKE_VALGT]: null,
 	[VarighetValg.FIRE_UKER]: { antall: 4, tidsenhet: 'week' },
+	[VarighetValg.SEKS_UKER]: { antall: 6, tidsenhet: 'week' },
 	[VarighetValg.ATTE_UKER]: { antall: 8, tidsenhet: 'week' },
 	[VarighetValg.TRE_MANEDER]: { antall: 3, tidsenhet: 'month' },
 	[VarighetValg.SEKS_MANEDER]: { antall: 6, tidsenhet: 'month' },
@@ -48,6 +50,7 @@ export const VarighetSelect = ({ varighetValg, setVarighetValg }: VarighetSelect
 		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectValue}>
 			<option value={VarighetValg.IKKE_VALGT}>Ikke valgt</option>
 			<option value={VarighetValg.FIRE_UKER}>4 uker</option>
+			<option value={VarighetValg.SEKS_UKER}>6 uker</option>
 			<option value={VarighetValg.ATTE_UKER}>8 uker</option>
 			<option value={VarighetValg.TRE_MANEDER}>3 måneder</option>
 			<option value={VarighetValg.SEKS_MANEDER}>6 måneder</option>
