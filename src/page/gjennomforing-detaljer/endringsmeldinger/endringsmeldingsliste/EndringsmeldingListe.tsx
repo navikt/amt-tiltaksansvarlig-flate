@@ -1,13 +1,13 @@
 import React from 'react'
 import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
-import { useLagretVarighet } from '../endringsmelding/useLagretVarighet'
-import { VarighetSelect } from '../endringsmelding/VarighetSelect'
+import { useLagretVarighetValg } from '../endringsmelding/useLagretVarighetValg'
+import { VarighetSelect, VarighetValg } from '../endringsmelding/VarighetSelect'
 import { sorterEndringsmeldinger } from '../utils'
 import { EndringsmeldingStatus, Endringsmelding } from '../../../../api/schema/endringsmelding'
 import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
 
-const DEFAULT_VARIGHET_MANEDER = null
+const DEFAULT_VARIGHET_VALG = VarighetValg.IKKE_VALGT
 
 interface MeldingerProps {
 	gjennomforingId: string,
@@ -20,7 +20,7 @@ export const EndringsmeldingListe = ({
 	meldinger,
 	refresh,
 }: MeldingerProps) => {
-	const [ varighet, setVarighet ] = useLagretVarighet(gjennomforingId, DEFAULT_VARIGHET_MANEDER)
+	const [ varighetValg, setVarighetValg ] = useLagretVarighetValg(gjennomforingId, DEFAULT_VARIGHET_VALG)
 	const aktiveMeldinger = meldinger.filter(e => e.status === EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldinger)
 	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldinger)
 	return (
@@ -30,13 +30,13 @@ export const EndringsmeldingListe = ({
 				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker kommer det en ny melding her.
 				For å få forslag til en sluttdato kan du velge en varighet nedenfor. Datoene skal legges inn i Arena.
 			</BodyLong>
-			<VarighetSelect selectedValue={varighet} setVarighet={setVarighet} />
+			<VarighetSelect varighetValg={varighetValg} setVarighetValg={setVarighetValg} />
 			{aktiveMeldinger.length > 0
 				? aktiveMeldinger.map(m => {
 					return <EndringsmeldingPanel
 						endringsmelding={m}
 						onFerdig={refresh}
-						varighet={varighet}
+						varighetValg={varighetValg}
 						key={m.id}
 					/>
 				})
@@ -53,7 +53,7 @@ export const EndringsmeldingListe = ({
 								return <EndringsmeldingPanel
 									endringsmelding={m}
 									onFerdig={refresh}
-									varighet={varighet}
+									varighetValg={varighetValg}
 									key={m.id}
 								/>
 							})

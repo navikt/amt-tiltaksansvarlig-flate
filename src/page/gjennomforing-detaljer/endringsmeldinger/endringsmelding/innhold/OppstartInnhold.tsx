@@ -4,12 +4,13 @@ import { EndringsmeldingStatus } from '../../../../../api/schema/endringsmelding
 import { PanelLinje } from '../PanelLinje'
 import styles from '../Endringsmelding.module.scss'
 import { beregnSluttDato, formatDate } from '../../../../../utils/date-utils'
+import { Varighet } from '../VarighetSelect'
 
 
 interface Props {
 	oppstartsdato: Date
 	status: EndringsmeldingStatus
-	varighet: number | null
+	varighet: Varighet | null
 }
 
 export const OppstartInnhold = ({ oppstartsdato, status, varighet }: Props): React.ReactElement => {
@@ -28,3 +29,5 @@ export const OppstartInnhold = ({ oppstartsdato, status, varighet }: Props): Rea
 		</div>
 	)
 }
+
+
