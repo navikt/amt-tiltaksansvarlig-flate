@@ -40,60 +40,60 @@
 }
 
 .ikonRow {
-    display: flex;
-    align-items: center;
-    margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .meldingRow {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
 }
 
 .sluttdato {
-    margin-top: 0.25rem !important;
-    color: var(--navds-semantic-color-text-muted);
+  margin-top: 0.25rem !important;
+  color: var(--navds-semantic-color-text-muted);
 }
 
 .body {
-    display: flex;
-    width: 100%;
-    align-items: flex-end;
-    justify-content: space-between;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .spaceBottom {
-    margin-bottom: 1rem
+  margin-bottom: 1rem
 }
 
 .sendt {
-    margin: 0 0 0 auto !important;
-    @extend .gray;
+  margin: 0 0 0 auto !important;
+  @extend .gray;
 }
 
 .ikon {
-    height: 1.4rem;
-    width: 1.4rem;
+  height: 1.4rem;
+  width: 1.4rem;
 }
 
 .oppstartsdatoIkon {
-    color: var(--navds-global-color-deepblue-400);
-    @extend .ikon;
+  color: var(--navds-global-color-deepblue-300);
+  @extend .ikon;
 }
 
 .forlengeDeltakelseIkon {
-    color: var(--navds-semantic-color-feedback-success-icon);
-    @extend .ikon;
+  color: var(--navds-semantic-color-feedback-success-icon);
+  @extend .ikon;
 }
 
 .avsluttDeltakelseIkon {
-    color: var(--navds-semantic-color-divider);
-    @extend .ikon;
+  color: var(--navds-global-color-gray-500);
+  @extend .ikon;
 }
 
 .ikkeAktuellIkon {
-    color: var(--navds-semantic-color-feedback-warning-icon);
-    @extend .ikon;
+  color: var(--navds-semantic-color-feedback-warning-icon);
+  @extend .ikon;
 }
