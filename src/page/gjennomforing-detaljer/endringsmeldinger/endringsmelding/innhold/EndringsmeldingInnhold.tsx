@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const EndringsmeldingInnhold = ({ endringsmelding, varighetValg }: Props): React.ReactElement => {
-	const varighet = varigheter[varighetValg]
+	const varighet = varigheter[varighetValg] !== undefined ? varigheter[varighetValg] : varigheter[VarighetValg.IKKE_VALGT]
 
 	switch (endringsmelding.type) {
 		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
