@@ -45,7 +45,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg, 
 			</div>
 			<div className={styles.meldingRow}>
 				<PanelLinje>
-					<Heading size="xsmall" level="4">{navn}</Heading>
+					<Heading size="xsmall" level="3">{navn}</Heading>
 					<BodyShort size="medium" className={styles.fnr} >{deltaker.fodselsnummer}</BodyShort>
 					<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 				</PanelLinje>
