@@ -1,5 +1,5 @@
 import React from 'react'
-import { Accordion, Alert, BodyLong, Heading } from '@navikt/ds-react'
+import { Accordion, Alert, BodyLong } from '@navikt/ds-react'
 import styles from '../Endringsmeldinger.module.scss'
 import { useLagretVarighetValg } from '../endringsmelding/useLagretVarighetValg'
 import { VarighetSelect, VarighetValg } from '../endringsmelding/VarighetSelect'
@@ -25,10 +25,10 @@ export const EndringsmeldingListe = ({
 	const inaktiveMeldinger = meldinger.filter(e => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterEndringsmeldinger)
 	return (
 		<div className={styles.spaceBottom}>
-			<Heading size="small" level="3" spacing>Oppstartsdato</Heading>
 			<BodyLong size="small">
-				Når tiltaksarrangøren oppdaterer oppstartsdatoen til en deltaker kommer det en ny melding her.
-				For å få forslag til en sluttdato kan du velge en varighet nedenfor. Datoene skal legges inn i Arena.
+				Når tiltaksarrangøren sender en melding om en endring til en deltaker, så kommer det en ny melding her. 
+				Hvis det er en melding om oppstartsdato, så kan du velge varighet og få opp et forslag om sluttdato. 
+				Datoene legges inn i Arena.
 			</BodyLong>
 			<VarighetSelect varighetValg={varighetValg} setVarighetValg={setVarighetValg} />
 			{aktiveMeldinger.length > 0

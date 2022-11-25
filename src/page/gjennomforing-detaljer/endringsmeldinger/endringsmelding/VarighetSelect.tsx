@@ -47,7 +47,7 @@ export const VarighetSelect = ({ varighetValg, setVarighetValg }: VarighetSelect
 	const varighetSelectValue = varighetValg === null ? VarighetValg.IKKE_VALGT : varighetValg
 
 	return (
-		<Select label="Varighet:" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectValue}>
+		<Select label="Varighet etter oppstartsdato" className={styles.varighetSelect} onChange={handleChange} size="small" value={varighetSelectValue}>
 			<option value={VarighetValg.IKKE_VALGT}>Ikke valgt</option>
 			<option value={VarighetValg.FIRE_UKER}>4 uker</option>
 			<option value={VarighetValg.SEKS_UKER}>6 uker</option>
