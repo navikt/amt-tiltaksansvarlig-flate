@@ -56,8 +56,13 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg, 
 						</PanelLinje>
 						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg} />
 						{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
-							<PanelLinje className={styles.spaceTop}>
+							<PanelLinje>
 								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+							</PanelLinje>
+						}
+						{endringsmelding.status === EndringsmeldingStatus.TILBAKEKALT &&
+							<PanelLinje>
+								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi arrangør har tilbakekalt meldingen.</BodyShort>
 							</PanelLinje>
 						}
 					</div>

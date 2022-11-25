@@ -98,5 +98,18 @@ export const endringsmeldingData: Endringsmelding[] = [
 		status: EndringsmeldingStatus.UTDATERT,
 		innhold: { oppstartsdato: faker.date.past() },
 		opprettetDato: faker.date.recent()
-	}
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'Lur',
+			mellomnavn: 'Lutlei',
+			etternavn: 'Luresen',
+			fodselsnummer: '03035512347'
+		},
+		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
+		status: EndringsmeldingStatus.TILBAKEKALT,
+		innhold: { sluttdato: faker.date.past(), aarsak: { type: DeltakerStatusAarsakType.SYK, beskrivelse: null } },
+		opprettetDato: faker.date.recent()
+	},
 ]
