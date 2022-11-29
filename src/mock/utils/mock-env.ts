@@ -2,6 +2,7 @@ export enum RequestHandlerType {
     MOCK = 'mock', // Send requests to msw handler
     LOCAL = 'local', // Send requests to backend running on localhost
     DEV = 'dev', // Send requests to application running in dev environment
+	PULL_REQUEST = 'PULL_REQUEST'
 }
 
 const DEFAULT_HANDLER = RequestHandlerType.MOCK
