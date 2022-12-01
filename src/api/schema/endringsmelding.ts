@@ -12,6 +12,7 @@ export enum EndringsmeldingType {
 
 export enum EndringsmeldingStatus {
     AKTIV = 'AKTIV',
+    TILBAKEKALT = 'TILBAKEKALT',
     UTDATERT = 'UTDATERT',
     UTFORT = 'UTFORT',
 }
