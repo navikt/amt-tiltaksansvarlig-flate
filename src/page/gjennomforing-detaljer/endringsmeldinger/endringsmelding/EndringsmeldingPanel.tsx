@@ -100,5 +100,6 @@ const formatEndringsmeldingType = (meldingType: EndringsmeldingType): string => 
 		case EndringsmeldingType.FORLENG_DELTAKELSE: return 'Forleng deltakelse'
 		case EndringsmeldingType.AVSLUTT_DELTAKELSE: return 'Avslutt deltakelse'
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: return 'Deltaker er ikke aktuell'
+		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT: return 'Endre deltakelsesprosent'
 	}
 }
