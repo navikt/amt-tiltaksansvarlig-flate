@@ -12,7 +12,7 @@ export const EndreDeltakelseProsentInnhold = ({ deltakelseProsent }: Props): Rea
 		<div className={styles.moveTop}>
 			<PanelLinje>
 				<BodyShort size="small" className={styles.endringInfoTekst}>
-                    Ny Deltakelsesprosent: {deltakelseProsent}%
+                    Ny deltakelsesprosent: {deltakelseProsent}%
 				</BodyShort>
 			</PanelLinje>
 		</div>
