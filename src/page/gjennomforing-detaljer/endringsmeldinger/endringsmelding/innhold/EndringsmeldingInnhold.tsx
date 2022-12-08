@@ -3,6 +3,7 @@ import { Endringsmelding, EndringsmeldingType } from '../../../../../api/schema/
 import { AvsluttingInnhold } from './AvsluttingInnhold'
 import { OppstartInnhold } from './OppstartInnhold'
 import { varigheter, VarighetValg } from '../VarighetSelect'
+import { EndreDeltakelseProsentInnhold } from './EndreDeltakelseProsentInnhold'
 
 
 interface Props {
@@ -28,5 +29,7 @@ export const EndringsmeldingInnhold = ({ endringsmelding, varighetValg }: Props)
 			return <AvsluttingInnhold sluttdato={endringsmelding.innhold.sluttdato} aarsak={endringsmelding.innhold.aarsak} />
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
 			return <AvsluttingInnhold aarsak={endringsmelding.innhold.aarsak} />
+		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT:
+			return <EndreDeltakelseProsentInnhold deltakelseProsent={endringsmelding.innhold.deltakelseProsent} />
 	}
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircleFilled } from '@navikt/ds-icons'
 import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import styles from './Endringsmelding.module.scss'
+import SvgDivideFilled from '@navikt/ds-icons/esm/DivideFilled'
 
 interface Props {
 	type: EndringsmeldingType
@@ -24,6 +25,9 @@ export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 		}
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: {
 			return <ErrorFilled className={styles.ikkeAktuellIkon} />
+		}
+		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT: {
+			return <SvgDivideFilled className={styles.endreProsentDeltakelseIkon}/>
 		}
 	}
 }
