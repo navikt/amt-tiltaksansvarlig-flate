@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Header as InternHeader } from '@navikt/ds-react-internal'
 import { Link, Panel } from '@navikt/ds-react'
-import { appUrl } from '../../utils/url-utils'
-import styles from './Header.module.scss'
+import { Header as InternHeader } from '@navikt/ds-react-internal'
+import React, { useState } from 'react'
+
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { useDataStore } from '../../store/data-store'
+import { appUrl } from '../../utils/url-utils'
+import styles from './Header.module.scss'
 
 export const Header = (): React.ReactElement => {
 	const { innloggetAnsatt } = useDataStore()

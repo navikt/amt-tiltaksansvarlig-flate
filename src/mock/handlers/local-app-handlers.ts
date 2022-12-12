@@ -5,8 +5,8 @@ import { MockedResponse } from 'msw/lib/types/response'
 import environment from '../../utils/environment'
 import { appUrl } from '../../utils/url-utils'
 import { getRequestAuthHeader, localAmtTiltakUrl } from '../utils/mock-env'
-import { joinUrlAndPath, stripContextPath } from '../utils/url-utils'
 import { forwardRequest } from '../utils/request-utils'
+import { joinUrlAndPath, stripContextPath } from '../utils/url-utils'
 
 export const localAppHandlers: RequestHandler[] = [
 	rest.all(appUrl('/amt-tiltak/*'), async(req, res, ctx) => {

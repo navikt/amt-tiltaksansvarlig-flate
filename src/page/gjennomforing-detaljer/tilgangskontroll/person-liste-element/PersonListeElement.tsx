@@ -1,9 +1,10 @@
-import React from 'react'
 import { People } from '@navikt/ds-icons'
 import { BodyShort } from '@navikt/ds-react'
+import React from 'react'
+
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
-import styles from './PersonListeElement.module.scss'
 import { Nullable } from '../../../../utils/types'
+import styles from './PersonListeElement.module.scss'
 
 interface PersonListeElementProps {
 	fornavn: string,

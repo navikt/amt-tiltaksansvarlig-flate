@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
-import { Varighet } from '../page/gjennomforing-detaljer/endringsmeldinger/endringsmelding/VarighetSelect'
 
+import { Varighet } from '../page/gjennomforing-detaljer/endringsmeldinger/endringsmelding/VarighetSelect'
 import { EMDASH } from './constants'
 
 export const formatDate = (date: Date | null): string => {

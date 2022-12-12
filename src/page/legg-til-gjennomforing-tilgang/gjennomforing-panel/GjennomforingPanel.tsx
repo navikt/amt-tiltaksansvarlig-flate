@@ -1,10 +1,11 @@
-import React from 'react'
-import { Alert, BodyShort, Button, Heading, Panel } from '@navikt/ds-react'
-import { HentGjennomforingMedLopenr, leggTilTilgangTilGjennomforing } from '../../../api/api'
 import { Add } from '@navikt/ds-icons'
-import styles from './GjennomforingPanel.module.scss'
-import { isNotStarted, isPending, isRejected, usePromise } from '../../../utils/use-promise'
+import { Alert, BodyShort, Button, Heading, Panel } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
+import React from 'react'
+
+import { HentGjennomforingMedLopenr, leggTilTilgangTilGjennomforing } from '../../../api/api'
+import { isNotStarted, isPending, isRejected, usePromise } from '../../../utils/use-promise'
+import styles from './GjennomforingPanel.module.scss'
 
 interface GjennomforingPanelProps {
 	gjennomforing: HentGjennomforingMedLopenr,

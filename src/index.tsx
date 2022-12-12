@@ -9,7 +9,7 @@ import { App } from './App'
 import env from './utils/environment'
 
 
-(async () => {
+(async() => {
 	dayjs.locale('nb')
 
 	if (env.isMockEnabled) {

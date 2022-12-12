@@ -1,10 +1,10 @@
-import { Tag, BodyShort, Heading } from '@navikt/ds-react'
+import { BodyShort, Heading,Tag } from '@navikt/ds-react'
 import React from 'react'
 
-import styles from './GjennomforingPanel.module.scss'
 import { Gjennomforing } from '../../../../api/api'
-import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
+import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
+import styles from './GjennomforingPanel.module.scss'
 
 interface GjennomforingPanelProps {
 	gjennomforing: Gjennomforing

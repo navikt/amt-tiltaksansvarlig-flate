@@ -1,8 +1,8 @@
+import { BodyLong, Panel } from '@navikt/ds-react'
 import React from 'react'
 
-import styles from './TomVisningPanel.module.scss'
 import clipboardImg from './clipboard.svg'
-import { BodyLong, Panel } from '@navikt/ds-react'
+import styles from './TomVisningPanel.module.scss'
 
 export const TomVisningPanel = (): React.ReactElement => {
 	return (

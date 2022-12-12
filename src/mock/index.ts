@@ -1,12 +1,12 @@
 import { RequestHandler, setupWorker } from 'msw'
-import env from '../utils/environment'
 
+import env from '../utils/environment'
 import { appUrl } from '../utils/url-utils'
 import { devProxyHandlers } from './handlers/dev-proxy-handler'
 import { localAppHandlers } from './handlers/local-app-handlers'
 import { mockHandlers } from './handlers/mock-handlers'
-import { getRequestHandlerType, RequestHandlerType } from './utils/mock-env'
 import { pullRequestHandlers } from './handlers/pull-request-handlers'
+import { getRequestHandlerType, RequestHandlerType } from './utils/mock-env'
 
 
 const resolveHandlers = (requestHandlerType: RequestHandlerType): RequestHandler[] => {

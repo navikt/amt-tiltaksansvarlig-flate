@@ -1,5 +1,11 @@
-import styles from './Heading.module.scss'
+import { Alert, Button, Heading as NavHeading } from '@navikt/ds-react'
+import { AxiosResponse } from 'axios'
+import classNames from 'classnames'
+import React from 'react'
+
+import { fjernGjennomforingFraOversikten } from '../../../api/api'
 import { Show } from '../../../component/Show'
+import globalStyles from '../../../globals.module.scss'
 import {
 	isFinished,
 	isNotStartedOrPending,
@@ -8,12 +14,7 @@ import {
 	isResolved,
 	usePromise
 } from '../../../utils/use-promise'
-import { Alert, Button, Heading as NavHeading } from '@navikt/ds-react'
-import globalStyles from '../../../globals.module.scss'
-import React from 'react'
-import { AxiosResponse } from 'axios'
-import { fjernGjennomforingFraOversikten } from '../../../api/api'
-import classNames from 'classnames'
+import styles from './Heading.module.scss'
 
 interface HeadingProps {
 	gjennomforingNavn: string,
