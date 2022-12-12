@@ -40,7 +40,7 @@ jobs:
           browser: chrome
           headless: true
           start: pnpm start
-          wait-on: http://localhost:3002
+          wait-on: sleep 5
           parallel: true
           record: true
         env:
