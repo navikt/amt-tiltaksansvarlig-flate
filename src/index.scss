@@ -1,9 +1,11 @@
 @import 'src/colors';
+@import '@navikt/ds-css/dist/index.css';
+@import '@navikt/ds-css-internal/dist/index.css';
 
 html {
 	background-color: $navLysGra;
 }
 
 button {
-	font-family: var(--navds-font-family);
+	font-family: var(--a-font-family);
 }

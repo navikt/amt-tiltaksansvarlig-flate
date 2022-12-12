@@ -19,7 +19,7 @@
 }
 
 .gray {
-  color: var(--navds-semantic-color-text-muted);
+  color: var(--a-text-subtle);
 }
 
 .bold {
@@ -31,7 +31,7 @@
 }
 
 .panel {
-  border-color: var(--navds-semantic-color-border-muted);
+  border-color: var(--a-border-default);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-bottom: 1.5rem;
@@ -54,11 +54,11 @@
 
 .sluttdato {
   margin-top: 0.25rem !important;
-  color: var(--navds-semantic-color-text-muted);
+  color: var(--a-text-subtle);
 }
 
 .endreProsentDeltakelseIkon {
-  color: var(--navds-global-color-purple-400);
+  color: var(--a-purple-400);
 }
 
 .body {
@@ -83,21 +83,21 @@
 }
 
 .oppstartsdatoIkon {
-  color: var(--navds-global-color-deepblue-300);
+  color: var(--a-deepblue-300);
   @extend .ikon;
 }
 
 .forlengeDeltakelseIkon {
-  color: var(--navds-semantic-color-feedback-success-icon);
+  color: var(--a-icon-success);
   @extend .ikon;
 }
 
 .avsluttDeltakelseIkon {
-  color: var(--navds-global-color-gray-500);
+  color: var(--a-gray-500);
   @extend .ikon;
 }
 
 .ikkeAktuellIkon {
-  color: var(--navds-semantic-color-feedback-warning-icon);
+  color: var(--a-icon-warning);
   @extend .ikon;
 }
