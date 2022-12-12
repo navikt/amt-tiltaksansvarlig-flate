@@ -8,7 +8,7 @@ export default defineConfig({
 		outDir: 'build'
 	},
 	server: {
-		port: 3001,
+		port: 3002,
 		open: true
 	},
 	base: process.env.BASE,
