@@ -15,7 +15,7 @@ export const localAppHandlers: RequestHandler[] = [
 ]
 
 const handleReq = async(proxyUrl: string, req: RestRequest, res: ResponseComposition, ctx: RestContext): Promise<MockedResponse> => {
-	const reqPath = stripContextPath(req.url.pathname, `${environment.publicUrl}/amt-tiltak`)
+	const reqPath = stripContextPath(req.url.pathname, `${environment.baseUrl}amt-tiltak`)
 	const proxiedUrl = `${joinUrlAndPath(proxyUrl, reqPath)}${req.url.search}`
 
 	req.headers.append('Authorization', getRequestAuthHeader())

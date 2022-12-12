@@ -31,7 +31,7 @@ const resolveHandlers = (requestHandlerType: RequestHandlerType): RequestHandler
  skal få lov til å intercepte requests.
 */
 const path = window.location.pathname
-if (path === env.publicUrl && !path.endsWith('/')) {
+if (path === env.baseUrl && !path.endsWith('/')) {
 	console.log('Redirected with trailing slash')
 	window.location.href = `${window.location.origin}${path}/`
 }
@@ -40,6 +40,6 @@ const requestHandlerType = getRequestHandlerType()
 
 console.info(`Running with request handler: ${requestHandlerType}`)
 
-setupWorker(...resolveHandlers(requestHandlerType))
+await setupWorker(...resolveHandlers(requestHandlerType))
 	.start({ serviceWorker: { url: appUrl('mockServiceWorker.js') } })
 	.catch((e) => console.error('Unable to setup mocked API endpoints', e))
