@@ -15,17 +15,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: '16'
-          cache: 'npm'
+          version: 7.13.4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
       - name: Run tests
-        run: npm run test
+        run: pnpm test
       - name: Build application
-        run: npm run build
+        run: pnpm build
       - name: Upload frontend asset files
         uses: actions/upload-artifact@v2
         with:
@@ -51,14 +54,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
         run: gsutil -m rsync -r build gs://amt-tiltaksansvarlig-flate-dev
-      - name: Create release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: release/dev@${{ github.sha }}
-          release_name: Release to dev
-          prerelease: true
 
   deploy-prod:
     name: Deploy application to prod
