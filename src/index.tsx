@@ -3,12 +3,10 @@ import './index.scss'
 
 import dayjs from 'dayjs'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import { App } from './App'
 import env from './utils/environment'
-import '@navikt/ds-css'
-import '@navikt/ds-css-internal'
 
 
 (async () => {
@@ -17,11 +15,14 @@ import '@navikt/ds-css-internal'
 	if (env.isMockEnabled) {
 		await import('./mock')
 	}
+	const container = document.getElementById('root')
 
-	ReactDOM.render(
+	// eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+	const root = createRoot(container!)
+
+	root.render(
 		<React.StrictMode>
 			<App />
 		</React.StrictMode>,
-		document.getElementById('root')
 	)
 })()
