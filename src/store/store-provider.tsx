@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { DataStoreProvider } from './data-store'
 import { InnloggetNavAnsatt } from '../api/api'
+import { DataStoreProvider } from './data-store'
 
 interface StoreProviderProps {
 	innloggetAnsatt: InnloggetNavAnsatt

@@ -1,5 +1,6 @@
-import React from 'react'
 import cls from 'classnames'
+import React from 'react'
+
 import styles from './PanelLinje.module.scss'
 
 interface PanelLinjeProps {

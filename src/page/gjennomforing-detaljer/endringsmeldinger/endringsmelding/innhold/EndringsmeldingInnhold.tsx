@@ -1,9 +1,10 @@
 import React from 'react'
+
 import { Endringsmelding, EndringsmeldingType } from '../../../../../api/schema/endringsmelding'
-import { AvsluttingInnhold } from './AvsluttingInnhold'
-import { OppstartInnhold } from './OppstartInnhold'
 import { varigheter, VarighetValg } from '../VarighetSelect'
+import { AvsluttingInnhold } from './AvsluttingInnhold'
 import { EndreDeltakelseProsentInnhold } from './EndreDeltakelseProsentInnhold'
+import { OppstartInnhold } from './OppstartInnhold'
 
 
 interface Props {

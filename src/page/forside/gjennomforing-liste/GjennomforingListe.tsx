@@ -1,8 +1,8 @@
 import { Heading } from '@navikt/ds-react'
-
-import globalStyles from '../../../globals.module.scss'
 import React from 'react'
+
 import { Gjennomforing, Tiltak } from '../../../api/api'
+import globalStyles from '../../../globals.module.scss'
 import { sortAlphabetic } from '../../../utils/sort-utils'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
 import { TomVisningPanel } from './tom-visning-panel/TomVisningPanel'

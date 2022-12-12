@@ -1,9 +1,9 @@
+import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircleFilled } from '@navikt/ds-icons'
+import SvgDivideFilled from '@navikt/ds-icons/esm/DivideFilled'
 import React from 'react'
 
-import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircleFilled } from '@navikt/ds-icons'
 import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import styles from './Endringsmelding.module.scss'
-import SvgDivideFilled from '@navikt/ds-icons/esm/DivideFilled'
 
 interface Props {
 	type: EndringsmeldingType

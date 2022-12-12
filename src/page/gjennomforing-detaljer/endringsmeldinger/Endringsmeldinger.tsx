@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
-import { AxiosResponse } from 'axios'
 import { Alert, Heading } from '@navikt/ds-react'
+import { AxiosResponse } from 'axios'
+import React, { useEffect, useState } from 'react'
+
 import { fetchEndringsmeldinger } from '../../../api/api'
+import { Endringsmelding } from '../../../api/schema/endringsmelding'
+import { Spinner } from '../../../component/spinner/Spinner'
 import globalStyles from '../../../globals.module.scss'
-import styles from './Endringsmeldinger.module.scss'
 import { useDataStore } from '../../../store/data-store'
 import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
-import { Spinner } from '../../../component/spinner/Spinner'
-import { Endringsmelding } from '../../../api/schema/endringsmelding'
+import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
+import styles from './Endringsmeldinger.module.scss'
 import { EndringsmeldingListe } from './endringsmeldingsliste/EndringsmeldingListe'
 
 interface EndringsmeldingerProps {

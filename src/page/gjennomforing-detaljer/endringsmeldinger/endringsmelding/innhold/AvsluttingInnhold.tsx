@@ -1,9 +1,10 @@
-import React from 'react'
 import { BodyShort } from '@navikt/ds-react'
+import React from 'react'
+
 import { DeltakerStatusAarsak, DeltakerStatusAarsakType } from '../../../../../api/schema/endringsmelding'
-import { PanelLinje } from '../PanelLinje'
-import styles from '../Endringsmelding.module.scss'
 import { formatDate } from '../../../../../utils/date-utils'
+import styles from '../Endringsmelding.module.scss'
+import { PanelLinje } from '../PanelLinje'
 
 
 interface Props {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { VarighetValg } from './VarighetSelect'
 
 const LOCAL_STORAGE_VARIGHET = 'endringsmeldingVarighet'

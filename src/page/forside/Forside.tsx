@@ -1,15 +1,15 @@
-import React from 'react'
-
-import globalStyles from '../../globals.module.scss'
-import styles from './Forside.module.scss'
-import { AxiosResponse } from 'axios'
-import { Alert, Heading, Loader } from '@navikt/ds-react'
-import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
-import { fetchGjennomforinger, Gjennomforing } from '../../api/api'
 import { Add } from '@navikt/ds-icons'
+import { Alert, Heading, Loader } from '@navikt/ds-react'
+import { AxiosResponse } from 'axios'
 import cls from 'classnames'
-import { LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE } from '../../navigation'
+import React from 'react'
 import { Link } from 'react-router-dom'
+
+import { fetchGjennomforinger, Gjennomforing } from '../../api/api'
+import globalStyles from '../../globals.module.scss'
+import { LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE } from '../../navigation'
+import { isNotStartedOrPending, isRejected, usePromise } from '../../utils/use-promise'
+import styles from './Forside.module.scss'
 import { GjennomforingListe } from './gjennomforing-liste/GjennomforingListe'
 
 export const Forside = (): React.ReactElement => {

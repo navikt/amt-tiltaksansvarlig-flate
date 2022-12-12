@@ -1,19 +1,19 @@
-import { z } from 'zod'
 import { AxiosPromise, AxiosResponse } from 'axios'
+import { z } from 'zod'
 
 import { appUrl } from '../utils/url-utils'
-import { axiosInstance } from './utils'
+import { Endringsmelding, EndringsmeldingerSchema } from './schema/endringsmelding'
 import {
 	ArrangorSchema,
 	GjennomforingDetaljerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
-	InnloggetNavAnsattSchema,
-	HentGjennomforingMedLopenrSchema,
 	HentGjennomforingerMedLopenrSchema,
+	HentGjennomforingMedLopenrSchema,
+	InnloggetNavAnsattSchema,
 	TiltakSchema
 } from './schema/schema'
-import { Endringsmelding, EndringsmeldingerSchema } from './schema/endringsmelding'
+import { axiosInstance } from './utils'
 
 export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 

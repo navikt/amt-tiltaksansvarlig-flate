@@ -1,12 +1,7 @@
+import { Alert, Button, Heading, TextField } from '@navikt/ds-react'
+import { AxiosResponse } from 'axios'
 import React, { useState } from 'react'
 
-import styles from './LeggTilGjennomforingTilgangPage.module.scss'
-import globalStyles from '../../globals.module.scss'
-import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
-import { FORSIDE_PAGE_ROUTE } from '../../navigation'
-import { Alert, Button, Heading, TextField } from '@navikt/ds-react'
-import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
-import { AxiosResponse } from 'axios'
 import {
 	fetchGjennomforinger,
 	Gjennomforing,
@@ -14,7 +9,12 @@ import {
 	hentGjennomforingMedLopenr
 } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
+import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
+import globalStyles from '../../globals.module.scss'
+import { FORSIDE_PAGE_ROUTE } from '../../navigation'
+import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
+import styles from './LeggTilGjennomforingTilgangPage.module.scss'
 
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')

@@ -1,6 +1,7 @@
-import React from 'react'
-import { HentGjennomforingMedLopenr } from '../../api/api'
 import { Alert } from '@navikt/ds-react'
+import React from 'react'
+
+import { HentGjennomforingMedLopenr } from '../../api/api'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
 
 interface GjennomforingPanelListeProps {

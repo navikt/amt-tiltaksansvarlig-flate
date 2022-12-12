@@ -1,8 +1,8 @@
-import React from 'react'
 import { BodyShort } from '@navikt/ds-react'
-import styles from './Tilgangskontroll.module.scss'
+import React from 'react'
 
 import { PersonListeElement } from './person-liste-element/PersonListeElement'
+import styles from './Tilgangskontroll.module.scss'
 import { TilgangskontrollHeader } from './TilgangskontrollHeader'
 
 interface TilgangskontrollProps {

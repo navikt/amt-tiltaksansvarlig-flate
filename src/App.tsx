@@ -1,7 +1,10 @@
+import { Alert } from '@navikt/ds-react'
 import React from 'react'
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter, Navigate,Route, Routes } from 'react-router-dom'
 
 import { fetchInnloggetAnsatt } from './api/api'
+import { Header } from './component/header/Header'
+import { Spinner } from './component/spinner/Spinner'
 import {
 	FORSIDE_PAGE_ROUTE,
 	GJENNOMFORING_DETALJER_PAGE_ROUTE,
@@ -9,12 +12,9 @@ import {
 } from './navigation'
 import { Forside } from './page/forside/Forside'
 import { GjennomforingDetaljerPage } from './page/gjennomforing-detaljer/GjennomforingDetaljerPage'
-import { isNotStartedOrPending, isRejected, usePromise } from './utils/use-promise'
-import { Spinner } from './component/spinner/Spinner'
-import { Header } from './component/header/Header'
 import { LeggTilGjennomforingTilgangPage } from './page/legg-til-gjennomforing-tilgang/LeggTilGjennomforingTilgangPage'
-import { Alert } from '@navikt/ds-react'
 import StoreProvider from './store/store-provider'
+import { isNotStartedOrPending, isRejected, usePromise } from './utils/use-promise'
 
 export const App = (): React.ReactElement => {
 	const innloggetAnsattPromise = usePromise(() => fetchInnloggetAnsatt())

@@ -1,5 +1,6 @@
-import React from 'react'
 import { Heading } from '@navikt/ds-react'
+import React from 'react'
+
 import styles from './TilgangskontrollHeader.module.scss'
 
 export const TilgangskontrollHeader = () => {

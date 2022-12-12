@@ -1,14 +1,14 @@
 import { rest } from 'msw'
 import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
 
+import { Gjennomforing, GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../../api/api'
+import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
 import { appUrl } from '../../utils/url-utils'
 import {
 	gjennomforinger,
 	innloggetAnsatt
 } from '../data'
 import { endringsmeldingData } from '../endringsmelding-data'
-import { GjennomforingDetaljer, Gjennomforing, HentGjennomforingMedLopenr } from '../../api/api'
-import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {

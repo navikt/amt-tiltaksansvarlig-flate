@@ -1,7 +1,8 @@
+import { BodyShort } from '@navikt/ds-react'
 import React from 'react'
+
 import styles from '../Endringsmelding.module.scss'
 import { PanelLinje } from '../PanelLinje'
-import { BodyShort } from '@navikt/ds-react'
 
 interface Props {
     deltakelseProsent: number

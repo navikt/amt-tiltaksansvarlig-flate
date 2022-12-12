@@ -1,9 +1,10 @@
-import React from 'react'
 import { BodyShort, Detail } from '@navikt/ds-react'
+import React from 'react'
+
 import { EndringsmeldingStatus } from '../../../../../api/schema/endringsmelding'
-import { PanelLinje } from '../PanelLinje'
-import styles from '../Endringsmelding.module.scss'
 import { beregnSluttDato, formatDate } from '../../../../../utils/date-utils'
+import styles from '../Endringsmelding.module.scss'
+import { PanelLinje } from '../PanelLinje'
 import { Varighet } from '../VarighetSelect'
 
 

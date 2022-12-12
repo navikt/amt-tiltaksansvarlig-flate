@@ -1,6 +1,7 @@
-import React from 'react'
-import styles from './VarighetSelect.module.scss'
 import { Select } from '@navikt/ds-react'
+import React from 'react'
+
+import styles from './VarighetSelect.module.scss'
 
 interface VarighetSelectProps {
 	varighetValg: VarighetValg

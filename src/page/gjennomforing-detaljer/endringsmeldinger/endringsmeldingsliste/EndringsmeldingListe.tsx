@@ -1,11 +1,12 @@
-import React from 'react'
 import { Accordion, Alert, BodyLong } from '@navikt/ds-react'
-import styles from '../Endringsmeldinger.module.scss'
+import React from 'react'
+
+import { Endringsmelding,EndringsmeldingStatus } from '../../../../api/schema/endringsmelding'
+import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
 import { useLagretVarighetValg } from '../endringsmelding/useLagretVarighetValg'
 import { VarighetSelect, VarighetValg } from '../endringsmelding/VarighetSelect'
+import styles from '../Endringsmeldinger.module.scss'
 import { sorterEndringsmeldinger } from '../utils'
-import { EndringsmeldingStatus, Endringsmelding } from '../../../../api/schema/endringsmelding'
-import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
 
 const DEFAULT_VARIGHET_VALG = VarighetValg.IKKE_VALGT
 

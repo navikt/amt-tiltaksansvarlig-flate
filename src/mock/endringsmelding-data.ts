@@ -1,5 +1,6 @@
 import faker from 'faker'
-import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType, DeltakerStatusAarsakType } from '../api/schema/endringsmelding'
+
+import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/endringsmelding'
 
 export const endringsmeldingData: Endringsmelding[] = [
 	{

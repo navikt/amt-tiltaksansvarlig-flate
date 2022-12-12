@@ -1,27 +1,28 @@
 import { Alert, Loader } from '@navikt/ds-react'
+import { AxiosResponse } from 'axios'
+import cls from 'classnames'
 import React from 'react'
-
-import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
 import { useParams } from 'react-router-dom'
+
+import { fetchGjennomforing, GjennomforingDetaljer } from '../../api/api'
+import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
+import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
+import globalStyles from '../../globals.module.scss'
+import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import {
 	isNotStartedOrPending,
 	isRejected,
 	usePromise
 } from '../../utils/use-promise'
-import { fetchGjennomforing, GjennomforingDetaljer } from '../../api/api'
-import { AxiosResponse } from 'axios'
-import styles from './GjennomforingDetaljerPage.module.scss'
-import globalStyles from '../../globals.module.scss'
-import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
-import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
-import cls from 'classnames'
+import styles from './GjennomforingDetaljerPage.module.scss'
 import { Heading } from './heading/Heading'
 
 export const GjennomforingDetaljerPage = (): React.ReactElement => {
-	const { gjennomforingId } = useParams()
+	const params = useParams()
+	const gjennomforingId = params.gjennomforingId ?? ''
 
-	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljer>>(() => fetchGjennomforing(gjennomforingId!))
+	const gjennomforingPromise = usePromise<AxiosResponse<GjennomforingDetaljer>>(() => fetchGjennomforing(gjennomforingId))
 
 	if (isNotStartedOrPending(gjennomforingPromise)) return <Loader />
 
@@ -39,7 +40,7 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 
 			<div className={cls(styles.seperator, globalStyles.blokkL)} />
 
-			<Endringsmeldinger gjennomforingId={gjennomforingId!} />
+			<Endringsmeldinger gjennomforingId={gjennomforingId} />
 		</main>
 	)
 }

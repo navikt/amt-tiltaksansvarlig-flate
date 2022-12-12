@@ -1,4 +1,5 @@
 import faker from 'faker'
+
 import { InnloggetNavAnsatt } from '../api/api'
 
 interface Gjennomforing {
