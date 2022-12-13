@@ -13,8 +13,9 @@ export const Header = (): React.ReactElement => {
 
 	return (
 		<InternHeader className={styles.header} data-testid="innlogget-header">
-			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">NAV
-				Tiltak</InternHeader.Title>
+			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">
+				NAV Tiltaksadministrasjon
+			</InternHeader.Title>
 			<InternHeader.UserButton
 				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
