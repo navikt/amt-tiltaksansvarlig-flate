@@ -21,7 +21,9 @@ export const ArrangorAnsattSchema = z.object({
 
 export const ArrangorSchema = z.object({
 	virksomhetNavn: z.string(),
-	organisasjonNavn: z.string().nullable()
+	virksomhetOrgnr: z.string(),
+	organisasjonNavn: z.string().nullable(),
+	organisasjonOrgnr: z.string().nullable()
 })
 
 export const GjennomforingSchema = z.object({
