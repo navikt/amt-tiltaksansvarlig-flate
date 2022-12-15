@@ -23,7 +23,10 @@ export const GjennomforingGenerellInfo = ({ gjennomforing, className }: Gjennomf
 				<BodyShort size="small" className={styles.sammendrag}>{gjennomforing.tiltak.navn}</BodyShort>
 				<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
 			</div>
-			<BodyShort size="small" className={styles.sammendrag}>{arrangor.virksomhetNavn} Org.nr: {arrangor.virksomhetOrgnr}</BodyShort>
+			<div className={styles.rad}>
+				<BodyShort size="small" className={styles.sammendrag}>{arrangor.virksomhetNavn}</BodyShort>
+				<BodyShort size="small" className={styles.sammendrag}>org.nr: {arrangor.virksomhetOrgnr}</BodyShort>
+			</div>
 		</div>
 	)
 }
