@@ -4,7 +4,6 @@ import React from 'react'
 import { DeltakerStatusAarsak, DeltakerStatusAarsakType } from '../../../../../api/schema/endringsmelding'
 import { formatDate } from '../../../../../utils/date-utils'
 import styles from '../Endringsmelding.module.scss'
-import { PanelLinje } from '../PanelLinje'
 
 
 interface Props {
@@ -14,18 +13,14 @@ interface Props {
 
 export const AvsluttingInnhold = ({ sluttdato, aarsak }: Props): React.ReactElement => {
 	return (
-		<div className={styles.moveTop}>
+		<div>
 			{aarsak &&
-				<PanelLinje>
-					<BodyShort size="small" className={styles.endringInfoTekst}>
-						Årsak: {aarsak.beskrivelse ? aarsak.beskrivelse : formatStatusAarsakType(aarsak.type)}
-					</BodyShort>
-				</PanelLinje>
+				<BodyShort size="small" className={styles.endringInfoTekst}>
+					Årsak: {aarsak.beskrivelse ? aarsak.beskrivelse : formatStatusAarsakType(aarsak.type)}
+				</BodyShort>
 			}
 			{sluttdato &&
-				<PanelLinje>
-					<BodyShort size="small" className={styles.endringInfoTekst}>Ny sluttdato: {formatDate(sluttdato)}</BodyShort>
-				</PanelLinje>
+				<BodyShort size="small" className={styles.endringInfoTekst}>Ny sluttdato: {formatDate(sluttdato)}</BodyShort>
 			}
 		</div>
 	)

@@ -39,11 +39,13 @@ const DeltakerStatusAarsakSchema = z.object({
 	beskrivelse: z.string().nullable()
 })
 
+// For skjermede deltakere sendes ikke navn og fnr om ikke innlogget bruker har tilgang
 const DeltakerSchema = z.object({
-	fornavn: z.string(),
+	fornavn: z.string().nullable(),
 	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-	fodselsnummer: z.string(),
+	etternavn: z.string().nullable(),
+	fodselsnummer: z.string().nullable(),
+	erSkjermet: z.boolean()
 })
 
 export const EndringsmeldingBaseSchema = z.object({

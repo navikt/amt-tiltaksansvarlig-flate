@@ -6,10 +6,11 @@ export const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.datatype.uuid(),
 		deltaker: {
-			fornavn: 'Tine',
+			fornavn: null,
 			mellomnavn: null,
-			etternavn: 'Traust',
-			fodselsnummer: '03035512347'
+			etternavn: null,
+			fodselsnummer: null,
+			erSkjermet: true
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -22,7 +23,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347'
+			fodselsnummer: '03035512347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -35,7 +37,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Nataniel',
 			mellomnavn: null,
 			etternavn: 'Wood',
-			fodselsnummer: '13018812347'
+			fodselsnummer: '13018812347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.FORLENG_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
@@ -48,7 +51,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Mira',
 			mellomnavn: null,
 			etternavn: 'Bowler',
-			fodselsnummer: '07099512347'
+			fodselsnummer: '07099512347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
@@ -67,7 +71,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Amelia',
 			mellomnavn: null,
 			etternavn: 'Hunter',
-			fodselsnummer: '01108511382'
+			fodselsnummer: '01108511382',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
 		status: EndringsmeldingStatus.AKTIV,
@@ -80,7 +85,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347'
+			fodselsnummer: '03035512347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,
@@ -93,7 +99,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347'
+			fodselsnummer: '03035512347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTDATERT,
@@ -106,7 +113,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347'
+			fodselsnummer: '03035512347',
+			erSkjermet: false
 		},
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.TILBAKEKALT,
@@ -119,7 +127,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei2',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347'
+			fodselsnummer: '03035512347',
+			erSkjermet: true
 		},
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,

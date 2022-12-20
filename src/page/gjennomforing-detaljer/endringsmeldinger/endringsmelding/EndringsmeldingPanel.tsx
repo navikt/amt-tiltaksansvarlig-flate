@@ -1,6 +1,5 @@
-import { Alert, BodyShort, Button, Detail, Heading, Panel } from '@navikt/ds-react'
+import { Alert, BodyShort, Button, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
-import classNames from 'classnames'
 import React, { useEffect } from 'react'
 
 import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
@@ -19,14 +18,13 @@ interface EndringsmeldingProps {
 	endringsmelding: Endringsmelding
 	onFerdig: () => void
 	varighetValg: VarighetValg
-	className?: string
 }
 
-export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg, className }: EndringsmeldingProps): React.ReactElement => {
+export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
-
+	const erSkjermet = endringsmelding.deltaker.erSkjermet
 	const deltaker = endringsmelding.deltaker
-	const navn = lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn)
+	const navn = deltaker.fornavn && deltaker.etternavn? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn): ''
 
 	const handleOnFerdigClicked = () => {
 		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmelding.id))
@@ -36,60 +34,52 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg, 
 		if (isResolved(markerSomFerdigPromise)) {
 			onFerdig()
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ markerSomFerdigPromise ])
+	}, [ markerSomFerdigPromise, onFerdig ])
 
 	return (
-		<Panel border className={classNames(styles.panel, className)}>
-			<div className={styles.ikonRow}>
+		<Panel border className={styles.panel}>
+			<div className={styles.ikonColumn}>
 				<EndringsmeldingIkon type={endringsmelding.type} />
 			</div>
-			<div className={styles.meldingRow}>
-				<PanelLinje>
+
+			<div className={styles.meldingInnholdColumn}>
+				{ erSkjermet && <Tag size="small" variant="warning" style={{ marginBottom: '0.7rem' }}>Skjermet</Tag> }
+				<PanelLinje className={styles.spaceBottom}>
 					<Heading size="xsmall" level="3">{navn}</Heading>
 					<BodyShort size="medium" className={styles.fnr} >{deltaker.fodselsnummer}</BodyShort>
-					<Detail size="small" className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
 				</PanelLinje>
-				<div className={styles.body}>
-					<div>
-						<PanelLinje className={styles.spaceTop}>
-							<BodyShort size="small" className={styles.bold}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
-						</PanelLinje>
-						<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg} />
-						{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
-							<PanelLinje>
-								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
-							</PanelLinje>
-						}
-						{endringsmelding.status === EndringsmeldingStatus.TILBAKEKALT &&
-							<PanelLinje>
-								<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi arrangør har tilbakekalt meldingen.</BodyShort>
-							</PanelLinje>
-						}
-					</div>
-					{endringsmelding.status === EndringsmeldingStatus.AKTIV
-						? (
-							<Button
-								size="small"
-								onClick={handleOnFerdigClicked}
-								disabled={!isNotStarted(markerSomFerdigPromise)}
-								loading={isPending(markerSomFerdigPromise)}
-							>
-								Ferdig
-							</Button>
-						)
-						: (
-							<BodyShort className={styles.gray}>Ferdig</BodyShort>
-						)
-					}
-				</div>
+				<BodyShort size="small" className={styles.endringstype}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
+				<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg} />
 
-				{isRejected(markerSomFerdigPromise) &&
-					<PanelLinje className={styles.spaceTop}>
-						<Alert variant="error" size="small">Noe gikk galt</Alert>
-					</PanelLinje>
+				{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
+					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+				}
+
+				{endringsmelding.status === EndringsmeldingStatus.TILBAKEKALT &&
+					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi arrangør har tilbakekalt meldingen.</BodyShort>
+				}
+
+			</div>
+			<div className={styles.rightColumn}>
+				<Detail className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
+				{endringsmelding.status === EndringsmeldingStatus.AKTIV
+					? (
+						<Button
+							size="small"
+							onClick={handleOnFerdigClicked}
+							disabled={!isNotStarted(markerSomFerdigPromise)}
+							loading={isPending(markerSomFerdigPromise)}
+						>
+							Ferdig
+						</Button>
+					)
+					: (
+						<BodyShort className={styles.gray}>Ferdig</BodyShort>
+					)
 				}
 			</div>
+
+			{ isRejected(markerSomFerdigPromise) && <Alert variant="error" size="small" className={styles.spaceTop}>Noe gikk galt</Alert> }
 		</Panel>
 	)
 }
