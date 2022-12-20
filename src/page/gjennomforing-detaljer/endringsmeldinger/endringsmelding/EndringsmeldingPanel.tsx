@@ -25,6 +25,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 	const erSkjermet = endringsmelding.deltaker.erSkjermet
 	const deltaker = endringsmelding.deltaker
 	const navn = deltaker.fornavn && deltaker.etternavn? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn): ''
+	const kanArkiveres = deltaker.fornavn && deltaker.etternavn && deltaker.fodselsnummer
 
 	const handleOnFerdigClicked = () => {
 		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmelding.id))
@@ -67,7 +68,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 						<Button
 							size="small"
 							onClick={handleOnFerdigClicked}
-							disabled={!isNotStarted(markerSomFerdigPromise)}
+							disabled={!isNotStarted(markerSomFerdigPromise) || !kanArkiveres}
 							loading={isPending(markerSomFerdigPromise)}
 						>
 							Ferdig
