@@ -2,14 +2,6 @@
   margin-top: 0.25rem !important;
 }
 
-.moveRight {
-  margin-left: auto;
-}
-
-.moveTop {
-  margin-bottom: auto;
-}
-
 .smallText {
   font-size: 0.875rem !important;
 }
@@ -22,9 +14,8 @@
   color: var(--a-text-subtle);
 }
 
-.bold {
-  font-weight: 600 !important;
-}
+.endringstype {
+  font-weight: var(--a-font-weight-bold);}
 
 .fnr {
   margin-left: 1rem !important;
@@ -39,17 +30,15 @@
   flex-direction: row;
 }
 
-.ikonRow {
+.ikonColumn {
   display: flex;
   align-items: center;
   margin-right: 1rem;
 }
 
-.meldingRow {
-  display: flex;
-  flex-direction: column;
+.meldingInnholdColumn {
   width: 100%;
-
+  min-width: fit-content;
 }
 
 .sluttdato {
@@ -61,15 +50,16 @@
   color: var(--a-purple-400);
 }
 
-.body {
+.rightColumn {
   display: flex;
+  flex-direction: column;
   width: 100%;
   align-items: flex-end;
   justify-content: space-between;
 }
 
 .spaceBottom {
-  margin-bottom: 1rem
+  margin-bottom: 0.5rem
 }
 
 .sendt {
