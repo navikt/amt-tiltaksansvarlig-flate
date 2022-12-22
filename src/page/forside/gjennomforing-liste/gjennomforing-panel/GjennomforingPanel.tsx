@@ -12,6 +12,7 @@ interface GjennomforingPanelProps {
 
 export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): React.ReactElement => {
 	const harAktiveEndringsmeldinger = gjennomforing.antallAktiveEndringsmeldinger > 0
+	const harSkjermedeEndringsmeldinger = gjennomforing.harSkjermedeDeltakere
 
 	return (
 		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} className={styles.panel}>
@@ -31,13 +32,20 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 						</BodyShort>
 					</div>
 				</div>
-
-				{
-					harAktiveEndringsmeldinger &&
-					<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
-						Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
-					</Tag>
-				}
+				<div className={styles.tags}>
+					{
+						harAktiveEndringsmeldinger &&
+						<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
+							Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
+						</Tag>
+					}
+					{
+						harSkjermedeEndringsmeldinger &&
+						<Tag variant="warning" size="small">
+							Skjermet
+						</Tag>
+					}
+				</div>
 			</div>
 		</SpaLenkepanel>
 	)
