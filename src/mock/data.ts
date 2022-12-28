@@ -3,29 +3,28 @@ import faker from 'faker'
 import { InnloggetNavAnsatt } from '../api/api'
 
 interface Gjennomforing {
-    navn: string,
-    id: string,
-    arrangor: {
-        organisasjonNavn: string | null,
-        organisasjonOrgnr: string | null,
-        virksomhetNavn: string,
-        virksomhetOrgnr: string,
-    },
-    lopenr: number,
-    opprettetAr: number,
-    startDato: Date,
-    sluttDato: Date,
-    antallAktiveEndringsmeldinger: number,
-    tiltak: {
-        kode: string,
-        navn: string,
-    },
+	navn: string,
+	id: string,
+	arrangor: {
+		organisasjonNavn: string | null,
+		organisasjonOrgnr: string | null,
+		virksomhetNavn: string,
+		virksomhetOrgnr: string,
+	},
+	lopenr: number,
+	opprettetAr: number,
+	startDato: Date,
+	sluttDato: Date,
+	antallAktiveEndringsmeldinger: number,
+	tiltak: {
+		kode: string,
+		navn: string,
+	},
 }
 
 export const innloggetAnsatt: InnloggetNavAnsatt = {
 	navIdent: 'Z1234',
 	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
-	tilganger: [ 'FLATE', 'ENDRINGSMELDING' ]
 }
 
 export const gjennomforinger: Gjennomforing[] = [

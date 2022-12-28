@@ -10,7 +10,6 @@ export const TiltakSchema = z.object({
 export const InnloggetNavAnsattSchema = z.object({
 	navIdent: z.string(),
 	navn: z.string(),
-	tilganger: z.array(z.string())
 })
 
 export const ArrangorAnsattSchema = z.object({

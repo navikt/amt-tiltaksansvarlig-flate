@@ -6,8 +6,7 @@ import { fetchEndringsmeldinger } from '../../../api/api'
 import { Endringsmelding } from '../../../api/schema/endringsmelding'
 import { Spinner } from '../../../component/spinner/Spinner'
 import globalStyles from '../../../globals.module.scss'
-import { useDataStore } from '../../../store/data-store'
-import { harTilgangTilEndringsmelding } from '../../../utils/tilgang-utils'
+import { getStatusCode } from '../../../utils/error-utils'
 import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../../utils/use-promise'
 import styles from './Endringsmeldinger.module.scss'
 import { EndringsmeldingListe } from './endringsmeldingsliste/EndringsmeldingListe'
@@ -17,10 +16,8 @@ interface EndringsmeldingerProps {
 }
 
 export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
-	const { innloggetAnsatt } = useDataStore()
 	const [ endringsmeldinger, setEndringsmeldinger ] = useState<Endringsmelding[]>([])
 	const endringsmeldingerPromise = usePromise<AxiosResponse<Endringsmelding[]>>()
-	const harTilgang = harTilgangTilEndringsmelding(innloggetAnsatt.tilganger)
 
 	useEffect(() => {
 		if (isResolved(endringsmeldingerPromise)) {
@@ -30,11 +27,9 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 
 
 	useEffect(() => {
-		if (harTilgang) {
-			endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
-		}
+		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ harTilgang ])
+	}, [])
 
 	const refresh = () => {
 		endringsmeldingerPromise.setPromise(fetchEndringsmeldinger(props.gjennomforingId))
@@ -42,15 +37,14 @@ export const Endringsmeldinger = (props: EndringsmeldingerProps) => {
 
 	const isLoading = isNotStartedOrPending(endringsmeldingerPromise)
 
-	if (!harTilgang) {
-		return (
-			<Alert className={styles.errorAlert} variant="info" size="small">
-				Du har ikke tilgang til å se endringsmeldinger.
-			</Alert>
-		)
-	}
-
 	if (isRejected(endringsmeldingerPromise)) {
+		if (getStatusCode(endringsmeldingerPromise.error) === 403) {
+			return (
+				<Alert className={styles.errorAlert} variant="info" size="small">
+					Du har ikke tilgang til å se endringsmeldinger.
+				</Alert>
+			)
+		}
 		return (
 			<Alert className={styles.errorAlert} variant="error" size="small">
 				Klarte ikke å laste endringsmeldinger.
