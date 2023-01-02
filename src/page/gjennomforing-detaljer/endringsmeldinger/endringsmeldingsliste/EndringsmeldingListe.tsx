@@ -33,12 +33,12 @@ export const EndringsmeldingListe = ({
 			</BodyLong>
 			<VarighetSelect varighetValg={varighetValg} setVarighetValg={setVarighetValg} />
 			{aktiveMeldinger.length > 0
-				? aktiveMeldinger.map(m => {
+				? aktiveMeldinger.map(endringsmelding => {
 					return <EndringsmeldingPanel
-						endringsmelding={m}
+						endringsmelding={endringsmelding}
 						onFerdig={refresh}
 						varighetValg={varighetValg}
-						key={m.id}
+						key={endringsmelding.id}
 					/>
 				})
 				: <Alert variant="info" size="small" inline>Det er ingen nye endringsmeldinger.</Alert>

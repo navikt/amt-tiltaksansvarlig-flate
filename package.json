@@ -32,7 +32,7 @@
     "cy:clear": "cypress cache clear"
   },
   "devDependencies": {
-    "@types/faker": "^6.6.8",
+    "@types/faker": "^5.5.3",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "@vitejs/plugin-react": "^3.0.0",

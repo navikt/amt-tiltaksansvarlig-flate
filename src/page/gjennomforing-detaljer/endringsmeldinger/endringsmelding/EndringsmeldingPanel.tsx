@@ -1,14 +1,14 @@
-import { Alert, BodyShort, Button, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
+import { Alert, BodyShort, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import React, { useEffect } from 'react'
 
-import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
-import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
+import { isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingIkon } from './EndringsmeldingIkon'
+import { FerdigKnapp } from './Ferdigknapp'
 import { EndringsmeldingInnhold } from './innhold/EndringsmeldingInnhold'
 import { PanelLinje } from './PanelLinje'
 import { VarighetValg } from './VarighetSelect'
@@ -22,14 +22,10 @@ interface EndringsmeldingProps {
 
 export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }: EndringsmeldingProps): React.ReactElement => {
 	const markerSomFerdigPromise = usePromise<AxiosResponse>()
-	const erSkjermet = endringsmelding.deltaker.erSkjermet
 	const deltaker = endringsmelding.deltaker
-	const navn = deltaker.fornavn && deltaker.etternavn? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn): ''
+	const erSkjermet = deltaker.erSkjermet
 	const kanArkiveres = deltaker.fornavn && deltaker.etternavn && deltaker.fodselsnummer
-
-	const handleOnFerdigClicked = () => {
-		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmelding.id))
-	}
+	const navn = deltaker.fornavn && deltaker.etternavn? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn): ''
 
 	useEffect(() => {
 		if (isResolved(markerSomFerdigPromise)) {
@@ -63,21 +59,11 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 			</div>
 			<div className={styles.rightColumn}>
 				<Detail className={styles.sendt}>Sendt: {formatDate(endringsmelding.opprettetDato)}</Detail>
-				{endringsmelding.status === EndringsmeldingStatus.AKTIV
-					? (
-						<Button
-							size="small"
-							onClick={handleOnFerdigClicked}
-							disabled={!isNotStarted(markerSomFerdigPromise) || !kanArkiveres}
-							loading={isPending(markerSomFerdigPromise)}
-						>
-							Ferdig
-						</Button>
-					)
-					: (
-						<BodyShort className={styles.gray}>Ferdig</BodyShort>
-					)
-				}
+				<FerdigKnapp
+					inaktiv={endringsmelding.status !== EndringsmeldingStatus.AKTIV}
+					skalSkjules={!kanArkiveres}
+					endringsmeldingId={endringsmelding.id}
+				/>
 			</div>
 
 			{ isRejected(markerSomFerdigPromise) && <Alert variant="error" size="small" className={styles.spaceTop}>Noe gikk galt</Alert> }
