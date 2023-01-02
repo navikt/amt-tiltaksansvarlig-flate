@@ -16,6 +16,7 @@ interface Gjennomforing {
     startDato: Date,
     sluttDato: Date,
     antallAktiveEndringsmeldinger: number,
+	harSkjermedeDeltakere: boolean
     tiltak: {
         kode: string,
         navn: string,
@@ -43,6 +44,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 2,
+		harSkjermedeDeltakere: true,
 		tiltak: {
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
@@ -62,6 +64,8 @@ export const gjennomforinger: Gjennomforing[] = [
 		startDato: faker.date.future(),
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 0,
+		harSkjermedeDeltakere: false,
+
 		tiltak: {
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
@@ -81,6 +85,8 @@ export const gjennomforinger: Gjennomforing[] = [
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 1,
+		harSkjermedeDeltakere: false,
+
 		tiltak: {
 			kode: 'ARBFORB',
 			navn: 'Arbeidsforberedende trening (AFT)',
@@ -100,6 +106,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 1,
+		harSkjermedeDeltakere: false,
 		tiltak: {
 			kode: 'AVKLARAG',
 			navn: 'Avklaring',

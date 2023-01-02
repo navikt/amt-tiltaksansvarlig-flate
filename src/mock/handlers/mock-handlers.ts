@@ -61,11 +61,13 @@ export const mockHandlers: RequestHandler[] = [
 				lopenr: g.lopenr,
 				opprettetAar: g.opprettetAr,
 				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
+				harSkjermedeDeltakere: g.harSkjermedeDeltakere,
 				tiltak: g.tiltak,
 			}))
 
 		return res(ctx.delay(250), ctx.json(data))
 	}),
+
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
 		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find(g => g.id === id)

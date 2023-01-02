@@ -15,6 +15,13 @@
   width: 100%;
 }
 
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: end;
+}
+
 .info {
   display: flex;
   align-items: center;

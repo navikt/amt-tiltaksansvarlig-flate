@@ -33,17 +33,18 @@ export const GjennomforingSchema = z.object({
 	opprettetAar: z.number(),
 	arrangorNavn: z.string(),
 	antallAktiveEndringsmeldinger: z.number().int(),
+	harSkjermedeDeltakere: z.boolean(),
 	tiltak: TiltakSchema,
 })
 
 export const GjennomforingDetaljerSchema = z.object({
-	navn: z.string(),
 	id: z.string(),
-	startDato: processStringToDate.nullable(),
-	sluttDato: processStringToDate.nullable(),
-	arrangor: ArrangorSchema,
+	navn: z.string(),
 	lopenr: z.number().int(),
 	opprettetAr: z.number().int(),
+	arrangor: ArrangorSchema,
+	startDato: processStringToDate.nullable(),
+	sluttDato: processStringToDate.nullable(),
 	tiltak: TiltakSchema,
 })
 
