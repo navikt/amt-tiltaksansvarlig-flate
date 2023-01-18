@@ -15,7 +15,7 @@ export const GjennomforingPanelListe = (props: GjennomforingPanelListeProps): Re
 	if (gjennomforinger.length === 0) {
 		return (
 			<Alert variant="warning" size="small">
-				Det er ingen aktive tiltak med dette tiltaksnummeret i Arena.
+				Dette tiltaksnummeret kan ikke legges til
 			</Alert>
 		)
 	}
