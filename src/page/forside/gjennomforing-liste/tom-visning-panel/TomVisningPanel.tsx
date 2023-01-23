@@ -9,7 +9,7 @@ export const TomVisningPanel = (): React.ReactElement => {
 		<Panel className={styles.panel}>
 			<img src={clipboardImg} alt="Illustrasjon av ordrebrett" />
 			<BodyLong size="small" className={styles.tekst}>
-				Her kan du legge til tiltak som du jobber med. Løsningen er under utvikling og det jobbes kontinuerlig med å gjøre tjenesten bedre.
+				Her mottar du endringsmeldinger fra tiltaksarrangører. Legg til tiltakene du jobber med.
 			</BodyLong>
 		</Panel>
 	)
