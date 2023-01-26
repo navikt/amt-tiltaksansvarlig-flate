@@ -1,9 +1,14 @@
-import { ChevronRightCircleFilled, ChevronRightDoubleFilled, ErrorFilled, MinusCircleFilled } from '@navikt/ds-icons'
+import {
+	AddCircleFilled,
+	ChevronRightCircleFilled,
+	ChevronRightDoubleFilled,
+	MinusCircleFilled
+} from '@navikt/ds-icons'
 import SvgDivideFilled from '@navikt/ds-icons/esm/DivideFilled'
 import React from 'react'
 
 import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
-import styles from './Endringsmelding.module.scss'
+import styles from './EndringsmeldingIkon.module.scss'
 
 interface Props {
 	type: EndringsmeldingType
@@ -11,23 +16,17 @@ interface Props {
 
 export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 	switch (type) {
-		case EndringsmeldingType.ENDRE_OPPSTARTSDATO: {
-			return <ChevronRightCircleFilled className={styles.oppstartsdatoIkon} />
-		}
-		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO: {
-			return <ChevronRightCircleFilled className={styles.oppstartsdatoIkon} />
-		}
-		case EndringsmeldingType.FORLENG_DELTAKELSE: {
-			return <ChevronRightDoubleFilled className={styles.forlengeDeltakelseIkon} />
-		}
-		case EndringsmeldingType.AVSLUTT_DELTAKELSE: {
-			return <MinusCircleFilled className={styles.avsluttDeltakelseIkon} />
-		}
-		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: {
-			return <ErrorFilled className={styles.ikkeAktuellIkon} />
-		}
-		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT: {
-			return <SvgDivideFilled className={styles.endreProsentDeltakelseIkon}/>
-		}
+		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
+			return <ChevronRightCircleFilled className={styles.endreIkon} aria-hidden/>
+		case EndringsmeldingType.ENDRE_OPPSTARTSDATO:
+			return <ChevronRightCircleFilled className={styles.endreIkon} aria-hidden/>
+		case  EndringsmeldingType.FORLENG_DELTAKELSE:
+			return <ChevronRightDoubleFilled className={styles.forlengIkon} aria-hidden/>
+		case EndringsmeldingType.AVSLUTT_DELTAKELSE:
+			return <MinusCircleFilled className={styles.avsluttIkon} aria-hidden/>
+		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT:
+			return <SvgDivideFilled className={styles.endreProsentDeltakelseIkon} aria-hidden/>
+		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
+			return <AddCircleFilled className={styles.ikkeAktuellIkon} aria-hidden/>
 	}
 }

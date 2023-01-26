@@ -1,0 +1,30 @@
+.ikon {
+  height: 18px;
+  width: 18px;
+}
+
+.endreIkon {
+  color: var(--a-deepblue-300);
+  @extend .ikon;
+}
+
+.forlengIkon {
+  color: var(--a-icon-success);
+  @extend .ikon;
+}
+
+.ikkeAktuellIkon {
+  color: var(--a-icon-warning);
+  transform: rotate(45deg);
+  @extend .ikon;
+}
+
+.endreProsentDeltakelseIkon {
+  color: var(--a-purple-400);
+  @extend .ikon;
+}
+
+.avsluttIkon {
+  color: var(--a-gray-500);
+  @extend .ikon;
+}

@@ -46,10 +46,6 @@
   color: var(--a-text-subtle);
 }
 
-.endreProsentDeltakelseIkon {
-  color: var(--a-purple-400);
-}
-
 .rightColumn {
   display: flex;
   flex-direction: column;
@@ -65,29 +61,4 @@
 .sendt {
   margin: 0 0 0 auto !important;
   @extend .gray;
-}
-
-.ikon {
-  height: 1.4rem;
-  width: 1.4rem;
-}
-
-.oppstartsdatoIkon {
-  color: var(--a-deepblue-300);
-  @extend .ikon;
-}
-
-.forlengeDeltakelseIkon {
-  color: var(--a-icon-success);
-  @extend .ikon;
-}
-
-.avsluttDeltakelseIkon {
-  color: var(--a-gray-500);
-  @extend .ikon;
-}
-
-.ikkeAktuellIkon {
-  color: var(--a-icon-warning);
-  @extend .ikon;
 }
