@@ -3,24 +3,24 @@ import faker from 'faker'
 import { InnloggetNavAnsatt } from '../api/api'
 
 interface Gjennomforing {
-    navn: string,
-    id: string,
-    arrangor: {
-        organisasjonNavn: string | null,
-        organisasjonOrgnr: string | null,
-        virksomhetNavn: string,
-        virksomhetOrgnr: string,
-    },
-    lopenr: number,
-    opprettetAr: number,
-    startDato: Date,
-    sluttDato: Date,
-    antallAktiveEndringsmeldinger: number,
+	navn: string,
+	id: string,
+	arrangor: {
+		organisasjonNavn: string | null,
+		organisasjonOrgnr: string | null,
+		virksomhetNavn: string,
+		virksomhetOrgnr: string,
+	},
+	lopenr: number,
+	opprettetAr: number,
+	startDato: Date,
+	sluttDato: Date,
+	antallAktiveEndringsmeldinger: number,
 	harSkjermedeDeltakere: boolean
-    tiltak: {
-        kode: string,
-        navn: string,
-    },
+	tiltak: {
+		kode: string,
+		navn: string,
+	},
 }
 
 export const innloggetAnsatt: InnloggetNavAnsatt = {

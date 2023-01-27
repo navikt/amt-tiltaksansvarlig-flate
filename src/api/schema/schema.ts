@@ -26,6 +26,14 @@ export const ArrangorSchema = z.object({
 	organisasjonOrgnr: z.string().nullable()
 })
 
+export enum GjennomforingStatus {
+	IKKE_STARTET = 'IKKE_STARTET',
+	GJENNOMFORES = 'GJENNOMFORES',
+	AVSLUTTET = 'AVSLUTTET',
+}
+
+const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
+
 export const GjennomforingSchema = z.object({
 	id: z.string(),
 	navn: z.string(),
@@ -52,6 +60,9 @@ export const HentGjennomforingMedLopenrSchema = z.object({
 	id: z.string().uuid(),
 	navn: z.string(),
 	lopenr: z.number().int(),
+	status: GjennomforingStatusSchema,
+	startDato: processStringToDate.nullable(),
+	sluttDato: processStringToDate.nullable(),
 	opprettetAr: z.number().int(),
 	arrangorNavn: z.string(),
 	tiltak: TiltakSchema,

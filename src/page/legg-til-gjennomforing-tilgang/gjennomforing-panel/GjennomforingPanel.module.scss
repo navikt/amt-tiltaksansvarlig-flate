@@ -11,13 +11,16 @@
   flex-wrap: wrap;
 }
 
-.muted {
-  color: $textMuted;
-  font-size: 1rem;
+.bodyShort:not(:last-of-type) {
+    margin-bottom: 0.3rem;
 }
 
 .alert {
   margin-top: 2rem;
+}
+
+.tag {
+    margin-right: 0.5rem;
 }
 
 .leggTilKnapp {
@@ -26,8 +29,8 @@
         gap: var(--a-spacing-2);
     }
     svg {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         margin-top: auto;
         margin-bottom: auto;
     }

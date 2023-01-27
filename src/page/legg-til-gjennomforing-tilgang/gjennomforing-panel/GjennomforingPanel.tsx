@@ -1,9 +1,11 @@
 import { Add } from '@navikt/ds-icons'
-import { Alert, BodyShort, Button, Heading, Panel } from '@navikt/ds-react'
+import { Alert, BodyShort, Button, Heading, Panel, Tag } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import React from 'react'
 
 import { HentGjennomforingMedLopenr, leggTilTilgangTilGjennomforing } from '../../../api/api'
+import { GjennomforingStatus } from '../../../api/schema/schema'
+import { formatDate } from '../../../utils/date-utils'
 import { isNotStarted, isPending, isRejected, usePromise } from '../../../utils/use-promise'
 import styles from './GjennomforingPanel.module.scss'
 
@@ -13,7 +15,7 @@ interface GjennomforingPanelProps {
 }
 
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
-	const { id, navn, opprettetAr, lopenr, arrangorNavn, tiltak } = props.gjennomforing
+	const { id, navn, opprettetAr, lopenr, status, startDato, sluttDato, arrangorNavn, tiltak } = props.gjennomforing
 	const leggTilGjennomforingPromise = usePromise<AxiosResponse>()
 
 	const handleOnLeggTilClicked = () => {
@@ -39,6 +41,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 				onClick={handleOnLeggTilClicked}
 				loading={isPending(leggTilGjennomforingPromise)}
 				disabled={disableLeggTil}
+				size="small"
 				className={styles.leggTilKnapp}
 			>
 				<Add /> Legg til
@@ -49,12 +52,18 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 
 	return (
 		<Panel border className={styles.panel}>
-			<Heading size="xsmall" level="2">{navn}</Heading>
+			<Heading size="small" level="2" spacing>{navn}</Heading>
 			<div className={styles.innhold}>
 				<div>
-					<BodyShort className={styles.muted}>Tiltak: {opprettetAr}/{lopenr}</BodyShort>
-					<BodyShort className={styles.muted}>{tiltak.navn}</BodyShort>
-					<BodyShort className={styles.muted}>Tiltaksarrangør: {arrangorNavn}</BodyShort>
+					<BodyShort size="small" className={styles.bodyShort}>Tiltak: {opprettetAr}/{lopenr}</BodyShort>
+					<BodyShort size="small" className={styles.bodyShort}>{tiltak.navn}</BodyShort>
+					<BodyShort size="small" className={styles.bodyShort}>Tiltaksarrangør: {arrangorNavn}</BodyShort>
+					{status === GjennomforingStatus.AVSLUTTET &&
+						<BodyShort size="small" className={styles.bodyShort}>
+							<Tag variant="warning" size="small" className={styles.tag}>Avsluttet</Tag>
+							{formatDate(startDato)} - {formatDate(sluttDato)}
+						</BodyShort>
+					}
 				</div>
 				<LeggTil />
 			</div>
