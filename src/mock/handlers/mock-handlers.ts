@@ -1,8 +1,10 @@
+import faker from 'faker'
 import { rest } from 'msw'
 import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
 
 import { Gjennomforing, GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../../api/api'
 import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
+import { GjennomforingStatus } from '../../api/schema/schema'
 import { appUrl } from '../../utils/url-utils'
 import {
 	gjennomforinger,
@@ -28,6 +30,9 @@ export const mockHandlers: RequestHandler[] = [
 						id: '87d67559-7571-42e4-812a-1905217fdae2',
 						navn: 'TEST',
 						lopenr: 123,
+						status: GjennomforingStatus.AVSLUTTET,
+						startDato: faker.date.past(10),
+						sluttDato: faker.date.past(2),
 						opprettetAr: 2020,
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
@@ -39,6 +44,9 @@ export const mockHandlers: RequestHandler[] = [
 						id: '6ec95b2a-be19-41f0-9c97-1f81ab2159c3',
 						navn: 'Oppfølging Tjenesteområde 1',
 						lopenr: 123,
+						status: GjennomforingStatus.GJENNOMFORES,
+						startDato: faker.date.past(2),
+						sluttDato: faker.date.future(3),
 						opprettetAr: 2020,
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
