@@ -31,6 +31,6 @@ export const EndringsmeldingInnhold = ({ endringsmelding, varighetValg }: Props)
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
 			return <AvsluttingInnhold aarsak={endringsmelding.innhold.aarsak} />
 		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT:
-			return <EndreDeltakelseProsentInnhold deltakelseProsent={endringsmelding.innhold.deltakelseProsent} />
+			return <EndreDeltakelseProsentInnhold deltakelseProsent={endringsmelding.innhold.deltakelseProsent} gyldigFraDato={endringsmelding.innhold.gyldigFraDato} />
 	}
 }
