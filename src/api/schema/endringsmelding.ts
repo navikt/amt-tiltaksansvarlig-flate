@@ -83,7 +83,7 @@ export const DeltakerIkkeAktuellEndringsmeldingSchema = z.intersection(Endringsm
 export const DeltakelseProsentEndringmelsingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	id: z.string().uuid(),
 	type: z.literal(EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT),
-	innhold: z.object({ deltakelseProsent: z.number(), gyldigFraDato: processStringToNullableDate.nullable() }),
+	innhold: z.object({ deltakelseProsent: z.number(), gyldigFraDato: processStringToNullableDate }),
 }))
 
 export const EndringsmeldingSchema = z.union([
