@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { processStringToDate } from '../utils'
+import { processStringToDate,processStringToNullableDate } from '../utils'
 
 
 export enum EndringsmeldingType {
@@ -83,7 +83,7 @@ export const DeltakerIkkeAktuellEndringsmeldingSchema = z.intersection(Endringsm
 export const DeltakelseProsentEndringmelsingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	id: z.string().uuid(),
 	type: z.literal(EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT),
-	innhold: z.object({ deltakelseProsent: z.number() }),
+	innhold: z.object({ deltakelseProsent: z.number(), gyldigFraDato: processStringToNullableDate }),
 }))
 
 export const EndringsmeldingSchema = z.union([

@@ -132,7 +132,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 		},
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
-		innhold: { deltakelseProsent: 64 },
+		innhold: { deltakelseProsent: 64, gyldigFraDato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
 	}
 ]
