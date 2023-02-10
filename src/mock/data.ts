@@ -1,6 +1,7 @@
 import faker from 'faker'
 
 import { InnloggetNavAnsatt } from '../api/api'
+import { GjennomforingStatus } from '../api/schema/schema'
 
 interface Gjennomforing {
 	navn: string,
@@ -21,6 +22,7 @@ interface Gjennomforing {
 		kode: string,
 		navn: string,
 	},
+	status: GjennomforingStatus
 }
 
 export const innloggetAnsatt: InnloggetNavAnsatt = {
@@ -49,6 +51,7 @@ export const gjennomforinger: Gjennomforing[] = [
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
 		},
+		status: GjennomforingStatus.GJENNOMFORES,
 	},
 	{
 		navn: 'Oppfølging Tjenesteområde 2',
@@ -70,6 +73,7 @@ export const gjennomforinger: Gjennomforing[] = [
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
 		},
+		status: GjennomforingStatus.IKKE_STARTET,
 	},
 	{
 		navn: 'AFT Tjenesteområde 3',
@@ -83,7 +87,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		lopenr: 75634,
 		opprettetAr: 2022,
 		startDato: faker.date.past(),
-		sluttDato: faker.date.future(),
+		sluttDato: faker.date.past(),
 		antallAktiveEndringsmeldinger: 1,
 		harSkjermedeDeltakere: false,
 
@@ -91,6 +95,7 @@ export const gjennomforinger: Gjennomforing[] = [
 			kode: 'ARBFORB',
 			navn: 'Arbeidsforberedende trening (AFT)',
 		},
+		status: GjennomforingStatus.AVSLUTTET,
 	},
 	{
 		navn: 'Avklaring Tjenesteområde 4',
@@ -111,5 +116,6 @@ export const gjennomforinger: Gjennomforing[] = [
 			kode: 'AVKLARAG',
 			navn: 'Avklaring',
 		},
+		status: GjennomforingStatus.GJENNOMFORES,
 	},
 ]

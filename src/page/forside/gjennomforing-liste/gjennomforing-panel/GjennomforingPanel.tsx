@@ -1,10 +1,12 @@
-import { BodyShort, Heading,Tag } from '@navikt/ds-react'
+import { BodyShort, Heading, Tag } from '@navikt/ds-react'
 import React from 'react'
 
 import { Gjennomforing } from '../../../../api/api'
 import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
 import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import styles from './GjennomforingPanel.module.scss'
+import { GjennomforingStatus } from '../../../../api/schema/schema'
+import { formatDateMedMndNavn } from '../../../../utils/date-utils'
 
 interface GjennomforingPanelProps {
 	gjennomforing: Gjennomforing
@@ -13,6 +15,9 @@ interface GjennomforingPanelProps {
 export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): React.ReactElement => {
 	const harAktiveEndringsmeldinger = gjennomforing.antallAktiveEndringsmeldinger > 0
 	const harSkjermedeEndringsmeldinger = gjennomforing.harSkjermedeDeltakere
+	const avsluttet = gjennomforing.status === GjennomforingStatus.AVSLUTTET
+	const oppstart = formatDateMedMndNavn(gjennomforing.startDato)
+	const sluttdato = formatDateMedMndNavn(gjennomforing.sluttDato)
 
 	return (
 		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} className={styles.panel}>
@@ -30,6 +35,17 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 						<BodyShort size="small">
 							{gjennomforing.opprettetAar}/{gjennomforing.lopenr}
 						</BodyShort>
+
+						{
+							avsluttet &&
+							<div className={styles.tags}>
+								<Tag variant="warning" size="small">
+								Avsluttet
+								</Tag>
+							</div>
+						}
+
+						<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
 					</div>
 				</div>
 				<div className={styles.tags}>
