@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Gjennomforing } from '../../../../api/api'
 import { GjennomforingStatus } from '../../../../api/schema/schema'
+import { AvsluttetMerkelapp } from '../../../../component/avsluttet-merkelapp/AvsluttetMerkelapp'
 import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
 import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import { formatDateMedMndNavn } from '../../../../utils/date-utils'
@@ -37,15 +38,7 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 						</BodyShort>
 					</div>
 					<div className={styles.info}>
-						{
-							avsluttet &&
-							<div className={styles.tags}>
-								<Tag variant="warning" size="small">
-								Avsluttet
-								</Tag>
-							</div>
-						}
-
+						<AvsluttetMerkelapp hidden={!avsluttet} />
 						<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
 					</div>
 				</div>

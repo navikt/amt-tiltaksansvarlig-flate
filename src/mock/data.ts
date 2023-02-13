@@ -87,7 +87,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		lopenr: 75634,
 		opprettetAr: 2022,
 		startDato: faker.date.past(),
-		sluttDato: faker.date.past(),
+		sluttDato: faker.date.recent(),
 		antallAktiveEndringsmeldinger: 1,
 		harSkjermedeDeltakere: false,
 
