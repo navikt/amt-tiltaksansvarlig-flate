@@ -35,7 +35,8 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 						<BodyShort size="small">
 							{gjennomforing.opprettetAar}/{gjennomforing.lopenr}
 						</BodyShort>
-
+					</div>
+					<div className={styles.info}>
 						{
 							avsluttet &&
 							<div className={styles.tags}>
