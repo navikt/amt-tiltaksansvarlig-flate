@@ -43,6 +43,9 @@ export const GjennomforingSchema = z.object({
 	antallAktiveEndringsmeldinger: z.number().int(),
 	harSkjermedeDeltakere: z.boolean(),
 	tiltak: TiltakSchema,
+	startDato: processStringToDate.nullable(),
+	sluttDato: processStringToDate.nullable(),
+	status: GjennomforingStatusSchema,
 })
 
 export const GjennomforingDetaljerSchema = z.object({
@@ -54,6 +57,7 @@ export const GjennomforingDetaljerSchema = z.object({
 	startDato: processStringToDate.nullable(),
 	sluttDato: processStringToDate.nullable(),
 	tiltak: TiltakSchema,
+	status: GjennomforingStatusSchema,
 })
 
 export const HentGjennomforingMedLopenrSchema = z.object({

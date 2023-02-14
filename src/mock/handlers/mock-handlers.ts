@@ -71,6 +71,9 @@ export const mockHandlers: RequestHandler[] = [
 				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
 				harSkjermedeDeltakere: g.harSkjermedeDeltakere,
 				tiltak: g.tiltak,
+				startDato: g.startDato,
+				sluttDato: g.sluttDato,
+				status: g.status,
 			}))
 
 		return res(ctx.delay(250), ctx.json(data))
