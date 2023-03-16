@@ -1,22 +1,20 @@
 import { BodyShort, Button } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
 import React from 'react'
 
-import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { isNotStarted, isPending, usePromise } from '../../../../utils/use-promise'
 import styles from './Endringsmelding.module.scss'
 
 interface FerdigKnappProps {
 	inaktiv: boolean,
 	skalSkjules: boolean,
-	endringsmeldingId: string
+	onClick: () => void,
+	disabled: boolean,
+	loading: boolean,
 
 }
 
-export const FerdigKnapp = ({ inaktiv, skalSkjules, endringsmeldingId }: FerdigKnappProps) => {
-	const markerSomFerdigPromise = usePromise<AxiosResponse>()
+export const FerdigKnapp = ({ inaktiv, skalSkjules, onClick, disabled, loading }: FerdigKnappProps) => {
 	const handleOnFerdigClicked = () => {
-		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmeldingId))
+		onClick()
 	}
 
 	if (inaktiv) return (
@@ -29,12 +27,10 @@ export const FerdigKnapp = ({ inaktiv, skalSkjules, endringsmeldingId }: FerdigK
 		<Button
 			size="small"
 			onClick={handleOnFerdigClicked}
-			disabled={!isNotStarted(markerSomFerdigPromise)}
-			loading={isPending(markerSomFerdigPromise)}
+			disabled={disabled}
+			loading={loading}
 		>
 			Ferdig
 		</Button>
 	)
-
-
 }

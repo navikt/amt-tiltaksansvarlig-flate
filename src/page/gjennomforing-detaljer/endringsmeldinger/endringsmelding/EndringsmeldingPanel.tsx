@@ -2,10 +2,11 @@ import { Alert, BodyShort, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import React, { useEffect } from 'react'
 
+import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/endringsmelding'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
-import { isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
+import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingIkon } from './EndringsmeldingIkon'
 import { FerdigKnapp } from './Ferdigknapp'
@@ -32,6 +33,10 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 			onFerdig()
 		}
 	}, [ markerSomFerdigPromise, onFerdig ])
+
+	const onFerdigKlikk = () => {
+		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmelding.id))
+	}
 
 	return (
 		<Panel border className={styles.panel}>
@@ -62,7 +67,9 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 				<FerdigKnapp
 					inaktiv={endringsmelding.status !== EndringsmeldingStatus.AKTIV}
 					skalSkjules={!kanArkiveres}
-					endringsmeldingId={endringsmelding.id}
+					onClick={onFerdigKlikk}
+					disabled={!isNotStarted(markerSomFerdigPromise)}
+					loading={isPending(markerSomFerdigPromise)}
 				/>
 			</div>
 
