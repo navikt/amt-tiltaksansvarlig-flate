@@ -1,7 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@navikt/ds-css': ^2.1.1
+  '@navikt/aksel-icons': ^2.9.3
+  '@navikt/ds-css': ^2.9.3
   '@navikt/ds-css-internal': ^2.1.1
   '@navikt/ds-icons': ^2.1.1
   '@navikt/ds-react': ^2.1.1
@@ -39,7 +40,8 @@ specifiers:
   zod: ^3.20.0
 
 dependencies:
-  '@navikt/ds-css': 2.1.1
+  '@navikt/aksel-icons': 2.9.3
+  '@navikt/ds-css': 2.9.3
   '@navikt/ds-css-internal': 2.1.1
   '@navikt/ds-icons': 2.1.1_kzbn2opkn2327fwg5yzwzya5o4
   '@navikt/ds-react': 2.1.1_ib3m5ricvtkl2cll7qpr2f6lvq
@@ -693,12 +695,16 @@ packages:
       - supports-color
     dev: true
 
+  /@navikt/aksel-icons/2.9.3:
+    resolution: {integrity: sha512-uEYq+f80E4OwEqWrBGVJkOFJ9moDhxct60go0gD4DikCYcGkMAfFBD/RhF9Q/uu6nz351h7Pv3oUD/TtVWTuCg==}
+    dev: false
+
   /@navikt/ds-css-internal/2.1.1:
     resolution: {integrity: sha512-o80DMlRE/102DCKjZrfYzb4QzyW7oRVbl8tPROcUZ+bSL5ziVXOwj2fbceXrUIeWyF6536RSuM1mLlcHL10sEw==}
     dev: false
 
-  /@navikt/ds-css/2.1.1:
-    resolution: {integrity: sha512-RaDfNwHQkdMfagNXH+RlpCFQjw1s9j4THCKeTLB5ZHsgbYX62UzTFayrRk4zTsVdHFMbE+a6mDZ07ZQW1lTbpQ==}
+  /@navikt/ds-css/2.9.3:
+    resolution: {integrity: sha512-hTM9deyDTP9hIeQgd9tAMOyB3JKNFxM8I3PUyjF++X2nSzeAYFqyIL/Z0Mo00ZBxzpemwIHJy+UUU+t27BMvNA==}
     dev: false
 
   /@navikt/ds-icons/2.1.1_kzbn2opkn2327fwg5yzwzya5o4:

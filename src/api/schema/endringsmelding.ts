@@ -9,7 +9,11 @@ export enum EndringsmeldingType {
     FORLENG_DELTAKELSE = 'FORLENG_DELTAKELSE',
     AVSLUTT_DELTAKELSE = 'AVSLUTT_DELTAKELSE',
     DELTAKER_IKKE_AKTUELL = 'DELTAKER_IKKE_AKTUELL',
-	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT'
+	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT',
+	TILBY_PLASS = 'TILBY_PLASS',
+	SETT_PAA_VENTELISTE = 'SETT_PAA_VENTELISTE',
+	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO'
+
 }
 
 export enum EndringsmeldingStatus {
@@ -80,10 +84,27 @@ export const DeltakerIkkeAktuellEndringsmeldingSchema = z.intersection(Endringsm
 	innhold: z.object({ aarsak: DeltakerStatusAarsakSchema }),
 }))
 
-export const DeltakelseProsentEndringmelsingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
-	id: z.string().uuid(),
+export const DeltakelseProsentEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT),
 	innhold: z.object({ deltakelseProsent: z.number(), gyldigFraDato: processStringToNullableDate }),
+}))
+
+export const TilbyPlassEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.TILBY_PLASS),
+	innhold: z.object({}).nullable(),
+
+}))
+
+export const SettPaaVentelisteEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.SETT_PAA_VENTELISTE),
+	innhold: z.object({}).nullable(),
+
+}))
+
+export const EndreSluttdatoEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.ENDRE_SLUTTDATO),
+	innhold: z.object({ sluttdato: processStringToDate }),
+
 }))
 
 export const EndringsmeldingSchema = z.union([
@@ -92,21 +113,14 @@ export const EndringsmeldingSchema = z.union([
 	ForlengDeltakelseEndringsmeldingSchema,
 	AvsluttDeltakelseEndringsmeldingSchema,
 	DeltakerIkkeAktuellEndringsmeldingSchema,
-	DeltakelseProsentEndringmelsingSchema
+	DeltakelseProsentEndringmeldingSchema,
+	TilbyPlassEndringmeldingSchema,
+	SettPaaVentelisteEndringmeldingSchema,
+	EndreSluttdatoEndringmeldingSchema
 ])
 
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
 
 export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
-
-export type LeggTilOppstartsdatoEndringsmelding = z.infer<typeof LeggTilOppstartsdatoEndringsmeldingSchema>
-
-export type EndreOppstartsdatoEndringsmelding = z.infer<typeof EndreOppstartsdatoEndringsmeldingSchema>
-
-export type ForlengDeltakelseEndringsmelding = z.infer<typeof ForlengDeltakelseEndringsmeldingSchema>
-
-export type AvsluttDeltakelseEndringsmelding = z.infer<typeof AvsluttDeltakelseEndringsmeldingSchema>
-
-export type DeltakerIkkeAktuellEndringsmelding = z.infer<typeof DeltakerIkkeAktuellEndringsmeldingSchema>
 
 export type DeltakerStatusAarsak = z.infer<typeof DeltakerStatusAarsakSchema>

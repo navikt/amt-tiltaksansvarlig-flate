@@ -118,4 +118,25 @@ export const gjennomforinger: Gjennomforing[] = [
 		},
 		status: GjennomforingStatus.GJENNOMFORES,
 	},
+	{
+		navn: 'Gruppe AMO - sommer',
+		id: 'd8914ac8-e9a9-11ed-a05b-0242ac120003',
+		arrangor: {
+			organisasjonNavn: null,
+			organisasjonOrgnr: null,
+			virksomhetNavn: 'Mars AS',
+			virksomhetOrgnr: '34290472398'
+		},
+		lopenr: 67182,
+		opprettetAr: 2022,
+		startDato: faker.date.past(),
+		sluttDato: faker.date.future(),
+		antallAktiveEndringsmeldinger: 1,
+		harSkjermedeDeltakere: false,
+		tiltak: {
+			kode: 'GRUPPEAMO',
+			navn: 'Gruppe AMO',
+		},
+		status: GjennomforingStatus.GJENNOMFORES,
+	},
 ]

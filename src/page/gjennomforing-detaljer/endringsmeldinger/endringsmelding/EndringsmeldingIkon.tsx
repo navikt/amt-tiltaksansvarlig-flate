@@ -1,3 +1,4 @@
+import { CheckmarkCircleFillIcon, MenuElipsisHorizontalCircleFillIcon } from '@navikt/aksel-icons'
 import {
 	AddCircleFilled,
 	ChevronRightCircleFilled,
@@ -28,5 +29,11 @@ export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 			return <SvgDivideFilled className={styles.endreProsentDeltakelseIkon} aria-hidden/>
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
 			return <AddCircleFilled className={styles.ikkeAktuellIkon} aria-hidden/>
+		case EndringsmeldingType.TILBY_PLASS:
+			return <CheckmarkCircleFillIcon className={styles.tilbyPlassIkon} aria-hidden />
+		case EndringsmeldingType.SETT_PAA_VENTELISTE:
+			return <MenuElipsisHorizontalCircleFillIcon className={styles.settPaaVentelisteIkon} aria-hidden />
+		case EndringsmeldingType.ENDRE_SLUTTDATO:
+			return <MinusCircleFilled className={styles.avsluttIkon} aria-hidden/>
 	}
 }
