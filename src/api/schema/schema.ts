@@ -27,7 +27,7 @@ export const ArrangorSchema = z.object({
 })
 
 export enum GjennomforingStatus {
-	IKKE_STARTET = 'IKKE_STARTET',
+	APENT_FOR_INNSOK = 'APENT_FOR_INNSOK',
 	GJENNOMFORES = 'GJENNOMFORES',
 	AVSLUTTET = 'AVSLUTTET',
 }
