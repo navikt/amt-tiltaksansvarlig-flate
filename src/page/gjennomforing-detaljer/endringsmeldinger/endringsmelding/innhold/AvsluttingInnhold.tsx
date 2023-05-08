@@ -33,6 +33,7 @@ const formatStatusAarsakType = (type: DeltakerStatusAarsakType): string => {
 		case DeltakerStatusAarsakType.TRENGER_ANNEN_STOTTE: return 'Trenger annen hjelp og støtte'
 		case DeltakerStatusAarsakType.UTDANNING: return 'Utdanning'
 		case DeltakerStatusAarsakType.IKKE_MOTT: return 'Møter ikke opp'
+		case DeltakerStatusAarsakType.OPPFYLLER_IKKE_KRAVENE: return 'Oppfyller ikke kravene'
 		case DeltakerStatusAarsakType.ANNET: return 'Annet'
 		default: return 'Ukjent'
 	}
