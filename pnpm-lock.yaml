@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@navikt/aksel-icons': ^2.9.3
+  '@navikt/aksel-icons': ^2.9.8
   '@navikt/ds-css': ^2.9.3
   '@navikt/ds-css-internal': ^2.1.1
   '@navikt/ds-icons': ^2.1.1
@@ -40,7 +40,7 @@ specifiers:
   zod: ^3.20.0
 
 dependencies:
-  '@navikt/aksel-icons': 2.9.3
+  '@navikt/aksel-icons': 2.9.8
   '@navikt/ds-css': 2.9.3
   '@navikt/ds-css-internal': 2.1.1
   '@navikt/ds-icons': 2.1.1_kzbn2opkn2327fwg5yzwzya5o4
@@ -695,8 +695,8 @@ packages:
       - supports-color
     dev: true
 
-  /@navikt/aksel-icons/2.9.3:
-    resolution: {integrity: sha512-uEYq+f80E4OwEqWrBGVJkOFJ9moDhxct60go0gD4DikCYcGkMAfFBD/RhF9Q/uu6nz351h7Pv3oUD/TtVWTuCg==}
+  /@navikt/aksel-icons/2.9.8:
+    resolution: {integrity: sha512-HANk2yejzzQxj4UefLg5Q8YXqkwh98SN98fNJUIlfonnh1bla1XB2h690QZJiY5SghHDnb2RGo/aojc8BwI8kQ==}
     dev: false
 
   /@navikt/ds-css-internal/2.1.1:
