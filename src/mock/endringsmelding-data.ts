@@ -110,6 +110,20 @@ export const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.datatype.uuid(),
 		deltaker: {
+			fornavn: 'Amelia',
+			mellomnavn: null,
+			etternavn: 'Hunter',
+			fodselsnummer: '01108511382',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { aarsak: { type: DeltakerStatusAarsakType.OPPFYLLER_IKKE_KRAVENE, beskrivelse: 'Har ikke fullført grunnleggende førstehjelpskurs' } },
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
