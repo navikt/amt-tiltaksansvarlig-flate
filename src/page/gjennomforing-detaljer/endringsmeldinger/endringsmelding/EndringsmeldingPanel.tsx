@@ -88,6 +88,7 @@ const formatEndringsmeldingType = (meldingType: EndringsmeldingType) => {
 		case EndringsmeldingType.TILBY_PLASS: return 'Tilby plass'
 		case EndringsmeldingType.SETT_PAA_VENTELISTE: return 'Sett på venteliste'
 		case EndringsmeldingType.ENDRE_SLUTTDATO: return 'Endre sluttdato'
+		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT: return 'Endre deltakelsesmengde'
 
 	}
 }

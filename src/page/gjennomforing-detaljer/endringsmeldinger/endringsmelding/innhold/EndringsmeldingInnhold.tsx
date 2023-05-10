@@ -33,7 +33,7 @@ export const EndringsmeldingInnhold = ({ endringsmelding, varighetValg }: Props)
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
 			return <AvsluttingInnhold aarsak={endringsmelding.innhold.aarsak}/>
 		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT:
-			return <EndreDeltakelseProsentInnhold deltakelseProsent={endringsmelding.innhold.deltakelseProsent} gyldigFraDato={endringsmelding.innhold.gyldigFraDato}/>
+			return <EndreDeltakelseProsentInnhold deltakelseProsent={endringsmelding.innhold.deltakelseProsent} dagerPerUke={endringsmelding.innhold.dagerPerUke} gyldigFraDato={endringsmelding.innhold.gyldigFraDato}/>
 		case EndringsmeldingType.ENDRE_SLUTTDATO:
 			return <BodyShort size="small" className={styles.endringInfoTekst}>Ny sluttdato: {formatDate(endringsmelding.innhold.sluttdato)}</BodyShort>
 		default: return <></>
