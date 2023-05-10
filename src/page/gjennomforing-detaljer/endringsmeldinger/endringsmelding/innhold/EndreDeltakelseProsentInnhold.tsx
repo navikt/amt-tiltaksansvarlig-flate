@@ -20,7 +20,7 @@ export const EndreDeltakelseProsentInnhold = ({ deltakelseProsent, dagerPerUke, 
 			{ skalViseDagerPerUke(dagerPerUke, deltakelseProsent) && dagerPerUke === 1 && <BodyShort size="small" className={styles.endringInfoTekst}>
 				{dagerPerUke} dag i uka
 			</BodyShort> }
-			{ skalViseDagerPerUke(dagerPerUke, deltakelseProsent) && dagerPerUke != 1 && <BodyShort size="small" className={styles.endringInfoTekst}>
+			{ skalViseDagerPerUke(dagerPerUke, deltakelseProsent) && dagerPerUke !== 1 && <BodyShort size="small" className={styles.endringInfoTekst}>
 				{dagerPerUke} dager i uka
 			</BodyShort> }
 			{ gyldigFraDato && <BodyShort size="small" className={styles.endringInfoTekst}>
@@ -31,5 +31,5 @@ export const EndreDeltakelseProsentInnhold = ({ deltakelseProsent, dagerPerUke, 
 }
 
 const skalViseDagerPerUke = (dagerPerUke: Nullable<number>, deltakelseProsent: number): boolean => {
-	return deltakelseProsent < 100 && dagerPerUke != null
+	return deltakelseProsent < 100 && dagerPerUke !== null
 }
