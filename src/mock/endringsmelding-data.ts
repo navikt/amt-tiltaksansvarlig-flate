@@ -146,7 +146,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 		},
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
-		innhold: { deltakelseProsent: 64, gyldigFraDato: faker.date.soon() },
+		innhold: { deltakelseProsent: 64, dagerPerUke: 3, gyldigFraDato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -189,6 +189,20 @@ export const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_SLUTTDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { sluttdato: faker.date.future() },
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'Nataniel',
+			mellomnavn: null,
+			etternavn: 'Wood',
+			fodselsnummer: '13018812347',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { deltakelseProsent: 100, dagerPerUke: 5, gyldigFraDato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
 	}
 ]
