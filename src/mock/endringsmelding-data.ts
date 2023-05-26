@@ -172,20 +172,6 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fodselsnummer: '03035512347',
 			erSkjermet: false
 		},
-		type: EndringsmeldingType.SETT_PAA_VENTELISTE,
-		status: EndringsmeldingStatus.AKTIV,
-		innhold: null,
-		opprettetDato: faker.date.recent()
-	},
-	{
-		id: faker.datatype.uuid(),
-		deltaker: {
-			fornavn: 'Lur',
-			mellomnavn: 'Lutlei2',
-			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
-			erSkjermet: false
-		},
 		type: EndringsmeldingType.ENDRE_SLUTTDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { sluttdato: faker.date.future() },

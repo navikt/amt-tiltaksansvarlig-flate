@@ -11,7 +11,6 @@ export enum EndringsmeldingType {
     DELTAKER_IKKE_AKTUELL = 'DELTAKER_IKKE_AKTUELL',
 	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT',
 	TILBY_PLASS = 'TILBY_PLASS',
-	SETT_PAA_VENTELISTE = 'SETT_PAA_VENTELISTE',
 	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO'
 
 }
@@ -96,12 +95,6 @@ export const TilbyPlassEndringmeldingSchema = z.intersection(EndringsmeldingBase
 
 }))
 
-export const SettPaaVentelisteEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
-	type: z.literal(EndringsmeldingType.SETT_PAA_VENTELISTE),
-	innhold: z.object({}).nullable(),
-
-}))
-
 export const EndreSluttdatoEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.ENDRE_SLUTTDATO),
 	innhold: z.object({ sluttdato: processStringToDate }),
@@ -116,7 +109,6 @@ export const EndringsmeldingSchema = z.union([
 	DeltakerIkkeAktuellEndringsmeldingSchema,
 	DeltakelseProsentEndringmeldingSchema,
 	TilbyPlassEndringmeldingSchema,
-	SettPaaVentelisteEndringmeldingSchema,
 	EndreSluttdatoEndringmeldingSchema
 ])
 
