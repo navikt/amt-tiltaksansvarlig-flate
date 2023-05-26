@@ -84,8 +84,8 @@ const formatEndringsmeldingType = (meldingType: EndringsmeldingType) => {
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO: return 'Endre oppstartsdato'
 		case EndringsmeldingType.FORLENG_DELTAKELSE: return 'Forleng deltakelse'
 		case EndringsmeldingType.AVSLUTT_DELTAKELSE: return 'Avslutt deltakelse'
-		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: return 'Deltaker er ikke aktuell'
-		case EndringsmeldingType.TILBY_PLASS: return 'Tilby plass'
+		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL: return 'Personen er ikke aktuell'
+		case EndringsmeldingType.TILBY_PLASS: return 'Personen er aktuell'
 		case EndringsmeldingType.ENDRE_SLUTTDATO: return 'Endre sluttdato'
 		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT: return 'Endre deltakelsesmengde'
 
