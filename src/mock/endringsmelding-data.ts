@@ -158,7 +158,7 @@ export const endringsmeldingData: Endringsmelding[] = [
 			fodselsnummer: '03035512347',
 			erSkjermet: false
 		},
-		type: EndringsmeldingType.TILBY_PLASS,
+		type: EndringsmeldingType.DELTAKER_ER_AKTUELL,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: null,
 		opprettetDato: faker.date.recent()
