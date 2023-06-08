@@ -27,9 +27,11 @@ export const EndringsmeldingListe = ({
 	return (
 		<div className={styles.spaceBottom}>
 			<BodyLong size="small">
-				Når tiltaksarrangøren sender en melding om en endring til en deltaker, så kommer det en ny melding her. 
-				Hvis det er en melding om oppstartsdato, så kan du velge varighet og få opp et forslag om sluttdato. 
-				Datoene legges inn i Arena.
+				Når tiltaksarrangøren sender en melding om en endring for en deltaker, så kommer det en ny melding her.
+				Hvis det er en melding om oppstartsdato, så kan du velge varighet og få opp et forslag om sluttdato.
+			</BodyLong>
+			<BodyLong size="small" className={styles.spaceTop}>
+				Du må registrere alle endringer manuelt i Arena og deretter klikke Ferdig på meldingen.
 			</BodyLong>
 			<VarighetSelect varighetValg={varighetValg} setVarighetValg={setVarighetValg} />
 			{aktiveMeldinger.length > 0
