@@ -1,5 +1,9 @@
 # AMT tiltaksansvarlig flate
 
+## Installere avhengigheter
+`pnpm install`
+Nåværende versjon av pnpm er 8.6.2
+
 ## Feilsøke cypress
 - Kjør cypress med ELECTRON_ENABLE_LOGGING=1 for å få med alle chrome konsollogger
 - Skjermbilder av kjøringer ligger i cypress/screenshots mappa i repoet når man kjører lokalt og
