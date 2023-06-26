@@ -1,5 +1,4 @@
-import { Link, Panel } from '@navikt/ds-react'
-import { Header as InternHeader } from '@navikt/ds-react-internal'
+import { InternalHeader, Link, Panel } from '@navikt/ds-react'
 import React, { useState } from 'react'
 
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
@@ -12,11 +11,11 @@ export const Header = (): React.ReactElement => {
 	const [ showDropdown, setShowDropdown ] = useState(false)
 
 	return (
-		<InternHeader className={styles.header} data-testid="innlogget-header">
-			<InternHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">
+		<InternalHeader className={styles.header} data-testid="innlogget-header">
+			<InternalHeader.Title href={FORSIDE_PAGE_ROUTE} aria-label="lenke til startsiden">
 				NAV Tiltaksadministrasjon
-			</InternHeader.Title>
-			<InternHeader.UserButton
+			</InternalHeader.Title>
+			<InternalHeader.UserButton
 				name={innloggetAnsatt.navn}
 				className={styles.userBtn}
 				onClick={() => setShowDropdown(show => !show)}
@@ -26,6 +25,6 @@ export const Header = (): React.ReactElement => {
 					<Link className={styles.logOutLink} href={appUrl('/oauth2/logout')}>Logg ut</Link>
 				</Panel>
 			)}
-		</InternHeader>
+		</InternalHeader>
 	)
 }
