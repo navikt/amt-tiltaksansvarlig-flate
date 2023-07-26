@@ -1,4 +1,4 @@
-import { Add } from '@navikt/ds-icons'
+import { PlusIcon } from '@navikt/aksel-icons'
 import { Alert, BodyShort, Button, Heading, Panel, Tag } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import React from 'react'
@@ -44,7 +44,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 				size="small"
 				className={styles.leggTilKnapp}
 			>
-				<Add /> Legg til
+				<PlusIcon /> Legg til
 			</Button>
 		)
 	}
