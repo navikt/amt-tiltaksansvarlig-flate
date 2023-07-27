@@ -1,4 +1,4 @@
-import { Add } from '@navikt/ds-icons'
+import { PlusIcon } from '@navikt/aksel-icons'
 import { Alert, Heading, Loader } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import cls from 'classnames'
@@ -26,7 +26,7 @@ export const Forside = (): React.ReactElement => {
 			<div className={cls(styles.header, globalStyles.blokkM)}>
 				<Heading size="medium">Min tiltaksoversikt</Heading>
 				<Link to={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} className="navds-link" data-testid="legg-til-gjennomforing-link">
-					<Add aria-labelledby="legg-til" />
+					<PlusIcon aria-labelledby="legg-til" />
 					<span id="legg-til">Legg til</span>
 				</Link>
 			</div>

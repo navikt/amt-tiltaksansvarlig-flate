@@ -1,4 +1,4 @@
-import { Next } from '@navikt/ds-icons'
+import { ChevronRightIcon } from '@navikt/aksel-icons'
 import cls from 'classnames'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -19,7 +19,7 @@ export const SpaLenkepanel = (props: SpaLenkepanelProps): React.ReactElement<Spa
 			<div className="navds-link-panel__content">
 				{children}
 			</div>
-			<Next
+			<ChevronRightIcon
 				className="navds-link-panel__chevron"
 				aria-label="arrow-icon pointing right"
 			/>
