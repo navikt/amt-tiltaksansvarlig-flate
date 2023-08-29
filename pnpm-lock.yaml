@@ -24,8 +24,8 @@ dependencies:
     specifier: ^5.3.3
     version: 5.3.3
   axios:
-    specifier: ^1.2.1
-    version: 1.2.1
+    specifier: ^1.5.0
+    version: 1.5.0
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
@@ -1558,8 +1558,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios@1.2.1:
-    resolution: {integrity: sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A==}
+  /axios@1.5.0:
+    resolution: {integrity: sha512-D4DdjDo5CY50Qms0qGQTTw6Q44jl7zRwY7bthds06pUGfChBCTcQs+N743eFWGEd6pRTMd6A+I87aWyFV5wiZQ==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
