@@ -12,8 +12,8 @@ dependencies:
     specifier: ^5.0.3
     version: 5.0.3
   '@navikt/ds-react':
-    specifier: ^5.0.3
-    version: 5.0.3(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.3.1
+    version: 5.3.1(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
   '@types/react':
     specifier: ^18.0.26
     version: 18.0.26
@@ -745,12 +745,16 @@ packages:
     resolution: {integrity: sha512-WyGBiz5JTPsxVAug19YyfXfsk5+f1Jj97BQRF0NJja87J7YR+sqbwijjWzZMjX0O2tr7US9rABevGlkbtjrhvw==}
     dev: false
 
+  /@navikt/aksel-icons@5.3.1:
+    resolution: {integrity: sha512-tJXd9g35VfByWXPtQiEFtcyZl1QVtQVNwkN/gAyev+hYimt1/Xwmre7kaGIgB99QFqS9OQpCwjtSyHQWobcRSw==}
+    dev: false
+
   /@navikt/ds-css@5.0.3:
     resolution: {integrity: sha512-MuclDAsUVgCNVtBS/A7PlapE745IC18udnUkBVdpZNrxGquNZwizWzzq/4QC1SLSEeiUCzEQdpvNJBTm5GPCFw==}
     dev: false
 
-  /@navikt/ds-react@5.0.3(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-6ouDhMWxPsR/7wRYssRSt1XERc2tQzTffNFEQqiPXeKg8i60IhCp3cbhRN5ZYgaxoLJMhvGk9kgJmUaJytn43Q==}
+  /@navikt/ds-react@5.3.1(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-cTiq0EWncwkgJlT4qMmlYX2syfZmSR6K3ECd5hMUbwsYHuaO+XIZWS/+xG5cSjGzl4lCBhcjr9z3NUamTBVXxw==}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -759,7 +763,7 @@ packages:
         optional: true
     dependencies:
       '@floating-ui/react': 0.24.1(react-dom@18.2.0)(react@18.2.0)
-      '@navikt/aksel-icons': 5.0.3
+      '@navikt/aksel-icons': 5.3.1
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toggle-group': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.0.26
