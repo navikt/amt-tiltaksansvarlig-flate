@@ -2,7 +2,7 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
 import { appUrl } from '../utils/url-utils'
-import { Endringsmelding, EndringsmeldingerSchema, MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
+import { MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
 	ArrangorSchema,
 	GjennomforingDetaljerSchema,
