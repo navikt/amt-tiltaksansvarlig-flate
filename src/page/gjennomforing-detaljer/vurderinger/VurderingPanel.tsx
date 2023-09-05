@@ -32,11 +32,16 @@ export const VurderingPanel = ({ vurdering }: VurderingPanelProps): React.ReactE
 						{deltaker.fodselsnummer}
 					</BodyShort>
 				</PanelLinje>
-				<BodyShort size="small" className={styles.vurderingstype}>
-					<Tag size="small" variant={vurdering.vurderingstype === Vurderingstype.OPPFYLLER_IKKE_KRAVENE ? 'error' : 'success'}>
-						{formatVurderingType(vurdering.vurderingstype)}
-					</Tag>
-				</BodyShort>
+				<PanelLinje>
+					<BodyShort size="small" className={styles.vurderingstype}>
+						<Tag size="small" variant={vurdering.vurderingstype === Vurderingstype.OPPFYLLER_IKKE_KRAVENE ? 'error' : 'success'}>
+							{formatVurderingType(vurdering.vurderingstype)}
+						</Tag>
+					</BodyShort>
+					<BodyShort size="medium" className={styles.begrunnelse}>
+						{vurdering.begrunnelse}
+					</BodyShort>
+				</PanelLinje>
 			</div>
 			<div className={styles.rightColumn}>
 				<Detail className={styles.sendt}>Sendt: {formatDate(vurdering.opprettetDato)}</Detail>
