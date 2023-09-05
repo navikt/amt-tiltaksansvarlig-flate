@@ -56,13 +56,6 @@ export const fetchGjennomforing = (id: string): AxiosPromise<GjennomforingDetalj
 		.catch((error) => exposeError(error, endepunkt))
 }
 
-export const fetchEndringsmeldinger = (gjennomforingId: string): AxiosPromise<Endringsmelding[]> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, EndringsmeldingerSchema))
-		.catch((error) => exposeError(error, endepunkt))
-}
-
 export const fetchMmeldingerFraArrangor = (gjennomforingId: string): AxiosPromise<MeldingerFraArrangor> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance

@@ -85,9 +85,6 @@ export const mockHandlers: RequestHandler[] = [
 		return res(ctx.delay(250), ctx.json(gjennomforing))
 	}),
 
-	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
-		return res(ctx.delay(250), ctx.json(meldingeData.endringsmeldinger))
-	}),
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/meldinger'), (req, res, ctx) => {
 		return res(ctx.delay(250), ctx.json(meldingeData))
 	}),
