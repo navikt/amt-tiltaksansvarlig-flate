@@ -1,8 +1,76 @@
 import faker from 'faker'
 
-import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/endringsmelding'
+import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, EndringsmeldingType, MeldingerFraArrangor, Vurdering, Vurderingstype } from '../api/schema/meldinger'
 
-export const endringsmeldingData: Endringsmelding[] = [
+const vurderingerData: Vurdering[] = [
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'Harry',
+			mellomnavn: null,
+			etternavn: 'Helved',
+			fodselsnummer: '03035512347',
+			erSkjermet: false
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: null
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'Kråkvar',
+			mellomnavn: null,
+			etternavn: 'Grytidlig',
+			fodselsnummer: '03035512347',
+			erSkjermet: false
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_IKKE_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: 'Personen oppfyller ikke kravene'
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'Tor',
+			mellomnavn: 'Peder',
+			etternavn: 'Ring',
+			fodselsnummer: '03035512347',
+			erSkjermet: false
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: null
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: 'William',
+			mellomnavn: 'Spare',
+			etternavn: 'Bolt',
+			fodselsnummer: '03035512347',
+			erSkjermet: true
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: null
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: null,
+			mellomnavn: null,
+			etternavn: null,
+			fodselsnummer: null,
+			erSkjermet: true
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_IKKE_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: 'Personen oppfyller ikke kravene'
+	}
+]
+
+const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.datatype.uuid(),
 		deltaker: {
@@ -206,3 +274,8 @@ export const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	}
 ]
+
+export const meldingeData: MeldingerFraArrangor = {
+	endringsmeldinger: endringsmeldingData,
+	vurderinger: vurderingerData
+}

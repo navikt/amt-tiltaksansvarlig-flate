@@ -2,7 +2,6 @@ import { z } from 'zod'
 
 import { processStringToDate, processStringToNullableDate } from '../utils'
 
-
 export enum EndringsmeldingType {
 	LEGG_TIL_OPPSTARTSDATO = 'LEGG_TIL_OPPSTARTSDATO',
 	ENDRE_OPPSTARTSDATO = 'ENDRE_OPPSTARTSDATO',
@@ -12,7 +11,11 @@ export enum EndringsmeldingType {
 	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT',
 	DELTAKER_ER_AKTUELL = 'DELTAKER_ER_AKTUELL',
 	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO'
+}
 
+export enum Vurderingstype {
+	OPPFYLLER_KRAVENE = 'OPPFYLLER_KRAVENE',
+	OPPFYLLER_IKKE_KRAVENE = 'OPPFYLLER_IKKE_KRAVENE'
 }
 
 export enum EndringsmeldingStatus {
@@ -112,8 +115,27 @@ export const EndringsmeldingSchema = z.union([
 	EndreSluttdatoEndringmeldingSchema
 ])
 
+export const VurderingSchema = z.object({
+	id: z.string().uuid(),
+	deltaker: DeltakerSchema,
+	vurderingstype: z.nativeEnum(Vurderingstype),
+	opprettetDato: processStringToDate,
+	begrunnelse: z.string().nullable()
+})
+
+export const MeldingerFraArrangorSchema = z.object({
+	endringsmeldinger: z.array(EndringsmeldingSchema),
+	vurderinger: z.array(VurderingSchema)
+})
+
 export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
+
+export type Deltaker = z.infer<typeof DeltakerSchema>
 
 export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
 
 export type DeltakerStatusAarsak = z.infer<typeof DeltakerStatusAarsakSchema>
+
+export type MeldingerFraArrangor = z.infer<typeof MeldingerFraArrangorSchema>
+
+export type Vurdering = z.infer<typeof VurderingSchema>

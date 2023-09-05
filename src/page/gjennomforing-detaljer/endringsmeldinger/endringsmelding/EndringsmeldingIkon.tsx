@@ -7,7 +7,7 @@ import {
 	PlusCircleFillIcon } from '@navikt/aksel-icons'
 import React from 'react'
 
-import { EndringsmeldingType } from '../../../../api/schema/endringsmelding'
+import { EndringsmeldingType } from '../../../../api/schema/meldinger'
 import styles from './EndringsmeldingIkon.module.scss'
 
 interface Props {

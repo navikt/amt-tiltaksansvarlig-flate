@@ -2,14 +2,14 @@ import faker from 'faker'
 import { RequestHandler, rest } from 'msw'
 
 import { Gjennomforing, GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../../api/api'
-import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
+import { EndringsmeldingStatus } from '../../api/schema/meldinger'
 import { GjennomforingStatus } from '../../api/schema/schema'
 import { appUrl } from '../../utils/url-utils'
 import {
 	gjennomforinger,
 	innloggetAnsatt
 } from '../data'
-import { endringsmeldingData } from '../endringsmelding-data'
+import { meldingeData } from '../meldinger-data'
 
 export const mockHandlers: RequestHandler[] = [
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg'), (req, res, ctx) => {
@@ -36,7 +36,7 @@ export const mockHandlers: RequestHandler[] = [
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
 							kode: 'ARBFORB',
-							navn: 'Arbeidsforberedende trening (AFT)',
+							navn: 'Arbeidsforberedende trening (AFT)'
 						}
 					},
 					{
@@ -50,37 +50,35 @@ export const mockHandlers: RequestHandler[] = [
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
 							kode: 'INDOPPFAG',
-							navn: 'Oppfølging',
+							navn: 'Oppfølging'
 						}
 					}
 				]
-
 			}
 
 			return res(ctx.delay(250), ctx.json(gjennomforinger))
 		}
 
-		const data: Gjennomforing[] = gjennomforinger
-			.map(g => ({
-				id: g.id,
-				navn: g.navn,
-				arrangorNavn: g.arrangor.virksomhetNavn,
-				lopenr: g.lopenr,
-				opprettetAar: g.opprettetAr,
-				antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
-				harSkjermedeDeltakere: g.harSkjermedeDeltakere,
-				tiltak: g.tiltak,
-				startDato: g.startDato,
-				sluttDato: g.sluttDato,
-				status: g.status,
-			}))
+		const data: Gjennomforing[] = gjennomforinger.map((g) => ({
+			id: g.id,
+			navn: g.navn,
+			arrangorNavn: g.arrangor.virksomhetNavn,
+			lopenr: g.lopenr,
+			opprettetAar: g.opprettetAr,
+			antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
+			harSkjermedeDeltakere: g.harSkjermedeDeltakere,
+			tiltak: g.tiltak,
+			startDato: g.startDato,
+			sluttDato: g.sluttDato,
+			status: g.status
+		}))
 
 		return res(ctx.delay(250), ctx.json(data))
 	}),
 
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing/:id'), (req, res, ctx) => {
 		const id = req.params['id']
-		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find(g => g.id === id)
+		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find((g) => g.id === id)
 		if (!gjennomforing) {
 			return res(ctx.delay(250), ctx.status(404))
 		}
@@ -88,12 +86,15 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding'), (req, res, ctx) => {
-		return res(ctx.delay(250), ctx.json(endringsmeldingData))
+		return res(ctx.delay(250), ctx.json(meldingeData.endringsmeldinger))
+	}),
+	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/meldinger'), (req, res, ctx) => {
+		return res(ctx.delay(250), ctx.json(meldingeData))
 	}),
 	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig'), (req, res, ctx) => {
 		const endringsmeldingId = req.params['endringsmeldingId'] as string
 
-		const melding = endringsmeldingData.find(e => e.id === endringsmeldingId)
+		const melding = meldingeData.endringsmeldinger.find((e) => e.id === endringsmeldingId)
 
 		if (melding) {
 			melding.status = EndringsmeldingStatus.UTFORT
@@ -106,5 +107,5 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop'), (req, res, ctx) => {
 		return res(ctx.delay(500), ctx.status(200))
-	}),
+	})
 ]

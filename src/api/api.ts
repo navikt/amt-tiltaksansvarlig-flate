@@ -2,7 +2,7 @@ import { AxiosPromise, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
 import { appUrl } from '../utils/url-utils'
-import { Endringsmelding, EndringsmeldingerSchema } from './schema/endringsmelding'
+import { Endringsmelding, EndringsmeldingerSchema, MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
 	ArrangorSchema,
 	GjennomforingDetaljerSchema,
@@ -60,6 +60,14 @@ export const fetchEndringsmeldinger = (gjennomforingId: string): AxiosPromise<En
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding?gjennomforingId=${gjennomforingId}`)
 	return axiosInstance.get(endepunkt)
 		.then((res: AxiosResponse) => parseSchema(res, EndringsmeldingerSchema))
+		.catch((error) => exposeError(error, endepunkt))
+}
+
+export const fetchMmeldingerFraArrangor = (gjennomforingId: string): AxiosPromise<MeldingerFraArrangor> => {
+	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
+	return axiosInstance
+		.get(endepunkt)
+		.then((res: AxiosResponse) => parseSchema(res, MeldingerFraArrangorSchema))
 		.catch((error) => exposeError(error, endepunkt))
 }
 

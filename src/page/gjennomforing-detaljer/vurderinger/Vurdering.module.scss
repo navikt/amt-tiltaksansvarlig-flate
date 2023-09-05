@@ -1,0 +1,46 @@
+.gray {
+  color: var(--a-text-subtle);
+}
+
+.description{
+  padding-bottom: 1rem;
+}
+
+.vurderingstype {
+  font-weight: var(--a-font-weight-bold);
+}
+
+.fnr {
+  margin-left: 1rem !important;
+}
+
+.panel { // skal ha
+  border-color: var(--a-border-default);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.meldingInnholdColumn { // Skal ha
+  width: 100%;
+  min-width: fit-content;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.spaceBottom { // skal ha
+  margin-bottom: 0.5rem
+}
+
+.sendt {
+  margin: 0 0 0 auto !important;
+  @extend .gray;
+}

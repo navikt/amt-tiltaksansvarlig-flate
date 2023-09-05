@@ -2,9 +2,31 @@ import { z } from 'zod'
 
 import { processStringToDate } from '../utils'
 
+
+export enum GjennomforingStatus {
+	APENT_FOR_INNSOK = 'APENT_FOR_INNSOK',
+	GJENNOMFORES = 'GJENNOMFORES',
+	AVSLUTTET = 'AVSLUTTET'
+}
+
+export enum Tiltakskode {
+	ARBFORB = 'ARBFORB',
+	ARBRRHDAG = 'ARBRRHDAG',
+	AVKLARAG = 'AVKLARAG',
+	INDOPPFAG = 'INDOPPFAG',
+	DIGIOPPARB = 'DIGIOPPARB',
+	GRUFAGYRKE = 'GRUFAGYRKE',
+	GRUPPEAMO = 'GRUPPEAMO',
+	JOBBK = 'JOBBK',
+	VASV = 'VASV'
+}
+
+const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
+const TiltakskodeSchema = z.nativeEnum(Tiltakskode)
+
 export const TiltakSchema = z.object({
-	kode: z.string(),
-	navn: z.string(),
+	kode: TiltakskodeSchema,
+	navn: z.string()
 })
 
 export const InnloggetNavAnsattSchema = z.object({
@@ -25,14 +47,6 @@ export const ArrangorSchema = z.object({
 	organisasjonNavn: z.string().nullable(),
 	organisasjonOrgnr: z.string().nullable()
 })
-
-export enum GjennomforingStatus {
-	APENT_FOR_INNSOK = 'APENT_FOR_INNSOK',
-	GJENNOMFORES = 'GJENNOMFORES',
-	AVSLUTTET = 'AVSLUTTET',
-}
-
-const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
 
 export const GjennomforingSchema = z.object({
 	id: z.string(),
