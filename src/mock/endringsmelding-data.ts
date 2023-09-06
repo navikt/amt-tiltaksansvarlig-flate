@@ -6,6 +6,20 @@ export const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.datatype.uuid(),
 		deltaker: {
+			fornavn: 'Lur',
+			mellomnavn: 'Lutlei',
+			etternavn: 'Luresen',
+			fodselsnummer: '03035512347',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { oppstartsdato: null },
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
 			fornavn: null,
 			mellomnavn: null,
 			etternavn: null,
