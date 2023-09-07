@@ -1,6 +1,5 @@
 import faker from 'faker'
-import { rest } from 'msw'
-import { RequestHandler } from 'msw/lib/types/handlers/RequestHandler'
+import { RequestHandler, rest } from 'msw'
 
 import { Gjennomforing, GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../../api/api'
 import { EndringsmeldingStatus } from '../../api/schema/endringsmelding'
