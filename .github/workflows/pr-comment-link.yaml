@@ -9,7 +9,6 @@ jobs:
   create-link-to-app:
     name: Opprett lenke til test applikasjon for PR
     permissions:
-      contents: "write"
       pull-requests: "write"
     runs-on: ubuntu-latest
     permissions:
