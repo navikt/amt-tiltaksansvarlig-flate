@@ -3,7 +3,8 @@ import { AxiosResponse } from 'axios'
 import React, { useEffect } from 'react'
 
 import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
-import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/endringsmelding'
+import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/meldinger'
+import { PanelLinje } from '../../../../component/message-panel/PanelLinje'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
 import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
@@ -11,7 +12,6 @@ import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingIkon } from './EndringsmeldingIkon'
 import { FerdigKnapp } from './Ferdigknapp'
 import { EndringsmeldingInnhold } from './innhold/EndringsmeldingInnhold'
-import { PanelLinje } from './PanelLinje'
 import { VarighetValg } from './VarighetSelect'
 
 

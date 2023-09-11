@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react'
 import React from 'react'
 
-import { DeltakerStatusAarsak, DeltakerStatusAarsakType } from '../../../../../api/schema/endringsmelding'
+import { DeltakerStatusAarsak, DeltakerStatusAarsakType } from '../../../../../api/schema/meldinger'
 import { formatDate } from '../../../../../utils/date-utils'
 import styles from '../Endringsmelding.module.scss'
 

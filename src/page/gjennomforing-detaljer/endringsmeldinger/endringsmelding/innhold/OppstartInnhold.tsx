@@ -1,12 +1,11 @@
 import { BodyShort, Detail } from '@navikt/ds-react'
 import React from 'react'
 
-import { EndringsmeldingStatus } from '../../../../../api/schema/endringsmelding'
+import { EndringsmeldingStatus } from '../../../../../api/schema/meldinger'
 import { EMDASH } from '../../../../../utils/constants'
 import { beregnSluttDato, formatDate } from '../../../../../utils/date-utils'
 import styles from '../Endringsmelding.module.scss'
 import { Varighet } from '../VarighetSelect'
-
 
 interface Props {
 	oppstartsdato: Date

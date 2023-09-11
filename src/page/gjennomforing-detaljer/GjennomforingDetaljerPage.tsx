@@ -1,6 +1,5 @@
 import { Alert, Loader } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
-import cls from 'classnames'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -14,9 +13,9 @@ import {
 	isRejected,
 	usePromise
 } from '../../utils/use-promise'
-import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import { Heading } from './heading/Heading'
+import { MeldingerFraArrangor } from './MeldingerFraArrangor'
 
 export const GjennomforingDetaljerPage = (): React.ReactElement => {
 	const params = useParams()
@@ -38,9 +37,7 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkL} />
 
-			<div className={cls(styles.seperator, globalStyles.blokkL)} />
-
-			<Endringsmeldinger gjennomforingId={gjennomforingId} />
+			<MeldingerFraArrangor gjennomforingId={gjennomforingId} tiltaksKode={gjennomforing.tiltak.kode} />
 		</main>
 	)
 }
