@@ -8,8 +8,6 @@ on:
 jobs:
   create-link-to-app:
     name: Opprett lenke til test applikasjon for PR
-    permissions:
-      pull-requests: "write"
     runs-on: ubuntu-latest
     permissions:
       pull-requests: "write"
