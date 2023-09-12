@@ -12,28 +12,12 @@ jobs:
     permissions:
       id-token: 'write' # Used to authenticate with Google Cloud
     steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: deployment-pr-${{ github.event.number }}
-        continue-on-error: true
-      - name: Check if Artifact Exists # gjør cleanup kun hvis deploy har blitt gjort
-        id: check_artifact
-        run: |
-          if [[ -f "deployment-pr-${{ github.event.number }}.txt" ]]; then
-            echo "::set-output name=exists::true"
-          else
-            echo "::set-output name=exists::false"
-          fi
       - name: Authenticate to Google Cloud
-        if: steps.check_artifact.outputs.exists == 'true'
         uses: google-github-actions/auth@v1
         with:
           workload_identity_provider: projects/696882554390/locations/global/workloadIdentityPools/github/providers/github-action
           service_account: amt-tiltaksansvarlig-flate-gcs@amt-dev-d98f.iam.gserviceaccount.com
       - name: Set up Cloud SDK
-        if: steps.check_artifact.outputs.exists == 'true'
         uses: google-github-actions/setup-gcloud@v1
       - name: Delete files on GCS
-        if: steps.check_artifact.outputs.exists == 'true'
         run: gsutil rm -r gs://amt-tiltaksansvarlig-flate-dev/pr-${{ github.event.number }}
