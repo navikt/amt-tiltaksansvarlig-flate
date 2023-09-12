@@ -1,6 +1,11 @@
 name: Deploy Pull Request Branch
 on:
   workflow_dispatch:
+    inputs:
+      manual-override:
+        description: 'Manually run the workflow for a forked PR (true/false)'
+        required: false
+        default: 'false'
   pull_request:
     branches:
       - main
@@ -10,6 +15,7 @@ env:
 
 jobs:
   deploy-pull-request-branch:
+    if: (!github.event.pull_request.head.repo.fork) || (github.event_name == 'workflow_dispatch' && github.event.inputs.manual-override == 'true')
     name: Deploy Pull Request Branch
     runs-on: ubuntu-latest
     permissions:
@@ -38,3 +44,11 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
       - name: Upload files to GCS
         run: gsutil -m rsync -r build gs://amt-tiltaksansvarlig-flate-dev/pr-${{ github.event.number }}
+      - name: Create Artifact
+        run: echo "Deployed on $(date)" > deployment-pr-${{ github.event.number }}.txt
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: deployment-pr-${{ github.event.number }}
+          path: deployment-pr-${{ github.event.number }}.txt
+
