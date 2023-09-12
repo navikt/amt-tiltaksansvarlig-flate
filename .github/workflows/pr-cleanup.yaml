@@ -12,18 +12,20 @@ jobs:
     permissions:
       id-token: 'write' # Used to authenticate with Google Cloud
     steps:
-      - name: Download Artifact
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download Deployment Artifact
         uses: actions/download-artifact@v3
         with:
           name: deployment-pr-${{ github.event.number }}
         continue-on-error: true
-      - name: Check if Artifact Exists # gjør cleanup kun hvis deploy har blitt gjort
+      - name: Check if Deployment Artifact Exists # gjør cleanup kun hvis deploy har blitt gjort
         id: check_artifact
         run: |
           if [[ -f "deployment-pr-${{ github.event.number }}.txt" ]]; then
-            echo "::set-output name=exists::true"
+            echo "exists=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=exists::false"
+            echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Authenticate to Google Cloud
         if: steps.check_artifact.outputs.exists == 'true'
