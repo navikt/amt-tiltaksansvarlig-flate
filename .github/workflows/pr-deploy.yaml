@@ -47,7 +47,7 @@ jobs:
       - name: Create Artifact
         run: echo "Deployed on $(date)" > deployment-pr-${{ github.event.number }}.txt
       - name: Upload Artifact
-        uses: actions/checkout@v3
+        uses: actions/upload-artifact@v3
         with:
           name: deployment-pr-${{ github.event.number }}
           path: deployment-pr-${{ github.event.number }}.txt
