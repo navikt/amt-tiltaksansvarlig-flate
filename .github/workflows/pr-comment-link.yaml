@@ -1,9 +1,10 @@
 name: Opprett lenke til test applikasjon for PR
 on:
-  workflow_run:
-    workflows: ["Deploy Pull Request Branch"]
+  pull_request:
+    branches:
+      - main
     types:
-      - completed
+      - opened
 jobs:
   create-link-to-app:
     name: Opprett lenke til test applikasjon for PR
@@ -14,6 +15,5 @@ jobs:
       - name: Opprett lenke til test applikasjon for PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          mode: upsert
           message: |
             URL for testing: https://arbeidsmarkedstiltak.intern.dev.nav.no/pr-${{ github.event.number }}/index.html
