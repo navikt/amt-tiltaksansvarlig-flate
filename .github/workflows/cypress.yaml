@@ -34,6 +34,8 @@ jobs:
       - name: Install cypress binary
         if: steps.cypress-cache.outputs.cache-hit != 'true'
         run: pnpm exec cypress install
+      - name: Check if PR is from a fork
+        run: echo "IS_NOT_FORK=${{ !github.event.pull_request.head.repo.fork }}" >> $GITHUB_ENV
       - name: Run tests
         uses: cypress-io/github-action@v6
         with:
@@ -42,7 +44,7 @@ jobs:
           start: pnpm start
           wait-on: sleep 5
           parallel: true
-          record: true
+          record: ${{ env.IS_NOT_FORK }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
