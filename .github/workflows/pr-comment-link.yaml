@@ -7,7 +7,7 @@ on:
       - opened
 jobs:
   create-link-to-app:
-    if: !github.event.pull_request.head.repo.fork
+    if: github.event.pull_request.head.repo.fork != 'true'
     name: Opprett lenke til test applikasjon for PR
     runs-on: ubuntu-latest
     permissions:
