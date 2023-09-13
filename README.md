@@ -52,3 +52,4 @@ For å kjøre med mocks så sett følgende innhold i **.env.local** eller slett 
 ```.env
 VITE_MOCK_REQUEST_HANDLER=mock
 ```
+
