@@ -25,6 +25,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 	const [ meldinger, setMeldinger ] = useState<Meldinger>({ endringsmeldinger: [], vurderinger: [] })
 	const meldingerFraArrangorPromise = usePromise<AxiosResponse<Meldinger>>()
 	const harTilgang = harTilgangTilEndringsmelding(innloggetAnsatt.tilganger)
+	const antallVurderinger = meldinger?.vurderinger ? meldinger?.vurderinger.length : 0
 
 	useEffect(() => {
 		if (isResolved(meldingerFraArrangorPromise)) {
@@ -69,7 +70,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 		<Tabs defaultValue="endringsmeldinger" className={styles.tab}>
 			<Tabs.List>
 				<Tabs.Tab value="endringsmeldinger" label="Endringsmeldinger" />
-				<Tabs.Tab value="vurderinger" label="Vurdering fra tiltaksarrangør" />
+				<Tabs.Tab value="vurderinger" label={`Vurdering fra tiltaksarrangør (${antallVurderinger})`} />
 			</Tabs.List>
 			<Tabs.Panel value="endringsmeldinger" className={styles.tabPanel}>
 				<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger} refresh={refresh} />
