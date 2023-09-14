@@ -12,8 +12,8 @@ dependencies:
     specifier: ^5.4.1
     version: 5.4.1
   '@navikt/ds-react':
-    specifier: ^5.4.1
-    version: 5.4.1(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.5.0
+    version: 5.5.0(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
   '@types/react':
     specifier: ^18.2.21
     version: 18.2.21
@@ -748,12 +748,16 @@ packages:
     resolution: {integrity: sha512-PWjCtiLXSWvUDeeLsRUHCNl69AZpihdVqe8jcOM6sCYwIBv6QFw/HG4rQKtD1VirrsXvk+yOeENTC75zEJXiTw==}
     dev: false
 
+  /@navikt/aksel-icons@5.5.0:
+    resolution: {integrity: sha512-KKq28Ed4lYwnrESIyyOxnBGr7ef1RqTPZoLAJE1YXNGHfVMN/TEZCoZQlPialhZK8g36ngNgvtsZeEm5oCxoxQ==}
+    dev: false
+
   /@navikt/ds-css@5.4.1:
     resolution: {integrity: sha512-f/Fs5i4vv54dORLa8cq0muXielCUQy6asO7ugFzkzBdfzqa49gizQ14kQAbpGoEkEsfa09oSgyqL/KgH8tPX1g==}
     dev: false
 
-  /@navikt/ds-react@5.4.1(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-23QOU3eBJj/x5dRy4CqmOWoFz+tSq14yvD3IDUbiqlGklCHziz9TNSSThW+vINQwVz4T7FNQZRdUsbS9P9RWlA==}
+  /@navikt/ds-react@5.5.0(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-sBX0q7MjkAVBYvE8mrNkb2YwF0Cx/TNLIjN96bnLOnqfHRB8CV2+lkYNR6u+c/8qOuPZXgyH25dqye9kMC4VdQ==}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -762,7 +766,8 @@ packages:
         optional: true
     dependencies:
       '@floating-ui/react': 0.24.1(react-dom@18.2.0)(react@18.2.0)
-      '@navikt/aksel-icons': 5.4.1
+      '@navikt/aksel-icons': 5.5.0
+      '@navikt/ds-tokens': 5.5.0
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toggle-group': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.21
@@ -772,6 +777,10 @@ packages:
       react-day-picker: 8.3.4(date-fns@2.29.3)(react@18.2.0)
     transitivePeerDependencies:
       - react-dom
+    dev: false
+
+  /@navikt/ds-tokens@5.5.0:
+    resolution: {integrity: sha512-zV9TfGNjiRgpX1Ec11gK8BtgkiR+HN+qwjVbWt5NA6ux8xIQYdaFqLJWQa585vLl6DEOhwrlzb0FhT+KDvG3Rg==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
