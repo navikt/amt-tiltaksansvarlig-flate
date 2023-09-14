@@ -40,10 +40,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           browser: chrome
-          headless: true
           start: pnpm start
           wait-on: sleep 5
-          parallel: true
           record: ${{ env.IS_NOT_DEPENDABOT }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
