@@ -45,7 +45,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "faker": "^5.5.3",
     "msw": "^1.3.0",
-    "sass": "^1.66.1",
+    "sass": "^1.67.0",
     "table": "^6.8.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
