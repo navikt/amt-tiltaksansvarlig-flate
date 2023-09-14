@@ -1,7 +1,7 @@
 name: Cypress test
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - main
 env:
   CI: true
