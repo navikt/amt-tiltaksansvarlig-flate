@@ -11,9 +11,10 @@ import styles from './GjennomforingPanel.module.scss'
 
 interface GjennomforingPanelProps {
 	gjennomforing: Gjennomforing
+	onClick: () => void
 }
 
-export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): React.ReactElement => {
+export const GjennomforingPanel = ({ gjennomforing, onClick }: GjennomforingPanelProps): React.ReactElement => {
 	const harAktiveEndringsmeldinger = gjennomforing.antallAktiveEndringsmeldinger > 0
 	const harSkjermedeEndringsmeldinger = gjennomforing.harSkjermedeDeltakere
 	const avsluttet = gjennomforing.status === GjennomforingStatus.AVSLUTTET
@@ -21,7 +22,7 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 	const sluttdato = formatDateMedMndNavn(gjennomforing.sluttDato)
 
 	return (
-		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} className={styles.panel}>
+		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} onClick={onClick} className={styles.panel}>
 			<div className={styles.panelInnhold}>
 				<div>
 					<Heading size="xsmall" as="span" className={styles.header}>
@@ -29,9 +30,7 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 					</Heading>
 
 					<div className={styles.info}>
-						<BodyShort size="small">
-							{gjennomforing.arrangorNavn}
-						</BodyShort>
+						<BodyShort size="small">{gjennomforing.arrangorNavn}</BodyShort>
 
 						<BodyShort size="small">
 							{gjennomforing.opprettetAar}/{gjennomforing.lopenr}
@@ -39,22 +38,22 @@ export const GjennomforingPanel = ({ gjennomforing }: GjennomforingPanelProps): 
 					</div>
 					<div className={styles.info}>
 						<AvsluttetMerkelapp hidden={!avsluttet} />
-						<BodyShort size="small">{oppstart} - {sluttdato}</BodyShort>
+						<BodyShort size="small">
+							{oppstart} - {sluttdato}
+						</BodyShort>
 					</div>
 				</div>
 				<div className={styles.tags}>
-					{
-						harAktiveEndringsmeldinger &&
+					{harAktiveEndringsmeldinger && (
 						<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
 							Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
 						</Tag>
-					}
-					{
-						harSkjermedeEndringsmeldinger &&
+					)}
+					{harSkjermedeEndringsmeldinger && (
 						<Tag variant="warning" size="small">
 							Skjermet
 						</Tag>
-					}
+					)}
 				</div>
 			</div>
 		</SpaLenkepanel>
