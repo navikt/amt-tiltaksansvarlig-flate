@@ -24,7 +24,7 @@ export const GjennomforingPanel = ({ gjennomforing, onClick }: GjennomforingPane
 	return (
 		<SpaLenkepanel to={gjennomforingDetaljerPageUrl(gjennomforing.id)} onClick={onClick} className={styles.panel}>
 			<div className={styles.panelInnhold}>
-				<div>
+				<div className={styles.infoWrapper}>
 					<Heading size="xsmall" as="span" className={styles.header}>
 						{gjennomforing.navn}
 					</Heading>
