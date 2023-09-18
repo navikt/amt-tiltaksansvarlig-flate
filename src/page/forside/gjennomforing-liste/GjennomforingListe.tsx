@@ -2,11 +2,11 @@ import { Accordion } from '@navikt/ds-react'
 import React, { useEffect } from 'react'
 
 import { Gjennomforing, Tiltak } from '../../../api/api'
+import useLocalStorage from '../../../hooks/useLocalStorage'
 import { sortAlphabetic } from '../../../utils/sort-utils'
 import { GjennomforingPanel } from './gjennomforing-panel/GjennomforingPanel'
-import { TomVisningPanel } from './tom-visning-panel/TomVisningPanel'
 import styles from './GjennomforingListe.module.scss'
-import useLocalStorage from '../../../hooks/useLocalStorage'
+import { TomVisningPanel } from './tom-visning-panel/TomVisningPanel'
 
 interface Props {
 	gjennomforinger: Gjennomforing[]
@@ -71,7 +71,7 @@ interface GjennomforingGrupperingProps {
 }
 
 const GjennomforingGruppering = (props: GjennomforingGrupperingProps): React.ReactElement => {
-	const [tiltakOpen, setTiltakOpen] = useLocalStorage(`accordion-open-${props.tiltak.navn}`, true)
+	const [ tiltakOpen, setTiltakOpen ] = useLocalStorage(`accordion-open-${props.tiltak.navn}`, true)
 
 	return (
 		<Accordion.Item defaultOpen={tiltakOpen}>
