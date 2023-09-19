@@ -192,20 +192,6 @@ const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.datatype.uuid(),
 		deltaker: {
-			fornavn: 'Amelia',
-			mellomnavn: null,
-			etternavn: 'Hunter',
-			fodselsnummer: '01108511382',
-			erSkjermet: false
-		},
-		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
-		status: EndringsmeldingStatus.AKTIV,
-		innhold: { aarsak: { type: DeltakerStatusAarsakType.OPPFYLLER_IKKE_KRAVENE, beskrivelse: 'Har ikke fullført grunnleggende førstehjelpskurs' } },
-		opprettetDato: faker.date.recent()
-	},
-	{
-		id: faker.datatype.uuid(),
-		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
@@ -229,20 +215,6 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { deltakelseProsent: 64, dagerPerUke: 3, gyldigFraDato: faker.date.soon() },
-		opprettetDato: faker.date.recent()
-	},
-	{
-		id: faker.datatype.uuid(),
-		deltaker: {
-			fornavn: 'Lur',
-			mellomnavn: 'Lutlei2',
-			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
-			erSkjermet: false
-		},
-		type: EndringsmeldingType.DELTAKER_ER_AKTUELL,
-		status: EndringsmeldingStatus.AKTIV,
-		innhold: null,
 		opprettetDato: faker.date.recent()
 	},
 	{

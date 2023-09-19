@@ -9,7 +9,6 @@ export enum EndringsmeldingType {
 	AVSLUTT_DELTAKELSE = 'AVSLUTT_DELTAKELSE',
 	DELTAKER_IKKE_AKTUELL = 'DELTAKER_IKKE_AKTUELL',
 	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT',
-	DELTAKER_ER_AKTUELL = 'DELTAKER_ER_AKTUELL',
 	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO'
 }
 
@@ -37,7 +36,6 @@ export enum DeltakerStatusAarsakType {
 	AVLYST_KONTRAKT = 'AVLYST_KONTRAKT',
 	IKKE_MOTT = 'IKKE_MOTT',
 	FEILREGISTRERT = 'FEILREGISTRERT',
-	OPPFYLLER_IKKE_KRAVENE = 'OPPFYLLER_IKKE_KRAVENE',
 	ANNET = 'ANNET'
 }
 
@@ -92,12 +90,6 @@ export const DeltakelseProsentEndringmeldingSchema = z.intersection(Endringsmeld
 	innhold: z.object({ deltakelseProsent: z.number(), dagerPerUke: z.number().nullable(), gyldigFraDato: processStringToNullableDate }),
 }))
 
-export const DeltakerErAktuellEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
-	type: z.literal(EndringsmeldingType.DELTAKER_ER_AKTUELL),
-	innhold: z.object({}).nullable(),
-
-}))
-
 export const EndreSluttdatoEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.ENDRE_SLUTTDATO),
 	innhold: z.object({ sluttdato: processStringToDate }),
@@ -111,7 +103,6 @@ export const EndringsmeldingSchema = z.union([
 	AvsluttDeltakelseEndringsmeldingSchema,
 	DeltakerIkkeAktuellEndringsmeldingSchema,
 	DeltakelseProsentEndringmeldingSchema,
-	DeltakerErAktuellEndringmeldingSchema,
 	EndreSluttdatoEndringmeldingSchema
 ])
 
