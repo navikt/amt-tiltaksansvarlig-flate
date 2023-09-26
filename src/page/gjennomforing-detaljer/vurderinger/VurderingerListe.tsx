@@ -16,8 +16,8 @@ export const VurderingeListe = ({ vurderinger }: VurderingeListeProps) => {
 	return (
 		<div className={styles.spaceBottom}>
 			<BodyLong size="small" className={styles.description}>
-				Når tiltaksarrangør ser en deltaker med status “Vurderes” (Arena-statusen er “Informasjonsmøte”), så kan de sende en vurdering på deltakeren.
-				Denne informasjonen kan brukes til å vurdere om hvem som tilbys plass på kurset.
+				Når en person har statusen Informasjonsmøte i Arena, så kan tiltaksarrangør vurdere om personen oppfyller kravene i tiltaket eller ikke.
+				NAV kan bruke vurderingen til å avgjøre hvem som skal tilbys plass på kurset.
 			</BodyLong>
 
 			{VurderingerSortert.length > 0 ? (
