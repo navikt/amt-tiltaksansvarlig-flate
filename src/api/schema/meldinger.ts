@@ -9,7 +9,8 @@ export enum EndringsmeldingType {
 	AVSLUTT_DELTAKELSE = 'AVSLUTT_DELTAKELSE',
 	DELTAKER_IKKE_AKTUELL = 'DELTAKER_IKKE_AKTUELL',
 	ENDRE_DELTAKELSE_PROSENT = 'ENDRE_DELTAKELSE_PROSENT',
-	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO'
+	ENDRE_SLUTTDATO = 'ENDRE_SLUTTDATO',
+	ENDRE_SLUTTAARSAK = 'ENDRE_SLUTTAARSAK',
 }
 
 export enum Vurderingstype {
@@ -93,8 +94,13 @@ export const DeltakelseProsentEndringmeldingSchema = z.intersection(Endringsmeld
 export const EndreSluttdatoEndringmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
 	type: z.literal(EndringsmeldingType.ENDRE_SLUTTDATO),
 	innhold: z.object({ sluttdato: processStringToDate }),
-
 }))
+
+export const EndreSluttaarsakEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
+	type: z.literal(EndringsmeldingType.ENDRE_SLUTTAARSAK),
+	innhold: z.object({ aarsak: DeltakerStatusAarsakSchema }),
+}))
+
 
 export const EndringsmeldingSchema = z.union([
 	LeggTilOppstartsdatoEndringsmeldingSchema,
@@ -103,7 +109,8 @@ export const EndringsmeldingSchema = z.union([
 	AvsluttDeltakelseEndringsmeldingSchema,
 	DeltakerIkkeAktuellEndringsmeldingSchema,
 	DeltakelseProsentEndringmeldingSchema,
-	EndreSluttdatoEndringmeldingSchema
+	EndreSluttdatoEndringmeldingSchema,
+	EndreSluttaarsakEndringsmeldingSchema
 ])
 
 export const VurderingSchema = z.object({
