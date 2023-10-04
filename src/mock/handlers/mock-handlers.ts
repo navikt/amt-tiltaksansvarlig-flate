@@ -2,7 +2,7 @@ import faker from 'faker'
 import { RequestHandler, rest } from 'msw'
 
 import { Gjennomforing, GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../../api/api'
-import { EndringsmeldingStatus } from '../../api/schema/meldinger'
+import { EndringsmeldingStatus, EndringsmeldingType } from '../../api/schema/meldinger'
 import { GjennomforingStatus } from '../../api/schema/schema'
 import { appUrl } from '../../utils/url-utils'
 import {
@@ -86,6 +86,16 @@ export const mockHandlers: RequestHandler[] = [
 	}),
 
 	rest.get(appUrl('/amt-tiltak/api/nav-ansatt/meldinger'), (req, res, ctx) => {
+		const id = req.url.searchParams.get('gjennomforingId')
+		const gjennomforing = gjennomforinger.find(g => g.id === id)
+
+		if (gjennomforing?.tiltak.kode === 'GRUPPEAMO') {
+			return res(ctx.delay(250), ctx.json({
+				vurderinger: meldingeData.vurderinger,
+				endringsmeldinger: meldingeData.endringsmeldinger.filter(e => e.type !== EndringsmeldingType.ENDRE_SLUTTAARSAK)
+			}))
+		}
+
 		return res(ctx.delay(250), ctx.json(meldingeData))
 	}),
 	rest.patch(appUrl('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig'), (req, res, ctx) => {

@@ -244,6 +244,20 @@ const endringsmeldingData: Endringsmelding[] = [
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { deltakelseProsent: 100, dagerPerUke: 5, gyldigFraDato: faker.date.soon() },
 		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: faker.name.firstName(),
+			mellomnavn: null,
+			etternavn: faker.name.lastName(),
+			fodselsnummer: '22010112345',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.ENDRE_SLUTTAARSAK,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { aarsak: { type: DeltakerStatusAarsakType.FATT_JOBB, beskrivelse: null } },
+		opprettetDato: faker.date.recent()
 	}
 ]
 

@@ -3,10 +3,12 @@ import {
 	ChevronRightDoubleCircleFillIcon,
 	MinusCircleFillIcon,
 	PieChartFillIcon,
-	PlusCircleFillIcon } from '@navikt/aksel-icons'
+	PlusCircleFillIcon
+} from '@navikt/aksel-icons'
 import React from 'react'
 
 import { EndringsmeldingType } from '../../../../api/schema/meldinger'
+import { ChevronRightLastFillIcon } from '../../../../ikoner/ChevronRightLastFillIcon'
 import styles from './EndringsmeldingIkon.module.scss'
 
 interface Props {
@@ -17,15 +19,17 @@ export const EndringsmeldingIkon = ({ type }: Props): React.ReactElement => {
 	switch (type) {
 		case EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO:
 		case EndringsmeldingType.ENDRE_OPPSTARTSDATO:
-			return <ChevronRightCircleFillIcon className={styles.endreIkon} aria-hidden/>
-		case  EndringsmeldingType.FORLENG_DELTAKELSE:
-			return <ChevronRightDoubleCircleFillIcon className={styles.forlengIkon} aria-hidden/>
+			return <ChevronRightCircleFillIcon className={styles.endreIkon} aria-hidden />
+		case EndringsmeldingType.FORLENG_DELTAKELSE:
+			return <ChevronRightDoubleCircleFillIcon className={styles.forlengIkon} aria-hidden />
 		case EndringsmeldingType.AVSLUTT_DELTAKELSE:
 		case EndringsmeldingType.ENDRE_SLUTTDATO:
-			return <MinusCircleFillIcon className={styles.avsluttIkon} aria-hidden/>
+			return <MinusCircleFillIcon className={styles.avsluttIkon} aria-hidden />
 		case EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT:
-			return <PieChartFillIcon className={styles.endreProsentDeltakelseIkon} aria-hidden/>
+			return <PieChartFillIcon className={styles.endreProsentDeltakelseIkon} aria-hidden />
 		case EndringsmeldingType.DELTAKER_IKKE_AKTUELL:
-			return <PlusCircleFillIcon className={styles.ikkeAktuellIkon} aria-hidden/>
+			return <PlusCircleFillIcon className={styles.ikkeAktuellIkon} aria-hidden />
+		case EndringsmeldingType.ENDRE_SLUTTAARSAK:
+			return <ChevronRightLastFillIcon ariaHidden />
 	}
 }
