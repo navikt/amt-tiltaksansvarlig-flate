@@ -18,8 +18,8 @@ dependencies:
     specifier: ^18.2.24
     version: 18.2.24
   '@types/react-dom':
-    specifier: ^18.2.8
-    version: 18.2.8
+    specifier: ^18.2.10
+    version: 18.2.10
   '@types/react-router-dom':
     specifier: ^5.3.3
     version: 5.3.3
@@ -1086,8 +1086,8 @@ packages:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
     dev: false
 
-  /@types/react-dom@18.2.8:
-    resolution: {integrity: sha512-bAIvO5lN/U8sPGvs1Xm61rlRHHaq5rp5N3kp9C+NJ/Q41P8iqjkXSu0+/qu8POsjH9pNWb0OYabFez7taP7omw==}
+  /@types/react-dom@18.2.10:
+    resolution: {integrity: sha512-5VEC5RgXIk1HHdyN1pHlg0cOqnxHzvPGpMMyGAP5qSaDRmyZNDaQ0kkVAkK6NYlDhP6YBID3llaXlmAS/mdgCA==}
     dependencies:
       '@types/react': 18.2.24
     dev: false
