@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@navikt/aksel-icons": "^5.6.4",
-    "@navikt/ds-css": "^5.6.4",
+    "@navikt/ds-css": "^5.6.5",
     "@navikt/ds-react": "^5.6.4",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.11",
