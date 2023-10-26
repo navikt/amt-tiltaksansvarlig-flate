@@ -6,7 +6,7 @@
     "@navikt/aksel-icons": "^5.7.6",
     "@navikt/ds-css": "^5.7.6",
     "@navikt/ds-react": "^5.7.6",
-    "@types/react": "^18.2.31",
+    "@types/react": "^18.2.32",
     "@types/react-dom": "^18.2.14",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.5.1",
