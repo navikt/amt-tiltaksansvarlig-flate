@@ -12,8 +12,8 @@ dependencies:
     specifier: ^5.7.6
     version: 5.7.6
   '@navikt/ds-react':
-    specifier: ^5.7.6
-    version: 5.7.6(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.8.0
+    version: 5.8.0(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0)
   '@types/react':
     specifier: ^18.2.31
     version: 18.2.31
@@ -748,12 +748,16 @@ packages:
     resolution: {integrity: sha512-GAQvvfVrS4n6qYIB9dCnzoVf5ZboWVDU8e9gfzQitVqysNFt8X2In9/BPX1eGZa44MCE5tr0mtnzkzLMkHpSHg==}
     dev: false
 
+  /@navikt/aksel-icons@5.8.0:
+    resolution: {integrity: sha512-TEqq5fmisJfphZYm42y4FquzXj8/vf+lUO8J81Wy1mN/vooWp4IbhM4+zu8yvnAfP9oU/+b0hrjoh3c2NWoZCg==}
+    dev: false
+
   /@navikt/ds-css@5.7.6:
     resolution: {integrity: sha512-9sIffX+1nK8kkYemSJJ29urioEPI4vOqE5l1zpVtMrfmqcc8A5RWTV31V+7Rybj/fOO0F83HHP9oNJESTlsG6Q==}
     dev: false
 
-  /@navikt/ds-react@5.7.6(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-C+DAX2fl2jZX73lBgrMZCkHbIj8laOHjoZEOg6XAUIJEQgySIbeYv5Mtl5BnyOonZ7YOIvNAYhgG67gp+Fum7w==}
+  /@navikt/ds-react@5.8.0(@types/react@18.2.31)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-y6cDr32fAaR+BVN4SkXOVRtwLDmokOrJiM8i9Gq+h1DTool7Ca9e/+j37aY+h5qOvyNEvguS1LUiwqGGQYGPuw==}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -762,8 +766,8 @@ packages:
         optional: true
     dependencies:
       '@floating-ui/react': 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@navikt/aksel-icons': 5.7.6
-      '@navikt/ds-tokens': 5.7.6
+      '@navikt/aksel-icons': 5.8.0
+      '@navikt/ds-tokens': 5.8.0
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toggle-group': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.31
@@ -775,8 +779,8 @@ packages:
       - react-dom
     dev: false
 
-  /@navikt/ds-tokens@5.7.6:
-    resolution: {integrity: sha512-0zDth/bhegFthLK9FJPLAZayVAgGb+D4uFpfVRPKcu6fq2nBpcLttytoBhC6kPFe5pnBQmI6cgin4sZIbW5H/g==}
+  /@navikt/ds-tokens@5.8.0:
+    resolution: {integrity: sha512-Axra5KEXVgo0pCn2Y+PeQyefDjnemJk4BvOzo4/5rsNnSEtocOW1ciILwIejeLMsEhoQ4wCpw8g9ksYTYpp5ng==}
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
