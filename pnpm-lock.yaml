@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@navikt/aksel-icons':
-    specifier: ^5.7.6
-    version: 5.7.6
+    specifier: ^5.9.2
+    version: 5.9.2
   '@navikt/ds-css':
     specifier: ^5.7.6
     version: 5.7.6
@@ -744,8 +744,8 @@ packages:
       - supports-color
     dev: true
 
-  /@navikt/aksel-icons@5.7.6:
-    resolution: {integrity: sha512-GAQvvfVrS4n6qYIB9dCnzoVf5ZboWVDU8e9gfzQitVqysNFt8X2In9/BPX1eGZa44MCE5tr0mtnzkzLMkHpSHg==}
+  /@navikt/aksel-icons@5.9.2:
+    resolution: {integrity: sha512-5XQI4wzZAlB6CoHDXZrjUqMx+7iUiOPoqFY3H9kT/NwfCdmUSPUFfmiPZHzpV7OzS4S61Joo1GhZ31ZZSIuz3Q==}
     dev: false
 
   /@navikt/ds-css@5.7.6:
@@ -762,7 +762,7 @@ packages:
         optional: true
     dependencies:
       '@floating-ui/react': 0.25.4(react-dom@18.2.0)(react@18.2.0)
-      '@navikt/aksel-icons': 5.7.6
+      '@navikt/aksel-icons': 5.9.2
       '@navikt/ds-tokens': 5.7.6
       '@radix-ui/react-tabs': 1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toggle-group': 1.0.0(react-dom@18.2.0)(react@18.2.0)
