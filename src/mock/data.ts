@@ -73,7 +73,7 @@ export const gjennomforinger: Gjennomforing[] = [
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
 		},
-		status: GjennomforingStatus.APENT_FOR_INNSOK,
+		status: GjennomforingStatus.PLANLAGT,
 	},
 	{
 		navn: 'AFT Tjenesteområde 3',
