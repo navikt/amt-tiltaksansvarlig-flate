@@ -4,6 +4,7 @@ import { processStringToDate } from '../utils'
 
 
 export enum GjennomforingStatus {
+	PLANLAGT = 'PLANLAGT',
 	APENT_FOR_INNSOK = 'APENT_FOR_INNSOK',
 	GJENNOMFORES = 'GJENNOMFORES',
 	AVSLUTTET = 'AVSLUTTET'
