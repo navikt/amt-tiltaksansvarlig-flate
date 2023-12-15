@@ -59,6 +59,7 @@ export const EndringsmeldingBaseSchema = z.object({
 	deltaker: DeltakerSchema,
 	status: EndringsmeldingStatusSchema,
 	opprettetDato: processStringToDate,
+	utfortTidspunkt: processStringToNullableDate,
 })
 
 export const LeggTilOppstartsdatoEndringsmeldingSchema = z.intersection(EndringsmeldingBaseSchema, z.object({
