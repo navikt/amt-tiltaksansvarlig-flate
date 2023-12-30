@@ -2,7 +2,7 @@ import { Alert, BodyLong } from '@navikt/ds-react'
 import React from 'react'
 
 import { Vurdering } from '../../../api/schema/meldinger'
-import { sorterMeldinger } from '../endringsmeldinger/utils'
+import { sorterMeldingerAlfabetisk } from '../endringsmeldinger/utils'
 import styles from './Vurdering.module.scss'
 import { VurderingPanel } from './VurderingPanel'
 
@@ -11,7 +11,7 @@ interface VurderingeListeProps {
 }
 
 export const VurderingeListe = ({ vurderinger }: VurderingeListeProps) => {
-	const VurderingerSortert = vurderinger.sort(sorterMeldinger)
+	const VurderingerSortert = vurderinger.sort(sorterMeldingerAlfabetisk)
 
 	return (
 		<div className={styles.spaceBottom}>

@@ -83,6 +83,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { oppstartsdato: null },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -97,6 +98,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { oppstartsdato: faker.date.soon() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -111,6 +113,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { oppstartsdato: faker.date.soon() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -125,6 +128,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.FORLENG_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { sluttdato: faker.date.soon() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -145,6 +149,7 @@ const endringsmeldingData: Endringsmelding[] = [
 				beskrivelse: 'Har flyttet til annen kommune'
 			}
 		},
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -159,6 +164,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { aarsak: { type: DeltakerStatusAarsakType.FEILREGISTRERT, beskrivelse: null } },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -173,7 +179,8 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,
 		innhold: { oppstartsdato: faker.date.past() },
-		opprettetDato: faker.date.recent()
+		utfortTidspunkt: faker.date.past(),
+		opprettetDato: faker.date.past()
 	},
 	{
 		id: faker.datatype.uuid(),
@@ -187,6 +194,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTDATERT,
 		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -201,6 +209,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.TILBAKEKALT,
 		innhold: { sluttdato: faker.date.past(), aarsak: { type: DeltakerStatusAarsakType.SYK, beskrivelse: null } },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -215,6 +224,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { deltakelseProsent: 64, dagerPerUke: 3, gyldigFraDato: faker.date.soon() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -229,6 +239,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_SLUTTDATO,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { sluttdato: faker.date.future() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -243,6 +254,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { deltakelseProsent: 100, dagerPerUke: 5, gyldigFraDato: faker.date.soon() },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
 	},
 	{
@@ -257,8 +269,39 @@ const endringsmeldingData: Endringsmelding[] = [
 		type: EndringsmeldingType.ENDRE_SLUTTAARSAK,
 		status: EndringsmeldingStatus.AKTIV,
 		innhold: { aarsak: { type: DeltakerStatusAarsakType.FATT_JOBB, beskrivelse: null } },
+		utfortTidspunkt: null,
 		opprettetDato: faker.date.recent()
-	}
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: faker.name.firstName(),
+			mellomnavn: null,
+			etternavn: faker.name.lastName(),
+			fodselsnummer: '01016912342',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.UTFORT,
+		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: faker.date.past(),
+		opprettetDato: faker.date.past()
+	},
+	{
+		id: faker.datatype.uuid(),
+		deltaker: {
+			fornavn: faker.name.firstName(),
+			mellomnavn: null,
+			etternavn: faker.name.lastName(),
+			fodselsnummer: '02045544447',
+			erSkjermet: false
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.UTFORT,
+		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: faker.date.past(),
+		opprettetDato: faker.date.past()
+	},
 ]
 
 export const meldingeData: MeldingerFraArrangor = {

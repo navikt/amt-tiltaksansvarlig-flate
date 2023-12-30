@@ -1,12 +1,13 @@
 import { Accordion, Alert, BodyLong } from '@navikt/ds-react'
-import React from 'react'
+import React, { useState } from 'react'
 
-import { Endringsmelding,EndringsmeldingStatus } from '../../../../api/schema/meldinger'
+import { Endringsmelding, EndringsmeldingStatus } from '../../../../api/schema/meldinger'
 import { EndringsmeldingPanel } from '../endringsmelding/EndringsmeldingPanel'
+import { SorteringSelect } from '../endringsmelding/SorteringSelect'
 import { useLagretVarighetValg } from '../endringsmelding/useLagretVarighetValg'
 import { VarighetSelect, VarighetValg } from '../endringsmelding/VarighetSelect'
 import styles from '../Endringsmeldinger.module.scss'
-import { sorterMeldinger } from '../utils'
+import { EndringsmeldingSortering, getSortering, sorterMeldingerAlfabetisk } from '../utils'
 
 const DEFAULT_VARIGHET_VALG = VarighetValg.IKKE_VALGT
 
@@ -22,8 +23,9 @@ export const EndringsmeldingListe = ({
 	refresh,
 }: MeldingerProps) => {
 	const [ varighetValg, setVarighetValg ] = useLagretVarighetValg(gjennomforingId, DEFAULT_VARIGHET_VALG)
-	const aktiveMeldinger = meldinger.filter((e) => e.status === EndringsmeldingStatus.AKTIV).sort(sorterMeldinger)
-	const inaktiveMeldinger = meldinger.filter((e) => e.status !== EndringsmeldingStatus.AKTIV).sort(sorterMeldinger)
+	const [ sortering, setSortering ] = useState(EndringsmeldingSortering.ALFABETISK)
+	const aktiveMeldinger = meldinger.filter((e) => e.status === EndringsmeldingStatus.AKTIV).sort(sorterMeldingerAlfabetisk)
+	const inaktiveMeldinger = meldinger.filter((e) => e.status !== EndringsmeldingStatus.AKTIV).sort(getSortering(sortering))
 	return (
 		<div className={styles.spaceBottom}>
 			<BodyLong size="small">
@@ -51,6 +53,7 @@ export const EndringsmeldingListe = ({
 						Meldinger som er markert ferdig
 					</Accordion.Header>
 					<Accordion.Content className={styles.accordionContent}>
+						<SorteringSelect sortering={sortering} setSortering={setSortering} />
 						{inaktiveMeldinger.length > 0
 							? inaktiveMeldinger.map(m => {
 								return <EndringsmeldingPanel
