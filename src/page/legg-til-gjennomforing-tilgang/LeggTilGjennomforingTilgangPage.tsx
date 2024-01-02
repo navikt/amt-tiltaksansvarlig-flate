@@ -1,20 +1,25 @@
-import { Alert, Button, Heading, Loader, TextField } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
+import { Alert, Heading, Loader } from '@navikt/ds-react'
 import React, { useState } from 'react'
 
-import { fetchGjennomforinger, HentGjennomforingMedLopenr, hentGjennomforingMedLopenr } from '../../api/api'
+import { fetchGjennomforinger, hentGjennomforingMedLopenr } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import globalStyles from '../../globals.module.scss'
+import { DeferredFetchState, useDeferredFetch } from '../../hooks/useDeferredFetch'
 import useFetch from '../../hooks/useFetch'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
-import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
 import styles from './LeggTilGjennomforingTilgangPage.module.scss'
+import { LopenummerPicker } from './LopenummerPicker'
 
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
-	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
-	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingMedLopenr[]>>()
+	const [ lopenr, setLopenr ] = useState<number | null>(null)
+
+	const {
+		data: sokteGjennomforinger,
+		state: sokteGjennomforingerState,
+		doFetch: fetchSokteGjennomforinger
+	} = useDeferredFetch(hentGjennomforingMedLopenr, lopenr)
 
 	const {
 		data: mineGjennomforinger,
@@ -27,23 +32,11 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	if (mineGjennomforingerError || !mineGjennomforinger) return <Alert variant="error">Noe gikk galt</Alert>
 
-	const mineGjennomforingIds = mineGjennomforinger
-		.map(i => i.id)
-		?? []
+	const mineGjennomforingIds = mineGjennomforinger.map(i => i.id) ?? []
 
-	const handleOnSokClicked = () => {
-		const lopenr = parseInt(lopenrSokefelt)
-		hentGjennomforingMedLopenrPromise.setPromise(() => hentGjennomforingMedLopenr(lopenr))
-	}
-
-	const sokteGjennomforinger = hentGjennomforingMedLopenrPromise.result?.data ?? []
-
-	const kunSiffer = (value: string): boolean => {
-		return !!value.match('^[0-9]+$')
-	}
-
-	const isValidLopenr = (value: string): boolean => {
-		return (kunSiffer(value) && value.length <= 7) || value === ''
+	const setTiltaksnummer = (tiltaksnummer: number) => {
+		setLopenr(tiltaksnummer)
+		fetchSokteGjennomforinger()
 	}
 
 	return (
@@ -54,45 +47,20 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 				Legg til et tiltak du jobber med
 			</Heading>
 
-			<div className={styles.sok}>
-				<TextField
-					label="Tiltaksnummer"
-					value={lopenrSokefelt}
-					onKeyDown={e => e.key === 'Enter' && handleOnSokClicked()}
-					onChange={e => {
-						const value = e.target.value
+			<LopenummerPicker
+				isLoading={sokteGjennomforingerState === DeferredFetchState.LOADING}
+				onSokClicked={setTiltaksnummer}/>
 
-						if (isValidLopenr(value))
-							setLopenrSokefelt(value)
-					}}
-				/>
+			{sokteGjennomforingerState === DeferredFetchState.LOADING && (<Spinner/>)}
 
-				<Button
-					variant="primary"
-					className={styles.sokKnapp}
-					onClick={handleOnSokClicked}
-					disabled={isPending(hentGjennomforingMedLopenrPromise) || !lopenrSokefelt}
-					loading={isPending(hentGjennomforingMedLopenrPromise)}
-				>
-					Søk
-				</Button>
-			</div>
+			{sokteGjennomforingerState === DeferredFetchState.ERROR && (
+				<Alert variant="error">En feil har oppstått</Alert>
+			)}
 
-			{
-				isPending(hentGjennomforingMedLopenrPromise)
-				&& (<Spinner/>)
-			}
-
-			{
-				isRejected(hentGjennomforingMedLopenrPromise)
-				&& (<Alert variant="error">En feil har oppstått</Alert>)
-			}
-
-			{
-				isResolved(hentGjennomforingMedLopenrPromise)
-				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}
-					mineGjennomforingerIds={mineGjennomforingIds}/>)
-			}
+			{sokteGjennomforingerState === DeferredFetchState.RESOLVED && (
+				<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger ?? []}
+					mineGjennomforingerIds={mineGjennomforingIds}
+				/>)}
 		</main>
 	)
 }

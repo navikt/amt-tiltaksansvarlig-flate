@@ -1,10 +1,8 @@
-import { AxiosPromise, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
 import { appUrl } from '../utils/url-utils'
 import { MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
-	ArrangorSchema,
 	GjennomforingDetaljerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
@@ -13,7 +11,6 @@ import {
 	InnloggetNavAnsattSchema,
 	TiltakSchema
 } from './schema/schema'
-import { axiosInstance } from './utils'
 
 export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 
@@ -21,13 +18,9 @@ export type Gjennomforing = z.infer<typeof GjennomforingSchema>
 
 export type GjennomforingDetaljer = z.infer<typeof GjennomforingDetaljerSchema>
 
-export type Arrangor = z.infer<typeof ArrangorSchema>
-
 export type HentGjennomforingMedLopenr = z.infer<typeof HentGjennomforingMedLopenrSchema>
 
 export type Tiltak = z.infer<typeof TiltakSchema>
-
-const parseSchema = <T>(res: AxiosResponse, schema: z.ZodSchema<T>) => ({ ...res, data: schema.parse(res.data) })
 
 const exposeError = (error: Error, endepunkt: string) => {
 	// eslint-disable-next-line no-console
@@ -174,9 +167,22 @@ export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promis
 		})
 }
 
-export const hentGjennomforingMedLopenr = (lopenr: number): AxiosPromise<HentGjennomforingMedLopenr[]> => {
+export const hentGjennomforingMedLopenr = (lopenr: number): Promise<HentGjennomforingMedLopenr[]> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, HentGjennomforingerMedLopenrSchema))
-		.catch((error) => exposeError(error, endepunkt))
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente gjennomføring med løpenummer ${lopenr} . Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => HentGjennomforingerMedLopenrSchema.parse(json))
 }
