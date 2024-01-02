@@ -154,10 +154,24 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise
 		})
 }
 
-export const fjernGjennomforingFraOversikten = (gjennomforingId: string): AxiosPromise => {
+export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promise<Response> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+
+	return fetch(endepunkt, {
+		method: 'PATCH',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke fjerne tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
 }
 
 export const hentGjennomforingMedLopenr = (lopenr: number): AxiosPromise<HentGjennomforingMedLopenr[]> => {
