@@ -8,7 +8,7 @@ import styles from '../Endringsmelding.module.scss'
 import { Varighet } from '../VarighetSelect'
 
 interface Props {
-	oppstartsdato: Date
+	oppstartsdato: Date | null
 	status: EndringsmeldingStatus
 	varighet: Varighet | null
 }

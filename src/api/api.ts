@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { APP_NAME } from '../constants'
 import { appUrl } from '../utils/url-utils'
 import { MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
@@ -28,15 +29,18 @@ const exposeError = (error: Error, endepunkt: string) => {
 	throw error
 }
 
+const defaultHeaders = {
+	'Content-Type': 'application/json',
+	'Accept': 'application/json',
+	'Nav-Consumer-Id': APP_NAME
+}
+
 export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
 	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -52,10 +56,7 @@ export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -72,10 +73,7 @@ export const fetchGjennomforing = (id: string): Promise<GjennomforingDetaljer> =
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -92,10 +90,7 @@ export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<Meld
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -112,10 +107,7 @@ export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promi
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -133,10 +125,7 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise
 	return fetch(endepunkt, {
 		method: 'POST',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -153,10 +142,7 @@ export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promis
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {
@@ -173,10 +159,7 @@ export const hentGjennomforingMedLopenr = (lopenr: number): Promise<HentGjennomf
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'Accept': 'application/json',
-		}
+		headers: defaultHeaders
 	})
 		.then(response => {
 			if (response.status !== 200) {

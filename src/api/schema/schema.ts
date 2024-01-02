@@ -35,12 +35,6 @@ export const InnloggetNavAnsattSchema = z.object({
 	tilganger: z.array(z.string())
 })
 
-export const ArrangorAnsattSchema = z.object({
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
-})
-
 export const ArrangorSchema = z.object({
 	virksomhetNavn: z.string(),
 	virksomhetOrgnr: z.string(),

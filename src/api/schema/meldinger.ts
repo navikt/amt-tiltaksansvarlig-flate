@@ -127,10 +127,6 @@ export const MeldingerFraArrangorSchema = z.object({
 	vurderinger: z.array(VurderingSchema)
 })
 
-export const EndringsmeldingerSchema = z.array(EndringsmeldingSchema)
-
-export type Deltaker = z.infer<typeof DeltakerSchema>
-
 export type Endringsmelding = z.infer<typeof EndringsmeldingSchema>
 
 export type DeltakerStatusAarsak = z.infer<typeof DeltakerStatusAarsakSchema>
