@@ -91,7 +91,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
 				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}
-											 mineGjennomforingerIds={mineGjennomforingIds}/>)
+					mineGjennomforingerIds={mineGjennomforingIds}/>)
 			}
 		</main>
 	)

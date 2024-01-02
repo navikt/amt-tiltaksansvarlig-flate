@@ -47,7 +47,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 			</Tabs.List>
 			<Tabs.Panel value="endringsmeldinger" className={styles.tabPanel}>
 				<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
-								   refresh={reload}/>
+					refresh={reload}/>
 			</Tabs.Panel>
 			<Tabs.Panel value="vurderinger" className={styles.tabPanel}>
 				<Vurderinger vurderinger={meldinger?.vurderinger}/>
@@ -57,7 +57,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 		<>
 			<div className={cls(styles.seperator, globalStyles.blokkL)}/>
 			<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
-							   refresh={reload}/>
+				refresh={reload}/>
 		</>
 	)
 }

@@ -27,7 +27,7 @@ export const Forside = (): React.ReactElement => {
 			<div className={cls(styles.header, globalStyles.blokkM)}>
 				<Heading size="medium">Min tiltaksoversikt</Heading>
 				<Link to={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE} className="navds-link"
-					  data-testid="legg-til-gjennomforing-link">
+					data-testid="legg-til-gjennomforing-link">
 					<PlusIcon aria-labelledby="legg-til"/>
 					<span id="legg-til">Legg til</span>
 				</Link>

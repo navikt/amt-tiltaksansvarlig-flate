@@ -34,6 +34,7 @@ const useFetch = <T>(apiFunction: ApiFunction<T>, ...args: any[]): UseFetchResul
 
 	useEffect(() => {
 		fetchData()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ apiFunction, ...args ])
 
 	return { data, loading, error, reload }
