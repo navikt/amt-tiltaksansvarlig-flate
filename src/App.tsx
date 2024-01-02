@@ -41,7 +41,7 @@ export const App = (): React.ReactElement => {
 					<Route path={FORSIDE_PAGE_ROUTE} element={<Forside/>}/>
 					<Route path={GJENNOMFORING_DETALJER_PAGE_ROUTE} element={<GjennomforingDetaljerPage/>}/>
 					<Route path={LEGG_TIL_GJENNOMFORING_TILGANG_PAGE_ROUTE}
-						   element={<LeggTilGjennomforingTilgangPage/>}/>
+						element={<LeggTilGjennomforingTilgangPage/>}/>
 					<Route path="*" element={<Navigate replace to={FORSIDE_PAGE_ROUTE}/>}/>
 				</Routes>
 			</BrowserRouter>

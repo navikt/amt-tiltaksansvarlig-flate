@@ -1,13 +1,12 @@
 import { Alert, BodyShort, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/meldinger'
 import { PanelLinje } from '../../../../component/message-panel/PanelLinje'
+import { DeferredFetchState, useDeferredFetch } from '../../../../hooks/useDeferredFetch'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
-import { isNotStarted, isPending, isRejected, isResolved, usePromise } from '../../../../utils/use-promise'
 import styles from './Endringsmelding.module.scss'
 import { EndringsmeldingIkon } from './EndringsmeldingIkon'
 import { FerdigKnapp } from './Ferdigknapp'
@@ -22,43 +21,41 @@ interface EndringsmeldingProps {
 }
 
 export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }: EndringsmeldingProps): React.ReactElement => {
-	const markerSomFerdigPromise = usePromise<AxiosResponse>()
+	const { state, doFetch } = useDeferredFetch(markerEndringsmeldingSomFerdig, endringsmelding.id)
+
 	const deltaker = endringsmelding.deltaker
 	const erSkjermet = deltaker.erSkjermet
 	const kanArkiveres = deltaker.fornavn && deltaker.etternavn && deltaker.fodselsnummer
-	const navn = deltaker.fornavn && deltaker.etternavn? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn): ''
-
-	useEffect(() => {
-		if (isResolved(markerSomFerdigPromise)) {
-			onFerdig()
-		}
-	}, [ markerSomFerdigPromise, onFerdig ])
+	const navn = deltaker.fornavn && deltaker.etternavn ? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn) : ''
 
 	const onFerdigKlikk = () => {
-		markerSomFerdigPromise.setPromise(markerEndringsmeldingSomFerdig(endringsmelding.id))
+		doFetch().then(() => onFerdig())
 	}
 
 	return (
 		<Panel border className={styles.panel}>
 			<div className={styles.ikonColumn}>
-				<EndringsmeldingIkon type={endringsmelding.type} />
+				<EndringsmeldingIkon type={endringsmelding.type}/>
 			</div>
 
 			<div className={styles.meldingInnholdColumn}>
-				{ erSkjermet && <Tag size="small" variant="warning" style={{ marginBottom: '0.7rem' }}>Skjermet</Tag> }
+				{erSkjermet && <Tag size="small" variant="warning" style={{ marginBottom: '0.7rem' }}>Skjermet</Tag>}
 				<PanelLinje className={styles.spaceBottom}>
 					<Heading size="xsmall" level="3">{navn}</Heading>
-					<BodyShort size="medium" className={styles.fnr} >{deltaker.fodselsnummer}</BodyShort>
+					<BodyShort size="medium" className={styles.fnr}>{deltaker.fodselsnummer}</BodyShort>
 				</PanelLinje>
-				<BodyShort size="small" className={styles.endringstype}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
-				<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg} />
+				<BodyShort size="small"
+					className={styles.endringstype}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
+				<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg}/>
 
 				{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
-					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny melding.</BodyShort>
+					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny
+						melding.</BodyShort>
 				}
 
 				{endringsmelding.status === EndringsmeldingStatus.TILBAKEKALT &&
-					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi arrangør har tilbakekalt meldingen.</BodyShort>
+					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi arrangør har tilbakekalt
+						meldingen.</BodyShort>
 				}
 
 			</div>
@@ -68,12 +65,13 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 					inaktiv={endringsmelding.status !== EndringsmeldingStatus.AKTIV}
 					skalSkjules={!kanArkiveres}
 					onClick={onFerdigKlikk}
-					disabled={!isNotStarted(markerSomFerdigPromise)}
-					loading={isPending(markerSomFerdigPromise)}
+					disabled={state !== DeferredFetchState.NOT_STARTED}
+					loading={state === DeferredFetchState.LOADING}
 				/>
 			</div>
 
-			{ isRejected(markerSomFerdigPromise) && <Alert variant="error" size="small" className={styles.spaceTop}>Noe gikk galt</Alert> }
+			{state === DeferredFetchState.ERROR &&
+				<Alert variant="error" size="small" className={styles.spaceTop}>Noe gikk galt</Alert>}
 		</Panel>
 	)
 }

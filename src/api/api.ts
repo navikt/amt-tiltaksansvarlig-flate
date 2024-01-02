@@ -113,10 +113,25 @@ export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<Meld
 		.then(json => MeldingerFraArrangorSchema.parse(json))
 }
 
-export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): AxiosPromise => {
+export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<Response> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+
+	return fetch(endepunkt, {
+		method: 'PATCH',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig. Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
+
 }
 
 export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): AxiosPromise => {
