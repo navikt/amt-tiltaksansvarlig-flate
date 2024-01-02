@@ -134,10 +134,24 @@ export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promi
 
 }
 
-export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): AxiosPromise => {
+export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<Response> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.post(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+
+	return fetch(endepunkt, {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke gi tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
 }
 
 export const fjernGjennomforingFraOversikten = (gjennomforingId: string): AxiosPromise => {

@@ -1,12 +1,11 @@
 import { PlusIcon } from '@navikt/aksel-icons'
 import { Alert, BodyShort, Button, Heading, Panel, Tag } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
 import React from 'react'
 
 import { HentGjennomforingMedLopenr, leggTilTilgangTilGjennomforing } from '../../../api/api'
 import { GjennomforingStatus } from '../../../api/schema/schema'
+import { DeferredFetchState, useDeferredFetch } from '../../../hooks/useDeferredFetch'
 import { formatDate } from '../../../utils/date-utils'
-import { isNotStarted, isPending, isRejected, usePromise } from '../../../utils/use-promise'
 import styles from './GjennomforingPanel.module.scss'
 
 interface GjennomforingPanelProps {
@@ -16,13 +15,10 @@ interface GjennomforingPanelProps {
 
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
 	const { id, navn, opprettetAr, lopenr, status, startDato, sluttDato, arrangorNavn, tiltak } = props.gjennomforing
-	const leggTilGjennomforingPromise = usePromise<AxiosResponse>()
 
-	const handleOnLeggTilClicked = () => {
-		leggTilGjennomforingPromise.setPromise(() => leggTilTilgangTilGjennomforing(id))
-	}
+	const { state, doFetch } = useDeferredFetch(leggTilTilgangTilGjennomforing, id)
 
-	const disableLeggTil = !isNotStarted(leggTilGjennomforingPromise)
+	const handleOnLeggTilClicked = () => { doFetch() }
 
 	const LeggTil = () => {
 		if (props.alleredeIMineGjennomforinger) {
@@ -31,7 +27,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 			</Alert>
 		}
 
-		if (disableLeggTil) {
+		if(state === DeferredFetchState.RESOLVED) {
 			return <Alert variant="success" size="small">Lagt til i min oversikt</Alert>
 		}
 
@@ -39,8 +35,8 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 			<Button
 				variant="secondary"
 				onClick={handleOnLeggTilClicked}
-				loading={isPending(leggTilGjennomforingPromise)}
-				disabled={disableLeggTil}
+				loading={state === DeferredFetchState.LOADING}
+				disabled={state !== DeferredFetchState.NOT_STARTED}
 				size="small"
 				className={styles.leggTilKnapp}
 			>
@@ -68,7 +64,7 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 				<LeggTil />
 			</div>
 			{
-				isRejected(leggTilGjennomforingPromise)
+				state === DeferredFetchState.ERROR
 				&& (<Alert variant="error" size="small" className={styles.alert}>Noe gikk galt</Alert>)
 			}
 		</Panel>
