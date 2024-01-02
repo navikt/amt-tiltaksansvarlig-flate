@@ -35,13 +35,24 @@ const exposeError = (error: Error, endepunkt: string) => {
 	throw error
 }
 
-export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsatt> => {
+export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
 	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, InnloggetNavAnsattSchema))
-		.catch((error) => exposeError(error, endepunkt))
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente login. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => InnloggetNavAnsattSchema.parse(json))
 }
-
 export const fetchGjennomforinger = (): AxiosPromise<Gjennomforing[]> => {
 	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
 	return axiosInstance.get(endepunkt)
