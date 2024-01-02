@@ -8,8 +8,6 @@ import { MeldingerFraArrangor as Meldinger } from '../../api/schema/meldinger'
 import { Tiltakskode } from '../../api/schema/schema'
 import { Spinner } from '../../component/spinner/Spinner'
 import globalStyles from '../../globals.module.scss'
-import { useDataStore } from '../../store/data-store'
-import { harTilgangTilEndringsmelding } from '../../utils/tilgang-utils'
 import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
 import styles from './GjennomforingDetaljerPage.module.scss'
@@ -21,10 +19,8 @@ interface MeldingerFraArrangorProps {
 }
 
 export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: MeldingerFraArrangorProps): React.ReactElement => {
-	const { innloggetAnsatt } = useDataStore()
 	const [ meldinger, setMeldinger ] = useState<Meldinger>({ endringsmeldinger: [], vurderinger: [] })
 	const meldingerFraArrangorPromise = usePromise<AxiosResponse<Meldinger>>()
-	const harTilgang = harTilgangTilEndringsmelding(innloggetAnsatt.tilganger)
 	const antallVurderinger = meldinger?.vurderinger ? meldinger?.vurderinger.length : 0
 
 	useEffect(() => {
@@ -34,25 +30,15 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 	}, [ meldingerFraArrangorPromise ])
 
 	useEffect(() => {
-		if (harTilgang) {
-			meldingerFraArrangorPromise.setPromise(fetchMmeldingerFraArrangor(gjennomforingId))
-		}
+		meldingerFraArrangorPromise.setPromise(fetchMmeldingerFraArrangor(gjennomforingId))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [ harTilgang ])
+	}, [])
 
 	const refresh = () => {
 		meldingerFraArrangorPromise.setPromise(fetchMmeldingerFraArrangor(gjennomforingId))
 	}
 
 	const isLoading = isNotStartedOrPending(meldingerFraArrangorPromise)
-
-	if (!harTilgang) {
-		return (
-			<Alert className={styles.errorAlert} variant="info" size="small">
-				Du har ikke tilgang til å se endringsmeldinger.
-			</Alert>
-		)
-	}
 
 	if (isRejected(meldingerFraArrangorPromise)) {
 		return (
@@ -62,27 +48,29 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 		)
 	}
 
-	if(isLoading){
-		return <Spinner />
+	if (isLoading) {
+		return <Spinner/>
 	}
 
 	return tiltaksKode === Tiltakskode.GRUPPEAMO ? (
 		<Tabs defaultValue="endringsmeldinger" className={styles.tab}>
 			<Tabs.List>
-				<Tabs.Tab value="endringsmeldinger" label="Endringsmeldinger" />
-				<Tabs.Tab value="vurderinger" label={`Vurdering fra tiltaksarrangør (${antallVurderinger})`} />
+				<Tabs.Tab value="endringsmeldinger" label="Endringsmeldinger"/>
+				<Tabs.Tab value="vurderinger" label={`Vurdering fra tiltaksarrangør (${antallVurderinger})`}/>
 			</Tabs.List>
 			<Tabs.Panel value="endringsmeldinger" className={styles.tabPanel}>
-				<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger} refresh={refresh} />
+				<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
+								   refresh={refresh}/>
 			</Tabs.Panel>
 			<Tabs.Panel value="vurderinger" className={styles.tabPanel}>
-				<Vurderinger vurderinger={meldinger?.vurderinger} />
+				<Vurderinger vurderinger={meldinger?.vurderinger}/>
 			</Tabs.Panel>
 		</Tabs>
 	) : (
 		<>
-			<div className={cls(styles.seperator, globalStyles.blokkL)} />
-			<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger} refresh={refresh} />
+			<div className={cls(styles.seperator, globalStyles.blokkL)}/>
+			<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
+							   refresh={refresh}/>
 		</>
 	)
 }

@@ -6,6 +6,7 @@ import { fetchGjennomforing } from '../../api/api'
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import globalStyles from '../../globals.module.scss'
+import { HasTilgangGuard } from '../../guards/hasTilgangGuard'
 import useFetch from '../../hooks/useFetch'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import styles from './GjennomforingDetaljerPage.module.scss'
@@ -35,7 +36,9 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 
 			<GjennomforingGenerellInfo gjennomforing={gjennomforing} className={globalStyles.blokkL}/>
 
-			<MeldingerFraArrangor gjennomforingId={gjennomforingId} tiltaksKode={gjennomforing.tiltak.kode}/>
+			<HasTilgangGuard>
+				<MeldingerFraArrangor gjennomforingId={gjennomforingId} tiltaksKode={gjennomforing.tiltak.kode}/>
+			</HasTilgangGuard>
 		</main>
 	)
 }
