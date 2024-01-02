@@ -1,14 +1,12 @@
 import { Alert, Tabs } from '@navikt/ds-react'
-import { AxiosResponse } from 'axios'
 import cls from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-import { fetchMmeldingerFraArrangor } from '../../api/api'
-import { MeldingerFraArrangor as Meldinger } from '../../api/schema/meldinger'
+import { fetchMeldingerFraArrangor } from '../../api/api'
 import { Tiltakskode } from '../../api/schema/schema'
 import { Spinner } from '../../component/spinner/Spinner'
 import globalStyles from '../../globals.module.scss'
-import { isNotStartedOrPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
+import useFetch from '../../hooks/useFetch'
 import { Endringsmeldinger } from './endringsmeldinger/Endringsmeldinger'
 import styles from './GjennomforingDetaljerPage.module.scss'
 import { Vurderinger } from './vurderinger/Vurderinger'
@@ -19,28 +17,19 @@ interface MeldingerFraArrangorProps {
 }
 
 export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: MeldingerFraArrangorProps): React.ReactElement => {
-	const [ meldinger, setMeldinger ] = useState<Meldinger>({ endringsmeldinger: [], vurderinger: [] })
-	const meldingerFraArrangorPromise = usePromise<AxiosResponse<Meldinger>>()
-	const antallVurderinger = meldinger?.vurderinger ? meldinger?.vurderinger.length : 0
 
-	useEffect(() => {
-		if (isResolved(meldingerFraArrangorPromise)) {
-			setMeldinger(meldingerFraArrangorPromise.result.data)
-		}
-	}, [ meldingerFraArrangorPromise ])
+	const {
+		data: meldinger,
+		loading,
+		error,
+		reload
+	} = useFetch(fetchMeldingerFraArrangor, gjennomforingId)
 
-	useEffect(() => {
-		meldingerFraArrangorPromise.setPromise(fetchMmeldingerFraArrangor(gjennomforingId))
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	const refresh = () => {
-		meldingerFraArrangorPromise.setPromise(fetchMmeldingerFraArrangor(gjennomforingId))
+	if (loading) {
+		return <Spinner/>
 	}
 
-	const isLoading = isNotStartedOrPending(meldingerFraArrangorPromise)
-
-	if (isRejected(meldingerFraArrangorPromise)) {
+	if (error || !meldinger) {
 		return (
 			<Alert className={styles.errorAlert} variant="error" size="small">
 				Klarte ikke å laste endringsmeldinger.
@@ -48,9 +37,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 		)
 	}
 
-	if (isLoading) {
-		return <Spinner/>
-	}
+	const antallVurderinger = meldinger?.vurderinger ? meldinger?.vurderinger.length : 0
 
 	return tiltaksKode === Tiltakskode.GRUPPEAMO ? (
 		<Tabs defaultValue="endringsmeldinger" className={styles.tab}>
@@ -60,7 +47,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 			</Tabs.List>
 			<Tabs.Panel value="endringsmeldinger" className={styles.tabPanel}>
 				<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
-								   refresh={refresh}/>
+								   refresh={reload}/>
 			</Tabs.Panel>
 			<Tabs.Panel value="vurderinger" className={styles.tabPanel}>
 				<Vurderinger vurderinger={meldinger?.vurderinger}/>
@@ -70,7 +57,7 @@ export const MeldingerFraArrangor = ({ gjennomforingId, tiltaksKode }: Meldinger
 		<>
 			<div className={cls(styles.seperator, globalStyles.blokkL)}/>
 			<Endringsmeldinger gjennomforingId={gjennomforingId} endringsmeldinger={meldinger?.endringsmeldinger}
-							   refresh={refresh}/>
+							   refresh={reload}/>
 		</>
 	)
 }
