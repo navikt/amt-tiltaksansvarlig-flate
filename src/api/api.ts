@@ -53,11 +53,24 @@ export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
 		})
 		.then(json => InnloggetNavAnsattSchema.parse(json))
 }
-export const fetchGjennomforinger = (): AxiosPromise<Gjennomforing[]> => {
+export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
 	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, GjennomforingerSchema))
-		.catch((error) => exposeError(error, endepunkt))
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+		}
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente gjennomføringer. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => GjennomforingerSchema.parse(json))
 }
 
 export const fetchGjennomforing = (id: string): AxiosPromise<GjennomforingDetaljer> => {

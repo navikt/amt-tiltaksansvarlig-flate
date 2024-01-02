@@ -1,16 +1,12 @@
-import { Alert, Button, Heading, TextField } from '@navikt/ds-react'
+import { Alert, Button, Heading, Loader, TextField } from '@navikt/ds-react'
 import { AxiosResponse } from 'axios'
 import React, { useState } from 'react'
 
-import {
-	fetchGjennomforinger,
-	Gjennomforing,
-	HentGjennomforingMedLopenr,
-	hentGjennomforingMedLopenr
-} from '../../api/api'
+import { fetchGjennomforinger, HentGjennomforingMedLopenr, hentGjennomforingMedLopenr } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
 import { Tilbakelenke } from '../../component/tilbakelenke/Tilbakelenke'
 import globalStyles from '../../globals.module.scss'
+import useFetch from '../../hooks/useFetch'
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { isPending, isRejected, isResolved, usePromise } from '../../utils/use-promise'
 import { GjennomforingPanelListe } from './GjennomforingPanelListe'
@@ -20,9 +16,18 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 	const hentGjennomforingMedLopenrPromise = usePromise<AxiosResponse<HentGjennomforingMedLopenr[]>>()
 
-	const getMineGjennomforinger = usePromise<AxiosResponse<Gjennomforing[]>>(fetchGjennomforinger)
+	const {
+		data: mineGjennomforinger,
+		loading: mineGjennomforingerLoading,
+		error: mineGjennomforingerError
+	} = useFetch(fetchGjennomforinger)
 
-	const mineGjennomforinger = getMineGjennomforinger.result?.data
+
+	if (mineGjennomforingerLoading) return <Loader/>
+
+	if (mineGjennomforingerError || !mineGjennomforinger) return <Alert variant="error">Noe gikk galt</Alert>
+
+	const mineGjennomforingIds = mineGjennomforinger
 		.map(i => i.id)
 		?? []
 
@@ -43,7 +48,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	return (
 		<main className={styles.mainPage} data-testid="legg-til-gjennomforing-page">
-			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM} />
+			<Tilbakelenke to={FORSIDE_PAGE_ROUTE} className={globalStyles.blokkM}/>
 
 			<Heading size="medium" level="1" className={globalStyles.blokkM}>
 				Legg til et tiltak du jobber med
@@ -75,7 +80,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isPending(hentGjennomforingMedLopenrPromise)
-				&& (<Spinner />)
+				&& (<Spinner/>)
 			}
 
 			{
@@ -85,7 +90,8 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 			{
 				isResolved(hentGjennomforingMedLopenrPromise)
-				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger} mineGjennomforingerIds={mineGjennomforinger} />)
+				&& (<GjennomforingPanelListe gjennomforinger={sokteGjennomforinger}
+											 mineGjennomforingerIds={mineGjennomforingIds}/>)
 			}
 		</main>
 	)
