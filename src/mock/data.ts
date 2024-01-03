@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 import { InnloggetNavAnsatt } from '../api/api'
 import { GjennomforingStatus } from '../api/schema/schema'

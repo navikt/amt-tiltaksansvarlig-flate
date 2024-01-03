@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 faker.locale = 'nb_NO'
 faker.seed(22967183)

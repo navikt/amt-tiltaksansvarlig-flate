@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { delay, http, HttpResponse } from 'msw'
 import { setupWorker } from 'msw/browser'
 

@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 
 import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, EndringsmeldingType, MeldingerFraArrangor, Vurdering, Vurderingstype } from '../api/schema/meldinger'
 
