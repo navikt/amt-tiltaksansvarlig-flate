@@ -18,7 +18,7 @@ export enum Tiltakskode {
 	GRUFAGYRKE = 'GRUFAGYRKE',
 	GRUPPEAMO = 'GRUPPEAMO',
 	JOBBK = 'JOBBK',
-	VASV = 'VASV'
+	VASV = 'VASV',
 }
 
 const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)

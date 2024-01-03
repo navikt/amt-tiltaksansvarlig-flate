@@ -6,23 +6,22 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { App } from './App'
-import env from './utils/environment'
+import { enableMocking } from './mock/setupMocks'
 
 
 (async() => {
 	dayjs.locale('nb')
-
-	if (env.isMockEnabled) {
-		await import('./mock')
-	}
-	const container = document.getElementById('root')
+	
 
 	// eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-	const root = createRoot(container!)
+	enableMocking().then(() => {
+		const container = document.getElementById('root')
+		const root = createRoot(container!)
 
-	root.render(
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>,
-	)
+		root.render(
+			<React.StrictMode>
+				<App />
+			</React.StrictMode>,
+		)
+	})
 })()

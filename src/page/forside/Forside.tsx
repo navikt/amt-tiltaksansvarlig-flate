@@ -20,7 +20,7 @@ export const Forside = (): React.ReactElement => {
 
 	if (loading) return <Loader/>
 
-	if (error || !gjennomforinger) return <Alert variant="error">Noe gikk galt</Alert>
+	if (error || !gjennomforinger) return <Alert variant="error">Noe gikk galt, Feil: {error}</Alert>
 
 	return (
 		<main className={styles.mainPage} data-testid="forside-page">

@@ -22,6 +22,7 @@ const useFetch = <T>(apiFunction: ApiFunction<T>, ...args: any[]): UseFetchResul
 			setData(result)
 		} catch (error) {
 			setError('An error occurred while fetching the data.')
+			throw error
 		} finally {
 			setLoading(false)
 		}
