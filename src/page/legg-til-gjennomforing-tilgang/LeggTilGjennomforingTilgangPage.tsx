@@ -1,5 +1,5 @@
 import { Alert, Heading, Loader } from '@navikt/ds-react'
-import React, { useState } from 'react'
+import React from 'react'
 
 import { fetchGjennomforinger, hentGjennomforingMedLopenr } from '../../api/api'
 import { Spinner } from '../../component/spinner/Spinner'
@@ -13,13 +13,12 @@ import styles from './LeggTilGjennomforingTilgangPage.module.scss'
 import { LopenummerPicker } from './LopenummerPicker'
 
 export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
-	const [ lopenr, setLopenr ] = useState<number | null>(null)
 
 	const {
 		data: sokteGjennomforinger,
 		state: sokteGjennomforingerState,
 		doFetch: fetchSokteGjennomforinger
-	} = useDeferredFetch(hentGjennomforingMedLopenr, lopenr)
+	} = useDeferredFetch(hentGjennomforingMedLopenr)
 
 	const {
 		data: mineGjennomforinger,
@@ -35,8 +34,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 	const mineGjennomforingIds = mineGjennomforinger.map(i => i.id) ?? []
 
 	const setTiltaksnummer = (tiltaksnummer: number) => {
-		setLopenr(tiltaksnummer)
-		fetchSokteGjennomforinger()
+		fetchSokteGjennomforinger(tiltaksnummer)
 	}
 
 	return (

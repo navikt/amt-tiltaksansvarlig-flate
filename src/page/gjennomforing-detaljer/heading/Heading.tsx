@@ -14,9 +14,9 @@ interface HeadingProps {
 
 export const Heading = (props: HeadingProps) => {
 
-	const { state, doFetch } = useDeferredFetch(fjernGjennomforingFraOversikten, props.gjennomforingId)
+	const { state, doFetch } = useDeferredFetch(fjernGjennomforingFraOversikten)
 
-	const handleFjernFraMinOversikt = () => { doFetch() }
+	const handleFjernFraMinOversikt = () => { doFetch(props.gjennomforingId) }
 
 	return (
 		<div className={styles.heading}>

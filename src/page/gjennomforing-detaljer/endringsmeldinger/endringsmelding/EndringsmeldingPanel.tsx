@@ -21,7 +21,7 @@ interface EndringsmeldingProps {
 }
 
 export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }: EndringsmeldingProps): React.ReactElement => {
-	const { state, doFetch } = useDeferredFetch(markerEndringsmeldingSomFerdig, endringsmelding.id)
+	const { state, doFetch } = useDeferredFetch(markerEndringsmeldingSomFerdig)
 
 	const deltaker = endringsmelding.deltaker
 	const erSkjermet = deltaker.erSkjermet
@@ -29,7 +29,7 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 	const navn = deltaker.fornavn && deltaker.etternavn ? lagKommaSeparertBrukerNavn(deltaker.fornavn, deltaker.mellomnavn, deltaker.etternavn) : ''
 
 	const onFerdigKlikk = () => {
-		doFetch().then(() => onFerdig())
+		doFetch(endringsmelding.id).then(() => onFerdig())
 	}
 
 	return (

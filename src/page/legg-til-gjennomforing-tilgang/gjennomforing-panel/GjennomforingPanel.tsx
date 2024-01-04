@@ -16,9 +16,9 @@ interface GjennomforingPanelProps {
 export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactElement => {
 	const { id, navn, opprettetAr, lopenr, status, startDato, sluttDato, arrangorNavn, tiltak } = props.gjennomforing
 
-	const { state, doFetch } = useDeferredFetch(leggTilTilgangTilGjennomforing, id)
+	const { state, doFetch } = useDeferredFetch(leggTilTilgangTilGjennomforing)
 
-	const handleOnLeggTilClicked = () => { doFetch() }
+	const handleOnLeggTilClicked = () => { doFetch(id) }
 
 	const LeggTil = () => {
 		if (props.alleredeIMineGjennomforinger) {

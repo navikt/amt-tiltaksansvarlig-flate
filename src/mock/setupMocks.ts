@@ -42,8 +42,8 @@ export const worker = setupWorker(
 						navn: 'TEST',
 						lopenr: 123,
 						status: GjennomforingStatus.AVSLUTTET,
-						startDato: faker.date.past(10),
-						sluttDato: faker.date.past(2),
+						startDato: faker.date.past({ years: 10 }),
+						sluttDato: faker.date.past({ years: 2 }),
 						opprettetAr: 2020,
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
@@ -56,8 +56,8 @@ export const worker = setupWorker(
 						navn: 'Oppfølging Tjenesteområde 1',
 						lopenr: 123,
 						status: GjennomforingStatus.GJENNOMFORES,
-						startDato: faker.date.past(2),
-						sluttDato: faker.date.future(3),
+						startDato: faker.date.past({ years: 2 }),
+						sluttDato: faker.date.future({ years: 3 }),
 						opprettetAr: 2020,
 						arrangorNavn: 'Muligheter As',
 						tiltak: {
