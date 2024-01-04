@@ -18,9 +18,10 @@
     "zod": "^3.22.4"
   },
   "scripts": {
-    "start": "VITE_MOCK=true vite",
+    "start": "NODE_ENV=local vite --mode local-dev",
     "build": "vite build",
-    "build:gh-pages": "VITE_MOCK=true vite build --base=/amt-tiltaksansvarlig-flate/ && cpy --cwd=build --rename=404.html index.html .",
+    "build:gh-pages": "NODE_ENV=development vite build --mode gh-pages --base=/amt-tiltaksansvarlig-flate/ && cpy --cwd=build --rename=404.html index.html .",
+    "build:pull-request": "NODE_ENV=development vite build --mode pull-request",
     "test": "vitest",
     "lint": "eslint --max-warnings=0 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",

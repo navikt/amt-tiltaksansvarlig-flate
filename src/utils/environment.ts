@@ -1,8 +1,15 @@
-class Environment {
+export enum EndpointHandler {
+	MOCK = 'MOCK',
+	PROXY = 'PROXY',
+	DEV = 'DEV',
+	PROD = 'PROD'
+}
 
-	get isMockEnabled(): boolean {
-		return import.meta.env.VITE_MOCK === 'true'
-	}
+export const getEndpointHandlerType = (): EndpointHandler => {
+	return import.meta.env.VITE_ENDPOINT_HANDLER || EndpointHandler.PROD
+}
+
+class Environment {
 
 	get baseUrl(): string {
 		return import.meta.env.BASE_URL

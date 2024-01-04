@@ -5,12 +5,12 @@ import { setupWorker } from 'msw/browser'
 import { GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../api/api'
 import { EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/meldinger'
 import { GjennomforingStatus } from '../api/schema/schema'
-import env from '../utils/environment'
+import { EndpointHandler, getEndpointHandlerType } from '../utils/environment'
 import { gjennomforinger, innloggetAnsatt } from './data'
 import { meldingeData } from './meldinger-data'
 
 export async function enableMocking() {
-	if (env.isMockEnabled) {
+	if (getEndpointHandlerType() === EndpointHandler.MOCK) {
 		return worker.start({
 			serviceWorker: {
 				url: '/mockServiceWorker.js'
