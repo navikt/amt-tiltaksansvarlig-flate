@@ -27,7 +27,7 @@ interface Gjennomforing {
 
 export const innloggetAnsatt: InnloggetNavAnsatt = {
 	navIdent: 'Z1234',
-	navn: faker.name.firstName() + ' ' + faker.name.lastName(),
+	navn: faker.person.firstName() + ' ' + faker.person.lastName(),
 	tilganger: [ 'FLATE', 'ENDRINGSMELDING' ]
 }
 

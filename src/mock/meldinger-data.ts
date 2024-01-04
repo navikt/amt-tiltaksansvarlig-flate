@@ -4,7 +4,7 @@ import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, Endrin
 
 const vurderingerData: Vurdering[] = [
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Harry',
 			mellomnavn: null,
@@ -17,7 +17,7 @@ const vurderingerData: Vurdering[] = [
 		begrunnelse: null
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Kråkvar',
 			mellomnavn: null,
@@ -30,7 +30,7 @@ const vurderingerData: Vurdering[] = [
 		begrunnelse: 'Personen oppfyller ikke kravene'
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Tor',
 			mellomnavn: 'Peder',
@@ -43,7 +43,7 @@ const vurderingerData: Vurdering[] = [
 		begrunnelse: null
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'William',
 			mellomnavn: 'Spare',
@@ -56,7 +56,7 @@ const vurderingerData: Vurdering[] = [
 		begrunnelse: null
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: null,
 			mellomnavn: null,
@@ -72,7 +72,7 @@ const vurderingerData: Vurdering[] = [
 
 const endringsmeldingData: Endringsmelding[] = [
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
@@ -87,7 +87,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: null,
 			mellomnavn: null,
@@ -102,7 +102,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
@@ -117,7 +117,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Nataniel',
 			mellomnavn: null,
@@ -132,7 +132,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Mira',
 			mellomnavn: null,
@@ -153,7 +153,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Amelia',
 			mellomnavn: null,
@@ -168,7 +168,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
@@ -183,7 +183,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.past()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
@@ -198,7 +198,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
@@ -213,7 +213,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei2',
@@ -228,7 +228,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei2',
@@ -243,7 +243,7 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
 			fornavn: 'Nataniel',
 			mellomnavn: null,
@@ -258,11 +258,11 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
-			fornavn: faker.name.firstName(),
+			fornavn: faker.person.firstName(),
 			mellomnavn: null,
-			etternavn: faker.name.lastName(),
+			etternavn: faker.person.lastName(),
 			fodselsnummer: '22010112345',
 			erSkjermet: false
 		},
@@ -273,11 +273,11 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.recent()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
-			fornavn: faker.name.firstName(),
+			fornavn: faker.person.firstName(),
 			mellomnavn: null,
-			etternavn: faker.name.lastName(),
+			etternavn: faker.person.lastName(),
 			fodselsnummer: '01016912342',
 			erSkjermet: false
 		},
@@ -288,11 +288,11 @@ const endringsmeldingData: Endringsmelding[] = [
 		opprettetDato: faker.date.past()
 	},
 	{
-		id: faker.datatype.uuid(),
+		id: faker.string.uuid(),
 		deltaker: {
-			fornavn: faker.name.firstName(),
+			fornavn: faker.person.firstName(),
 			mellomnavn: null,
-			etternavn: faker.name.lastName(),
+			etternavn: faker.person.lastName(),
 			fodselsnummer: '02045544447',
 			erSkjermet: false
 		},
