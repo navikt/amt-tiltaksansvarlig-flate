@@ -12,7 +12,7 @@ export const LopenummerPicker = ({ isLoading, onSokClicked }: Props) => {
 	const [ lopenrSokefelt, setLopenrSokefelt ] = useState<string>('')
 
 	const kunSiffer = (value: string): boolean => {
-		return !!value.match('^[0-9]+$')
+		return !!value.match(/^\d+$/)
 	}
 
 	const isValidLopenr = (value: string): boolean => {
