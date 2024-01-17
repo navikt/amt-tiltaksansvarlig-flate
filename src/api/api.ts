@@ -103,7 +103,6 @@ export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<Meld
 
 export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<Response> => {
 	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
-
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',

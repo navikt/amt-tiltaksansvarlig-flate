@@ -29,7 +29,7 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 
 	if (mineGjennomforingerLoading) return <Loader/>
 
-	if (mineGjennomforingerError || !mineGjennomforinger) return <Alert variant="error">Noe gikk galt 1</Alert>
+	if (mineGjennomforingerError || !mineGjennomforinger) return <Alert variant="error">Noe gikk galt</Alert>
 
 	const mineGjennomforingIds = mineGjennomforinger.map(i => i.id) ?? []
 

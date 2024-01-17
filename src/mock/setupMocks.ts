@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker'
 import { delay, http, HttpResponse } from 'msw'
 import { setupWorker } from 'msw/browser'
 
@@ -7,7 +6,8 @@ import { EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/meldin
 import { GjennomforingStatus } from '../api/schema/schema'
 import { EndpointHandler, getEndpointHandlerType } from '../utils/environment'
 import { gjennomforinger, innloggetAnsatt } from './data'
-import { meldingeData } from './meldinger-data'
+import { meldingData } from './meldinger-data'
+import { fakerNo as faker } from './utils/faker'
 
 export async function enableMocking() {
 	if (getEndpointHandlerType() === EndpointHandler.MOCK) {
@@ -107,19 +107,18 @@ export const worker = setupWorker(
 
 		if (gjennomforing?.tiltak.kode === 'GRUPPEAMO') {
 			return HttpResponse.json({
-				vurderinger: meldingeData.vurderinger,
-				endringsmeldinger: meldingeData.endringsmeldinger.filter(e => e.type !== EndringsmeldingType.ENDRE_SLUTTAARSAK)
+				vurderinger: meldingData.vurderinger,
+				endringsmeldinger: meldingData.endringsmeldinger.filter(e => e.type !== EndringsmeldingType.ENDRE_SLUTTAARSAK)
 			})
 		}
 
-		return HttpResponse.json(meldingeData)
+		return HttpResponse.json(meldingData)
 	}),
 
-	http.patch('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({ request }) => {
+	http.patch('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({  params }) => {
 		await delay(200)
-		const url = new URL(request.url)
-		const endringsmeldingId = url.searchParams.get('endringsmeldingId')
-		const melding = meldingeData.endringsmeldinger.find((e) => e.id === endringsmeldingId)
+		const { endringsmeldingId } = params
+		const melding = meldingData.endringsmeldinger.find((e) => e.id === endringsmeldingId)
 		if (melding) {
 			melding.status = EndringsmeldingStatus.UTFORT
 		}

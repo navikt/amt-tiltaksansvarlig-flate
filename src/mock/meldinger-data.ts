@@ -1,6 +1,13 @@
-import { faker } from '@faker-js/faker'
-
-import { DeltakerStatusAarsakType,Endringsmelding, EndringsmeldingStatus, EndringsmeldingType, MeldingerFraArrangor, Vurdering, Vurderingstype } from '../api/schema/meldinger'
+import {
+	DeltakerStatusAarsakType,
+	Endringsmelding,
+	EndringsmeldingStatus,
+	EndringsmeldingType,
+	MeldingerFraArrangor,
+	Vurdering,
+	Vurderingstype
+} from '../api/schema/meldinger'
+import { fakerNo as faker } from './utils/faker'
 
 const vurderingerData: Vurdering[] = [
 	{
@@ -304,7 +311,7 @@ const endringsmeldingData: Endringsmelding[] = [
 	},
 ]
 
-export const meldingeData: MeldingerFraArrangor = {
+export const meldingData: MeldingerFraArrangor = {
 	endringsmeldinger: endringsmeldingData,
 	vurderinger: vurderingerData
 }

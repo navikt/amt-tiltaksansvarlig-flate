@@ -1,7 +1,6 @@
-import { faker } from '@faker-js/faker'
-
 import { InnloggetNavAnsatt } from '../api/api'
 import { GjennomforingStatus } from '../api/schema/schema'
+import { fakerNo as faker } from './utils/faker'
 
 interface Gjennomforing {
 	navn: string,
