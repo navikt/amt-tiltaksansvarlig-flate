@@ -1,10 +1,9 @@
-import { AxiosPromise, AxiosResponse } from 'axios'
 import { z } from 'zod'
 
-import { appUrl } from '../utils/url-utils'
+import { APP_NAME } from '../constants'
+import { apiUrl } from '../utils/url-utils'
 import { MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
-	ArrangorSchema,
 	GjennomforingDetaljerSchema,
 	GjennomforingerSchema,
 	GjennomforingSchema,
@@ -13,7 +12,6 @@ import {
 	InnloggetNavAnsattSchema,
 	TiltakSchema
 } from './schema/schema'
-import { axiosInstance } from './utils'
 
 export type InnloggetNavAnsatt = z.infer<typeof InnloggetNavAnsattSchema>
 
@@ -21,13 +19,9 @@ export type Gjennomforing = z.infer<typeof GjennomforingSchema>
 
 export type GjennomforingDetaljer = z.infer<typeof GjennomforingDetaljerSchema>
 
-export type Arrangor = z.infer<typeof ArrangorSchema>
-
 export type HentGjennomforingMedLopenr = z.infer<typeof HentGjennomforingMedLopenrSchema>
 
 export type Tiltak = z.infer<typeof TiltakSchema>
-
-const parseSchema = <T>(res: AxiosResponse, schema: z.ZodSchema<T>) => ({ ...res, data: schema.parse(res.data) })
 
 const exposeError = (error: Error, endepunkt: string) => {
 	// eslint-disable-next-line no-console
@@ -35,56 +29,142 @@ const exposeError = (error: Error, endepunkt: string) => {
 	throw error
 }
 
-export const fetchInnloggetAnsatt = (): AxiosPromise<InnloggetNavAnsatt> => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, InnloggetNavAnsattSchema))
-		.catch((error) => exposeError(error, endepunkt))
+const defaultHeaders = {
+	'Content-Type': 'application/json',
+	'Accept': 'application/json',
+	'Nav-Consumer-Id': APP_NAME
 }
 
-export const fetchGjennomforinger = (): AxiosPromise<Gjennomforing[]> => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, GjennomforingerSchema))
-		.catch((error) => exposeError(error, endepunkt))
+export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
+	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente login. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => InnloggetNavAnsattSchema.parse(json))
+}
+export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
+	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente gjennomføringer. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => GjennomforingerSchema.parse(json))
 }
 
-export const fetchGjennomforing = (id: string): AxiosPromise<GjennomforingDetaljer> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, GjennomforingDetaljerSchema))
-		.catch((error) => exposeError(error, endepunkt))
+export const fetchGjennomforing = (id: string): Promise<GjennomforingDetaljer> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente gjennomføring med id ${id}. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => GjennomforingDetaljerSchema.parse(json))
 }
 
-export const fetchMmeldingerFraArrangor = (gjennomforingId: string): AxiosPromise<MeldingerFraArrangor> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance
-		.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, MeldingerFraArrangorSchema))
-		.catch((error) => exposeError(error, endepunkt))
+export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<MeldingerFraArrangor> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente meldinger for gjennomføring med id ${gjennomforingId}. Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => MeldingerFraArrangorSchema.parse(json))
 }
 
-export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<Response> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
+	return fetch(endepunkt, {
+		method: 'PATCH',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig. Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
+
 }
 
-export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.post(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<Response> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
+
+	return fetch(endepunkt, {
+		method: 'POST',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke gi tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
 }
 
-export const fjernGjennomforingFraOversikten = (gjennomforingId: string): AxiosPromise => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
-	return axiosInstance.patch(endepunkt)
-		.catch((error) => exposeError(error, endepunkt))
+export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promise<Response> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+
+	return fetch(endepunkt, {
+		method: 'PATCH',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke fjerne tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
+			}
+
+			return response
+		})
 }
 
-export const hentGjennomforingMedLopenr = (lopenr: number): AxiosPromise<HentGjennomforingMedLopenr[]> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
-	return axiosInstance.get(endepunkt)
-		.then((res: AxiosResponse) => parseSchema(res, HentGjennomforingerMedLopenrSchema))
-		.catch((error) => exposeError(error, endepunkt))
+export const hentGjennomforingMedLopenr = (lopenr: number): Promise<HentGjennomforingMedLopenr[]> => {
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
+
+	return fetch(endepunkt, {
+		method: 'GET',
+		credentials: 'include',
+		headers: defaultHeaders
+	})
+		.then(response => {
+			if (response.status !== 200) {
+				exposeError(new Error(`Kunne ikke hente gjennomføring med løpenummer ${lopenr} . Status: ${response.status}`), endepunkt)
+			}
+			return response.json()
+		})
+		.then(json => HentGjennomforingerMedLopenrSchema.parse(json))
 }

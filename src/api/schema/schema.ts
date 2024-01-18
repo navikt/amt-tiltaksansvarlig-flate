@@ -18,7 +18,7 @@ export enum Tiltakskode {
 	GRUFAGYRKE = 'GRUFAGYRKE',
 	GRUPPEAMO = 'GRUPPEAMO',
 	JOBBK = 'JOBBK',
-	VASV = 'VASV'
+	VASV = 'VASV',
 }
 
 const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
@@ -33,12 +33,6 @@ export const InnloggetNavAnsattSchema = z.object({
 	navIdent: z.string(),
 	navn: z.string(),
 	tilganger: z.array(z.string())
-})
-
-export const ArrangorAnsattSchema = z.object({
-	fornavn: z.string(),
-	mellomnavn: z.string().nullable(),
-	etternavn: z.string(),
 })
 
 export const ArrangorSchema = z.object({

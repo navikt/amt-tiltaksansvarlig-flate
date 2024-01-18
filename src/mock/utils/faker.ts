@@ -1,10 +1,13 @@
-import faker from 'faker'
+import { Faker,faker, nb_NO } from '@faker-js/faker'
 
-faker.locale = 'nb_NO'
 faker.seed(22967183)
 
+export const fakerNo = new Faker({
+	locale: [ nb_NO ]
+})
+
 export const randomBetween = (min: number, max: number): number => {
-	return faker.datatype.number({ min, max })
+	return faker.number.int({ min, max })
 }
 
 export const randomDistribution = <T>(p1: () => T, p2: () => T, p1Percent: number) => {
