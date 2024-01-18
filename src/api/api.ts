@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { APP_NAME } from '../constants'
-import { appUrl } from '../utils/url-utils'
+import { apiUrl } from '../utils/url-utils'
 import { MeldingerFraArrangor, MeldingerFraArrangorSchema } from './schema/meldinger'
 import {
 	GjennomforingDetaljerSchema,
@@ -36,7 +36,7 @@ const defaultHeaders = {
 }
 
 export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
+	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
@@ -51,7 +51,7 @@ export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
 		.then(json => InnloggetNavAnsattSchema.parse(json))
 }
 export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
-	const endepunkt = appUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
+	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
 
 	return fetch(endepunkt, {
 		method: 'GET',
@@ -68,7 +68,7 @@ export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
 }
 
 export const fetchGjennomforing = (id: string): Promise<GjennomforingDetaljer> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
@@ -85,7 +85,7 @@ export const fetchGjennomforing = (id: string): Promise<GjennomforingDetaljer> =
 }
 
 export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<MeldingerFraArrangor> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
@@ -102,7 +102,7 @@ export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<Meld
 }
 
 export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<Response> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',
@@ -119,7 +119,7 @@ export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promi
 }
 
 export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<Response> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'POST',
@@ -136,7 +136,7 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise
 }
 
 export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promise<Response> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'PATCH',
@@ -153,7 +153,7 @@ export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promis
 }
 
 export const hentGjennomforingMedLopenr = (lopenr: number): Promise<HentGjennomforingMedLopenr[]> => {
-	const endepunkt = appUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
+	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
