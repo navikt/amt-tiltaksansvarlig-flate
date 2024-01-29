@@ -25,7 +25,7 @@ export const Header = (): React.ReactElement => {
 				NAV Tiltaksadministrasjon
 			</InternalHeader.Title>
 			<Spacer />
-			<Dropdown defaultOpen>
+			<Dropdown>
 				<InternalHeader.Button as={Dropdown.Toggle}>
 					<MenuGridIcon style={{ fontSize: '1.5rem' }} title="Systemer og oppslagsverk" />
 				</InternalHeader.Button>
