@@ -19,3 +19,5 @@ class Environment {
 const env = new Environment()
 
 export default env
+
+export const erProdMiljo = getEndpointHandlerType() === EndpointHandler.PROD
