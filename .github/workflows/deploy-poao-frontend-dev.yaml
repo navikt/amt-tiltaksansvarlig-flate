@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - ".nais/nais-dev.yaml"
+      - ".github/workflows/deploy-poao-frontend-dev.yaml"
 
 jobs:
   deploy-dev:
