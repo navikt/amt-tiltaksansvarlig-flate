@@ -20,4 +20,4 @@ const env = new Environment()
 
 export default env
 
-export const erProdMiljo = getEndpointHandlerType() === EndpointHandler.PROD
+export const erProdMiljo = window.location.href.includes('.intern.nav.no')
