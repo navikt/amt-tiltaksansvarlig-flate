@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { useDataStore } from '../../store/data-store'
-import { mulighetsrommetSanityUrl, navArbeidsmarkedstiltakUrl,tiltaksadministrasjonUrl } from '../../utils/url-utils'
+import { mulighetsrommetSanityUrl, navArbeidsmarkedstiltakUrl, tiltaksadministrasjonUrl } from '../../utils/url-utils'
 import styles from './Header.module.scss'
 
 export const Header = (): React.ReactElement => {
