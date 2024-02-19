@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 import { FORSIDE_PAGE_ROUTE } from '../../navigation'
 import { useDataStore } from '../../store/data-store'
-import { mulighetsrommetAdminUrl, mulighetsrommetSanityUrl, mulighetsrommetVeilederUrl } from '../../utils/url-utils'
+import { mulighetsrommetSanityUrl, navArbeidsmarkedstiltakUrl, tiltaksadministrasjonUrl } from '../../utils/url-utils'
 import styles from './Header.module.scss'
 
 export const Header = (): React.ReactElement => {
@@ -33,25 +33,25 @@ export const Header = (): React.ReactElement => {
 				<Dropdown.Menu>
 					<Dropdown.Menu.GroupedList>
 						<Dropdown.Menu.GroupedList.Item onClick={() => tiltakstyperLinkRef.current?.click()} as="span">
-							<Link ref={tiltakstyperLinkRef} to={`${mulighetsrommetAdminUrl}/tiltakstyper`} target="_blank">
+							<Link ref={tiltakstyperLinkRef} to={`${tiltaksadministrasjonUrl}/tiltakstyper`} target="_blank">
 								Tiltakstyper
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
 
 						<Dropdown.Menu.GroupedList.Item onClick={() => avtalerLinkRef.current?.click()} as="span">
-							<Link ref={avtalerLinkRef} to={`${mulighetsrommetAdminUrl}/avtaler`} target="_blank">
+							<Link ref={avtalerLinkRef} to={`${tiltaksadministrasjonUrl}/avtaler`} target="_blank">
 								Avtaler
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
 
 						<Dropdown.Menu.GroupedList.Item onClick={() => gjennomforingerLinkRef.current?.click()} as="span">
-							<Link ref={gjennomforingerLinkRef} to={`${mulighetsrommetAdminUrl}/tiltaksgjennomforinger`} target="_blank">
+							<Link ref={gjennomforingerLinkRef} to={`${tiltaksadministrasjonUrl}/tiltaksgjennomforinger`} target="_blank">
 								Tiltaksgjennomføringer
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
 
 						<Dropdown.Menu.GroupedList.Item onClick={() => notifikasjonerLinkRef.current?.click()} as="span">
-							<Link ref={notifikasjonerLinkRef} to={`${mulighetsrommetAdminUrl}/notifikasjoner`} target="_blank">
+							<Link ref={notifikasjonerLinkRef} to={`${tiltaksadministrasjonUrl}/notifikasjoner`} target="_blank">
 								Notifikasjoner
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
@@ -63,7 +63,7 @@ export const Header = (): React.ReactElement => {
 						</Dropdown.Menu.GroupedList.Item>
 
 						<Dropdown.Menu.GroupedList.Item onClick={() => veilederflateLinkRef.current?.click()} as="span">
-							<Link ref={veilederflateLinkRef} to={mulighetsrommetVeilederUrl} target="_blank">
+							<Link ref={veilederflateLinkRef} to={navArbeidsmarkedstiltakUrl} target="_blank">
 								Veilederflate forhåndsvisning <ExternalLinkIcon />
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
