@@ -5,7 +5,7 @@
   "dependencies": {
     "@navikt/aksel-icons": "^5.18.1",
     "@navikt/ds-css": "^5.18.1",
-    "@navikt/ds-react": "^5.18.1",
+    "@navikt/ds-react": "^6.0.0",
     "@types/react": "^18.2.57",
     "@types/react-dom": "^18.2.19",
     "@types/react-router-dom": "^5.3.3",
