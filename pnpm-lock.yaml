@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@navikt/aksel-icons':
-    specifier: ^5.18.1
-    version: 5.18.1
+    specifier: ^6.0.0
+    version: 6.0.0
   '@navikt/ds-css':
     specifier: ^5.18.1
     version: 5.18.1
@@ -796,6 +796,10 @@ packages:
 
   /@navikt/aksel-icons@5.18.1:
     resolution: {integrity: sha512-5gxw5FvdVY6CG5ObD8SRTeEFk6Uc8/FfsYNQue5a0Qes3yyzZsob56vL30pqKiEbIp+WXadXtmtdU5oI3JtK4Q==}
+    dev: false
+
+  /@navikt/aksel-icons@6.0.0:
+    resolution: {integrity: sha512-41U7tHtCfoBPoEO1FGYl2p8yDvtXOtR6CJ9d4qFbM2Wii7vt50D994W7u4Z11K3PbLKCGcHFlAPbkXU9LQvujA==}
     dev: false
 
   /@navikt/ds-css@5.18.1:
