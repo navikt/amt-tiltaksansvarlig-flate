@@ -6,7 +6,7 @@
     "@navikt/aksel-icons": "^6.1.0",
     "@navikt/ds-css": "^6.1.0",
     "@navikt/ds-react": "^6.1.0",
-    "@types/react": "^18.2.58",
+    "@types/react": "^18.2.60",
     "@types/react-dom": "^18.2.19",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
@@ -14,7 +14,7 @@
     "dayjs": "^1.11.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1",
+    "react-router-dom": "^6.22.2",
     "zod": "^3.22.4"
   },
   "scripts": {
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "axe-core": "^4.8.4",
     "cpy-cli": "^5.0.0",
@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
-    "msw": "2.2.1",
+    "msw": "2.2.2",
     "sass": "^1.71.1",
     "table": "^6.8.1",
     "typescript": "^5.3.3",
