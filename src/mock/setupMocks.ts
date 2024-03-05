@@ -13,7 +13,7 @@ export async function enableMocking() {
 	if (getEndpointHandlerType() === EndpointHandler.MOCK) {
 		return worker.start({
 			serviceWorker: {
-				url: 'amt-tiltaksansvarlig-flate/mockServiceWorker.js'
+				url: '/amt-tiltaksansvarlig-flate/mockServiceWorker.js'
 			}
 		})
 	}
