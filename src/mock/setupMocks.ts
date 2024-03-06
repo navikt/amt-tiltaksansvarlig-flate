@@ -4,7 +4,7 @@ import { setupWorker } from 'msw/browser'
 import { GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../api/api'
 import { EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/meldinger'
 import { GjennomforingStatus } from '../api/schema/schema'
-import { EndpointHandler, getEndpointHandlerType } from '../utils/environment'
+import Environment, { EndpointHandler, getEndpointHandlerType } from '../utils/environment'
 import { gjennomforinger, innloggetAnsatt } from './data'
 import { meldingData } from './meldinger-data'
 import { fakerNo as faker } from './utils/faker'
@@ -21,7 +21,7 @@ export async function enableMocking() {
 }
 
 export const worker = setupWorker(
-	http.get('/mock/amt-tiltak/api/nav-ansatt/autentisering/meg', async() => {
+	http.get(`${Environment.baseUrl}/amt-tiltak/api/nav-ansatt/autentisering/meg`, async() => {
 		await delay(200)
 		return HttpResponse.json(innloggetAnsatt)
 	}),
