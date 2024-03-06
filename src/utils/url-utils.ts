@@ -8,7 +8,7 @@ export const appUrl = (path: string): string => {
 export const apiUrl = (path: string): string => {
 	const strippedPath = path.startsWith('/') ? path.substring(1) : path
 
-	return `${environment.baseUrl}${strippedPath}`
+	return `${environment.apiBaseUrl}${strippedPath}`
 		.replace(/\/pr-\d+\//, '/')  // Fjerner "pr-DDD/" om det er en pr branch
 }
 

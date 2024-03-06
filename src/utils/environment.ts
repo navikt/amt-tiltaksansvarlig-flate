@@ -12,8 +12,11 @@ export const getEndpointHandlerType = (): EndpointHandler => {
 class Environment {
 
 	get baseUrl(): string {
+		return import.meta.env.BASE_URL
+	}
+
+	get apiBaseUrl(): string {
 		if (getEndpointHandlerType() === EndpointHandler.MOCK) {
-			console.log('BASE PATH: ', import.meta.env.BASE_URL)
 			return '/mock/'
 		}
 
