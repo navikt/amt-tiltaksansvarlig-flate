@@ -13,6 +13,7 @@ class Environment {
 
 	get baseUrl(): string {
 		if (getEndpointHandlerType() === EndpointHandler.MOCK) {
+			console.log('BASE PATH: ', import.meta.env.BASE_URL)
 			return '/mock/'
 		}
 
