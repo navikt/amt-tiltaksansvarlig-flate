@@ -11,21 +11,22 @@ import { fakerNo as faker } from './utils/faker'
 
 export async function enableMocking() {
 	if (getEndpointHandlerType() === EndpointHandler.MOCK) {
+		const url = import.meta.env.VITE_MOCK_SERVICE_RUNNER_PATH || '/mockServiceWorker.js'
 		return worker.start({
 			serviceWorker: {
-				url: '/amt-tiltaksansvarlig-flate/mockServiceWorker.js'
+				url: url
 			}
 		})
 	}
 }
 
 export const worker = setupWorker(
-	http.get('/amt-tiltak/api/nav-ansatt/autentisering/meg', async() => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/autentisering/meg', async() => {
 		await delay(200)
 		return HttpResponse.json(innloggetAnsatt)
 	}),
 
-	http.get('/amt-tiltak/api/nav-ansatt/gjennomforing', async({ request }) => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/gjennomforing', async({ request }) => {
 		await delay(200)
 		const url = new URL(request.url)
 		const lopenr = url.searchParams.get('lopenr')
@@ -87,7 +88,7 @@ export const worker = setupWorker(
 
 	}),
 
-	http.get('/amt-tiltak/api/nav-ansatt/gjennomforing/:id', async({  params }) => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/gjennomforing/:id', async({  params }) => {
 		await delay(200)
 		const { id } = params
 		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find((g) => g.id === id)
@@ -99,7 +100,7 @@ export const worker = setupWorker(
 		return HttpResponse.json(gjennomforing)
 	}),
 
-	http.get('/amt-tiltak/api/nav-ansatt/meldinger', async({ request }) => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/meldinger', async({ request }) => {
 		await delay(200)
 		const url = new URL(request.url)
 		const id = url.searchParams.get('gjennomforingId')
@@ -115,7 +116,7 @@ export const worker = setupWorker(
 		return HttpResponse.json(meldingData)
 	}),
 
-	http.patch('/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({  params }) => {
+	http.patch('/mock/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({  params }) => {
 		await delay(200)
 		const { endringsmeldingId } = params
 		const melding = meldingData.endringsmeldinger.find((e) => e.id === endringsmeldingId)
@@ -126,12 +127,12 @@ export const worker = setupWorker(
 		return new HttpResponse(null, { status: 200 })
 	}),
 
-	http.post('/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang', async() => {
+	http.post('/mock/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang', async() => {
 		await delay(200)
 		return new HttpResponse(null, { status: 200 })
 	}),
 
-	http.patch('/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop', async() => {
+	http.patch('/mock/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop', async() => {
 		await delay(200)
 		return new HttpResponse(null, { status: 200 })
 	})

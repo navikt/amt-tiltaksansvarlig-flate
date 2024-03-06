@@ -1,8 +1,8 @@
 export enum EndpointHandler {
-	MOCK = 'MOCK',
-	PROXY = 'PROXY',
-	DEV = 'DEV',
-	PROD = 'PROD'
+  MOCK = 'MOCK',
+  PROXY = 'PROXY',
+  DEV = 'DEV',
+  PROD = 'PROD'
 }
 
 export const getEndpointHandlerType = (): EndpointHandler => {
@@ -12,6 +12,10 @@ export const getEndpointHandlerType = (): EndpointHandler => {
 class Environment {
 
 	get baseUrl(): string {
+		if (getEndpointHandlerType() === EndpointHandler.MOCK) {
+			return '/mock/'
+		}
+
 		return import.meta.env.BASE_URL
 	}
 }
