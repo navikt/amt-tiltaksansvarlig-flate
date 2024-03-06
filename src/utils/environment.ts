@@ -13,7 +13,7 @@ class Environment {
 
 	get baseUrl(): string {
 		if (getEndpointHandlerType() === EndpointHandler.MOCK) {
-			return '/mock/'
+			return `${import.meta.env.BASE_URL}/mock/`
 		}
 
 		return import.meta.env.BASE_URL
