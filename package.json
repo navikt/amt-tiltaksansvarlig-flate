@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^6.3.6",
-    "@navikt/ds-css": "^6.3.6",
-    "@navikt/ds-react": "^6.3.6",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
+    "@navikt/aksel-icons": "^6.5.0",
+    "@navikt/ds-css": "^6.5.0",
+    "@navikt/ds-react": "^6.5.0",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
     "constate": "^3.3.2",
@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "@vitejs/plugin-react": "^4.2.1",
     "axe-core": "^4.9.0",
     "cpy-cli": "^5.0.0",
-    "cypress": "^13.7.2",
+    "cypress": "^13.7.3",
     "cypress-axe": "^1.5.0",
     "eslint": "^8.57.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
@@ -44,11 +44,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "msw": "2.2.13",
-    "sass": "^1.74.1",
+    "sass": "^1.75.0",
     "table": "^6.8.2",
-    "typescript": "^5.4.4",
+    "typescript": "^5.4.5",
     "vite": "^5.2.8",
-    "vitest": "^1.4.0"
+    "vitest": "^1.5.0"
   },
   "msw": {
     "workerDirectory": "./public"
