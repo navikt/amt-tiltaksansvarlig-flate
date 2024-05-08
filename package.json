@@ -15,7 +15,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.0",
-    "zod": "^3.23.6"
+    "zod": "^3.23.7"
   },
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
