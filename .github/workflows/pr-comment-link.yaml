@@ -17,4 +17,4 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            URL for testing: https://arbeidsmarkedstiltak.intern.dev.nav.no/pr-${{ github.event.number }}/index.html
+            URL for testing: https://arbeidsmarkedstiltak.intern.dev.nav.no/pr-${{ github.event.number }}/index.html og https://arbeidsmarkedstiltak.ansatt.dev.nav.no/pr-${{ github.event.number }}/index.html
