@@ -80,6 +80,7 @@ export const worker = setupWorker(
 			opprettetAar: g.opprettetAr,
 			antallAktiveEndringsmeldinger: g.antallAktiveEndringsmeldinger,
 			harSkjermedeDeltakere: g.harSkjermedeDeltakere,
+			adressebeskyttelser: g.adressebeskyttelser,
 			tiltak: g.tiltak,
 			startDato: g.startDato,
 			sluttDato: g.sluttDato,

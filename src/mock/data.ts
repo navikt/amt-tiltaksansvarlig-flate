@@ -1,4 +1,5 @@
 import { InnloggetNavAnsatt } from '../api/api'
+import { Adressebeskyttelse } from '../api/schema/meldinger'
 import { GjennomforingStatus } from '../api/schema/schema'
 import { fakerNo as faker } from './utils/faker'
 
@@ -16,7 +17,8 @@ interface Gjennomforing {
 	startDato: Date,
 	sluttDato: Date,
 	antallAktiveEndringsmeldinger: number,
-	harSkjermedeDeltakere: boolean
+	harSkjermedeDeltakere: boolean,
+	adressebeskyttelser: Adressebeskyttelse[],
 	tiltak: {
 		kode: string,
 		navn: string,
@@ -46,6 +48,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 2,
 		harSkjermedeDeltakere: true,
+		adressebeskyttelser: [ Adressebeskyttelse.STRENGT_FORTROLIG ],
 		tiltak: {
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
@@ -67,7 +70,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 0,
 		harSkjermedeDeltakere: false,
-
+		adressebeskyttelser: [ Adressebeskyttelse.STRENGT_FORTROLIG_UTLAND ],
 		tiltak: {
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
@@ -89,7 +92,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.recent(),
 		antallAktiveEndringsmeldinger: 1,
 		harSkjermedeDeltakere: false,
-
+		adressebeskyttelser: [],
 		tiltak: {
 			kode: 'ARBFORB',
 			navn: 'Arbeidsforberedende trening (AFT)',
@@ -111,6 +114,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 1,
 		harSkjermedeDeltakere: false,
+		adressebeskyttelser: [],
 		tiltak: {
 			kode: 'AVKLARAG',
 			navn: 'Avklaring',
@@ -132,6 +136,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 1,
 		harSkjermedeDeltakere: false,
+		adressebeskyttelser: [],
 		tiltak: {
 			kode: 'GRUPPEAMO',
 			navn: 'Gruppe AMO',

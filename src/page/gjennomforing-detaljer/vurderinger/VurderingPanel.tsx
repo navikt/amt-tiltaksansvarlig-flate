@@ -1,8 +1,9 @@
 import { BodyShort, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
-import React  from 'react'
+import React from 'react'
 
 import { Vurdering, Vurderingstype } from '../../../api/schema/meldinger'
 import { PanelLinje } from '../../../component/message-panel/PanelLinje'
+import { WarningGroup } from '../../../component/WarningGroup'
 import { lagKommaSeparertBrukerNavn } from '../../../utils/bruker-utils'
 import { formatDate } from '../../../utils/date-utils'
 import styles from './Vurdering.module.scss'
@@ -19,11 +20,7 @@ export const VurderingPanel = ({ vurdering }: VurderingPanelProps): React.ReactE
 	return (
 		<Panel border className={styles.panel}>
 			<div className={styles.meldingInnholdColumn}>
-				{erSkjermet && (
-					<Tag size="small" variant="warning" style={{ marginBottom: '0.5rem' }}>
-						Skjermet
-					</Tag>
-				)}
+				<WarningGroup erSkjermet={erSkjermet} adressebeskyttelser={[ deltaker.adressebeskyttelse ]} />
 				<PanelLinje className={styles.spaceBottom}>
 					<Heading size="xsmall" level="3">
 						{navn}

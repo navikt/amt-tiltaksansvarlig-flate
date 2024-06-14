@@ -45,13 +45,22 @@ const DeltakerStatusAarsakSchema = z.object({
 	beskrivelse: z.string().nullable()
 })
 
+export enum Adressebeskyttelse {
+	STRENGT_FORTROLIG,
+	FORTROLIG,
+	STRENGT_FORTROLIG_UTLAND
+}
+
+export const AdressebeskyttelseSchema = z.nativeEnum(Adressebeskyttelse)
+
 // For skjermede deltakere sendes ikke navn og fnr om ikke innlogget bruker har tilgang
 const DeltakerSchema = z.object({
 	fornavn: z.string().nullable(),
 	mellomnavn: z.string().nullable(),
 	etternavn: z.string().nullable(),
 	fodselsnummer: z.string().nullable(),
-	erSkjermet: z.boolean()
+	erSkjermet: z.boolean(),
+	adressebeskyttelse: AdressebeskyttelseSchema.nullable(),
 })
 
 export const EndringsmeldingBaseSchema = z.object({
