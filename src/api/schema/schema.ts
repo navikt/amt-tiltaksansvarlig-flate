@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { processStringToDate } from '../utils'
+import { AdressebeskyttelseSchema } from './meldinger'
 
 
 export enum GjennomforingStatus {
@@ -23,6 +24,7 @@ export enum Tiltakskode {
 
 const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
 const TiltakskodeSchema = z.nativeEnum(Tiltakskode)
+
 
 export const TiltakSchema = z.object({
 	kode: TiltakskodeSchema,
@@ -50,6 +52,7 @@ export const GjennomforingSchema = z.object({
 	arrangorNavn: z.string(),
 	antallAktiveEndringsmeldinger: z.number().int(),
 	harSkjermedeDeltakere: z.boolean(),
+	adressebeskyttelser: z.array(AdressebeskyttelseSchema),
 	tiltak: TiltakSchema,
 	startDato: processStringToDate.nullable(),
 	sluttDato: processStringToDate.nullable(),

@@ -1,4 +1,5 @@
 import {
+	Adressebeskyttelse,
 	DeltakerStatusAarsakType,
 	Endringsmelding,
 	EndringsmeldingStatus,
@@ -17,7 +18,8 @@ const vurderingerData: Vurdering[] = [
 			mellomnavn: null,
 			etternavn: 'Helved',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
 		opprettetDato: faker.date.recent(),
@@ -30,7 +32,8 @@ const vurderingerData: Vurdering[] = [
 			mellomnavn: null,
 			etternavn: 'Grytidlig',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		vurderingstype: Vurderingstype.OPPFYLLER_IKKE_KRAVENE,
 		opprettetDato: faker.date.recent(),
@@ -43,20 +46,8 @@ const vurderingerData: Vurdering[] = [
 			mellomnavn: 'Peder',
 			etternavn: 'Ring',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
-		},
-		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
-		opprettetDato: faker.date.recent(),
-		begrunnelse: null
-	},
-	{
-		id: faker.string.uuid(),
-		deltaker: {
-			fornavn: 'William',
-			mellomnavn: 'Spare',
-			etternavn: 'Bolt',
-			fodselsnummer: '03035512347',
-			erSkjermet: true
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
 		opprettetDato: faker.date.recent(),
@@ -69,7 +60,22 @@ const vurderingerData: Vurdering[] = [
 			mellomnavn: null,
 			etternavn: null,
 			fodselsnummer: null,
-			erSkjermet: true
+			erSkjermet: false,
+			adressebeskyttelse: Adressebeskyttelse.STRENGT_FORTROLIG_UTLAND,
+		},
+		vurderingstype: Vurderingstype.OPPFYLLER_KRAVENE,
+		opprettetDato: faker.date.recent(),
+		begrunnelse: null
+	},
+	{
+		id: faker.string.uuid(),
+		deltaker: {
+			fornavn: null,
+			mellomnavn: null,
+			etternavn: null,
+			fodselsnummer: null,
+			erSkjermet: true,
+			adressebeskyttelse: null
 		},
 		vurderingstype: Vurderingstype.OPPFYLLER_IKKE_KRAVENE,
 		opprettetDato: faker.date.recent(),
@@ -85,7 +91,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -100,7 +107,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: null,
 			fodselsnummer: null,
-			erSkjermet: true
+			erSkjermet: true,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -115,7 +123,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.LEGG_TIL_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -130,7 +139,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: 'Wood',
 			fodselsnummer: '13018812347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.FORLENG_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
@@ -145,7 +155,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: 'Bowler',
 			fodselsnummer: '07099512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.AKTIV,
@@ -166,7 +177,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: 'Hunter',
 			fodselsnummer: '01108511382',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.DELTAKER_IKKE_AKTUELL,
 		status: EndringsmeldingStatus.AKTIV,
@@ -181,7 +193,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,
@@ -196,7 +209,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTDATERT,
@@ -211,7 +225,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.AVSLUTT_DELTAKELSE,
 		status: EndringsmeldingStatus.TILBAKEKALT,
@@ -226,7 +241,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei2',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: true
+			erSkjermet: true,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
@@ -241,7 +257,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: 'Lutlei2',
 			etternavn: 'Luresen',
 			fodselsnummer: '03035512347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_SLUTTDATO,
 		status: EndringsmeldingStatus.AKTIV,
@@ -256,7 +273,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: 'Wood',
 			fodselsnummer: '13018812347',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_DELTAKELSE_PROSENT,
 		status: EndringsmeldingStatus.AKTIV,
@@ -271,7 +289,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
 			fodselsnummer: '22010112345',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_SLUTTAARSAK,
 		status: EndringsmeldingStatus.AKTIV,
@@ -282,11 +301,60 @@ const endringsmeldingData: Endringsmelding[] = [
 	{
 		id: faker.string.uuid(),
 		deltaker: {
+			fornavn: null,
+			mellomnavn: null,
+			etternavn: null,
+			fodselsnummer: null,
+			erSkjermet: false,
+			adressebeskyttelse: Adressebeskyttelse.STRENGT_FORTROLIG,
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: null,
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.string.uuid(),
+		deltaker: {
+			fornavn: null,
+			mellomnavn: null,
+			etternavn: null,
+			fodselsnummer: null,
+			erSkjermet: true,
+			adressebeskyttelse: Adressebeskyttelse.FORTROLIG,
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: null,
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.string.uuid(),
+		deltaker: {
 			fornavn: faker.person.firstName(),
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
 			fodselsnummer: '01016912342',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: Adressebeskyttelse.FORTROLIG,
+		},
+		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
+		status: EndringsmeldingStatus.AKTIV,
+		innhold: { oppstartsdato: faker.date.past() },
+		utfortTidspunkt: null,
+		opprettetDato: faker.date.recent()
+	},
+	{
+		id: faker.string.uuid(),
+		deltaker: {
+			fornavn: faker.person.firstName(),
+			mellomnavn: null,
+			etternavn: faker.person.lastName(),
+			fodselsnummer: '01016912342',
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,
@@ -301,7 +369,8 @@ const endringsmeldingData: Endringsmelding[] = [
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
 			fodselsnummer: '02045544447',
-			erSkjermet: false
+			erSkjermet: false,
+			adressebeskyttelse: null
 		},
 		type: EndringsmeldingType.ENDRE_OPPSTARTSDATO,
 		status: EndringsmeldingStatus.UTFORT,

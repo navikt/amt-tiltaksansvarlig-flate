@@ -1,9 +1,10 @@
-import { Alert, BodyShort, Detail, Heading, Panel, Tag } from '@navikt/ds-react'
+import { Alert, BodyShort, Detail, Heading, Panel } from '@navikt/ds-react'
 import React from 'react'
 
 import { markerEndringsmeldingSomFerdig } from '../../../../api/api'
 import { Endringsmelding, EndringsmeldingStatus, EndringsmeldingType } from '../../../../api/schema/meldinger'
 import { PanelLinje } from '../../../../component/message-panel/PanelLinje'
+import { WarningGroup } from '../../../../component/WarningGroup'
 import { DeferredFetchState, useDeferredFetch } from '../../../../hooks/useDeferredFetch'
 import { lagKommaSeparertBrukerNavn } from '../../../../utils/bruker-utils'
 import { formatDate } from '../../../../utils/date-utils'
@@ -35,18 +36,18 @@ export const EndringsmeldingPanel = ({ endringsmelding, onFerdig, varighetValg }
 	return (
 		<Panel border className={styles.panel}>
 			<div className={styles.ikonColumn}>
-				<EndringsmeldingIkon type={endringsmelding.type}/>
+				<EndringsmeldingIkon type={endringsmelding.type} />
 			</div>
 
 			<div className={styles.meldingInnholdColumn}>
-				{erSkjermet && <Tag size="small" variant="warning" style={{ marginBottom: '0.7rem' }}>Skjermet</Tag>}
+				<WarningGroup erSkjermet={erSkjermet} adressebeskyttelser={[ deltaker.adressebeskyttelse ]} />
 				<PanelLinje className={styles.spaceBottom}>
 					<Heading size="xsmall" level="3">{navn}</Heading>
 					<BodyShort size="medium" className={styles.fnr}>{deltaker.fodselsnummer}</BodyShort>
 				</PanelLinje>
 				<BodyShort size="small"
 					className={styles.endringstype}>{formatEndringsmeldingType(endringsmelding.type)}</BodyShort>
-				<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg}/>
+				<EndringsmeldingInnhold endringsmelding={endringsmelding} varighetValg={varighetValg} />
 
 				{endringsmelding.status === EndringsmeldingStatus.UTDATERT &&
 					<BodyShort className={styles.smallText}>Ble automatisk flyttet fordi det kom en ny

@@ -5,6 +5,7 @@ import { Gjennomforing } from '../../../../api/api'
 import { GjennomforingStatus } from '../../../../api/schema/schema'
 import { AvsluttetMerkelapp } from '../../../../component/avsluttet-merkelapp/AvsluttetMerkelapp'
 import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
+import { WarningGroup } from '../../../../component/WarningGroup'
 import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import { formatDateMedMndNavn } from '../../../../utils/date-utils'
 import styles from './GjennomforingPanel.module.scss'
@@ -49,11 +50,11 @@ export const GjennomforingPanel = ({ gjennomforing, onClick }: GjennomforingPane
 							Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
 						</Tag>
 					)}
-					{harSkjermedeEndringsmeldinger && (
-						<Tag variant="warning" size="small">
-							Skjermet
-						</Tag>
-					)}
+					<WarningGroup 
+						erSkjermet={harSkjermedeEndringsmeldinger} 
+						adressebeskyttelser={gjennomforing.adressebeskyttelser} 
+						alignItemsRight={true}
+					/>
 				</div>
 			</div>
 		</SpaLenkepanel>
