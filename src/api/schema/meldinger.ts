@@ -46,9 +46,9 @@ const DeltakerStatusAarsakSchema = z.object({
 })
 
 export enum Adressebeskyttelse {
-	STRENGT_FORTROLIG,
-	FORTROLIG,
-	STRENGT_FORTROLIG_UTLAND
+	STRENGT_FORTROLIG = 'STRENGT_FORTROLIG',
+	FORTROLIG = 'FORTROLIG',
+	STRENGT_FORTROLIG_UTLAND = 'STRENGT_FORTROLIG_UTLAND'
 }
 
 export const AdressebeskyttelseSchema = z.nativeEnum(Adressebeskyttelse)
