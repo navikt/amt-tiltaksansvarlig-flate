@@ -39,7 +39,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		arrangor: {
 			organisasjonNavn: 'Venus AS',
 			organisasjonOrgnr: '9934872368',
-			virksomhetNavn: 'Virksomhet AS',
+			virksomhetNavn: 'Virksomhet Avdeling For Lange Navn AS',
 			virksomhetOrgnr: '8798324354',
 		},
 		lopenr: 31243,
@@ -70,12 +70,12 @@ export const gjennomforinger: Gjennomforing[] = [
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 0,
 		harSkjermedeDeltakere: false,
-		adressebeskyttelser: [ Adressebeskyttelse.STRENGT_FORTROLIG_UTLAND ],
+		adressebeskyttelser: [ Adressebeskyttelse.STRENGT_FORTROLIG ],
 		tiltak: {
 			kode: 'INDOPPFAG',
 			navn: 'Oppfølging',
 		},
-		status: GjennomforingStatus.PLANLAGT,
+		status: GjennomforingStatus.AVSLUTTET,
 	},
 	{
 		navn: 'AFT Tjenesteområde 3',
@@ -113,7 +113,7 @@ export const gjennomforinger: Gjennomforing[] = [
 		startDato: faker.date.past(),
 		sluttDato: faker.date.future(),
 		antallAktiveEndringsmeldinger: 1,
-		harSkjermedeDeltakere: false,
+		harSkjermedeDeltakere: true,
 		adressebeskyttelser: [],
 		tiltak: {
 			kode: 'AVKLARAG',

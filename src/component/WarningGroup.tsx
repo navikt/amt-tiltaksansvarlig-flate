@@ -7,10 +7,9 @@ import styles from './WarningGroup.module.scss'
 interface Props {
 	erSkjermet: boolean,
 	adressebeskyttelser: (Adressebeskyttelse | null)[],
-	alignItemsRight?: boolean
 }
 
-export function WarningGroup({ erSkjermet, adressebeskyttelser, alignItemsRight }: Props) {
+export function WarningGroup({ erSkjermet, adressebeskyttelser }: Props) {
 	const tags: string[] = adressebeskyttelser.filter(a => a !== null)
 		.map(adressebeskyttelse => {
 			const prefix = 'Adressebeskyttet'
@@ -35,10 +34,8 @@ export function WarningGroup({ erSkjermet, adressebeskyttelser, alignItemsRight 
 
 	if (tags.length === 0) return null
 
-	const alignment = alignItemsRight ? styles.alignEnd : styles.alignStart
-
 	return (
-		<div className={`${styles.group} ${alignment}`}>
+		<div className={styles.group}>
 			{tags.map(t => <Tag size="small" variant="warning" key={t}>{t}</Tag>)}
 		</div>
 	)

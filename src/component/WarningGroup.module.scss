@@ -7,13 +7,3 @@
 .group > * {
     margin-bottom: 0.5rem;
 }
-
-@media (min-width: 768px) {
-    .alignStart {
-        align-items: start;
-    }
-
-    .alignEnd {
-        align-items: end;
-    }
-}
