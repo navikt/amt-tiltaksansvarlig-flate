@@ -44,19 +44,18 @@ export const GjennomforingPanel = ({ gjennomforing, onClick }: GjennomforingPane
 						</BodyShort>
 					</div>
 				</div>
-				<div className={styles.tags}>
-					{harAktiveEndringsmeldinger && (
+				{harAktiveEndringsmeldinger && (
+					<div className={styles.nyMelding}>
 						<Tag variant="info" size="small" className={styles.antallEndringsmeldingerEtikett}>
 							Ny melding: {gjennomforing.antallAktiveEndringsmeldinger}
 						</Tag>
-					)}
-					<WarningGroup 
-						erSkjermet={harSkjermedeEndringsmeldinger} 
-						adressebeskyttelser={gjennomforing.adressebeskyttelser} 
-						alignItemsRight={true}
-					/>
-				</div>
+					</div>
+				)}
 			</div>
+			<WarningGroup
+				erSkjermet={harSkjermedeEndringsmeldinger}
+				adressebeskyttelser={gjennomforing.adressebeskyttelser}
+			/>
 		</SpaLenkepanel>
 	)
 }

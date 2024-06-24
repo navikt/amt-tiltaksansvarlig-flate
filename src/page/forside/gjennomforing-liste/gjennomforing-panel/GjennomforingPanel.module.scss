@@ -28,6 +28,7 @@
   gap: 0.5rem;
   width: 100%;
   flex-wrap: wrap;
+  padding-bottom: 0.5rem;
 
   @media(min-width: 768px) {
     flex-direction: row;
@@ -35,7 +36,7 @@
   }
 }
 
-.tags {
+.nyMelding {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
