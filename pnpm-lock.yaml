@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@navikt/aksel-icons':
-        specifier: ^6.16.3
-        version: 6.16.3
+        specifier: ^7.0.0
+        version: 7.0.0
       '@navikt/ds-css':
         specifier: ^6.16.3
         version: 6.16.3
@@ -456,6 +456,9 @@ packages:
 
   '@navikt/aksel-icons@6.16.3':
     resolution: {integrity: sha512-EE5L1F/HGzX1XJ0hQBUJq/wpdoTIs2ii02MxrZ6Ubr50Au9k9gGAUEC+fE+qxTxB8e2aDWlEvOePj1PSP/nMww==}
+
+  '@navikt/aksel-icons@7.0.0':
+    resolution: {integrity: sha512-d47MNHMkXNTBvL/LACssmFHQBR9vl+DzkLAo1Rb+B2XPnZmTWFlsIOINVFWD7OzjJ/qj8Q0DFq+/N2ghl9c1jQ==}
 
   '@navikt/ds-css@6.16.3':
     resolution: {integrity: sha512-wq4NHNceTmrXfl9B1GjPypKcpCDNcxhrX+ENfJ/6LJJlHyCKeWZRTtHSr7gprLFQ9hREglJR9Ie8m9xDr4nimA==}
@@ -2965,6 +2968,8 @@ snapshots:
       strict-event-emitter: 0.5.1
 
   '@navikt/aksel-icons@6.16.3': {}
+
+  '@navikt/aksel-icons@7.0.0': {}
 
   '@navikt/ds-css@6.16.3': {}
 
