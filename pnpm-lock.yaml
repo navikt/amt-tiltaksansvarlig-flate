@@ -15,8 +15,8 @@ importers:
         specifier: ^6.16.3
         version: 6.16.3
       '@navikt/ds-react':
-        specifier: ^6.16.3
-        version: 6.16.3(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^7.0.0
+        version: 7.0.0(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.5
@@ -457,11 +457,14 @@ packages:
   '@navikt/aksel-icons@6.16.3':
     resolution: {integrity: sha512-EE5L1F/HGzX1XJ0hQBUJq/wpdoTIs2ii02MxrZ6Ubr50Au9k9gGAUEC+fE+qxTxB8e2aDWlEvOePj1PSP/nMww==}
 
+  '@navikt/aksel-icons@7.0.0':
+    resolution: {integrity: sha512-d47MNHMkXNTBvL/LACssmFHQBR9vl+DzkLAo1Rb+B2XPnZmTWFlsIOINVFWD7OzjJ/qj8Q0DFq+/N2ghl9c1jQ==}
+
   '@navikt/ds-css@6.16.3':
     resolution: {integrity: sha512-wq4NHNceTmrXfl9B1GjPypKcpCDNcxhrX+ENfJ/6LJJlHyCKeWZRTtHSr7gprLFQ9hREglJR9Ie8m9xDr4nimA==}
 
-  '@navikt/ds-react@6.16.3':
-    resolution: {integrity: sha512-88dyVXXqNp8NgDjtoBEmuDANaOOt8DCMNqAUMT3/FPdTeFFH42yLqbkYUiSqRC37e3S3vKLbhphZiPQla1SloQ==}
+  '@navikt/ds-react@7.0.0':
+    resolution: {integrity: sha512-njeyF6J4aC/mrZ5bypfvIIY1pSWOCaQSsBluxDhmTNOewKnqSI3+D4S3S3To/sMccjC8MVBGBjotXVlMPrIQxg==}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18.0.0
       react: ^17.0.0 || ^18.0.0
@@ -469,8 +472,8 @@ packages:
       '@types/react':
         optional: true
 
-  '@navikt/ds-tokens@6.16.3':
-    resolution: {integrity: sha512-kVIYWf2gSdy4PB+sRbKn1HERep/c6WnCH31DUHLqrcgzGXHG+qcfnS5nEWl9wn10NE+dMlL4+A7B2rPc/3rIzQ==}
+  '@navikt/ds-tokens@7.0.0':
+    resolution: {integrity: sha512-cwORx5aP3LNcH7NpkGrSzDmwmF8CieTxB8EPPp6e2hwSIINBgxG9f00OTKBWgncRO+6TAE/q2XFtSAGQhdqJSQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2966,14 +2969,16 @@ snapshots:
 
   '@navikt/aksel-icons@6.16.3': {}
 
+  '@navikt/aksel-icons@7.0.0': {}
+
   '@navikt/ds-css@6.16.3': {}
 
-  '@navikt/ds-react@6.16.3(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@navikt/ds-react@7.0.0(@types/react@18.3.5)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@floating-ui/react': 0.25.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@floating-ui/react-dom': 2.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@navikt/aksel-icons': 6.16.3
-      '@navikt/ds-tokens': 6.16.3
+      '@navikt/aksel-icons': 7.0.0
+      '@navikt/ds-tokens': 7.0.0
       clsx: 2.1.1
       date-fns: 3.6.0
       react: 18.3.1
@@ -2983,7 +2988,7 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@navikt/ds-tokens@6.16.3': {}
+  '@navikt/ds-tokens@7.0.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
