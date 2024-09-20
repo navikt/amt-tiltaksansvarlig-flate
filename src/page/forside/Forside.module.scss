@@ -16,6 +16,11 @@
   margin-bottom: 2rem;
 }
 
+.aertText {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .alert_info_endringer_text {
+  @extend .aertText;
   margin-bottom: 1rem;
 }
