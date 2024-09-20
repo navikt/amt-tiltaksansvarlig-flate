@@ -48,7 +48,7 @@ export const Forside = (): React.ReactElement => {
 				className={styles.alert_info_endringer}
 			>
 				<Heading size="xsmall" level="2">
-					Etter 1. oktober vil du ikke kunne endre deltakelser på
+					Etter 15. oktober kan du ikke endre deltakelser på
 					AFT-tiltak i Arena
 				</Heading>
 				<BodyShort
@@ -56,19 +56,31 @@ export const Forside = (): React.ReactElement => {
 					size="small"
 				>
 					NAV-veileder får ny løsning i Modia for påmelding og endring
-					av deltakere. Arrangør kan sende forslag direkte til
-					NAV-veileder.{' '}
-					<SimpleLink href="https://www.nav.no/nytt-i-deltakeroversikten">
-						Tiltaksarrangør er informert her på nav.no.
-					</SimpleLink>
-				</BodyShort>
-				<BodyShort size="small">
-					AFT-tiltaket er den første tiltakstypen i ny løsning. Flere
-					tiltakstyper vil komme etterhvert.{' '}
+					av deltakelse. Tiltaksarrangør kan sende forslag om
+					endringer direkte til NAV-veileder. Arbeidsforberedende
+					trening (AFT) er den første tiltakstypen i ny løsning.{' '}
 					<SimpleLink href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx?">
-						Les mer om endringene på Navet.
+						Les mer om ny løsning på Navet.
 					</SimpleLink>
 				</BodyShort>
+				<BodyShort
+					size="small"
+					weight="semibold"
+					className={styles.aertText}
+				>
+					FRIST: Alle endringsmeldinger for AFT må legges inn i Arena
+					innen 14. okt kl. 15
+				</BodyShort>
+				<BodyShort size="small" className={styles.aertText}>
+					Fra 10. okt. kl. 15 kan ikke tiltaksarrangør sende inn nye
+					endringsmeldinger.{' '}
+				</BodyShort>
+				<SimpleLink
+					className={styles.aertText}
+					href="https://www.nav.no/nytt-i-deltakeroversikten"
+				>
+					Tiltaksarrangør er informert her på nav.no.
+				</SimpleLink>
 			</Alert>
 			<GjennomforingListe gjennomforinger={gjennomforinger} />
 		</main>
