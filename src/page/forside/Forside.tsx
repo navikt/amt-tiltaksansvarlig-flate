@@ -72,7 +72,7 @@ export const Forside = (): React.ReactElement => {
 					innen 14. okt kl. 15
 				</BodyShort>
 				<BodyShort size="small" className={styles.aertText}>
-					Fra 10. okt. kl 15 kan ikke tiltaksarrangør sende inn nye
+					Fra 10. okt. kl. 15 kan ikke tiltaksarrangør sende inn nye
 					endringsmeldinger.{' '}
 				</BodyShort>
 				<SimpleLink
