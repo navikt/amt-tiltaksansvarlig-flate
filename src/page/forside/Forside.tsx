@@ -48,15 +48,15 @@ export const Forside = (): React.ReactElement => {
 				className={styles.alert_info_endringer}
 			>
 				<Heading size="xsmall" level="2">
-					Etter 15. oktober kan du ikke endre deltakelser på
-					AFT-tiltak i Arena
+					Fra 15. oktober kan du ikke endre deltakelser på AFT-tiltak
+					i Arena
 				</Heading>
 				<BodyShort
 					className={styles.alert_info_endringer_text}
 					size="small"
 				>
-					NAV-veileder får ny løsning i Modia for påmelding og endring
-					av deltakelse. Tiltaksarrangør kan sende forslag om
+					NAV-veileder har fått ny løsning i Modia for påmelding og
+					endring av deltakelse. Tiltaksarrangør kan sende forslag om
 					endringer direkte til NAV-veileder. Arbeidsforberedende
 					trening (AFT) er den første tiltakstypen i ny løsning.{' '}
 					<SimpleLink href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx?">
