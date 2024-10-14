@@ -63,24 +63,6 @@ export const Forside = (): React.ReactElement => {
 						Les mer om ny løsning på Navet.
 					</SimpleLink>
 				</BodyShort>
-				<BodyShort
-					size="small"
-					weight="semibold"
-					className={styles.aertText}
-				>
-					FRIST: Alle endringsmeldinger for AFT må legges inn i Arena
-					innen 14. okt kl. 15
-				</BodyShort>
-				<BodyShort size="small" className={styles.aertText}>
-					Fra 10. okt. kl. 15 kan ikke tiltaksarrangør sende inn nye
-					endringsmeldinger.{' '}
-				</BodyShort>
-				<SimpleLink
-					className={styles.aertText}
-					href="https://www.nav.no/nytt-i-deltakeroversikten"
-				>
-					Tiltaksarrangør er informert her på nav.no.
-				</SimpleLink>
 			</Alert>
 			<GjennomforingListe gjennomforinger={gjennomforinger} />
 		</main>
