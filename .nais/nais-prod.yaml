@@ -6,7 +6,7 @@ metadata:
   labels:
     team: amt
 spec:
-  image: europe-north1-docker.pkg.dev/nais-management-233d/poao/poao-frontend:2024.02.26_09.22-a08b941e2c0d
+  image: europe-north1-docker.pkg.dev/nais-management-233d/poao/poao-frontend:2024.10.24-05.59-90531c3
   port: 8080
   ingresses:
     - https://arbeidsmarkedstiltak.intern.nav.no
@@ -41,13 +41,13 @@ spec:
       - name: amt-tiltaksansvarlig-flate-prod
         cascadingDelete: false
   observability:
-      autoInstrumentation:
-        enabled: true
-        runtime: nodejs
-      logging:
-        destinations:
-          - id: elastic
-          - id: loki
+    autoInstrumentation:
+      enabled: true
+      runtime: nodejs
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
   accessPolicy:
     outbound:
       rules:
