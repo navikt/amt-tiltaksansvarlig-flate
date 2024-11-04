@@ -2,14 +2,13 @@
 /* tslint:disable */
 
 /**
- * Mock Service Worker.
+ * Mock Service Worker (2.2.2).
  * @see https://github.com/mswjs/msw
  * - Please do NOT modify this file.
  * - Please do NOT serve this file on production.
  */
 
-const PACKAGE_VERSION = '2.6.0'
-const INTEGRITY_CHECKSUM = '07a8241b182f8a246a7cd39894799a9e'
+const INTEGRITY_CHECKSUM = '223d191a56023cd36aa88c802961b911'
 const IS_MOCKED_RESPONSE = Symbol('isMockedResponse')
 const activeClientIds = new Set()
 
@@ -49,10 +48,7 @@ self.addEventListener('message', async function (event) {
     case 'INTEGRITY_CHECK_REQUEST': {
       sendToClient(client, {
         type: 'INTEGRITY_CHECK_RESPONSE',
-        payload: {
-          packageVersion: PACKAGE_VERSION,
-          checksum: INTEGRITY_CHECKSUM,
-        },
+        payload: INTEGRITY_CHECKSUM,
       })
       break
     }
@@ -62,12 +58,7 @@ self.addEventListener('message', async function (event) {
 
       sendToClient(client, {
         type: 'MOCKING_ENABLED',
-        payload: {
-          client: {
-            id: client.id,
-            frameType: client.frameType,
-          },
-        },
+        payload: true,
       })
       break
     }
@@ -160,10 +151,6 @@ async function handleRequest(event, requestId) {
 async function resolveMainClient(event) {
   const client = await self.clients.get(event.clientId)
 
-  if (activeClientIds.has(event.clientId)) {
-    return client
-  }
-
   if (client?.frameType === 'top-level') {
     return client
   }
@@ -215,6 +202,13 @@ async function getResponse(event, client, requestId) {
     return passthrough()
   }
 
+  // Bypass requests with the explicit bypass header.
+  // Such requests can be issued by "ctx.fetch()".
+  const mswIntention = request.headers.get('x-msw-intention')
+  if (['bypass', 'passthrough'].includes(mswIntention)) {
+    return passthrough()
+  }
+
   // Notify the client that a request has been intercepted.
   const requestBuffer = await request.arrayBuffer()
   const clientMessage = await sendToClient(
@@ -246,7 +240,7 @@ async function getResponse(event, client, requestId) {
       return respondWithMock(clientMessage.data)
     }
 
-    case 'PASSTHROUGH': {
+    case 'MOCK_NOT_FOUND': {
       return passthrough()
     }
   }
