@@ -4,6 +4,7 @@ import {
 	BodyShort,
 	Heading,
 	Link as SimpleLink,
+	List,
 	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
@@ -48,18 +49,21 @@ export const Forside = (): React.ReactElement => {
 				className={styles.alert_info_endringer}
 			>
 				<Heading size="xsmall" level="2">
-					Fra 15. oktober kan du ikke endre deltakelser på AFT-tiltak
-					i Arena
+					Fra 19. november kan du ikke endre deltakelser i Arena på tiltakene oppfølging, avklaring og ARR
 				</Heading>
 				<BodyShort
 					className={styles.alert_info_endringer_text}
 					size="small"
 				>
-					NAV-veileder har fått ny løsning i Modia for påmelding og
-					endring av deltakelse. Tiltaksarrangør kan sende forslag om
-					endringer direkte til NAV-veileder. Arbeidsforberedende
-					trening (AFT) er den første tiltakstypen i ny løsning.{' '}
-					<SimpleLink href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx?">
+					Den nye løsningen for påmelding og endring av deltakelse for Nav-veileder blir snart tilgjengelig for
+					flere tiltak. Tiltaksarrangør kan sende forslag om endringer direkte til NAV-veileder.
+					<List as="ul" size="small">
+						Planlagt lansering:
+						<List.Item>19. november: oppfølging, avklaring og ARR</List.Item>
+						<List.Item>10. desember: VTA og digitalt oppfølgingstiltak</List.Item>
+					</List>
+
+					<SimpleLink href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx">
 						Les mer om ny løsning på Navet.
 					</SimpleLink>
 				</BodyShort>
