@@ -1,10 +1,9 @@
 import { PlusIcon } from '@navikt/aksel-icons'
 import {
 	Alert,
-	BodyShort,
+	BodyLong,
 	Heading,
 	Link as SimpleLink,
-	List,
 	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
@@ -43,30 +42,41 @@ export const Forside = (): React.ReactElement => {
 					<span id="legg-til">Legg til</span>
 				</Link>
 			</div>
-			<Alert
-				variant="info"
-				size="small"
-				className={styles.alert_info_endringer}
-			>
-				<Heading size="xsmall" level="2">
-					Fra 19. november kan du ikke endre deltakelser i Arena på tiltakene oppfølging, avklaring og ARR
-				</Heading>
-				<BodyShort
-					className={styles.alert_info_endringer_text}
-					size="small"
+			<Alert variant="info" className={styles.alert_info_endringer}>
+				<Heading
+					size="xsmall"
+					level="2"
+					className={styles.alert_heading}
 				>
-					Den nye løsningen for påmelding og endring av deltakelse for Nav-veileder blir snart tilgjengelig for
-					flere tiltak. Tiltaksarrangør kan sende forslag om endringer direkte til NAV-veileder.
-					<List as="ul" size="small">
-						Planlagt lansering:
-						<List.Item>19. november: oppfølging, avklaring og ARR</List.Item>
-						<List.Item>10. desember: VTA og digitalt oppfølgingstiltak</List.Item>
-					</List>
-
-					<SimpleLink href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx">
-						Les mer om ny løsning på Navet.
-					</SimpleLink>
-				</BodyShort>
+					Fra 19. november kan du ikke endre deltakelser i Arena på
+					tiltakene oppfølging, avklaring og ARR
+				</Heading>
+				<BodyLong>
+					Den nye løsningen for påmelding og endring av deltakelse for
+					Nav-veileder blir snart tilgjengelig for disse tiltakene.
+					Tiltaksarrangør kan sende forslag om endringer direkte til
+					Nav-veileder.
+				</BodyLong>
+				<SimpleLink
+					className={styles.linke_navet}
+					href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx"
+				>
+					Les mer om ny løsning på Navet.
+				</SimpleLink>
+				<BodyLong weight="semibold">
+					FRIST: Alle endringsmeldinger for oppfølging, avklaring og
+					ARR må legges inn i Arena innen 18. nov. kl. 15
+				</BodyLong>
+				<BodyLong>
+					Fra 14. nov. kl. 15 kan ikke tiltaksarrangør sende inn nye
+					endringsmeldinger.
+				</BodyLong>
+				<SimpleLink
+					className={styles.linke_nav}
+					href="https://www.nav.no/nytt-i-deltakeroversikten"
+				>
+					Tiltaksarrangør er informert her på nav.no.
+				</SimpleLink>
 			</Alert>
 			<GjennomforingListe gjennomforinger={gjennomforinger} />
 		</main>

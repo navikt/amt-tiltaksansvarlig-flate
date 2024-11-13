@@ -16,12 +16,13 @@
   margin-bottom: 2rem;
 }
 
-.aertText {
-  font-size: 1rem;
-  line-height: 1.5rem;
+.alert_heading {
+  margin-bottom: 0.5rem;
 }
-.alert_info_endringer_text {
-  @extend .aertText;
-  margin-top: 1rem;
+.linke_navet {
   margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+.linke_nav {
+  font-size: 1.125rem;
 }
