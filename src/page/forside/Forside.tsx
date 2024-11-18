@@ -56,7 +56,7 @@ export const Forside = (): React.ReactElement => {
 					Tiltaksarrangør kan sende forslag om endringer direkte til Nav-veileder.
 				</BodyLong>
 
-				<List title="Så langt er følgende tiltak over på ny påmeldingsløsning:" headingTag="h3" as="ul" size="small" className={styles.list_title}>
+				<List title="Så langt er følgende tiltak over på ny påmeldingsløsning:" headingTag="h3" as="ul" className={styles.list_title}>
 					<List.Item>
 						15. oktober: AFT
 					</List.Item>
