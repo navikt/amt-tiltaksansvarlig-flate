@@ -3,7 +3,7 @@ import {
 	Alert,
 	BodyLong,
 	Heading,
-	Link as SimpleLink, List,
+	Link as SimpleLink,
 	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
