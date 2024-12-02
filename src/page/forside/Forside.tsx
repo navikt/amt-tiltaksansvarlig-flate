@@ -3,7 +3,7 @@ import {
 	Alert,
 	BodyLong,
 	Heading,
-	Link as SimpleLink, List,
+	Link as SimpleLink,
 	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
@@ -48,27 +48,32 @@ export const Forside = (): React.ReactElement => {
 					level="2"
 					className={styles.alert_heading}
 				>
-					Fra 19. november kan du ikke endre deltakelser i Arena på
-					tiltakene oppfølging, avklaring og ARR
+					Fra 10. desember kan du ikke endre deltakelser i Arena for
+					tiltakene digitalt oppfølgingstiltak og VTA
 				</Heading>
-				<BodyLong spacing>
-					Nav-veileder har fått ny løsning i Modia for påmelding og endring av deltakelse.
-					Tiltaksarrangør kan sende forslag om endringer direkte til Nav-veileder.
+				<BodyLong>
+					Den nye løsningen for påmelding og endring av deltakelse for Nav-veileder blir snart tilgjengelig
+					for disse tiltakene. Tiltaksarrangør kan sende forslag om endringer direkte til Nav-veileder.
 				</BodyLong>
-
-				<List title="Så langt er følgende tiltak over på ny påmeldingsløsning:" headingTag="h3" as="ul" className={styles.list_title}>
-					<List.Item>
-						15. oktober: AFT
-					</List.Item>
-					<List.Item>
-						19. november: oppfølging, avklaring og ARR
-					</List.Item>
-				</List>
 				<SimpleLink
 					className={styles.linke_navet}
 					href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx"
 				>
 					Les mer om ny løsning på Navet.
+				</SimpleLink>
+
+				<BodyLong weight="semibold">
+					FRIST: Alle endringsmeldinger for digitalt oppfølgingstiltak og
+					VTA må legges inn i Arena innen 9. des. kl. 15
+				</BodyLong>
+				<BodyLong>
+					Fra 5. des. kl. 15 kan ikke tiltaksarrangør sende inn nye endringsmeldinger.
+				</BodyLong>
+				<SimpleLink
+					className={styles.linke_nav}
+					href="https://www.nav.no/nytt-i-deltakeroversikten"
+				>
+					Tiltaksarrangør er informert her på nav.no.
 				</SimpleLink>
 			</Alert>
 			<GjennomforingListe gjennomforinger={gjennomforinger} />
