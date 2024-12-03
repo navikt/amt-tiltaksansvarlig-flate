@@ -33,7 +33,7 @@
     "@faker-js/faker": "^9.2.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@vitejs/plugin-react": "^4.3.4",
     "axe-core": "^4.10.2",
     "cpy-cli": "^5.0.0",
     "cypress": "^13.16.0",
@@ -44,11 +44,11 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "msw": "2.6.6",
-    "sass": "^1.81.0",
+    "sass": "^1.81.1",
     "table": "^6.8.2",
     "typescript": "^5.7.2",
     "vite": "^5.4.11",
-    "vitest": "^2.1.5"
+    "vitest": "^2.1.8"
   },
   "msw": {
     "workerDirectory": "./public"
