@@ -4,8 +4,8 @@ import {
 	BodyLong,
 	Heading,
 	Link as SimpleLink,
-	Loader,
-	List
+	List,
+	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
 import React from 'react'
