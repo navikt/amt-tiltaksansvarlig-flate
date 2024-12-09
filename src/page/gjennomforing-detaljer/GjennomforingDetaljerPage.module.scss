@@ -1,15 +1,15 @@
-@import 'src/globals.module.scss';
-@import 'src/colors';
+@use '../../globals.module.scss';
+@use '../../colors';
 
 .page {
-  max-width: $max-bredde;
+  max-width: globals.$max-bredde;
   margin: 2rem auto;
 }
 
 .seperator {
   height: 1px;
   width: 100%;
-  background-color: $navGra50;
+  background-color: colors.$navGra50;
 }
 
 .fjernFraMinOversiktSection {

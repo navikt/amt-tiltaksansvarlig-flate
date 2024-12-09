@@ -1,7 +1,7 @@
-@import '/src/globals.module';
+@use '../../globals.module';
 
 .mainPage {
-  max-width: $max-bredde;
+  max-width: globals.$max-bredde;
   margin: 0 auto;
   padding: 4rem 1rem;
 }
