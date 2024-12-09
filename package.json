@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "msw": "2.6.6",
+    "msw": "2.6.8",
     "sass": "^1.82.0",
     "table": "^6.9.0",
     "typescript": "^5.7.2",
