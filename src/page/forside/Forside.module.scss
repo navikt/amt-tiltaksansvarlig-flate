@@ -20,16 +20,15 @@
   margin-bottom: 0.5rem;
 }
 .linke_navet {
-  margin-bottom: 1rem;
-  font-size: 1.125rem;
-}
-.linke_nav {
   font-size: 1.125rem;
 }
 
 .list_title {
-  h3 {
-    font-size: var(--a-font-size-large);
-    font-weight: normal
+  margin-top: 1rem;
+  }
+  
+  .list {
+    ul {
+      margin-top: 0.5rem;
   }
 }
