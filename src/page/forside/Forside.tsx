@@ -1,10 +1,7 @@
 import { PlusIcon } from '@navikt/aksel-icons'
 import {
 	Alert,
-	BodyLong,
 	Heading,
-	Link as SimpleLink,
-	List,
 	Loader
 } from '@navikt/ds-react'
 import cls from 'classnames'
