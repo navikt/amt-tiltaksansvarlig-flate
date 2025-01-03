@@ -43,39 +43,6 @@ export const Forside = (): React.ReactElement => {
 					<span id="legg-til">Legg til</span>
 				</Link>
 			</div>
-			<Alert variant="info" className={styles.alert_info_endringer}>
-				<Heading
-					size="xsmall"
-					level="2"
-					className={styles.alert_heading}
-				>
-					Fra 10. desember kan du ikke endre deltakelser i Arena for
-					tiltakene digitalt jobbsøkerkurs og VTA
-				</Heading>
-				<BodyLong>
-					Nav-veileder har fått ny løsning i Modia for påmelding og
-					endring av deltakelse. Tiltaksarrangør kan sende forslag om
-					endringer direkte til Nav-veileder.
-				</BodyLong>
-				<BodyLong className={styles.list_title}>
-					Så langt er følgende tiltak over på ny påmeldingsløsning:
-				</BodyLong>
-				<List className={styles.list}>
-					<List.Item>15. oktober: AFT</List.Item>
-					<List.Item>
-						19. november: oppfølging, avklaring og ARR
-					</List.Item>
-					<List.Item>
-						10. desember: digitalt jobbsøkerkurs og VTA
-					</List.Item>
-				</List>
-				<SimpleLink
-					className={styles.linke_navet}
-					href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Ny-l%C3%B8sning-for-p%C3%A5melding-til-arbeidsforberedende-trening.aspx"
-				>
-					Les mer om ny løsning på Navet.
-				</SimpleLink>
-			</Alert>
 			<GjennomforingListe gjennomforinger={gjennomforinger} />
 		</main>
 	)
