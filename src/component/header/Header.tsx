@@ -78,7 +78,7 @@ export const Header = (): React.ReactElement => {
 								to={`${tiltaksadministrasjonUrl}/gjennomforinger`}
 								target="_blank"
 							>
-								Tiltaksgjennomføringer
+								Gjennomforinger
 							</Link>
 						</Dropdown.Menu.GroupedList.Item>
 
