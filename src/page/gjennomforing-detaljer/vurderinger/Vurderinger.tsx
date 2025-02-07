@@ -1,8 +1,9 @@
-import { Heading } from '@navikt/ds-react'
+import { Alert, Heading } from '@navikt/ds-react'
 import React from 'react'
 
 import { Vurdering } from '../../../api/schema/meldinger'
 import globalStyles from '../../../globals.module.scss'
+import { useFeatureToggle } from '../../../hooks/useFeatureToggle'
 import { VurderingeListe } from './VurderingerListe'
 
 interface EndringsmeldingerProps {
@@ -10,8 +11,13 @@ interface EndringsmeldingerProps {
 }
 
 export const Vurderinger = ({ vurderinger }: EndringsmeldingerProps) => {
+	const toggles = useFeatureToggle()
 	return (
 		<section className={globalStyles.blokkL}>
+			{ toggles.skalViseInfomelding &&
+				<Alert variant="info" className={globalStyles.blokkS}>
+					Ny visning
+				</Alert> }
 			<Heading size="small" level="2" spacing>
 				Vurdering fra tiltaksarrangør
 			</Heading>

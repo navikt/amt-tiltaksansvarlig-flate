@@ -2,6 +2,7 @@ import { delay, http, HttpResponse } from 'msw'
 import { setupWorker } from 'msw/browser'
 
 import { GjennomforingDetaljer, HentGjennomforingMedLopenr } from '../api/api'
+import { VIS_INFOMELDING_NY_FLATE } from '../api/feature-toggle'
 import { EndringsmeldingStatus, EndringsmeldingType } from '../api/schema/meldinger'
 import { GjennomforingStatus } from '../api/schema/schema'
 import { EndpointHandler, getEndpointHandlerType } from '../utils/environment'
@@ -89,7 +90,7 @@ export const worker = setupWorker(
 
 	}),
 
-	http.get('/mock/amt-tiltak/api/nav-ansatt/gjennomforing/:id', async({  params }) => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/gjennomforing/:id', async({ params }) => {
 		await delay(200)
 		const { id } = params
 		const gjennomforing: GjennomforingDetaljer | undefined = gjennomforinger.find((g) => g.id === id)
@@ -117,7 +118,7 @@ export const worker = setupWorker(
 		return HttpResponse.json(meldingData)
 	}),
 
-	http.patch('/mock/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({  params }) => {
+	http.patch('/mock/amt-tiltak/api/nav-ansatt/endringsmelding/:endringsmeldingId/ferdig', async({ params }) => {
 		await delay(200)
 		const { endringsmeldingId } = params
 		const melding = meldingData.endringsmeldinger.find((e) => e.id === endringsmeldingId)
@@ -136,5 +137,13 @@ export const worker = setupWorker(
 	http.patch('/mock/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop', async() => {
 		await delay(200)
 		return new HttpResponse(null, { status: 200 })
-	})
+
+	}),
+
+	http.get('/mock/amt-tiltak/api/unleash/feature', async() => {
+		const toggles = {
+			[VIS_INFOMELDING_NY_FLATE]: true
+		}
+		return HttpResponse.json(toggles)
+	}),
 )
