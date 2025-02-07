@@ -11,10 +11,10 @@ interface EndringsmeldingerProps {
 }
 
 export const Vurderinger = ({ vurderinger }: EndringsmeldingerProps) => {
-	const toggles = useFeatureToggle()
+	const { skalViseInfomelding } = useFeatureToggle()
 	return (
 		<section className={globalStyles.blokkL}>
-			{ toggles.skalViseInfomelding &&
+			{ skalViseInfomelding &&
 				<Alert variant="info" className={globalStyles.blokkS}>
 					Ny visning
 				</Alert> }
