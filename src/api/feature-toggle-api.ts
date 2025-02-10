@@ -4,7 +4,7 @@ import { FeatureToggles, featureToggleSchema, TOGGLES } from './feature-toggle'
 
 export const fetchToggles = (): Promise<FeatureToggles> => {
 	const features = TOGGLES.join(',')
-	const url = apiUrl(`/amt-tiltak/api/unleash/feature?features=${features}`)
+	const url = apiUrl(`/amt-tiltak/api/nav-ansatt/unleash/feature?features=${features}`)
 	return fetch(url, {
 		method: 'GET',
 		credentials: 'include',
