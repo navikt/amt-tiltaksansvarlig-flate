@@ -140,7 +140,7 @@ export const worker = setupWorker(
 
 	}),
 
-	http.get('/mock/amt-tiltak/api/unleash/feature', async() => {
+	http.get('/mock/amt-tiltak/api/nav-ansatt/unleash/feature', async() => {
 		const toggles = {
 			[VIS_INFOMELDING_NY_FLATE]: true
 		}
