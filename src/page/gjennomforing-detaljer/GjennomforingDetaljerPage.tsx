@@ -29,10 +29,7 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 
 	if (statusCode === 403) {
 		return (
-			<>
-				<Alert variant="error">Du har ikke tilgang til denne gjennomføringen</Alert>
-				<Navigate to={FORSIDE_PAGE_ROUTE}/>
-			</>
+			<Navigate to={FORSIDE_PAGE_ROUTE}/>
 		)
 	}
 
