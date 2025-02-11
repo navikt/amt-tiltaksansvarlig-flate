@@ -33,7 +33,7 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 		)
 	}
 
-	if (error || !gjennomforing) return <Alert variant="error">En feil har oppstått, tralala</Alert>
+	if (error || !gjennomforing) return <Alert variant="error">En feil har oppstått</Alert>
 
 	return (
 		<main className={styles.page} data-testid="gjennomforing-detaljer-page">
