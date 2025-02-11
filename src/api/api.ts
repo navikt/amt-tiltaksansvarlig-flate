@@ -35,7 +35,7 @@ export interface ApiResponse<T> {
 	errorMessage?: string
 }
 
-const asGenericApiResponse = (response: Response, errorMessage?: string) => {
+const asEmptyApiResponse = (response: Response, errorMessage?: string) => {
 	return {
 		data: null,
 		statusCode: response.status,
@@ -44,7 +44,7 @@ const asGenericApiResponse = (response: Response, errorMessage?: string) => {
 }
 
 const handleResponse = async<T>(response: Response, parser: (arg0: JSON) => T, error?: string) : Promise<ApiResponse<T>> => {
-	if(response.status !== 200) return asGenericApiResponse(response, error)
+	if(response.status !== 200) return asEmptyApiResponse(response, error)
 
 	const json = await response.json()
 	const data = response.status == 200 ? parser(json): null
@@ -99,7 +99,7 @@ export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promi
 		method: 'PATCH',
 		credentials: 'include',
 		headers: defaultHeaders
-	}).then(response => asGenericApiResponse(response, `Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig`))
+	}).then(response => asEmptyApiResponse(response, `Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig`))
 }
 
 export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<ApiResponse<Response>> => {
@@ -109,7 +109,7 @@ export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise
 		method: 'POST',
 		credentials: 'include',
 		headers: defaultHeaders
-	}).then(response => asGenericApiResponse(response, `Kunne ikke gi tilgang til ${gjennomforingId}.`))
+	}).then(response => asEmptyApiResponse(response, `Kunne ikke gi tilgang til ${gjennomforingId}.`))
 
 }
 
@@ -120,7 +120,7 @@ export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promis
 		method: 'PATCH',
 		credentials: 'include',
 		headers: defaultHeaders
-	}).then(response => asGenericApiResponse(response, `Kunne ikke fjerne tilgang til ${gjennomforingId} .`))
+	}).then(response => asEmptyApiResponse(response, `Kunne ikke fjerne tilgang til ${gjennomforingId} .`))
 }
 
 export const hentGjennomforingMedLopenr = (lopenr: number): Promise<ApiResponse<HentGjennomforingMedLopenr[]>> => {
