@@ -1,6 +1,6 @@
 import { Alert, Loader } from '@navikt/ds-react'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 import { fetchGjennomforing } from '../../api/api'
 import { GjennomforingGenerellInfo } from '../../component/GjennomforingGenerellInfo'
@@ -20,13 +20,23 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 	const {
 		data: gjennomforing,
 		loading,
-		error
+		error,
+		statusCode
 	} = useFetch(fetchGjennomforing, gjennomforingId)
 
 
 	if (loading) return <Loader/>
 
-	if (error || !gjennomforing) return <Alert variant="error">En feil har oppstått</Alert>
+	if (statusCode === 403) {
+		return (
+			<>
+				<Alert variant="error">Du har ikke tilgang til denne gjennomføringen</Alert>
+				<Navigate to={FORSIDE_PAGE_ROUTE}/>
+			</>
+		)
+	}
+
+	if (error || !gjennomforing) return <Alert variant="error">En feil har oppstått, tralala</Alert>
 
 	return (
 		<main className={styles.page} data-testid="gjennomforing-detaljer-page">

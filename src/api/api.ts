@@ -23,148 +23,112 @@ export type HentGjennomforingMedLopenr = z.infer<typeof HentGjennomforingMedLope
 
 export type Tiltak = z.infer<typeof TiltakSchema>
 
-const exposeError = (error: Error, endepunkt: string) => {
-	// eslint-disable-next-line no-console
-	console.error(`Kall mot ${endepunkt} feilet. message: ${error.message}`)
-	throw error
-}
-
 const defaultHeaders = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json',
 	'Nav-Consumer-Id': APP_NAME
 }
 
-export const fetchInnloggetAnsatt = (): Promise<InnloggetNavAnsatt> => {
+export interface ApiResponse<T> {
+	data: T | null,
+	statusCode: number,
+	errorMessage?: string
+}
+
+const asGenericApiResponse = (response: Response, errorMessage?: string) => {
+	return {
+		data: null,
+		statusCode: response.status,
+		errorMessage: errorMessage
+	}
+}
+
+const handleResponse = async<T>(response: Response, parser: (arg0: JSON) => T, error?: string) : Promise<ApiResponse<T>> => {
+	if(response.status !== 200) return asGenericApiResponse(response, error)
+
+	const json = await response.json()
+	const data = response.status == 200 ? parser(json): null
+	return {
+		data: data,
+		statusCode: response.status
+	}
+}
+
+export const fetchInnloggetAnsatt = (): Promise<ApiResponse<InnloggetNavAnsatt>> => {
 	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/autentisering/meg')
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke hente login. Status: ${response.status}`), endepunkt)
-			}
-			return response.json()
-		})
-		.then(json => InnloggetNavAnsattSchema.parse(json))
+	}).then(response => handleResponse(response, InnloggetNavAnsattSchema.parse, 'Kunne ikke hente login.'))
 }
-export const fetchGjennomforinger = (): Promise<Gjennomforing[]> => {
+
+export const fetchGjennomforinger = (): Promise<ApiResponse<Gjennomforing[]>> => {
 	const endepunkt = apiUrl('/amt-tiltak/api/nav-ansatt/gjennomforing')
 
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke hente gjennomføringer. Status: ${response.status}`), endepunkt)
-			}
-			return response.json()
-		})
-		.then(json => GjennomforingerSchema.parse(json))
+	}).then(response => handleResponse(response, GjennomforingerSchema.parse, 'Kunne ikke hente gjennomføringer'))
 }
 
-export const fetchGjennomforing = (id: string): Promise<GjennomforingDetaljer> => {
+export const fetchGjennomforing = (id: string): Promise<ApiResponse<GjennomforingDetaljer>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing/${id}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke hente gjennomføring med id ${id}. Status: ${response.status}`), endepunkt)
-			}
-			return response.json()
-		})
-		.then(json => GjennomforingDetaljerSchema.parse(json))
+	}).then(response => handleResponse(response, GjennomforingDetaljerSchema.parse, `Kunne ikke hente gjennomføring med id ${id}.`))
 }
 
-export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<MeldingerFraArrangor> => {
+export const fetchMeldingerFraArrangor = (gjennomforingId: string): Promise<ApiResponse<MeldingerFraArrangor>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/meldinger?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke hente meldinger for gjennomføring med id ${gjennomforingId}. Status: ${response.status}`), endepunkt)
-			}
-			return response.json()
-		})
-		.then(json => MeldingerFraArrangorSchema.parse(json))
+	}).then(response => handleResponse(response, MeldingerFraArrangorSchema.parse, `Kunne ikke hente meldinger for gjennomføring med id ${gjennomforingId}`))
 }
 
-export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<Response> => {
+export const markerEndringsmeldingSomFerdig = (endringsmeldingId: string): Promise<ApiResponse<Response>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/endringsmelding/${endringsmeldingId}/ferdig`)
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig. Status: ${response.status}`), endepunkt)
-			}
-
-			return response
-		})
-
+	}).then(response => asGenericApiResponse(response, `Kunne ikke sette endringsmeling med id ${endringsmeldingId} som ferdig`))
 }
 
-export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<Response> => {
+export const leggTilTilgangTilGjennomforing = (gjennomforingId: string): Promise<ApiResponse<Response>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'POST',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke gi tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
-			}
+	}).then(response => asGenericApiResponse(response, `Kunne ikke gi tilgang til ${gjennomforingId}.`))
 
-			return response
-		})
 }
 
-export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promise<Response> => {
+export const fjernGjennomforingFraOversikten = (gjennomforingId: string): Promise<ApiResponse<Response>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing-tilgang/stop?gjennomforingId=${gjennomforingId}`)
 
 	return fetch(endepunkt, {
 		method: 'PATCH',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke fjerne tilgang til ${gjennomforingId} . Status: ${response.status}`), endepunkt)
-			}
-
-			return response
-		})
+	}).then(response => asGenericApiResponse(response, `Kunne ikke fjerne tilgang til ${gjennomforingId} .`))
 }
 
-export const hentGjennomforingMedLopenr = (lopenr: number): Promise<HentGjennomforingMedLopenr[]> => {
+export const hentGjennomforingMedLopenr = (lopenr: number): Promise<ApiResponse<HentGjennomforingMedLopenr[]>> => {
 	const endepunkt = apiUrl(`/amt-tiltak/api/nav-ansatt/gjennomforing?lopenr=${lopenr}`)
 
 	return fetch(endepunkt, {
 		method: 'GET',
 		credentials: 'include',
 		headers: defaultHeaders
-	})
-		.then(response => {
-			if (response.status !== 200) {
-				exposeError(new Error(`Kunne ikke hente gjennomføring med løpenummer ${lopenr} . Status: ${response.status}`), endepunkt)
-			}
-			return response.json()
-		})
-		.then(json => HentGjennomforingerMedLopenrSchema.parse(json))
+	}).then(response => handleResponse(response, HentGjennomforingerMedLopenrSchema.parse, `Kunne ikke hente gjennomføring med løpenummer ${lopenr}.`))
 }
