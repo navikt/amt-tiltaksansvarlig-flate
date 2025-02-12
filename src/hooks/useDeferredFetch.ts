@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { ApiResponse } from '../api/api'
+
 export enum DeferredFetchState {
 	NOT_STARTED = 'NOT_STARTED',
 	LOADING = 'LOADING',
@@ -18,7 +20,7 @@ interface UseDeferredFetch<T> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ApiFunction<T> = (...args: any[]) => Promise<T>
 
-export const useDeferredFetch = <T>(apiFunction: ApiFunction<T>): UseDeferredFetch<T> => {
+export const useDeferredFetch = <T>(apiFunction: ApiFunction<ApiResponse<T>>): UseDeferredFetch<T> => {
 	const [ data, setData ] = useState<T | null>(null)
 	const [ state, setState ] = useState<DeferredFetchState>(DeferredFetchState.NOT_STARTED)
 	const [ error, setError ] = useState<string | null>(null)
@@ -28,8 +30,8 @@ export const useDeferredFetch = <T>(apiFunction: ApiFunction<T>): UseDeferredFet
 		try {
 			setState(DeferredFetchState.LOADING)
 			const result = await apiFunction(...args)
-			setData(result)
-			return result
+			setData(result.data)
+			return result.data
 		} catch (error) {
 			setState(DeferredFetchState.ERROR)
 			setError('An error occurred while fetching the data.')

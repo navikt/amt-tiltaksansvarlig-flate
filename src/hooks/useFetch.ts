@@ -1,31 +1,39 @@
 import { useEffect, useState } from 'react'
 
+import { ApiResponse } from '../api/api'
+
 interface UseFetchResult<T> {
-    data: T | null
-    loading: boolean
-    error: string | null
-    reload: () => void
+	data: T | null
+	loading: boolean
+	error: string | null
+	statusCode: number | null
+	reload: () => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ApiFunction<T> = (...args: any[]) => Promise<T>
+type ApiFunction<ApiResponse> = (...args: any[]) => Promise<ApiResponse>
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const useFetch = <T>(apiFunction: ApiFunction<T>, ...args: any[]): UseFetchResult<T> => {
+const useFetch = <T>(apiFunction: ApiFunction<ApiResponse<T>>, ...args: any[]): UseFetchResult<T> => {
 	const [ data, setData ] = useState<T | null>(null)
 	const [ loading, setLoading ] = useState<boolean>(true)
 	const [ error, setError ] = useState<string | null>(null)
+	const [ statusCode, setStatusCode ] = useState<number | null>(null)
 
 	const fetchData = async() => {
-		try {
-			const result = await apiFunction(...args)
-			setData(result)
-		} catch (error) {
-			setError('An error occurred while fetching the data.')
-			throw error
-		} finally {
-			setLoading(false)
-		}
+		await apiFunction(...args)
+			.then(result => {
+				setStatusCode(result.statusCode)
+				setData(result.data)
+				if (result.statusCode !== 200) {
+					throw Error(`Fikk statuskode ${result.statusCode}`)
+				}
+			})
+			.catch(error => {
+				setError('An error occurred while fetching the data.')
+				throw error
+			})
+			.finally(() => setLoading(false))
 	}
 
 	const reload = () => {
@@ -38,7 +46,7 @@ const useFetch = <T>(apiFunction: ApiFunction<T>, ...args: any[]): UseFetchResul
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ apiFunction, ...args ])
 
-	return { data, loading, error, reload }
+	return { data, loading, error, reload, statusCode }
 }
 
 export default useFetch
