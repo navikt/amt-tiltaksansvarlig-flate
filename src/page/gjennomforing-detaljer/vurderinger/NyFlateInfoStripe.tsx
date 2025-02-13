@@ -7,7 +7,7 @@ import { tiltaksadministrasjonUrl } from '../../../utils/url-utils'
 
 export const NyFlateInfoStripe = () => {
 	const { gjennomforingId } = useParams()
-	const link = `${tiltaksadministrasjonUrl}/gjennomforinger/${gjennomforingId}`
+	const link = `${tiltaksadministrasjonUrl}/gjennomforinger/${gjennomforingId}/deltakerliste`
 
 	return (
 		<Alert variant="info" className={globalStyles.blokkS}>
