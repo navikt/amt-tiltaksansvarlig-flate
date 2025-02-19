@@ -1,14 +1,16 @@
-import { Alert, BodyLong, Heading, Link } from "@navikt/ds-react"
+import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react'
+import React from 'react'
+
+import useLocalStorage from '../../hooks/useLocalStorage'
 import styles from './SystemInfoMessage.module.scss'
-import useLocalStorage from "../../hooks/useLocalStorage"
 
 export const SystemInfoMessage = () => {
-	const [visMelding, setVisMelding] = useLocalStorage(
+	const [ visMelding, setVisMelding ] = useLocalStorage(
 		'amt-tiltaksansvarlig-vis-systemmelding',
 		true
 	)
 
-    return visMelding ? (
+	return visMelding ? (
 		<Alert
 			variant="info"
 			size="small"
