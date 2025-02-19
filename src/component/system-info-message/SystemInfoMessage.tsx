@@ -1,0 +1,31 @@
+import { Alert, BodyLong, Heading, Link } from "@navikt/ds-react"
+import styles from './SystemInfoMessage.module.scss'
+import useLocalStorage from "../../hooks/useLocalStorage"
+
+export const SystemInfoMessage = () => {
+	const [visMelding, setVisMelding] = useLocalStorage(
+		'amt-tiltaksansvarlig-vis-systemmelding',
+		true
+	)
+
+    return visMelding ? (
+		<Alert
+			variant="info"
+			size="small"
+			closeButton
+			onClose={() => setVisMelding(false)}
+		>
+			<Heading size="small" level="1">
+				Ny løsning for administrering av kurs er under arbeid
+			</Heading>
+			<BodyLong size="small" className={styles.alert_text}>
+				Den nye løsningen vil inneholde en samlet oversikt over innsøkte
+				deltakere, funksjonalitet for å gjøre uttak til kurs, samt dele
+				og motta vurderinger fra tiltaksarrangør.{' '}
+			</BodyLong>
+			<Link href="https://navno.sharepoint.com/sites/intranett-produktomrader-og-prosjekter/SitePages/Administrering-av-deltakelse-p%C3%A5-kurstiltak.aspx">
+				Les mer om ny løsning på Navet.
+			</Link>
+		</Alert>
+	) : null
+}
