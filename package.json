@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.14.1",
-    "@navikt/ds-css": "^7.14.1",
-    "@navikt/ds-react": "^7.14.1",
+    "@navikt/aksel-icons": "^7.14.2",
+    "@navikt/ds-css": "^7.14.2",
+    "@navikt/ds-react": "^7.14.2",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-router-dom": "^5.3.3",
