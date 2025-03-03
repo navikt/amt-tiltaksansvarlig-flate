@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.14.3",
-    "@navikt/ds-css": "^7.14.3",
-    "@navikt/ds-react": "^7.14.3",
+    "@navikt/aksel-icons": "^7.15.0",
+    "@navikt/ds-css": "^7.15.0",
+    "@navikt/ds-react": "^7.15.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-router-dom": "^5.3.3",
@@ -30,7 +30,7 @@
     "cy:clear": "cypress cache clear"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.5.0",
+    "@faker-js/faker": "^9.5.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -41,12 +41,12 @@
     "eslint": "^8.57.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.4",
-    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "msw": "2.7.3",
     "sass": "^1.85.1",
     "table": "^6.9.0",
-    "typescript": "^5.7.3",
+    "typescript": "^5.8.2",
     "vite": "^6.2.0",
     "vitest": "^3.0.7"
   },
