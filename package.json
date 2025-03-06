@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "axe-core": "^4.10.2",
+    "axe-core": "^4.10.3",
     "cpy-cli": "^5.0.0",
     "cypress": "^14.1.0",
     "cypress-axe": "^1.6.0",
