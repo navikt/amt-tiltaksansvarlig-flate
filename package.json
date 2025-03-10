@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.17.0",
-    "@navikt/ds-css": "^7.17.0",
-    "@navikt/ds-react": "^7.17.0",
+    "@navikt/aksel-icons": "^7.17.1",
+    "@navikt/ds-css": "^7.17.1",
+    "@navikt/ds-react": "^7.17.1",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-router-dom": "^5.3.3",
@@ -14,7 +14,7 @@
     "dayjs": "^1.11.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.2.0",
+    "react-router-dom": "^7.3.0",
     "zod": "^3.24.2"
   },
   "scripts": {
@@ -30,11 +30,11 @@
     "cy:clear": "cypress cache clear"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.5.1",
+    "@faker-js/faker": "^9.6.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "axe-core": "^4.10.2",
+    "axe-core": "^4.10.3",
     "cpy-cli": "^5.0.0",
     "cypress": "^14.1.0",
     "cypress-axe": "^1.6.0",
@@ -47,8 +47,8 @@
     "sass": "^1.85.1",
     "table": "^6.9.0",
     "typescript": "^5.8.2",
-    "vite": "^6.2.0",
-    "vitest": "^3.0.7"
+    "vite": "^6.2.1",
+    "vitest": "^3.0.8"
   },
   "msw": {
     "workerDirectory": "./public"
