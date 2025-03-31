@@ -16,7 +16,7 @@ importers:
         version: 7.17.4
       '@navikt/ds-react':
         specifier: ^7.17.4
-        version: 7.17.4(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 7.17.4(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/react':
         specifier: ^19.0.12
         version: 19.0.12
@@ -31,19 +31,19 @@ importers:
         version: 2.5.1
       constate:
         specifier: ^3.3.2
-        version: 3.3.2(react@19.0.0)
+        version: 3.3.2(react@19.1.0)
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
       react:
-        specifier: ^19.0.0
-        version: 19.0.0
+        specifier: ^19.1.0
+        version: 19.1.0
       react-dom:
-        specifier: ^19.0.0
-        version: 19.0.0(react@19.0.0)
+        specifier: ^19.1.0
+        version: 19.1.0(react@19.1.0)
       react-router-dom:
         specifier: ^7.4.0
-        version: 7.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 7.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod:
         specifier: ^3.24.2
         version: 3.24.2
@@ -2264,10 +2264,10 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  react-dom@19.0.0:
-    resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
+  react-dom@19.1.0:
+    resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
-      react: ^19.0.0
+      react: ^19.1.0
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2293,8 +2293,8 @@ packages:
       react-dom:
         optional: true
 
-  react@19.0.0:
-    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
+  react@19.1.0:
+    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
     engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
@@ -2389,8 +2389,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  scheduler@0.25.0:
-    resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
+  scheduler@0.26.0:
+    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -3143,18 +3143,18 @@ snapshots:
       '@floating-ui/core': 1.6.9
       '@floating-ui/utils': 0.2.9
 
-  '@floating-ui/react-dom@2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@floating-ui/react-dom@2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@floating-ui/dom': 1.6.13
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
-  '@floating-ui/react@0.25.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@floating-ui/react@0.25.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@floating-ui/utils': 0.1.6
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.1.6': {}
@@ -3229,16 +3229,16 @@ snapshots:
 
   '@navikt/ds-css@7.17.4': {}
 
-  '@navikt/ds-react@7.17.4(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@navikt/ds-react@7.17.4(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@floating-ui/react': 0.25.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      '@floating-ui/react-dom': 2.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@floating-ui/react': 0.25.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@floating-ui/react-dom': 2.1.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@navikt/aksel-icons': 7.17.4
       '@navikt/ds-tokens': 7.17.4
       clsx: 2.1.1
       date-fns: 4.1.0
-      react: 19.0.0
-      react-day-picker: 9.6.1(react@19.0.0)
+      react: 19.1.0
+      react-day-picker: 9.6.1(react@19.1.0)
     optionalDependencies:
       '@types/react': 19.0.12
     transitivePeerDependencies:
@@ -3889,9 +3889,9 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  constate@3.3.2(react@19.0.0):
+  constate@3.3.2(react@19.1.0):
     dependencies:
-      react: 19.0.0
+      react: 19.1.0
 
   convert-source-map@2.0.0: {}
 
@@ -5242,39 +5242,39 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-day-picker@9.6.1(react@19.0.0):
+  react-day-picker@9.6.1(react@19.1.0):
     dependencies:
       '@date-fns/tz': 1.2.0
       date-fns: 4.1.0
       date-fns-jalali: 4.1.0-0
-      react: 19.0.0
+      react: 19.1.0
 
-  react-dom@19.0.0(react@19.0.0):
+  react-dom@19.1.0(react@19.1.0):
     dependencies:
-      react: 19.0.0
-      scheduler: 0.25.0
+      react: 19.1.0
+      scheduler: 0.26.0
 
   react-is@16.13.1: {}
 
   react-refresh@0.14.2: {}
 
-  react-router-dom@7.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-router-dom@7.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
-      react-router: 7.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      react-router: 7.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
 
-  react-router@7.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-router@7.4.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@types/cookie': 0.6.0
       cookie: 1.0.2
-      react: 19.0.0
+      react: 19.1.0
       set-cookie-parser: 2.7.1
       turbo-stream: 2.4.0
     optionalDependencies:
-      react-dom: 19.0.0(react@19.0.0)
+      react-dom: 19.1.0(react@19.1.0)
 
-  react@19.0.0: {}
+  react@19.1.0: {}
 
   readdirp@4.1.2: {}
 
@@ -5411,7 +5411,7 @@ snapshots:
     optionalDependencies:
       '@parcel/watcher': 2.5.1
 
-  scheduler@0.25.0: {}
+  scheduler@0.26.0: {}
 
   semver@6.3.1: {}
 
