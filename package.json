@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.19.0",
-    "@navikt/ds-css": "^7.19.0",
-    "@navikt/ds-react": "^7.19.0",
+    "@navikt/aksel-icons": "^7.19.1",
+    "@navikt/ds-css": "^7.19.1",
+    "@navikt/ds-react": "^7.19.1",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.2",
     "@types/react-router-dom": "^5.3.3",
@@ -47,7 +47,7 @@
     "sass": "^1.86.3",
     "table": "^6.9.0",
     "typescript": "^5.8.3",
-    "vite": "^6.2.5",
+    "vite": "^6.2.6",
     "vitest": "^3.1.1"
   },
   "msw": {
