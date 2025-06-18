@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.22.0",
-    "@navikt/ds-css": "^7.22.0",
-    "@navikt/ds-react": "^7.22.0",
-    "@types/react": "^19.1.7",
+    "@navikt/aksel-icons": "^7.23.1",
+    "@navikt/ds-css": "^7.23.1",
+    "@navikt/ds-react": "^7.23.1",
+    "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
@@ -15,7 +15,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
-    "zod": "^3.25.56"
+    "zod": "^3.25.67"
   },
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
@@ -36,7 +36,7 @@
     "@vitejs/plugin-react": "^4.5.2",
     "axe-core": "^4.10.3",
     "cpy-cli": "^5.0.0",
-    "cypress": "^14.4.1",
+    "cypress": "^14.5.0",
     "cypress-axe": "^1.6.0",
     "eslint": "^8.57.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -48,7 +48,7 @@
     "table": "^6.9.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.4"
   },
   "msw": {
     "workerDirectory": "./public"
