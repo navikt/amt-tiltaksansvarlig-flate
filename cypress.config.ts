@@ -10,7 +10,6 @@ export default defineConfig({
 	defaultCommandTimeout: 20000,
 	screenshotOnRunFailure: true,
 	video: true,
-	videoUploadOnPasses: false,
 	e2e: {
 		// We've imported your old cypress plugins here.
 		// You may want to clean this up later by importing these.
@@ -18,6 +17,6 @@ export default defineConfig({
 			return require('./cypress/plugins/index.js')(on, config)
 		},
 		baseUrl: 'http://localhost:3002',
-		specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
-	},
+		specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}'
+	}
 })

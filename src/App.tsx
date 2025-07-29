@@ -23,7 +23,6 @@ export const App = (): React.ReactElement => {
 		error
 	} = useFetch(fetchInnloggetAnsatt)
 
-
 	if (loading) {
 		return <Spinner/>
 	}

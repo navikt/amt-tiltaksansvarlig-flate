@@ -45,7 +45,6 @@ export const GjennomforingPanel = (props: GjennomforingPanelProps): React.ReactE
 		)
 	}
 
-
 	return (
 		<Panel border className={styles.panel}>
 			<Heading size="small" level="2" spacing>{navn}</Heading>

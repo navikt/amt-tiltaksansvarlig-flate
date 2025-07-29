@@ -3,7 +3,6 @@ import { z } from 'zod'
 import { processStringToDate } from '../utils'
 import { AdressebeskyttelseSchema } from './meldinger'
 
-
 export enum GjennomforingStatus {
 	PLANLAGT = 'PLANLAGT',
 	GJENNOMFORES = 'GJENNOMFORES',
@@ -24,7 +23,6 @@ export enum Tiltakskode {
 
 const GjennomforingStatusSchema = z.nativeEnum(GjennomforingStatus)
 const TiltakskodeSchema = z.nativeEnum(Tiltakskode)
-
 
 export const TiltakSchema = z.object({
 	kode: TiltakskodeSchema,

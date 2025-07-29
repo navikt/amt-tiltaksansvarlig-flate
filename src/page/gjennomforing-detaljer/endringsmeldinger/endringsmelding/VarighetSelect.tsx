@@ -37,7 +37,6 @@ export const varigheter: Varigheter = {
 	[VarighetValg.TOLV_MANEDER]: { antall: 12, tidsenhet: 'month' },
 }
 
-
 export const VarighetSelect = ({ varighetValg, setVarighetValg }: VarighetSelectProps): React.ReactElement => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

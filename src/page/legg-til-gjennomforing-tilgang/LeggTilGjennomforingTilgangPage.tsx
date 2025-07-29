@@ -26,7 +26,6 @@ export const LeggTilGjennomforingTilgangPage = (): React.ReactElement => {
 		error: mineGjennomforingerError
 	} = useFetch(fetchGjennomforinger)
 
-
 	if (mineGjennomforingerLoading) return <Loader/>
 
 	if (mineGjennomforingerError || !mineGjennomforinger) return <Alert variant="error">Noe gikk galt</Alert>

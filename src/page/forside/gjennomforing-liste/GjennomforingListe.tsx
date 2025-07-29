@@ -14,7 +14,6 @@ interface Props {
 
 export const GjennomforingListe = (props: Props): React.ReactElement => {
 
-
 	const handleClick = () => {
 		sessionStorage.setItem('scrollPosition', JSON.stringify(window.scrollY))
 	}
@@ -62,7 +61,6 @@ const finnTiltakMedGjennomforinger = (gjennomforinger: Gjennomforing[]): TiltakM
 	})
 	return Object.values(tiltakMap)
 }
-
 
 interface GjennomforingGrupperingProps {
 	tiltak: Tiltak

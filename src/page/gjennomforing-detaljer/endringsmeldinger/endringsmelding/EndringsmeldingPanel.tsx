@@ -14,7 +14,6 @@ import { FerdigKnapp } from './Ferdigknapp'
 import { EndringsmeldingInnhold } from './innhold/EndringsmeldingInnhold'
 import { VarighetValg } from './VarighetSelect'
 
-
 interface EndringsmeldingProps {
 	endringsmelding: Endringsmelding
 	onFerdig: () => void
