@@ -111,7 +111,6 @@ export const EndreSluttaarsakEndringsmeldingSchema = z.intersection(Endringsmeld
 	innhold: z.object({ aarsak: DeltakerStatusAarsakSchema }),
 }))
 
-
 export const EndringsmeldingSchema = z.union([
 	LeggTilOppstartsdatoEndringsmeldingSchema,
 	EndreOppstartsdatoEndringsmeldingSchema,

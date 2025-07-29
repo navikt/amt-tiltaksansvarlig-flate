@@ -26,4 +26,3 @@ export const OppstartInnhold = ({ oppstartsdato, status, varighet }: Props): Rea
 	)
 }
 
-

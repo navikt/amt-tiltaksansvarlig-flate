@@ -8,7 +8,6 @@ export const formatDate = (date: Date | null): string => {
 	return dayjs(date).format('DD.MM.YYYY')
 }
 
-
 export const formatDateMedMndNavn = (date: Date | null) => {
 	if (!date) return EMDASH
 	return dayjs(date).format('D. MMMM YYYY')

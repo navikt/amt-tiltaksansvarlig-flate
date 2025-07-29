@@ -5,7 +5,6 @@ import { DeltakerStatusAarsak, DeltakerStatusAarsakType } from '../../../../../a
 import { formatDate } from '../../../../../utils/date-utils'
 import styles from '../Endringsmelding.module.scss'
 
-
 interface Props {
 	sluttdato?: Date
 	aarsak?: DeltakerStatusAarsak

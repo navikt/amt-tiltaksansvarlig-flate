@@ -24,7 +24,6 @@ export const GjennomforingDetaljerPage = (): React.ReactElement => {
 		statusCode
 	} = useFetch(fetchGjennomforing, gjennomforingId)
 
-
 	if (loading) return <Loader/>
 
 	if (statusCode === 403) {
