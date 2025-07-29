@@ -1,7 +1,0 @@
-ignoredBuiltDependencies:
-  - '@parcel/watcher'
-
-onlyBuiltDependencies:
-  - cypress
-  - esbuild
-  - msw
