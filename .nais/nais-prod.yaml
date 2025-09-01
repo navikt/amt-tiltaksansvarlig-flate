@@ -21,10 +21,10 @@ spec:
     max: 3
     scalingStrategy:
       cpu:
-        thresholdPercentage: 1000
+        thresholdPercentage: 200
   resources:
     requests:
-      cpu: 10m
+      cpu: 20m
       memory: 64Mi
     limits:
       memory: 256Mi
