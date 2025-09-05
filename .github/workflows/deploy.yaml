@@ -73,7 +73,7 @@ jobs:
           name: frontend-assets
           path: build
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v
+        uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: projects/337368476147/locations/global/workloadIdentityPools/github/providers/github-action
           service_account: amt-tiltaksansvarlig-flate-gcs@amt-prod-d4dd.iam.gserviceaccount.com
