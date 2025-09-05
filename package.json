@@ -20,7 +20,7 @@
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
     "build": "vite build",
-    "build:gh-pages": "NODE_ENV=development vite build --mode gh-pages --base=/amt-tiltaksansvarlig-flate/ && cpy --cwd=build --rename=404.html index.html .",
+    "build:gh-pages": "NODE_ENV=development vite build --mode gh-pages --base=/amt-tiltaksansvarlig-flate/ && cp build/index.html build/404.html",
     "build:pull-request": "NODE_ENV=development vite build --mode pull-request",
     "test": "vitest",
     "lint": "eslint --max-warnings=0 'src/**/*.{ts,tsx}'",
@@ -32,6 +32,7 @@
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
     "@vitejs/plugin-react": "^5.0.2",
+    "cpy-cli": "^6.0.0",
     "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
