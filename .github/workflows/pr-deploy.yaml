@@ -25,8 +25,11 @@ jobs:
         with:
           node-version: '24'
           cache: 'pnpm'
+          registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build Pull Request Application
         run: pnpm build:pull-request --base=/pr-${{ github.event.number }}/
 #        run: VITE_MOCK=true VITE_MOCK_REQUEST_HANDLER=PULL_REQUEST BASE=/pr-${{ github.event.number }}/ pnpm build
