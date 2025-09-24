@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@navikt/aksel-icons':
-        specifier: ^7.29.1
-        version: 7.30.0
+        specifier: ^7.31.0
+        version: 7.31.0
       '@navikt/ds-css':
         specifier: ^7.29.1
         version: 7.30.0
@@ -484,8 +484,8 @@ packages:
     resolution: {integrity: sha512-bndDP83naYYkfayr/qhBHMhk0YGwS1iv6vaEGcr0SQbO0IZtbOPqjKjds/WcG+bJA+1T5vCx6kprKOzn5Bg+Vw==}
     engines: {node: '>=18'}
 
-  '@navikt/aksel-icons@7.30.0':
-    resolution: {integrity: sha512-YRLqZsEZry4LXOyt06HYKwB3ot7WquYDSmzMSEgXS65xNeJF2sy4kvtciXE+R6ygg7zNwivk5MxFhfws4Haruw==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.30.0/faa1fea915e30637ea93d3310f1005a1a81b0cc1}
+  '@navikt/aksel-icons@7.31.0':
+    resolution: {integrity: sha512-6rtyFhDDBOkyG815trxe9pnaJrvSnwLEpkJ7qh0qZm1B8g59a4bf2IJGVtKDPg9thVOrxNtA/H9G4N6n0v9Kkg==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/7.31.0/5d0ea15a5f0ba53bf9e0c38a0b45612235d6b332}
 
   '@navikt/ds-css@7.30.0':
     resolution: {integrity: sha512-A1G3Nc0PQV/8hXDCMnfsHfykLc+TSFOJfOspC0bsM7wSf1ZC6pVHkqWCJ40Bp1td8/4xNvpkoiIS43+Qa7gJMg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/7.30.0/98fe72fd93a17d6bb7ae48520ecfe325f0c336d3}
@@ -2594,7 +2594,7 @@ snapshots:
       outvariant: 1.4.3
       strict-event-emitter: 0.5.1
 
-  '@navikt/aksel-icons@7.30.0': {}
+  '@navikt/aksel-icons@7.31.0': {}
 
   '@navikt/ds-css@7.30.0': {}
 
@@ -2602,7 +2602,7 @@ snapshots:
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@floating-ui/react-dom': 2.1.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
-      '@navikt/aksel-icons': 7.30.0
+      '@navikt/aksel-icons': 7.31.0
       '@navikt/ds-tokens': 7.30.0
       '@types/react': 19.1.13
       clsx: 2.1.1
