@@ -47,7 +47,7 @@ jobs:
       id-token: 'write' # Used to authenticate with Google Cloud
     steps:
       - name: Download frontend asset files
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: frontend-assets
           path: build
@@ -71,7 +71,7 @@ jobs:
       contents: 'write' # Create release
     steps:
       - name: Download frontend asset files
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: frontend-assets
           path: build
