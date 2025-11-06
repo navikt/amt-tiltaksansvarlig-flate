@@ -37,7 +37,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.5.0",
-    "msw": "2.11.6",
+    "msw": "2.12.0",
     "sass": "^1.93.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.3",
