@@ -7,6 +7,8 @@ import { AvsluttetMerkelapp } from '../../../../component/avsluttet-merkelapp/Av
 import { WarningGroup } from '../../../../component/WarningGroup'
 import { formatDateMedMndNavn } from '../../../../utils/date-utils'
 import styles from './GjennomforingPanel.module.scss'
+import { Link } from 'react-router-dom'
+import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 
 interface GjennomforingPanelProps {
 	gjennomforing: Gjennomforing
@@ -26,8 +28,12 @@ export const GjennomforingPanel = ({
 		<>
 			<LinkCard>
 				<LinkCard.Title>
-					<LinkCard.Anchor href="/eksempel">
-						{gjennomforing.navn}
+					<LinkCard.Anchor asChild>
+						<Link
+							to={gjennomforingDetaljerPageUrl(gjennomforing.id)}
+						>
+							{gjennomforing.navn}
+						</Link>
 					</LinkCard.Anchor>
 				</LinkCard.Title>
 				<LinkCard.Description>
