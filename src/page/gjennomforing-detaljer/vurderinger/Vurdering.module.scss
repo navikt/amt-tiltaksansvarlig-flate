@@ -1,5 +1,5 @@
 .gray {
-  color: var(--a-text-subtle);
+  color: var(--ax-text-neutral-subtle);
 }
 
 .description{
@@ -7,7 +7,7 @@
 }
 
 .vurderingstype {
-  font-weight: var(--a-font-weight-bold);
+  font-weight: var(--ax-font-weight-bold);
 }
 
 .fnr {
@@ -19,7 +19,7 @@
 }
 
 .panel { // skal ha
-  border-color: var(--a-border-default);
+  border-color: var(--ax-border-neutral);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   margin-bottom: 1.5rem;
