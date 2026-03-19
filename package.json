@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^7.39.1",
-    "@navikt/ds-css": "^7.39.1",
-    "@navikt/ds-react": "^7.39.1",
-    "@types/react": "^19.2.9",
+    "@navikt/aksel-icons": "^8.6.0",
+    "@navikt/ds-css": "^8.6.0",
+    "@navikt/ds-react": "^8.6.0",
+    "@types/react": "^19.2.14",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
     "constate": "^3.3.3",
     "dayjs": "^1.11.19",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-router-dom": "^7.12.0",
-    "zod": "^4.3.5"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.1",
+    "zod": "^4.3.6"
   },
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
@@ -26,23 +26,22 @@
     "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
-    "@faker-js/faker": "^10.2.0",
-    "@typescript-eslint/eslint-plugin": "^8.53.1",
-    "@typescript-eslint/parser": "^8.53.1",
-    "@vitejs/plugin-react": "^5.1.2",
-    "cpy-cli": "^6.0.0",
-    "eslint": "^9.39.2",
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vitejs/plugin-react": "^5.1.4",
+    "cpy-cli": "^7.0.0",
+    "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "globals": "^17.0.0",
-    "msw": "2.12.7",
+    "globals": "^17.4.0",
+    "msw": "2.12.10",
     "sass": "^1.97.3",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.53.1",
+    "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   },
   "msw": {
     "workerDirectory": "./public"

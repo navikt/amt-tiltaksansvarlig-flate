@@ -3,8 +3,8 @@
 }
 
 .ikkeArkivertPadding {
-  margin-left: var(--a-spacing-3);
-  margin-right: var(--a-spacing-3);
+  margin-left: var(--ax-space-12);
+  margin-right: var(--ax-space-12);
 }
 
 .spaceTop {
@@ -23,10 +23,10 @@
     padding: 0;
     border-bottom: none !important;
 
-    color: var(--a-surface-action);
+    color: var(--ax-bg-accent-strong);
     background-color: transparent !important;
     &:hover {
-        color: var(--a-surface-action-hover) !important;
+        color: var(--ax-bg-accent-strong-hover) !important;
         text-decoration: underline;
     }
 }

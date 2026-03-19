@@ -4,32 +4,32 @@
 }
 
 .endreIkon {
-  color: var(--a-deepblue-300);
+  color: var(--ax-brand-blue-400);
   @extend .ikon;
 }
 
 .forlengIkon {
-  color: var(--a-icon-success);
+  color: var(--ax-text-success-decoration);
   @extend .ikon;
 }
 
 .ikkeAktuellIkon {
-  color: var(--a-icon-warning);
+  color: var(--ax-text-warning-decoration);
   transform: rotate(45deg);
   @extend .ikon;
 }
 
 .endreProsentDeltakelseIkon {
-  color: var(--a-purple-400);
+  color: var(--ax-meta-purple-500);
   @extend .ikon;
 }
 
 .avsluttIkon {
-  color: var(--a-gray-500);
+  color: var(--ax-neutral-600);
   @extend .ikon;
 }
 
 .erAktuellIkon {
-  color: var(--a-icon-alt-2);
+  color: var(--ax-text-meta-lime-decoration);
   @extend .ikon;
 }

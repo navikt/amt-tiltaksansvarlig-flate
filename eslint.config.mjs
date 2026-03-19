@@ -2,14 +2,12 @@ import eslint from '@eslint/js'
 import globals from 'globals'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import tseslint from 'typescript-eslint'
-import pluginReact from 'eslint-plugin-react'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 
 /** @type {import("eslint").Linter.Config[]} */
 export default [
 	eslint.configs.recommended,
 	...tseslint.configs.recommended,
-	pluginReact.configs.flat.recommended,
 	jsxA11y.flatConfigs.recommended,
 	eslintConfigPrettier,
 	{
