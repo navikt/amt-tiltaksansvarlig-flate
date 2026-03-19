@@ -1,23 +1,19 @@
-import { BodyShort, Heading, LinkCard, Tag } from '@navikt/ds-react'
+import { BodyShort, LinkCard, Tag } from '@navikt/ds-react'
 import React from 'react'
 
 import { Gjennomforing } from '../../../../api/api'
 import { GjennomforingStatus } from '../../../../api/schema/schema'
 import { AvsluttetMerkelapp } from '../../../../component/avsluttet-merkelapp/AvsluttetMerkelapp'
-import { SpaLenkepanel } from '../../../../component/spa-lenkepanel/SpaLenkepanel'
 import { WarningGroup } from '../../../../component/WarningGroup'
-import { gjennomforingDetaljerPageUrl } from '../../../../navigation'
 import { formatDateMedMndNavn } from '../../../../utils/date-utils'
 import styles from './GjennomforingPanel.module.scss'
 
 interface GjennomforingPanelProps {
 	gjennomforing: Gjennomforing
-	onClick: () => void
 }
 
 export const GjennomforingPanel = ({
-	gjennomforing,
-	onClick
+	gjennomforing
 }: GjennomforingPanelProps): React.ReactElement => {
 	const harAktiveEndringsmeldinger =
 		gjennomforing.antallAktiveEndringsmeldinger > 0

@@ -13,11 +13,6 @@ interface Props {
 }
 
 export const GjennomforingListe = (props: Props): React.ReactElement => {
-
-	const handleClick = () => {
-		sessionStorage.setItem('scrollPosition', JSON.stringify(window.scrollY))
-	}
-
 	useEffect(() => {
 		const scrollPosition = sessionStorage.getItem('scrollPosition')
 		if (scrollPosition) {
@@ -33,10 +28,16 @@ export const GjennomforingListe = (props: Props): React.ReactElement => {
 			) : (
 				<Accordion size="small">
 					{finnTiltakMedGjennomforinger(props.gjennomforinger)
-						.sort((tg1, tg2) => sortAlphabetic(tg1.tiltak.navn, tg2.tiltak.navn))
+						.sort((tg1, tg2) =>
+							sortAlphabetic(tg1.tiltak.navn, tg2.tiltak.navn)
+						)
 						.map((tg) => {
 							return (
-								<GjennomforingGruppering tiltak={tg.tiltak} gjennomforinger={tg.gjennomforinger} key={tg.tiltak.kode} onClick={handleClick} />
+								<GjennomforingGruppering
+									tiltak={tg.tiltak}
+									gjennomforinger={tg.gjennomforinger}
+									key={tg.tiltak.kode}
+								/>
 							)
 						})}
 				</Accordion>
@@ -65,11 +66,15 @@ const finnTiltakMedGjennomforinger = (gjennomforinger: Gjennomforing[]): TiltakM
 interface GjennomforingGrupperingProps {
 	tiltak: Tiltak
 	gjennomforinger: Gjennomforing[]
-	onClick: () => void
 }
 
-const GjennomforingGruppering = (props: GjennomforingGrupperingProps): React.ReactElement => {
-	const [ tiltakOpen, setTiltakOpen ] = useLocalStorage(`accordion-open-${props.tiltak.navn}`, true)
+const GjennomforingGruppering = (
+	props: GjennomforingGrupperingProps
+): React.ReactElement => {
+	const [tiltakOpen, setTiltakOpen] = useLocalStorage(
+		`accordion-open-${props.tiltak.navn}`,
+		true
+	)
 
 	return (
 		<Accordion.Item defaultOpen={tiltakOpen}>
@@ -82,7 +87,6 @@ const GjennomforingGruppering = (props: GjennomforingGrupperingProps): React.Rea
 						.sort((g1, g2) => sortAlphabetic(g1.navn, g2.navn))
 						.map((gjennomforing) => (
 							<GjennomforingPanel
-								onClick={props.onClick}
 								gjennomforing={gjennomforing}
 								key={gjennomforing.id}
 							/>
