@@ -73,13 +73,21 @@ const GjennomforingGruppering = (props: GjennomforingGrupperingProps): React.Rea
 
 	return (
 		<Accordion.Item defaultOpen={tiltakOpen}>
-			<Accordion.Header onClick={() => setTiltakOpen(!tiltakOpen)}>{props.tiltak.navn}</Accordion.Header>
-			<Accordion.Content className={styles.accordionContent}>
-				{props.gjennomforinger
-					.sort((g1, g2) => sortAlphabetic(g1.navn, g2.navn))
-					.map((gjennomforing) => (
-						<GjennomforingPanel onClick={props.onClick} gjennomforing={gjennomforing} key={gjennomforing.id} />
-					))}
+			<Accordion.Header onClick={() => setTiltakOpen(!tiltakOpen)}>
+				{props.tiltak.navn}
+			</Accordion.Header>
+			<Accordion.Content>
+				<div className={styles.accordionContent}>
+					{props.gjennomforinger
+						.sort((g1, g2) => sortAlphabetic(g1.navn, g2.navn))
+						.map((gjennomforing) => (
+							<GjennomforingPanel
+								onClick={props.onClick}
+								gjennomforing={gjennomforing}
+								key={gjennomforing.id}
+							/>
+						))}
+				</div>
 			</Accordion.Content>
 		</Accordion.Item>
 	)
