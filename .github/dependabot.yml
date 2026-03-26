@@ -11,12 +11,11 @@ updates:
     registries:
       - npm-github
     schedule:
-      interval: weekly
-      day: tuesday
+      interval: daily
       time: '05:00'
       timezone: Europe/Oslo
     cooldown:
-      default-days: 12
+      default-days: 7
     open-pull-requests-limit: 10
     groups:
       major:
