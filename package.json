@@ -13,7 +13,7 @@
     "dayjs": "^1.11.20",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "react-router-dom": "^7.14.1",
+    "react-router-dom": "^7.14.2",
     "zod": "^4.3.6"
   },
   "scripts": {
@@ -41,7 +41,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.0",
     "vite": "^8.0.9",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.5"
   },
   "msw": {
     "workerDirectory": "./public"
