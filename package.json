@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^8.10.2",
-    "@navikt/ds-css": "^8.10.2",
-    "@navikt/ds-react": "^8.10.2",
+    "@navikt/aksel-icons": "^8.10.3",
+    "@navikt/ds-css": "^8.10.3",
+    "@navikt/ds-react": "^8.10.3",
     "@types/react": "^19.2.14",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
@@ -14,7 +14,7 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.14.2",
-    "zod": "^4.3.6"
+    "zod": "^4.4.1"
   },
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
@@ -36,7 +36,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.5.0",
-    "msw": "2.13.6",
+    "msw": "2.14.2",
     "sass": "^1.99.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1",
