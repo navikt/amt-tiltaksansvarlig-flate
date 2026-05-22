@@ -13,7 +13,7 @@
     "dayjs": "^1.11.20",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.0",
+    "react-router-dom": "^7.15.1",
     "zod": "^4.4.3"
   },
   "scripts": {
@@ -30,7 +30,7 @@
     "@faker-js/faker": "^10.4.0",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "cpy-cli": "^7.0.0",
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
@@ -40,7 +40,7 @@
     "sass": "^1.99.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
-    "vite": "^8.0.12",
+    "vite": "^8.0.13",
     "vitest": "^4.1.6"
   },
   "msw": {
