@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^8.10.5",
-    "@navikt/ds-css": "^8.10.5",
-    "@navikt/ds-react": "^8.10.5",
+    "@navikt/aksel-icons": "^8.10.6",
+    "@navikt/ds-css": "^8.10.6",
+    "@navikt/ds-react": "^8.10.6",
     "@types/react": "^19.2.14",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
@@ -13,7 +13,7 @@
     "dayjs": "^1.11.20",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.0",
+    "react-router-dom": "^7.15.1",
     "zod": "^4.4.3"
   },
   "scripts": {
@@ -28,19 +28,19 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@faker-js/faker": "^10.4.0",
-    "@typescript-eslint/eslint-plugin": "^8.59.3",
-    "@typescript-eslint/parser": "^8.59.3",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
+    "@vitejs/plugin-react": "^6.0.2",
     "cpy-cli": "^7.0.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.6.0",
     "msw": "2.14.6",
     "sass": "^1.99.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.3",
-    "vite": "^8.0.12",
+    "typescript-eslint": "^8.59.4",
+    "vite": "^8.0.13",
     "vitest": "^4.1.6"
   },
   "msw": {
