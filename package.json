@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^8.10.6",
-    "@navikt/ds-css": "^8.10.6",
-    "@navikt/ds-react": "^8.10.6",
-    "@types/react": "^19.2.14",
+    "@navikt/aksel-icons": "^8.11.0",
+    "@navikt/ds-css": "^8.11.0",
+    "@navikt/ds-react": "^8.11.0",
+    "@types/react": "^19.2.15",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
     "constate": "^3.3.3",
@@ -37,11 +37,11 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.6.0",
     "msw": "2.14.6",
-    "sass": "^1.99.0",
+    "sass": "^1.100.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4",
-    "vite": "^8.0.13",
-    "vitest": "^4.1.6"
+    "vite": "^8.0.14",
+    "vitest": "^4.1.7"
   },
   "msw": {
     "workerDirectory": "./public"
