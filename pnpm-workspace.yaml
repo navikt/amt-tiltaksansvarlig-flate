@@ -1,10 +1,10 @@
 packages:
   - "."
 
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - msw
+allowBuilds:
+  esbuild: true
+  msw: true
+  '@parcel/watcher': false
 
 # Pakker må være 7 dager gamle før de kan installeres (likt som dependabot cooldown)
 # Et sikkerhetstiltak i tilfelle en pakke blir komprimittert
