@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@navikt/aksel-icons": "^8.12.1",
-    "@navikt/ds-css": "^8.12.1",
-    "@navikt/ds-react": "^8.12.1",
+    "@navikt/aksel-icons": "^8.13.0",
+    "@navikt/ds-css": "^8.13.0",
+    "@navikt/ds-react": "^8.13.0",
     "@types/react": "^19.2.17",
     "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.5.1",
@@ -13,7 +13,7 @@
     "dayjs": "^1.11.21",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router-dom": "^7.17.0",
+    "react-router-dom": "^7.18.0",
     "zod": "^4.4.3"
   },
   "scripts": {
