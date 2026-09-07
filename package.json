@@ -13,8 +13,8 @@
     "dayjs": "^1.11.23",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.2",
-    "zod": "^4.4.3"
+    "react-router-dom": "^7.18.3",
+    "zod": "^4.5.4"
   },
   "scripts": {
     "start": "NODE_ENV=local vite --mode local-dev",
@@ -30,7 +30,7 @@
     "@faker-js/faker": "^10.6.0",
     "@typescript-eslint/eslint-plugin": "^8.68.0",
     "@typescript-eslint/parser": "^8.68.0",
-    "@vitejs/plugin-react": "^6.1.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "cpy-cli": "^7.0.0",
     "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
