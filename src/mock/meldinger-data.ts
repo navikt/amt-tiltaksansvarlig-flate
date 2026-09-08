@@ -17,7 +17,7 @@ const vurderingerData: Vurdering[] = [
 			fornavn: 'Harry',
 			mellomnavn: null,
 			etternavn: 'Helved',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -31,7 +31,7 @@ const vurderingerData: Vurdering[] = [
 			fornavn: 'Kråkvar',
 			mellomnavn: null,
 			etternavn: 'Grytidlig',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -45,7 +45,7 @@ const vurderingerData: Vurdering[] = [
 			fornavn: 'Tor',
 			mellomnavn: 'Peder',
 			etternavn: 'Ring',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -90,7 +90,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -122,7 +122,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -138,7 +138,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Nataniel',
 			mellomnavn: null,
 			etternavn: 'Wood',
-			fodselsnummer: '13018812347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -176,7 +176,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Amelia',
 			mellomnavn: null,
 			etternavn: 'Hunter',
-			fodselsnummer: '01108511382',
+			fodselsnummer: '00000000082',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -192,7 +192,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -208,7 +208,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -224,7 +224,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -240,7 +240,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei2',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: true,
 			adressebeskyttelse: null
 		},
@@ -256,7 +256,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Lur',
 			mellomnavn: 'Lutlei2',
 			etternavn: 'Luresen',
-			fodselsnummer: '03035512347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -272,7 +272,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Nataniel',
 			mellomnavn: null,
 			etternavn: 'Wood',
-			fodselsnummer: '13018812347',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -288,7 +288,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: faker.person.firstName(),
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
-			fodselsnummer: '22010112345',
+			fodselsnummer: '00000000045',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -336,7 +336,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: faker.person.firstName(),
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
-			fodselsnummer: '01016912342',
+			fodselsnummer: '00000000042',
 			erSkjermet: false,
 			adressebeskyttelse: Adressebeskyttelse.FORTROLIG,
 		},
@@ -352,7 +352,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: faker.person.firstName(),
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
-			fodselsnummer: '01016912342',
+			fodselsnummer: '00000000042',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
@@ -368,7 +368,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: faker.person.firstName(),
 			mellomnavn: null,
 			etternavn: faker.person.lastName(),
-			fodselsnummer: '02045544447',
+			fodselsnummer: '00000000047',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
