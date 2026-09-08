@@ -154,7 +154,7 @@ const endringsmeldingData: Endringsmelding[] = [
 			fornavn: 'Mira',
 			mellomnavn: null,
 			etternavn: 'Bowler',
-			fodselsnummer: '07099512347',
+			fodselsnummer: '00000000000',
 			erSkjermet: false,
 			adressebeskyttelse: null
 		},
