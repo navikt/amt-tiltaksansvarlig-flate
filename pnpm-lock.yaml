@@ -42,8 +42,8 @@ importers:
         specifier: ^7.18.3
         version: 7.18.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       zod:
-        specifier: ^4.6.2
-        version: 4.6.2
+        specifier: ^4.6.5
+        version: 4.6.5
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -59,7 +59,7 @@ importers:
         version: 8.70.0(eslint@10.10.0)(typescript@6.0.3)
       '@vitejs/plugin-react':
         specifier: ^6.1.1
-        version: 6.1.1(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0))
+        version: 6.1.1(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1))
       cpy-cli:
         specifier: ^7.0.0
         version: 7.0.0
@@ -79,8 +79,8 @@ importers:
         specifier: 2.15.0
         version: 2.15.0(@types/node@26.1.2)(typescript@6.0.3)
       sass:
-        specifier: ^1.104.0
-        version: 1.104.0
+        specifier: ^1.104.1
+        version: 1.104.1
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -89,10 +89,10 @@ importers:
         version: 8.70.0(eslint@10.10.0)(typescript@6.0.3)
       vite:
         specifier: ^8.3.0
-        version: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0)
+        version: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1)
       vitest:
         specifier: ^5.0.0
-        version: 5.0.0(@types/node@26.1.2)(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0))
+        version: 5.0.0(@types/node@26.1.2)(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1))
 
 packages:
 
@@ -1711,8 +1711,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  sass@1.104.0:
-    resolution: {integrity: sha512-btHMApW2bgolvClhRW8AlQJzgI9lUB3pPSofBQQT+E46GWvf9o0TVQ13SYv5riWZVFyPN+JNz3TKW9XhBlc10w==}
+  sass@1.104.1:
+    resolution: {integrity: sha512-yDA+1aIG3EHgN4V/BvuhCvu61FF6hEd4e+9DxikUm9U0CAGuvdIZ/UYy7qbOxjhbbWQraoyLlMuzdRGOSV5Bmw==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -2049,8 +2049,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@4.6.2:
-    resolution: {integrity: sha512-lh5RCAGFa1Cm2hjtNwLQhSs/AsqdWnTQaBER9fEwN/88pSh7KOtJavtBx/0VlkN/uFd61SwYmljLMDAsHlvzBQ==}
+  zod@4.6.5:
+    resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
 
 snapshots:
 
@@ -2556,12 +2556,12 @@ snapshots:
       '@typescript-eslint/types': 8.70.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitejs/plugin-react@6.1.1(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0))':
+  '@vitejs/plugin-react@6.1.1(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0)
+      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1)
 
-  '@vitest/mocker@5.0.0(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0))':
+  '@vitest/mocker@5.0.0(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1))':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@vitest/spy': 5.0.0
@@ -2569,7 +2569,7 @@ snapshots:
       magic-string: 1.2.3
     optionalDependencies:
       msw: 2.15.0(@types/node@26.1.2)(typescript@6.0.3)
-      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0)
+      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1)
 
   '@vitest/spy@5.0.0': {}
 
@@ -3644,7 +3644,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  sass@1.104.0:
+  sass@1.104.1:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.9
@@ -3878,7 +3878,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0):
+  vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -3889,12 +3889,12 @@ snapshots:
       '@types/node': 26.1.2
       esbuild: 0.27.3
       fsevents: 2.3.3
-      sass: 1.104.0
+      sass: 1.104.1
 
-  vitest@5.0.0(@types/node@26.1.2)(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0)):
+  vitest@5.0.0(@types/node@26.1.2)(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1)):
     dependencies:
       '@types/chai': 5.2.3
-      '@vitest/mocker': 5.0.0(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0))
+      '@vitest/mocker': 5.0.0(msw@2.15.0(@types/node@26.1.2)(typescript@6.0.3))(vite@8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1))
       chai: 6.2.2
       es-module-lexer: 2.3.2
       expect-type: 1.4.0
@@ -3905,7 +3905,7 @@ snapshots:
       tinybench: 6.1.4
       tinyexec: 1.3.0
       tinyglobby: 0.2.17
-      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.0)
+      vite: 8.3.0(@types/node@26.1.2)(esbuild@0.27.3)(sass@1.104.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 26.1.2
@@ -3986,4 +3986,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@4.6.2: {}
+  zod@4.6.5: {}
