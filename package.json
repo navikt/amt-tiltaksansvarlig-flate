@@ -36,11 +36,11 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.13.0",
     "msw": "3.0.3",
-    "sass": "^1.105.1",
+    "sass": "^1.105.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.2",
     "vite": "^8.3.4",
-    "vitest": "^5.0.4"
+    "vitest": "^5.0.5"
   },
   "msw": {
     "workerDirectory": "./public"
