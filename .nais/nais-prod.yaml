@@ -6,7 +6,7 @@ metadata:
   labels:
     team: amt
 spec:
-  image: europe-north1-docker.pkg.dev/nais-management-233d/poao/poao-frontend:2026.11.09_22.53-aa5eef6f45af
+  image: europe-north1-docker.pkg.dev/nais-management-233d/poao/poao-frontend:2026.11.24_08.48-be53021b15d4
   port: 8080
   ingresses:
     - https://arbeidsmarkedstiltak.intern.nav.no
